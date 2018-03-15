@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		292090D82055731B0088821E /* 001_splash screen.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 292090D72055731B0088821E /* 001_splash screen.jpg */; };
+		294B5C46205A964D00794D47 /* bannerImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 294B5C45205A964D00794D47 /* bannerImage.jpg */; };
+		294B5C4B205A9D2B00794D47 /* MenuListCollectCELL.m in Sources */ = {isa = PBXBuildFile; fileRef = 294B5C49205A9D2B00794D47 /* MenuListCollectCELL.m */; };
+		294B5C4C205A9D2B00794D47 /* MenuListCollectCELL.xib in Resources */ = {isa = PBXBuildFile; fileRef = 294B5C4A205A9D2B00794D47 /* MenuListCollectCELL.xib */; };
 		297D5EBC2056455400ED5428 /* StartUpVW.m in Sources */ = {isa = PBXBuildFile; fileRef = 297D5EBB2056455400ED5428 /* StartUpVW.m */; };
 		297D5EBF2056493400ED5428 /* LoginVW.m in Sources */ = {isa = PBXBuildFile; fileRef = 297D5EBE2056493400ED5428 /* LoginVW.m */; };
 		297D5EC720564AB400ED5428 /* IQKeyboardManager.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 297D5EC620564AB400ED5428 /* IQKeyboardManager.bundle */; };
@@ -42,6 +45,11 @@
 
 /* Begin PBXFileReference section */
 		292090D72055731B0088821E /* 001_splash screen.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "001_splash screen.jpg"; sourceTree = "<group>"; };
+		294B5C45205A964D00794D47 /* bannerImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bannerImage.jpg; sourceTree = "<group>"; };
+		294B5C48205A9D2B00794D47 /* MenuListCollectCELL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuListCollectCELL.h; sourceTree = "<group>"; };
+		294B5C49205A9D2B00794D47 /* MenuListCollectCELL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuListCollectCELL.m; sourceTree = "<group>"; };
+		294B5C4A205A9D2B00794D47 /* MenuListCollectCELL.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuListCollectCELL.xib; sourceTree = "<group>"; };
+		294B5C4D205A9F8800794D47 /* saltPepper.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = saltPepper.pch; sourceTree = "<group>"; };
 		297D5EBA2056455400ED5428 /* StartUpVW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartUpVW.h; sourceTree = "<group>"; };
 		297D5EBB2056455400ED5428 /* StartUpVW.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartUpVW.m; sourceTree = "<group>"; };
 		297D5EBD2056493400ED5428 /* LoginVW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginVW.h; sourceTree = "<group>"; };
@@ -113,6 +121,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		294B5C47205A9CF700794D47 /* CollectionCell */ = {
+			isa = PBXGroup;
+			children = (
+				294B5C48205A9D2B00794D47 /* MenuListCollectCELL.h */,
+				294B5C49205A9D2B00794D47 /* MenuListCollectCELL.m */,
+				294B5C4A205A9D2B00794D47 /* MenuListCollectCELL.xib */,
+			);
+			name = CollectionCell;
+			sourceTree = "<group>";
+		};
 		297D5EC020564A6E00ED5428 /* IQKeyboardManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -195,6 +213,7 @@
 			isa = PBXGroup;
 			children = (
 				297D5EF520564FF300ED5428 /* ShowPassIcon.png */,
+				294B5C45205A964D00794D47 /* bannerImage.jpg */,
 				292090D72055731B0088821E /* 001_splash screen.jpg */,
 			);
 			name = Images;
@@ -236,6 +255,7 @@
 		B18E77F72055143E00C50320 /* SaltPepper */ = {
 			isa = PBXGroup;
 			children = (
+				294B5C47205A9CF700794D47 /* CollectionCell */,
 				297D5EFA20565F2800ED5428 /* Menu */,
 				297D5EC020564A6E00ED5428 /* IQKeyboardManager */,
 				B18E77FB2055143E00C50320 /* AppDelegate.h */,
@@ -249,6 +269,7 @@
 				297D5F0A205662DA00ED5428 /* HomeVC.h */,
 				297D5F0B205662DA00ED5428 /* HomeVC.m */,
 				297D5F0D2056BF2A00ED5428 /* Main.storyboard */,
+				294B5C4D205A9F8800794D47 /* saltPepper.pch */,
 				297D5EF420564FDF00ED5428 /* Images */,
 				B18E78042055143E00C50320 /* Assets.xcassets */,
 				B18E78062055143E00C50320 /* LaunchScreen.storyboard */,
@@ -330,6 +351,8 @@
 				297D5F0E2056BF2A00ED5428 /* Main.storyboard in Resources */,
 				B18E78052055143E00C50320 /* Assets.xcassets in Resources */,
 				292090D82055731B0088821E /* 001_splash screen.jpg in Resources */,
+				294B5C46205A964D00794D47 /* bannerImage.jpg in Resources */,
+				294B5C4C205A9D2B00794D47 /* MenuListCollectCELL.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,6 +364,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				297D5EF220564B1600ED5428 /* IQKeyboardManager.m in Sources */,
+				294B5C4B205A9D2B00794D47 /* MenuListCollectCELL.m in Sources */,
 				B18E77FD2055143E00C50320 /* AppDelegate.m in Sources */,
 				297D5EEC20564B0500ED5428 /* IQUIViewController+Additions.m in Sources */,
 				297D5F0920565F3A00ED5428 /* DEMOLeftMenuViewController.m in Sources */,

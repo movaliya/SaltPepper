@@ -10,5 +10,9 @@
 #import "RESideMenu.h"
 
 @interface HomeVC : UIViewController
+@property (weak, nonatomic) IBOutlet UICollectionView *MenuCollectionVW;
+@property (weak, nonatomic) IBOutlet UIPageControl *pagesControl;
+@property (weak, nonatomic) IBOutlet UIScrollView *bannerscroll;
+@property (weak, nonatomic) IBOutlet UIImageView *bannerImgVW;
 
 @end

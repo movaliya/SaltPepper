@@ -122,7 +122,7 @@
     }
     
     NSArray *titles = @[@"Home", @"Categories", @"My Cart", @"Order History", @"Setting", @"Favourites", @"About Us",@"Contact Us", @"Log Out"];
-    NSArray *images = @[@"ic_home", @"ic_categories",@"ic_cart", @"IconMessage", @"ic_faq", @"IconInviteFriend", @"IconMessage", @"ic_faq", @"IconInviteFriend"];
+    NSArray *images = @[@"ic_home", @"ic_categories",@"ic_cart", @"ic_histry", @"ic_setting", @"ic_Fav", @"ic_rest", @"ic_contact", @"ic_logout"];
     cell.textLabel.text = titles[indexPath.row];
     cell.imageView.image = [UIImage imageNamed:images[indexPath.row]];
     
