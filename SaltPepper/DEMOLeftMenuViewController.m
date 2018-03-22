@@ -9,6 +9,7 @@
 #import "DEMOLeftMenuViewController.h"
 #import "UIViewController+RESideMenu.h"
 #import "HomeVC.h"
+#import "LoginVW.h"
 
 @interface DEMOLeftMenuViewController ()
 
@@ -78,8 +79,8 @@
                                                          animated:YES];
             [self.sideMenuViewController hideMenuViewController];
             break;
-        case 4:
-            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"InvitefriendVC"]]
+        case 9:
+            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"LoginVW"]]
                                                          animated:YES];
             [self.sideMenuViewController hideMenuViewController];
             break;
@@ -103,7 +104,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)sectionIndex
 {
-    return 9;
+    return 10;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -116,13 +117,14 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         cell.backgroundColor = [UIColor clearColor];
         cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:18];
-        cell.textLabel.textColor = [UIColor whiteColor];
+        cell.textLabel.textColor = [UIColor colorWithRed:109.0/255.0f green:18.0/255.0f
+                                                    blue:32.0/255.0f alpha:1.0];
         cell.textLabel.highlightedTextColor = [UIColor lightGrayColor];
         cell.selectedBackgroundView = [[UIView alloc] init];
     }
     
-    NSArray *titles = @[@"Home", @"Categories", @"My Cart", @"Order History", @"Setting", @"Favourites", @"About Us",@"Contact Us", @"Log Out"];
-    NSArray *images = @[@"ic_home", @"ic_categories",@"ic_cart", @"ic_histry", @"ic_setting", @"ic_Fav", @"ic_rest", @"ic_contact", @"ic_logout"];
+    NSArray *titles = @[@"Home", @"Cart", @"Reservation", @"Gallery", @"News", @"Information", @"Video Gallery",@"Message",@"Contact Us", @"Login or Signup"];
+    NSArray *images = @[@"ic_home", @"ic_cart",@"ic_reservation", @"ic_gallery", @"ic_news", @"ic_info", @"ic_videogallery", @"ic_message", @"ic_contactus", @"ic_logout"];
     cell.textLabel.text = titles[indexPath.row];
     cell.imageView.image = [UIImage imageNamed:images[indexPath.row]];
     
