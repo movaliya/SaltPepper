@@ -10,10 +10,7 @@
 // AFNetworking
 #import <SystemConfiguration/SystemConfiguration.h>
 #import <MobileCoreServices/MobileCoreServices.h>
-
-
-
-
+#import "Utility.h"
 
 
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
@@ -60,7 +57,25 @@
 #define KmyappDelegate ((AppDelegate *)[[UIApplication sharedApplication] delegate])
 
 
+#define MAIN_URL   @"http://18.217.247.93/api/v2/"
 
+
+#define GETUNREADNOTIFICATIONDATA   @"Login"
+
+
+
+//UserDefaults
+#define _rb(key) [[[NSUserDefaults standardUserDefaults] valueForKey:key] boolValue]
+#define _ri(key) [[[NSUserDefaults standardUserDefaults] valueForKey:key] intValue]
+#define _rf(key) [[[NSUserDefaults standardUserDefaults] valueForKey:key] floatValue]
+#define _rs(key) [[NSUserDefaults standardUserDefaults] valueForKey:key]
+#define _ro(key) [[NSUserDefaults standardUserDefaults] objectForKey:key]
+
+#define _wb(key, val) [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithBool:val] forKey:key]; [[NSUserDefaults standardUserDefaults] synchronize];
+#define _wi(key, val) [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithInt:val] forKey:key];  [[NSUserDefaults standardUserDefaults] synchronize];
+#define _wf(key, val) [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithFloat:val] forKey:key];  [[NSUserDefaults standardUserDefaults] synchronize];
+#define _ws(key, val) [[NSUserDefaults standardUserDefaults] setValue:val forKey:key];  [[NSUserDefaults standardUserDefaults] synchronize];
+#define _wo(key, val) [[NSUserDefaults standardUserDefaults] setObject:val forKey:key];  [[NSUserDefaults standardUserDefaults] synchronize];
 
 
 

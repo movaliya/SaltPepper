@@ -10,6 +10,7 @@
 #import "LoginVW.h"
 #import "RegisterVW.h"
 #import "DEMORootViewController.h"
+#import "saltPepper.pch"
 
 @interface StartUpVW ()
 
@@ -32,10 +33,46 @@
     LoginBtn.clipsToBounds = YES;
     LoginBtn.layer.borderColor=[UIColor whiteColor].CGColor;
     LoginBtn.layer.borderWidth=1.0f;
-    
-    
-    // Do any additional setup after loading the view.
 }
+
+
+#pragma mark - API CALL
+
+-(void)CallForTheStatusOfUnreadNotification
+{
+    NSMutableDictionary *dictpost = [[NSMutableDictionary alloc] init];
+    [dictpost setValue:@"VALUE" forKey:@"KEY"];
+    [dictpost setValue:@"VALUE2" forKey:@"KEY2"];
+    
+    [Utility postRequest:dictpost url:GETUNREADNOTIFICATIONDATA success:^(id result)
+     {
+         if (![result isKindOfClass:[NSString class]])
+         {
+             if ([[result valueForKey:@"rstatus"] boolValue])
+             {
+                 
+             }
+             else
+             {
+                 //[sharedAppDel ShowAlertWithOneBtn:[result valueForKey:@"message"] andStrTitle:nil andbtnTitle:@"OK"];
+             }
+         }
+     }failure:^(NSError *error)
+     {
+         
+          if (![Utility connected])
+          {
+             //[sharedAppDel ShowAlertWithOneBtn:kReachability andStrTitle:nil andbtnTitle:@"OK"];
+          }
+          else
+          {
+              //[sharedAppDel ShowAlertWithOneBtn:[result valueForKey:@"message"] andStrTitle:nil andbtnTitle:@"OK"];
+          }
+     }];
+}
+
+
+
 - (IBAction)RegiterBtn_Click:(id)sender
 {
     RegisterVW *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"RegisterVW"];

@@ -23,20 +23,24 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.tableView = ({
-        UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, (self.view.frame.size.height - 54 * 5) / 2.0f, self.view.frame.size.width, 54 * 5) style:UITableViewStylePlain];
-        tableView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth;
-        tableView.delegate = self;
-        tableView.dataSource = self;
-        tableView.opaque = NO;
-        tableView.backgroundColor = [UIColor clearColor];
-        tableView.backgroundView = nil;
-        tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        tableView.bounces = NO;
-        tableView.scrollsToTop = NO;
-        tableView;
-    });
-    [self.view addSubview:self.tableView];
+//    self.tableView = ({
+//        UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, (self.view.frame.size.height - 54 * 5) / 2.0f, self.view.frame.size.width, 54 * 5) style:UITableViewStylePlain];
+//        tableView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth;
+//        tableView.delegate = self;
+//        tableView.dataSource = self;
+//        tableView.opaque = NO;
+//        tableView.backgroundColor = [UIColor clearColor];
+//        tableView.backgroundView = nil;
+//        tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+//        tableView.bounces = NO;
+//        tableView.scrollsToTop = NO;
+//        tableView;
+//    });
+//    [self.view addSubview:self.tableView];
+    
+    self.MenuTBL.backgroundColor = [UIColor clearColor];
+    self.MenuTBL.backgroundView = nil;
+    self.MenuTBL.bounces = NO;
     
     profilePictIMVW.layer.cornerRadius = profilePictIMVW.frame.size.width / 2;
     profilePictIMVW.clipsToBounds = YES;

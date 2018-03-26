@@ -13,5 +13,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *profilePictIMVW;
 @property (weak, nonatomic) IBOutlet UILabel *Username_LBL;
 @property (weak, nonatomic) IBOutlet UILabel *Notification_LBL;
+@property (strong, nonatomic) IBOutlet UITableView *MenuTBL;
 
 @end
