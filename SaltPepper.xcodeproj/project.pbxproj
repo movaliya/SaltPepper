@@ -22,6 +22,9 @@
 		295E073B206F773D00BC4ADB /* NewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 295E0739206F773D00BC4ADB /* NewsCell.m */; };
 		295E073C206F773D00BC4ADB /* NewsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 295E073A206F773D00BC4ADB /* NewsCell.xib */; };
 		295E073E206F783B00BC4ADB /* testImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 295E073D206F783B00BC4ADB /* testImage.jpg */; };
+		295E0741206F943800BC4ADB /* VideoGallaryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 295E0740206F943800BC4ADB /* VideoGallaryView.m */; };
+		295E0744206F951C00BC4ADB /* VideoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 295E0742206F951C00BC4ADB /* VideoCell.m */; };
+		295E0745206F951C00BC4ADB /* VideoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 295E0743206F951C00BC4ADB /* VideoCell.xib */; };
 		297D5EBC2056455400ED5428 /* StartUpVW.m in Sources */ = {isa = PBXBuildFile; fileRef = 297D5EBB2056455400ED5428 /* StartUpVW.m */; };
 		297D5EBF2056493400ED5428 /* LoginVW.m in Sources */ = {isa = PBXBuildFile; fileRef = 297D5EBE2056493400ED5428 /* LoginVW.m */; };
 		297D5EF620564FF300ED5428 /* ShowPassIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 297D5EF520564FF300ED5428 /* ShowPassIcon.png */; };
@@ -69,6 +72,11 @@
 		295E0739206F773D00BC4ADB /* NewsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsCell.m; sourceTree = "<group>"; };
 		295E073A206F773D00BC4ADB /* NewsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewsCell.xib; sourceTree = "<group>"; };
 		295E073D206F783B00BC4ADB /* testImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = testImage.jpg; sourceTree = "<group>"; };
+		295E073F206F943800BC4ADB /* VideoGallaryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoGallaryView.h; sourceTree = "<group>"; };
+		295E0740206F943800BC4ADB /* VideoGallaryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoGallaryView.m; sourceTree = "<group>"; };
+		295E0742206F951C00BC4ADB /* VideoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCell.m; sourceTree = "<group>"; };
+		295E0743206F951C00BC4ADB /* VideoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoCell.xib; sourceTree = "<group>"; };
+		295E0746206F955200BC4ADB /* VideoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCell.h; sourceTree = "<group>"; };
 		297D5EBA2056455400ED5428 /* StartUpVW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartUpVW.h; sourceTree = "<group>"; };
 		297D5EBB2056455400ED5428 /* StartUpVW.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartUpVW.m; sourceTree = "<group>"; };
 		297D5EBD2056493400ED5428 /* LoginVW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginVW.h; sourceTree = "<group>"; };
@@ -128,6 +136,9 @@
 				295E0738206F773D00BC4ADB /* NewsCell.h */,
 				295E0739206F773D00BC4ADB /* NewsCell.m */,
 				295E073A206F773D00BC4ADB /* NewsCell.xib */,
+				295E0746206F955200BC4ADB /* VideoCell.h */,
+				295E0742206F951C00BC4ADB /* VideoCell.m */,
+				295E0743206F951C00BC4ADB /* VideoCell.xib */,
 			);
 			name = CollectionCell;
 			sourceTree = "<group>";
@@ -223,6 +234,8 @@
 				295E0733206F771800BC4ADB /* NewsVW.m */,
 				295E0735206F772100BC4ADB /* NewsFullView.h */,
 				295E0736206F772100BC4ADB /* NewsFullView.m */,
+				295E073F206F943800BC4ADB /* VideoGallaryView.h */,
+				295E0740206F943800BC4ADB /* VideoGallaryView.m */,
 				297D5F0D2056BF2A00ED5428 /* Main.storyboard */,
 				294B5C4D205A9F8800794D47 /* saltPepper.pch */,
 				297D5EF420564FDF00ED5428 /* Images */,
@@ -324,6 +337,7 @@
 			files = (
 				B18E78082055143E00C50320 /* LaunchScreen.storyboard in Resources */,
 				297D5EF620564FF300ED5428 /* ShowPassIcon.png in Resources */,
+				295E0745206F951C00BC4ADB /* VideoCell.xib in Resources */,
 				297D5F0E2056BF2A00ED5428 /* Main.storyboard in Resources */,
 				B18E78052055143E00C50320 /* Assets.xcassets in Resources */,
 				295CD5B0206A27D1002129FD /* CVCell.xib in Resources */,
@@ -396,6 +410,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				295E0741206F943800BC4ADB /* VideoGallaryView.m in Sources */,
 				294B5C4B205A9D2B00794D47 /* MenuListCollectCELL.m in Sources */,
 				B18E77FD2055143E00C50320 /* AppDelegate.m in Sources */,
 				297D5F0920565F3A00ED5428 /* DEMOLeftMenuViewController.m in Sources */,
@@ -408,6 +423,7 @@
 				297D5F0620565F3A00ED5428 /* RESideMenu.m in Sources */,
 				295E0731206F720F00BC4ADB /* ReservationSubVW.m in Sources */,
 				297D5EBC2056455400ED5428 /* StartUpVW.m in Sources */,
+				295E0744206F951C00BC4ADB /* VideoCell.m in Sources */,
 				297D5EBF2056493400ED5428 /* LoginVW.m in Sources */,
 				B1B744662069502A00A2FE9C /* Reachability.m in Sources */,
 				295E0734206F771800BC4ADB /* NewsVW.m in Sources */,

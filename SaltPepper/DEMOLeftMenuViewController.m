@@ -88,6 +88,11 @@
                                                          animated:YES];
             [self.sideMenuViewController hideMenuViewController];
             break;
+        case 6:
+            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"VideoGallaryView"]]
+                                                         animated:YES];
+            [self.sideMenuViewController hideMenuViewController];
+            break;
         case 9:
             [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"LoginVW"]]
                                                          animated:YES];
