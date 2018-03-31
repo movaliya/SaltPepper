@@ -723,12 +723,20 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hr8-CT-ZrN">
-                                        <rect key="frame" x="282" y="23" width="30" height="25"/>
+                                        <rect key="frame" x="285" y="23" width="27" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="25" id="BlM-YO-nIe"/>
-                                            <constraint firstAttribute="width" constant="30" id="N34-gx-nHH"/>
+                                            <constraint firstAttribute="width" constant="27" id="N34-gx-nHH"/>
                                         </constraints>
                                         <state key="normal" image="CartIconWhite"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0tj-tp-gpg">
+                                        <rect key="frame" x="248" y="23" width="27" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="27" id="5Db-Li-l83"/>
+                                            <constraint firstAttribute="height" constant="25" id="iIv-Av-h2d"/>
+                                        </constraints>
+                                        <state key="normal" image="favIcon"/>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.81176470590000005" green="0.7725490196" blue="0.56470588239999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -736,6 +744,8 @@
                                     <constraint firstAttribute="bottom" secondItem="3JW-aH-0pM" secondAttribute="bottom" constant="15" id="PoY-dR-W2D"/>
                                     <constraint firstAttribute="trailing" secondItem="hr8-CT-ZrN" secondAttribute="trailing" constant="8" id="QUt-Ix-VDJ"/>
                                     <constraint firstAttribute="height" constant="70" id="Tnu-G5-bWI"/>
+                                    <constraint firstItem="0tj-tp-gpg" firstAttribute="centerY" secondItem="hr8-CT-ZrN" secondAttribute="centerY" id="ZH3-86-MGf"/>
+                                    <constraint firstItem="hr8-CT-ZrN" firstAttribute="leading" secondItem="0tj-tp-gpg" secondAttribute="trailing" constant="10" id="a8O-rq-Wmq"/>
                                     <constraint firstItem="hr8-CT-ZrN" firstAttribute="centerY" secondItem="LMC-Ux-Z4e" secondAttribute="centerY" id="fKq-Iz-8bq"/>
                                     <constraint firstItem="LMC-Ux-Z4e" firstAttribute="centerY" secondItem="3JW-aH-0pM" secondAttribute="centerY" id="gV4-k0-vah"/>
                                     <constraint firstItem="3JW-aH-0pM" firstAttribute="leading" secondItem="fnb-Os-pAU" secondAttribute="leading" constant="10" id="iUu-T6-biL"/>
@@ -1030,5 +1040,6 @@
         <image name="ShowPassIcon.png" width="200" height="200"/>
         <image name="bannerImage.jpg" width="575" height="382"/>
         <image name="brownBackBtn" width="17" height="17"/>
+        <image name="favIcon" width="25" height="25"/>
     </resources>
 </document>
