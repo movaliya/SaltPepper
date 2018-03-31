@@ -11,6 +11,10 @@
 		294B5C46205A964D00794D47 /* bannerImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 294B5C45205A964D00794D47 /* bannerImage.jpg */; };
 		294B5C4B205A9D2B00794D47 /* MenuListCollectCELL.m in Sources */ = {isa = PBXBuildFile; fileRef = 294B5C49205A9D2B00794D47 /* MenuListCollectCELL.m */; };
 		294B5C4C205A9D2B00794D47 /* MenuListCollectCELL.xib in Resources */ = {isa = PBXBuildFile; fileRef = 294B5C4A205A9D2B00794D47 /* MenuListCollectCELL.xib */; };
+		295CD5AB206A2725002129FD /* GalleryVW.m in Sources */ = {isa = PBXBuildFile; fileRef = 295CD5AA206A2725002129FD /* GalleryVW.m */; };
+		295CD5AF206A27D1002129FD /* CVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 295CD5AD206A27D1002129FD /* CVCell.m */; };
+		295CD5B0206A27D1002129FD /* CVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 295CD5AE206A27D1002129FD /* CVCell.xib */; };
+		295CD5B3206A27F6002129FD /* GalleryFullView.m in Sources */ = {isa = PBXBuildFile; fileRef = 295CD5B2206A27F6002129FD /* GalleryFullView.m */; };
 		297D5EBC2056455400ED5428 /* StartUpVW.m in Sources */ = {isa = PBXBuildFile; fileRef = 297D5EBB2056455400ED5428 /* StartUpVW.m */; };
 		297D5EBF2056493400ED5428 /* LoginVW.m in Sources */ = {isa = PBXBuildFile; fileRef = 297D5EBE2056493400ED5428 /* LoginVW.m */; };
 		297D5EF620564FF300ED5428 /* ShowPassIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 297D5EF520564FF300ED5428 /* ShowPassIcon.png */; };
@@ -39,6 +43,13 @@
 		294B5C49205A9D2B00794D47 /* MenuListCollectCELL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuListCollectCELL.m; sourceTree = "<group>"; };
 		294B5C4A205A9D2B00794D47 /* MenuListCollectCELL.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuListCollectCELL.xib; sourceTree = "<group>"; };
 		294B5C4D205A9F8800794D47 /* saltPepper.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = saltPepper.pch; sourceTree = "<group>"; };
+		295CD5A9206A2725002129FD /* GalleryVW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryVW.h; sourceTree = "<group>"; };
+		295CD5AA206A2725002129FD /* GalleryVW.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryVW.m; sourceTree = "<group>"; };
+		295CD5AC206A27D1002129FD /* CVCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVCell.h; sourceTree = "<group>"; };
+		295CD5AD206A27D1002129FD /* CVCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVCell.m; sourceTree = "<group>"; };
+		295CD5AE206A27D1002129FD /* CVCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CVCell.xib; sourceTree = "<group>"; };
+		295CD5B1206A27F6002129FD /* GalleryFullView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryFullView.h; sourceTree = "<group>"; };
+		295CD5B2206A27F6002129FD /* GalleryFullView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryFullView.m; sourceTree = "<group>"; };
 		297D5EBA2056455400ED5428 /* StartUpVW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartUpVW.h; sourceTree = "<group>"; };
 		297D5EBB2056455400ED5428 /* StartUpVW.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartUpVW.m; sourceTree = "<group>"; };
 		297D5EBD2056493400ED5428 /* LoginVW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginVW.h; sourceTree = "<group>"; };
@@ -92,6 +103,9 @@
 				294B5C48205A9D2B00794D47 /* MenuListCollectCELL.h */,
 				294B5C49205A9D2B00794D47 /* MenuListCollectCELL.m */,
 				294B5C4A205A9D2B00794D47 /* MenuListCollectCELL.xib */,
+				295CD5AC206A27D1002129FD /* CVCell.h */,
+				295CD5AD206A27D1002129FD /* CVCell.m */,
+				295CD5AE206A27D1002129FD /* CVCell.xib */,
 			);
 			name = CollectionCell;
 			sourceTree = "<group>";
@@ -174,6 +188,10 @@
 				297D5EF82056556000ED5428 /* RegisterVW.m */,
 				297D5F0A205662DA00ED5428 /* HomeVC.h */,
 				297D5F0B205662DA00ED5428 /* HomeVC.m */,
+				295CD5A9206A2725002129FD /* GalleryVW.h */,
+				295CD5AA206A2725002129FD /* GalleryVW.m */,
+				295CD5B1206A27F6002129FD /* GalleryFullView.h */,
+				295CD5B2206A27F6002129FD /* GalleryFullView.m */,
 				297D5F0D2056BF2A00ED5428 /* Main.storyboard */,
 				294B5C4D205A9F8800794D47 /* saltPepper.pch */,
 				297D5EF420564FDF00ED5428 /* Images */,
@@ -277,6 +295,7 @@
 				297D5EF620564FF300ED5428 /* ShowPassIcon.png in Resources */,
 				297D5F0E2056BF2A00ED5428 /* Main.storyboard in Resources */,
 				B18E78052055143E00C50320 /* Assets.xcassets in Resources */,
+				295CD5B0206A27D1002129FD /* CVCell.xib in Resources */,
 				292090D82055731B0088821E /* 001_splash screen.jpg in Resources */,
 				294B5C46205A964D00794D47 /* bannerImage.jpg in Resources */,
 				294B5C4C205A9D2B00794D47 /* MenuListCollectCELL.xib in Resources */,
@@ -356,8 +375,11 @@
 				297D5EBF2056493400ED5428 /* LoginVW.m in Sources */,
 				B1B744662069502A00A2FE9C /* Reachability.m in Sources */,
 				B18E77FA2055143E00C50320 /* main.m in Sources */,
+				295CD5AF206A27D1002129FD /* CVCell.m in Sources */,
 				297D5F0720565F3A00ED5428 /* UIViewController+RESideMenu.m in Sources */,
 				B1B7446120694F9400A2FE9C /* Utility.m in Sources */,
+				295CD5B3206A27F6002129FD /* GalleryFullView.m in Sources */,
+				295CD5AB206A2725002129FD /* GalleryVW.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -471,6 +493,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = "";
+				GCC_PREFIX_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/saltPepper.pch";
 				INFOPLIST_FILE = SaltPepper/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -486,6 +509,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = "";
+				GCC_PREFIX_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/saltPepper.pch";
 				INFOPLIST_FILE = SaltPepper/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
