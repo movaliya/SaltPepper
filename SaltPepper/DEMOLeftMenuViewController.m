@@ -79,7 +79,7 @@
             [self.sideMenuViewController hideMenuViewController];
             break;
         case 3:
-            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"FaqVC"]]
+            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"GalleryVW"]]
                                                          animated:YES];
             [self.sideMenuViewController hideMenuViewController];
             break;

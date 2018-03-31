@@ -13,6 +13,14 @@
 #import "Utility.h"
 
 
+#import "UIImageView+WebCache.h"
+#import "IQKeyboardManager.h"
+#import "MBProgressHUD.h"
+#import <AFNetworking/AFNetworking.h>
+#import <SDWebImage/UIView+WebCache.h>
+#import <SDWebImage/UIButton+WebCache.h>
+#import <SDWebImage/UIImageView+WebCache.h>
+
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 #define IS_IPHONE (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
 #define IS_RETINA ([[UIScreen mainScreen] scale] >= 2.0)
@@ -41,7 +49,19 @@
 #define GregorianCalendar NSGregorianCalendar
 #endif
 
+#define KmyappDelegate ((AppDelegate *)[[UIApplication sharedApplication] delegate])
 
+//Base URL
+#define kBaseURL    @"https://tiffintom.com/api/private/request/data/"
+
+
+//Live Key
+//#define KAPIKEY    @"jurd3WvjnweVASwx6oU5kwuA1mBAo9vwtMAnyUvL"
+
+
+
+//Dummy Key
+#define KAPIKEY    @"DoPUQBErcpKPtRmbjpcFvbb8YCMeBjr4w6OcyjtA"
 
 //Check if iphone5 or iphone 4
 #define isIPhone5 ([UIScreen mainScreen].bounds.size.height == 568.0)

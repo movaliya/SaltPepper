@@ -20,6 +20,96 @@
     return YES;
 }
 
++ (BOOL)connectedToNetwork{
+    Reachability* reachability = [Reachability reachabilityWithHostName:@"www.google.com"];
+    NetworkStatus remoteHostStatus = [reachability currentReachabilityStatus];
+    BOOL isInternet;
+    if(remoteHostStatus == NotReachable)
+    {
+        isInternet =NO;
+    }
+    else if (remoteHostStatus == ReachableViaWWAN)
+    {
+        isInternet = TRUE;
+    }
+    else if (remoteHostStatus == ReachableViaWiFi)
+    { isInternet = TRUE;
+        
+    }
+    return isInternet;
+}
++ (AppDelegate *)sharedInstance
+{
+    return (AppDelegate *)[UIApplication sharedApplication].delegate;
+}
+
++(BOOL)IsValidEmail:(NSString *)checkString
+{
+    BOOL stricterFilter = NO;
+    NSString *stricterFilterString = @"^[A-Z0-9a-z\\._%+-]+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2,4}$";
+    NSString *laxString = @"^.+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2}[A-Za-z]*$";
+    NSString *emailRegex = stricterFilter ? stricterFilterString : laxString;
+    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+    return [emailTest evaluateWithObject:checkString];
+}
+
++ (void)showErrorMessageWithTitle:(NSString *)title
+                          message:(NSString*)message
+                         delegate:(id)delegate {
+    
+    UIWindow* topWindow = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    topWindow.rootViewController = [UIViewController new];
+    topWindow.windowLevel = UIWindowLevelAlert + 1;
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *OK = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+        
+        // No Action
+    }];
+    [alert addAction:OK];
+    // Present action where needed
+    [topWindow makeKeyAndVisible];
+    [topWindow.rootViewController presentViewController:alert animated:YES completion:nil];
+    //[self presentViewController:alert animated:YES completion:nil];
+    
+    
+    
+    //UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    //[alert show];
+    
+    float duration = 3.0; // duration in seconds
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, duration * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        //[alert dismissWithClickedButtonIndex:0 animated:YES];
+    });
+}
+
++(void)showInternetErrorMessageWithTitle:(NSString *)title delegate:(id)delegate
+{
+    
+    UIWindow* topWindow = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    topWindow.rootViewController = [UIViewController new];
+    topWindow.windowLevel = UIWindowLevelAlert + 1;
+    
+    UIAlertController *toast = [UIAlertController alertControllerWithTitle:@"" message:title preferredStyle:UIAlertControllerStyleAlert];
+    [topWindow makeKeyAndVisible];
+    [topWindow.rootViewController presentViewController:toast animated:YES completion:nil];
+    
+    /*
+     UIAlertView *toast = [[UIAlertView alloc] initWithTitle:nil
+     message:title
+     delegate:nil
+     cancelButtonTitle:nil
+     otherButtonTitles:nil, nil];
+     [toast show];*/
+    
+    float duration = 2.5; // duration in seconds
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, duration * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        [toast dismissViewControllerAnimated:YES completion:nil];
+    });
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

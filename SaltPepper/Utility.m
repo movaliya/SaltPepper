@@ -39,7 +39,7 @@
     
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     manager.responseSerializer=[AFJSONResponseSerializer serializerWithReadingOptions:  NSJSONReadingAllowFragments];
-    [manager POST:[NSString stringWithFormat:@"%@%@",MAIN_URL,url] parameters:dict progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [manager POST:[NSString stringWithFormat:@"%@",url] parameters:dict progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSLog(@"JSON: %@", responseObject);
         success(responseObject);
         
@@ -62,7 +62,7 @@
     
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     manager.responseSerializer=[AFJSONResponseSerializer serializerWithReadingOptions:NSJSONReadingAllowFragments];
-    [manager POST:[NSString stringWithFormat:@"%@%@",MAIN_URL,url] parameters:dict constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData)
+    [manager POST:[NSString stringWithFormat:@"%@",url] parameters:dict constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData)
      {
          [formData appendPartWithFileData:img1 name:paramName fileName:[NSString stringWithFormat:@"%@.jpeg",imgName] mimeType:@"image/jpeg"];
      } progress:^(NSProgress * _Nonnull uploadProgress) {
@@ -88,7 +88,7 @@
     
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     manager.responseSerializer=[AFJSONResponseSerializer serializerWithReadingOptions:NSJSONReadingAllowFragments];
-    [manager POST:[NSString stringWithFormat:@"%@%@",MAIN_URL,url] parameters:dict constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData)
+    [manager POST:[NSString stringWithFormat:@"%@",url] parameters:dict constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData)
      {
          [formData appendPartWithFileData:img1 name:@"profile_pic" fileName:@"Profile.jpeg" mimeType:@"image/jpeg"];
          [formData appendPartWithFileData:img2 name:@"cover_pic" fileName:@"Cover.jpeg" mimeType:@"image/jpeg"];

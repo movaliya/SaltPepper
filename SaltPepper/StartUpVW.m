@@ -44,7 +44,7 @@
     [dictpost setValue:@"VALUE" forKey:@"KEY"];
     [dictpost setValue:@"VALUE2" forKey:@"KEY2"];
     
-    [Utility postRequest:dictpost url:GETUNREADNOTIFICATIONDATA success:^(id result)
+    [Utility postRequest:dictpost url:kBaseURL success:^(id result)
      {
          if (![result isKindOfClass:[NSString class]])
          {
