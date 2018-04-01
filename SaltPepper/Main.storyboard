@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="HkM-um-Q1w">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="HkM-um-Q1w">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -1685,7 +1685,7 @@
                                                 <color key="textColor" red="0.59607843140000005" green="0.59607843140000005" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imageView:shK-wB-pe8:image" translatesAutoresizingMaskIntoConstraints="NO" id="shK-wB-pe8">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="91A3F1D5-BC12-4BA6-A679-8864F7CDA88D" translatesAutoresizingMaskIntoConstraints="NO" id="shK-wB-pe8">
                                                 <rect key="frame" x="8" y="50.5" width="18" height="18"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="18" id="618-x6-CMf"/>
@@ -1919,6 +1919,10 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ic_contact" translatesAutoresizingMaskIntoConstraints="NO" id="JTo-9I-zPx">
+                                                <rect key="frame" x="23" y="178" width="25" height="25"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G0G-5T-7nn">
                                                 <rect key="frame" x="10" y="175" width="300" height="40"/>
                                                 <constraints>
@@ -1939,6 +1943,10 @@
                                                 <color key="textColor" red="0.46274509800000002" green="0.46274509800000002" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="message_icon" translatesAutoresizingMaskIntoConstraints="NO" id="dhG-hT-9u8">
+                                                <rect key="frame" x="23" y="238" width="25" height="20"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rzn-27-Z8Z">
                                                 <rect key="frame" x="10" y="231" width="300" height="40"/>
                                                 <constraints>
@@ -1959,6 +1967,10 @@
                                                 <color key="textColor" red="0.46274509800000002" green="0.46274509800000002" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="location_icon" translatesAutoresizingMaskIntoConstraints="NO" id="DQb-4a-VVc">
+                                                <rect key="frame" x="7" y="297" width="25" height="20"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dWJ-aG-9sM">
                                                 <rect key="frame" x="10" y="287" width="300" height="40"/>
                                                 <constraints>
@@ -1999,6 +2011,22 @@
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                             </button>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="FB_ic" translatesAutoresizingMaskIntoConstraints="NO" id="NSx-SH-ayd">
+                                                <rect key="frame" x="20" y="408" width="25" height="20"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="linkinedin_ic" translatesAutoresizingMaskIntoConstraints="NO" id="zTF-iY-A2P">
+                                                <rect key="frame" x="23" y="461" width="25" height="20"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="twitter_ic" translatesAutoresizingMaskIntoConstraints="NO" id="z1l-WO-89K">
+                                                <rect key="frame" x="23" y="505" width="25" height="20"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="youtube_ic" translatesAutoresizingMaskIntoConstraints="NO" id="Pvc-3F-0sE">
+                                                <rect key="frame" x="23" y="570" width="25" height="20"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vtc-2V-dFo">
                                                 <rect key="frame" x="10" y="438" width="300" height="1"/>
                                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -2390,15 +2418,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="BackBtn" width="17" height="17"/>
-        <image name="CartIconWhite" width="25" height="25"/>
-        <image name="LoginLogo" width="126" height="80"/>
-        <image name="MenuBtn" width="24" height="24"/>
-        <image name="ShowPassIcon.png" width="200" height="200"/>
-        <image name="bannerImage.jpg" width="575" height="382"/>
-        <image name="brownBackBtn" width="17" height="17"/>
-        <image name="favIcon" width="25" height="25"/>
-        <image name="imageView:shK-wB-pe8:image" width="16" height="16">
+        <image name="91A3F1D5-BC12-4BA6-A679-8864F7CDA88D" width="0.0" height="0.0">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGODlYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoKwHCBEW
 GxwiIyksMjVVJG51bGzUCQoLDA0ODxBWJGNsYXNzXE5TSW1hZ2VGbGFnc1ZOU1JlcHNXTlNDb2xvcoAL
@@ -2413,6 +2433,21 @@ AMYAyAE+AUMBTgFXAV0BYAFpAW4BdgF5AYABiAGVAZoBnAGeAaMBqwGuAbMBuwG+AdAB0wHYAAAAAAAA
 AgEAAAAAAAAAPAAAAAAAAAAAAAAAAAAAAdo
 </mutableData>
         </image>
+        <image name="BackBtn" width="17" height="17"/>
+        <image name="CartIconWhite" width="25" height="25"/>
+        <image name="FB_ic" width="25" height="22"/>
+        <image name="LoginLogo" width="126" height="80"/>
+        <image name="MenuBtn" width="24" height="24"/>
+        <image name="ShowPassIcon.png" width="200" height="200"/>
+        <image name="bannerImage.jpg" width="575" height="382"/>
+        <image name="brownBackBtn" width="17" height="17"/>
+        <image name="favIcon" width="25" height="25"/>
+        <image name="ic_contact" width="25" height="25"/>
+        <image name="linkinedin_ic" width="25" height="25"/>
+        <image name="location_icon" width="25" height="25"/>
+        <image name="message_icon" width="25" height="19"/>
         <image name="testImage.jpg" width="800" height="448"/>
+        <image name="twitter_ic" width="25" height="21"/>
+        <image name="youtube_ic" width="25" height="17"/>
     </resources>
 </document>
