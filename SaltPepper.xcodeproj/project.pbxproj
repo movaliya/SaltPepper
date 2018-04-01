@@ -25,6 +25,8 @@
 		295E0741206F943800BC4ADB /* VideoGallaryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 295E0740206F943800BC4ADB /* VideoGallaryView.m */; };
 		295E0744206F951C00BC4ADB /* VideoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 295E0742206F951C00BC4ADB /* VideoCell.m */; };
 		295E0745206F951C00BC4ADB /* VideoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 295E0743206F951C00BC4ADB /* VideoCell.xib */; };
+		2968F8AC2070CDF2004B5960 /* ContactUSVW.m in Sources */ = {isa = PBXBuildFile; fileRef = 2968F8AB2070CDF2004B5960 /* ContactUSVW.m */; };
+		2968F8AE2070CF23004B5960 /* contactusblur.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2968F8AD2070CF23004B5960 /* contactusblur.jpg */; };
 		297D5EBC2056455400ED5428 /* StartUpVW.m in Sources */ = {isa = PBXBuildFile; fileRef = 297D5EBB2056455400ED5428 /* StartUpVW.m */; };
 		297D5EBF2056493400ED5428 /* LoginVW.m in Sources */ = {isa = PBXBuildFile; fileRef = 297D5EBE2056493400ED5428 /* LoginVW.m */; };
 		297D5EF620564FF300ED5428 /* ShowPassIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 297D5EF520564FF300ED5428 /* ShowPassIcon.png */; };
@@ -77,6 +79,9 @@
 		295E0742206F951C00BC4ADB /* VideoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCell.m; sourceTree = "<group>"; };
 		295E0743206F951C00BC4ADB /* VideoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoCell.xib; sourceTree = "<group>"; };
 		295E0746206F955200BC4ADB /* VideoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCell.h; sourceTree = "<group>"; };
+		2968F8AA2070CDF2004B5960 /* ContactUSVW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactUSVW.h; sourceTree = "<group>"; };
+		2968F8AB2070CDF2004B5960 /* ContactUSVW.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactUSVW.m; sourceTree = "<group>"; };
+		2968F8AD2070CF23004B5960 /* contactusblur.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = contactusblur.jpg; sourceTree = "<group>"; };
 		297D5EBA2056455400ED5428 /* StartUpVW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartUpVW.h; sourceTree = "<group>"; };
 		297D5EBB2056455400ED5428 /* StartUpVW.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartUpVW.m; sourceTree = "<group>"; };
 		297D5EBD2056493400ED5428 /* LoginVW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginVW.h; sourceTree = "<group>"; };
@@ -146,6 +151,7 @@
 		297D5EF420564FDF00ED5428 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				2968F8AD2070CF23004B5960 /* contactusblur.jpg */,
 				295E073D206F783B00BC4ADB /* testImage.jpg */,
 				297D5EF520564FF300ED5428 /* ShowPassIcon.png */,
 				294B5C45205A964D00794D47 /* bannerImage.jpg */,
@@ -243,6 +249,8 @@
 				295E0736206F772100BC4ADB /* NewsFullView.m */,
 				295E073F206F943800BC4ADB /* VideoGallaryView.h */,
 				295E0740206F943800BC4ADB /* VideoGallaryView.m */,
+				2968F8AA2070CDF2004B5960 /* ContactUSVW.h */,
+				2968F8AB2070CDF2004B5960 /* ContactUSVW.m */,
 				297D5F0D2056BF2A00ED5428 /* Main.storyboard */,
 				294B5C4D205A9F8800794D47 /* saltPepper.pch */,
 				B1475D0C2070A4C300A65026 /* New Group */,
@@ -345,6 +353,7 @@
 			files = (
 				B18E78082055143E00C50320 /* LaunchScreen.storyboard in Resources */,
 				297D5EF620564FF300ED5428 /* ShowPassIcon.png in Resources */,
+				2968F8AE2070CF23004B5960 /* contactusblur.jpg in Resources */,
 				295E0745206F951C00BC4ADB /* VideoCell.xib in Resources */,
 				297D5F0E2056BF2A00ED5428 /* Main.storyboard in Resources */,
 				B18E78052055143E00C50320 /* Assets.xcassets in Resources */,
@@ -439,6 +448,7 @@
 				295E073B206F773D00BC4ADB /* NewsCell.m in Sources */,
 				295CD5AF206A27D1002129FD /* CVCell.m in Sources */,
 				297D5F0720565F3A00ED5428 /* UIViewController+RESideMenu.m in Sources */,
+				2968F8AC2070CDF2004B5960 /* ContactUSVW.m in Sources */,
 				B1B7446120694F9400A2FE9C /* Utility.m in Sources */,
 				295CD5B3206A27F6002129FD /* GalleryFullView.m in Sources */,
 				295CD5AB206A2725002129FD /* GalleryVW.m in Sources */,
