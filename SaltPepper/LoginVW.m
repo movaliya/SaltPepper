@@ -7,7 +7,8 @@
 //
 
 #import "LoginVW.h"
-
+#import "saltPepper.pch"
+#import "DEMORootViewController.h"
 @interface LoginVW ()
 
 @end
@@ -29,7 +30,113 @@
 
 - (IBAction)LoginBtn_Click:(id)sender
 {
+    if ([Email_TXT.text isEqualToString:@""])
+    {
+        //[self ShowPOPUP];
+        
+        [AppDelegate showErrorMessageWithTitle:@"Error!" message:@"Please enter email" delegate:nil];
+    }
+    else
+    {
+        if (![AppDelegate IsValidEmail:Email_TXT.text])
+        {
+            [AppDelegate showErrorMessageWithTitle:@"Error!" message:@"Please enter valid email" delegate:nil];
+        }
+        else
+        {
+            if ([Password_TXT.text isEqualToString:@""])
+            {
+                [AppDelegate showErrorMessageWithTitle:@"Error!" message:@"Please enter password" delegate:nil];
+            }
+            else
+            {
+                BOOL internet=[AppDelegate connectedToNetwork];
+                if (internet)
+                    [self CallForloging:Email_TXT.text Password:Password_TXT.text];
+                else
+                    [AppDelegate showErrorMessageWithTitle:@"" message:@"Please check your internet connection or try again later." delegate:nil];
+            }
+        }
+    }
+}
+
+-(void)CallForloging :(NSString *)EmailStr Password:(NSString *)PasswordStr
+{
     
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    NSMutableDictionary *dict1 = [[NSMutableDictionary alloc] init];
+    
+    [dict1 setValue:KAPIKEY forKey:@"APIKEY"];
+    
+    
+    NSMutableDictionary *dictInner = [[NSMutableDictionary alloc] init];
+    
+    [dictInner setObject:EmailStr forKey:@"EMAIL"];
+    [dictInner setObject:PasswordStr forKey:@"PASSWORD"];
+    [dictInner setObject:@"" forKey:@"REGID"];
+    
+    
+    NSMutableDictionary *dictSub = [[NSMutableDictionary alloc] init];
+    
+    [dictSub setObject:@"action" forKey:@"MODULE"];
+    
+    [dictSub setObject:@"authenticate" forKey:@"METHOD"];
+    
+    [dictSub setObject:dictInner forKey:@"PARAMS"];
+    
+    
+    NSMutableArray *arr = [[NSMutableArray alloc] initWithObjects:dictSub, nil];
+    NSMutableDictionary *dictREQUESTPARAM = [[NSMutableDictionary alloc] init];
+    
+    [dictREQUESTPARAM setObject:arr forKey:@"REQUESTPARAM"];
+    [dictREQUESTPARAM setObject:dict1 forKey:@"RESTAURANT"];
+    
+    
+    NSError* error = nil;
+    
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictREQUESTPARAM options:NSJSONWritingPrettyPrinted error:&error];
+    // NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                         options:NSJSONReadingMutableContainers
+                                                           error:&error];
+    //AFHTTPSessionManager
+    
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer.acceptableContentTypes=[NSSet setWithObjects:@"text/html",@"application/json", nil];
+    AFJSONRequestSerializer *serializer = [AFJSONRequestSerializer serializer];
+    [serializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [serializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    manager.requestSerializer = serializer;
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    NSString *makeURL=[NSString stringWithFormat:@"%@%@",kBaseURL,LOGINKEY];
+    [manager POST:makeURL parameters:json success:^(NSURLSessionDataTask *operation, NSDictionary *responseObject)
+     {
+         [MBProgressHUD hideHUDForView:self.view animated:YES];
+         NSLog(@"responseObject==%@",responseObject);
+         NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"SUCCESS"];
+         if ([SUCCESS boolValue] ==YES)
+         {
+             [[NSUserDefaults standardUserDefaults]setObject:responseObject forKey:@"LoginUserDic"];
+             
+             DEMORootViewController *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"rootController"];
+             [self.navigationController pushViewController:vcr animated:YES];
+             Email_TXT.text=@"";
+             Password_TXT.text=@"";
+             [AppDelegate showErrorMessageWithTitle:@"" message:@"Login successful" delegate:nil];
+         }
+         else
+         {
+             [AppDelegate showErrorMessageWithTitle:@"" message:@"Email and/or Password did not matched." delegate:nil];
+         }
+     }
+     
+          failure:^(NSURLSessionDataTask *operation, NSError *error)
+     {
+         NSLog(@"Fail");
+         [MBProgressHUD hideHUDForView:self.view animated:YES];
+     }];
 }
 - (IBAction)ForgetPasswordBtn_Click:(id)sender
 {

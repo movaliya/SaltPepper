@@ -12,7 +12,10 @@
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "Utility.h"
 #import "RESideMenu.h"
+#import "AFNetworking.h"
+#import "AFURLSessionManager.h"
 
+#import "AFNetworking/AFNetworking.h"
 
 #import "UIImageView+WebCache.h"
 #import "IQKeyboardManager.h"
@@ -53,7 +56,7 @@
 #define KmyappDelegate ((AppDelegate *)[[UIApplication sharedApplication] delegate])
 
 //Base URL
-#define kBaseURL    @"https://tiffintom.com/api/private/request/data/"
+#define kBaseURL    @"https://indiancottagehorndean.co.uk/demo/API/"
 
 
 //Live Key
@@ -63,6 +66,12 @@
 
 //Dummy Key
 #define KAPIKEY    @"DoPUQBErcpKPtRmbjpcFvbb8YCMeBjr4w6OcyjtA"
+
+// Service key
+#define LOGINKEY @"Login.php"
+#define REGISTERKEY @"Register.php"
+
+
 
 //Check if iphone5 or iphone 4
 #define isIPhone5 ([UIScreen mainScreen].bounds.size.height == 568.0)

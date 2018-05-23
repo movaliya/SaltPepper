@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -345,7 +346,7 @@
                                                     <constraint firstAttribute="trailing" secondItem="nOl-sa-Dc3" secondAttribute="trailing" id="sag-4O-FEd"/>
                                                 </constraints>
                                             </view>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1ZQ-gT-Ekk">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1ZQ-gT-Ekk">
                                                 <rect key="frame" x="18" y="227.5" width="284" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="v1L-pw-iPH"/>
@@ -379,7 +380,7 @@
                                                     <constraint firstAttribute="bottom" secondItem="c2X-wy-cFZ" secondAttribute="bottom" id="omU-q6-Mnf"/>
                                                 </constraints>
                                             </view>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="V6i-38-AvD">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="V6i-38-AvD">
                                                 <rect key="frame" x="18" y="288" width="284" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="EFu-4G-eQ3"/>
@@ -413,7 +414,7 @@
                                                     <constraint firstItem="wpT-XT-hfL" firstAttribute="leading" secondItem="sas-bh-6eH" secondAttribute="leading" id="sKK-2y-DeK"/>
                                                 </constraints>
                                             </view>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Mobile" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2K1-vX-RW2">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2K1-vX-RW2">
                                                 <rect key="frame" x="18" y="348" width="284" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="s4D-aJ-06u"/>
@@ -626,8 +627,8 @@
                     <size key="freeformSize" width="320" height="680"/>
                     <connections>
                         <outlet property="ConfirmPasswd_TXT" destination="WgW-nO-v3Z" id="SmR-SD-X9U"/>
-                        <outlet property="Email_TXT" destination="V6i-38-AvD" id="6kq-kM-BlB"/>
-                        <outlet property="Mobile_TXT" destination="2K1-vX-RW2" id="cbE-R8-u8W"/>
+                        <outlet property="Email_TXT" destination="2K1-vX-RW2" id="gtU-wV-lVQ"/>
+                        <outlet property="LastName_TXT" destination="V6i-38-AvD" id="RE7-QX-8Qk"/>
                         <outlet property="Name_TXT" destination="1ZQ-gT-Ekk" id="Isc-fp-SLB"/>
                         <outlet property="Password_TXT" destination="u7D-sR-hLc" id="lHg-2S-7ry"/>
                         <outlet property="RegisterBtn" destination="Oca-QV-6q6" id="g6X-oc-htQ"/>
@@ -1685,7 +1686,7 @@
                                                 <color key="textColor" red="0.59607843140000005" green="0.59607843140000005" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="9CEAAD9A-E4DA-43E9-88A3-8512E0B40470" translatesAutoresizingMaskIntoConstraints="NO" id="shK-wB-pe8">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="257F7CC3-F109-4670-AC79-64234E7483DD" translatesAutoresizingMaskIntoConstraints="NO" id="shK-wB-pe8">
                                                 <rect key="frame" x="8" y="50.5" width="18" height="18"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="18" id="618-x6-CMf"/>
@@ -2428,7 +2429,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="9CEAAD9A-E4DA-43E9-88A3-8512E0B40470" width="0.0" height="0.0">
+        <image name="257F7CC3-F109-4670-AC79-64234E7483DD" width="0.0" height="0.0">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGODlYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoKwHCBEW
 GxwiIyksMjVVJG51bGzUCQoLDA0ODxBWJGNsYXNzXE5TSW1hZ2VGbGFnc1ZOU1JlcHNXTlNDb2xvcoAL

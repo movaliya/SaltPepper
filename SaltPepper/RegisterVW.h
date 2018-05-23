@@ -14,7 +14,7 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *Email_TXT;
 @property (weak, nonatomic) IBOutlet UITextField *Password_TXT;
-@property (weak, nonatomic) IBOutlet UITextField *Mobile_TXT;
+@property (weak, nonatomic) IBOutlet UITextField *LastName_TXT;
 @property (weak, nonatomic) IBOutlet UITextField *ConfirmPasswd_TXT;
 @property (weak, nonatomic) IBOutlet UIButton *RegisterBtn;
 
