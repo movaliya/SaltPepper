@@ -75,17 +75,15 @@
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 
     NSMutableDictionary *dict1 = [[NSMutableDictionary alloc] init];
-    
     [dict1 setValue:KAPIKEY forKey:@"APIKEY"];
     
     
     NSMutableDictionary *dictInner = [[NSMutableDictionary alloc] init];
-    
     [dictInner setObject:EmailStr forKey:@"EMAIL"];
     [dictInner setObject:PasswordStr forKey:@"PASSWORD"];
     [dictInner setObject:FnameStr forKey:@"FIRSTNAME"];
     [dictInner setObject:LNameStr forKey:@"LASTNAME"];
-    [dictInner setObject:@"FirebaseKeyIOS" forKey:@"REGID"];
+    [dictInner setObject:@"" forKey:@"REGID"];
     
     
     NSMutableDictionary *dictSub = [[NSMutableDictionary alloc] init];
