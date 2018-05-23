@@ -27,6 +27,11 @@
     // Do any additional setup after loading the view.
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    self.navigationController.navigationBar.hidden = YES;
+    [super viewWillAppear:YES];
+}
 
 - (IBAction)LoginBtn_Click:(id)sender
 {
@@ -102,41 +107,56 @@
                                                            error:&error];
     //AFHTTPSessionManager
     
-    
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer.acceptableContentTypes=[NSSet setWithObjects:@"text/html",@"application/json", nil];
-    AFJSONRequestSerializer *serializer = [AFJSONRequestSerializer serializer];
-    [serializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [serializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-    manager.requestSerializer = serializer;
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
     NSString *makeURL=[NSString stringWithFormat:@"%@%@",kBaseURL,LOGINKEY];
-    [manager POST:makeURL parameters:json success:^(NSURLSessionDataTask *operation, NSDictionary *responseObject)
-     {
-         [MBProgressHUD hideHUDForView:self.view animated:YES];
-         NSLog(@"responseObject==%@",responseObject);
-         NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"SUCCESS"];
-         if ([SUCCESS boolValue] ==YES)
-         {
-             [[NSUserDefaults standardUserDefaults]setObject:responseObject forKey:@"LoginUserDic"];
-             
-             DEMORootViewController *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"rootController"];
-             [self.navigationController pushViewController:vcr animated:YES];
-             Email_TXT.text=@"";
-             Password_TXT.text=@"";
-             [AppDelegate showErrorMessageWithTitle:@"" message:@"Login successful" delegate:nil];
-         }
-         else
-         {
-             [AppDelegate showErrorMessageWithTitle:@"" message:@"Email and/or Password did not matched." delegate:nil];
-         }
-     }
-     
-          failure:^(NSURLSessionDataTask *operation, NSError *error)
-     {
-         NSLog(@"Fail");
-         [MBProgressHUD hideHUDForView:self.view animated:YES];
-     }];
+    
+    [Utility postRequest:json url:makeURL success:^(id result)
+    {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        NSLog(@"responseObject==%@",result);
+        NSString *SUCCESS=[[[[result objectForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"SUCCESS"];
+        if ([SUCCESS boolValue] ==YES)
+        {
+            //_wo(@"LoginUserDic", result);
+            
+            //[[NSUserDefaults standardUserDefaults]setObject:result forKey:@"LoginUserDic"];
+            
+            DEMORootViewController *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"rootController"];
+            [self.navigationController pushViewController:vcr animated:YES];
+            Email_TXT.text=@"";
+            Password_TXT.text=@"";
+            [AppDelegate showErrorMessageWithTitle:@"" message:@"Login successful" delegate:nil];
+        }
+        else
+        {
+            NSString *DESCRIPTION=[[[[[result objectForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"ERROR"] objectForKey:@"DESCRIPTION"];
+            
+            [AppDelegate showErrorMessageWithTitle:@"" message:DESCRIPTION delegate:nil];
+            //[AppDelegate showErrorMessageWithTitle:@"" message:@"Email and/or Password did not matched." delegate:nil];
+        }
+        
+    } failure:^(NSError *error)
+    {
+        NSLog(@"Fail");
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+    }];
+    
+//    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+//    manager.responseSerializer.acceptableContentTypes=[NSSet setWithObjects:@"text/html",@"application/json", nil];
+//    AFJSONRequestSerializer *serializer = [AFJSONRequestSerializer serializer];
+//    [serializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+//    [serializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+//    manager.requestSerializer = serializer;
+//    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+//
+//    [manager POST:makeURL parameters:json success:^(NSURLSessionDataTask *operation, NSDictionary *responseObject)
+//     {
+//
+//     }
+//
+//          failure:^(NSURLSessionDataTask *operation, NSError *error)
+//     {
+//
+//     }];
 }
 - (IBAction)ForgetPasswordBtn_Click:(id)sender
 {
@@ -159,7 +179,15 @@
 }
 - (IBAction)BackBtnClick:(id)sender
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    if(_rb(@"isSkip"))
+    {
+        DEMORootViewController *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"rootController"];
+        [self.navigationController pushViewController:vcr animated:YES];
+    }
+    else
+    {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 
 }
 

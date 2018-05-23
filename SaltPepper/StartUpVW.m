@@ -86,6 +86,7 @@
 }
 - (IBAction)SkipBtn_click:(id)sender
 {
+    _wb(@"isSkip", YES);
     DEMORootViewController *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"rootController"];
     [self.navigationController pushViewController:vcr animated:YES];
 }

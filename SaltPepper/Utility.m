@@ -28,18 +28,16 @@
 
 +(void)postRequest :(id)dict url:(NSString *)url success:(void (^)(id result))success failure:(void (^)(NSError *))failure
 {
-    AFHTTPSessionManager *manager=[AFHTTPSessionManager manager];
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer.acceptableContentTypes=[NSSet setWithObjects:@"text/html",@"application/json", nil];
+    AFJSONRequestSerializer *serializer = [AFJSONRequestSerializer serializer];
+    [serializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [serializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    manager.requestSerializer = serializer;
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    //NSString *makeURL=[NSString stringWithFormat:@"%@%@",kBaseURL,LOGINKEY];
     
-    NSLog(@"APIURL: %@",url);
-    
-    [manager.requestSerializer setValue:@"application/json; text/html; text/plain" forHTTPHeaderField:@"Accept"];
-    [manager.requestSerializer setValue:@"application/json; text/html; application/javascript; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
-    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
-    [manager.requestSerializer setTimeoutInterval:120.0];
-    
-    manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    manager.responseSerializer=[AFJSONResponseSerializer serializerWithReadingOptions:  NSJSONReadingAllowFragments];
-    [manager POST:[NSString stringWithFormat:@"%@",url] parameters:dict progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [manager POST:url parameters:dict progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSLog(@"JSON: %@", responseObject);
         success(responseObject);
         
@@ -48,6 +46,30 @@
         NSLog(@"%@",task.response);
         failure(error);
     }];
+    
+   
+   // OLD CODE
+    
+//    AFHTTPSessionManager *manager=[AFHTTPSessionManager manager];
+//
+//    NSLog(@"APIURL: %@",url);
+//
+//    [manager.requestSerializer setValue:@"application/json; text/html; text/plain" forHTTPHeaderField:@"Accept"];
+//    [manager.requestSerializer setValue:@"application/json; text/html; application/javascript; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+//    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+//    [manager.requestSerializer setTimeoutInterval:120.0];
+//
+//    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+//    manager.responseSerializer=[AFJSONResponseSerializer serializerWithReadingOptions:  NSJSONReadingAllowFragments];
+//    [manager POST:[NSString stringWithFormat:@"%@",url] parameters:dict progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+//        NSLog(@"JSON: %@", responseObject);
+//        success(responseObject);
+//
+//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//        NSLog(@"%@",error.localizedDescription);
+//        NSLog(@"%@",task.response);
+//        failure(error);
+//    }];
 }
 
 +(void)postWithImage:(NSDictionary *)dict :(NSData *)img1 :(NSString *)imgName :(NSString *)paramName :(NSString *)url success:(void (^)(id))success failure:(void (^)(NSError *))failure

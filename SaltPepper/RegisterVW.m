@@ -108,24 +108,17 @@
                                                          options:NSJSONReadingMutableContainers
                                                            error:&error];
     
-    
-    
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer.acceptableContentTypes=[NSSet setWithObjects:@"text/html",@"application/json", nil];
-    AFJSONRequestSerializer *serializer = [AFJSONRequestSerializer serializer];
-    [serializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [serializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-    manager.requestSerializer = serializer;
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
     NSString *makeURL=[NSString stringWithFormat:@"%@%@",kBaseURL,REGISTERKEY];
     
-    [manager POST:makeURL parameters:json success:^(NSURLSessionDataTask *operation, NSDictionary *responseObject)
+    [Utility postRequest:json url:makeURL success:^(id result)
      {
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-         NSLog(@"responseObject==%@",responseObject);
-         NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"postitem"] objectForKey:@"registration"] objectForKey:@"SUCCESS"];
+         [MBProgressHUD hideHUDForView:self.view animated:YES];
+         NSLog(@"responseObject==%@",result);
+         NSString *SUCCESS=[[[[result objectForKey:@"RESPONSE"] objectForKey:@"postitem"] objectForKey:@"registration"] objectForKey:@"SUCCESS"];
          if ([SUCCESS boolValue] ==YES)
          {
+             //_wo(@"LoginUserDic", result);
+             
              DEMORootViewController *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"rootController"];
              [self.navigationController pushViewController:vcr animated:YES];
              
@@ -133,19 +126,53 @@
          }
          else
          {
-             NSString *DESCRIPTION=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"postitem"] objectForKey:@"registration"] objectForKey:@"ERROR"] objectForKey:@"DESCRIPTION"];
+             NSString *DESCRIPTION=[[[[[result objectForKey:@"RESPONSE"] objectForKey:@"postitem"] objectForKey:@"registration"] objectForKey:@"ERROR"] objectForKey:@"DESCRIPTION"];
              
              [AppDelegate showErrorMessageWithTitle:@"" message:DESCRIPTION delegate:nil];
          }
-     }
-     
-        failure:^(NSURLSessionDataTask *operation, NSError *error)
+         
+     } failure:^(NSError *error)
      {
-         
          NSLog(@"Fail");
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-         
+         [MBProgressHUD hideHUDForView:self.view animated:YES];
      }];
+    
+//    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+//    manager.responseSerializer.acceptableContentTypes=[NSSet setWithObjects:@"text/html",@"application/json", nil];
+//    AFJSONRequestSerializer *serializer = [AFJSONRequestSerializer serializer];
+//    [serializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+//    [serializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+//    manager.requestSerializer = serializer;
+//    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+//    NSString *makeURL=[NSString stringWithFormat:@"%@%@",kBaseURL,REGISTERKEY];
+//
+//    [manager POST:makeURL parameters:json success:^(NSURLSessionDataTask *operation, NSDictionary *responseObject)
+//     {
+//        [MBProgressHUD hideHUDForView:self.view animated:YES];
+//         NSLog(@"responseObject==%@",responseObject);
+//         NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"postitem"] objectForKey:@"registration"] objectForKey:@"SUCCESS"];
+//         if ([SUCCESS boolValue] ==YES)
+//         {
+//             DEMORootViewController *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"rootController"];
+//             [self.navigationController pushViewController:vcr animated:YES];
+//
+//             [AppDelegate showErrorMessageWithTitle:@"" message:@"Registration successful" delegate:nil];
+//         }
+//         else
+//         {
+//             NSString *DESCRIPTION=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"postitem"] objectForKey:@"registration"] objectForKey:@"ERROR"] objectForKey:@"DESCRIPTION"];
+//
+//             [AppDelegate showErrorMessageWithTitle:@"" message:DESCRIPTION delegate:nil];
+//         }
+//     }
+//
+//        failure:^(NSURLSessionDataTask *operation, NSError *error)
+//     {
+//
+//         NSLog(@"Fail");
+//        [MBProgressHUD hideHUDForView:self.view animated:YES];
+//
+//     }];
 }
 - (IBAction)ShowPasswordBtn_Click:(id)sender
 {
