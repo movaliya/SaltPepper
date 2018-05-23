@@ -35,9 +35,10 @@
     [serializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     manager.requestSerializer = serializer;
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    //NSString *makeURL=[NSString stringWithFormat:@"%@%@",kBaseURL,LOGINKEY];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     
     [manager POST:url parameters:dict progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSString *string = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         NSLog(@"JSON: %@", responseObject);
         success(responseObject);
         

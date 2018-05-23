@@ -70,6 +70,7 @@
 // Service key
 #define LOGINKEY @"Login.php"
 #define REGISTERKEY @"Register.php"
+#define CATEGORY @"CategoriesList.php"
 
 
 

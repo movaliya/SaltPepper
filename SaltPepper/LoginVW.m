@@ -73,13 +73,11 @@
     
     [dict1 setValue:KAPIKEY forKey:@"APIKEY"];
     
-    
     NSMutableDictionary *dictInner = [[NSMutableDictionary alloc] init];
     
     [dictInner setObject:EmailStr forKey:@"EMAIL"];
     [dictInner setObject:PasswordStr forKey:@"PASSWORD"];
     [dictInner setObject:@"" forKey:@"REGID"];
-    
     
     NSMutableDictionary *dictSub = [[NSMutableDictionary alloc] init];
     
@@ -89,13 +87,11 @@
     
     [dictSub setObject:dictInner forKey:@"PARAMS"];
     
-    
     NSMutableArray *arr = [[NSMutableArray alloc] initWithObjects:dictSub, nil];
     NSMutableDictionary *dictREQUESTPARAM = [[NSMutableDictionary alloc] init];
     
     [dictREQUESTPARAM setObject:arr forKey:@"REQUESTPARAM"];
     [dictREQUESTPARAM setObject:dict1 forKey:@"RESTAURANT"];
-    
     
     NSError* error = nil;
     

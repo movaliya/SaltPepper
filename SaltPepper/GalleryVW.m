@@ -55,7 +55,7 @@
     
     NSMutableDictionary *dictSub = [[NSMutableDictionary alloc] init];
     [dictSub setObject:@"getitem" forKey:@"MODULE"];
-    [dictSub setObject:@"galleryImages" forKey:@"METHOD"];
+    [dictSub setObject:@"topCategories" forKey:@"METHOD"];
     
     NSMutableArray *arr = [[NSMutableArray alloc] initWithObjects:dictSub, nil];
     NSMutableDictionary *dictREQUESTPARAM = [[NSMutableDictionary alloc] init];
@@ -68,7 +68,9 @@
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictREQUESTPARAM options:NSJSONWritingPrettyPrinted error:&error];
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&error];
     
-    [Utility postRequest:json url:kBaseURL success:^(id result)
+    NSString *makeURL=[NSString stringWithFormat:@"%@%@",kBaseURL,CATEGORY];
+    
+    [Utility postRequest:json url:makeURL success:^(id result)
      {
          if (![result isKindOfClass:[NSString class]])
          {

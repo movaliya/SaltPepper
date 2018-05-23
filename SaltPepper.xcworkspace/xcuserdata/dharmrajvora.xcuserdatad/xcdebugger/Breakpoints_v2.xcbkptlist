@@ -9,29 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SaltPepper/Utility.m"
-            timestampString = "548789899.671221"
+            filePath = "SaltPepper/GalleryVW.m"
+            timestampString = "548795296.939344"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
-            landmarkName = "+postRequest:url:success:failure:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SaltPepper/LoginVW.m"
-            timestampString = "548789899.672524"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "139"
-            endingLineNumber = "139"
-            landmarkName = "-CallForloging:Password:"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
+            landmarkName = "-CallGalleryService"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
