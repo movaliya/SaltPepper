@@ -11,10 +11,11 @@
 
 
 @interface Utility : NSObject
+@property (weak, nonatomic)NSURLSession *session ;
 
 + (Utility*) instance;
 + (id) initobj;
-+ (void)postRequest :(NSDictionary *)dict url:(NSString *)url success:(void (^)(id result))success failure:(void (^)(NSError *error))failure;
++ (void)postRequest :(id )dict url:(NSString *)url success:(void (^)(id result))success failure:(void (^)(NSError *error))failure;
 + (void)postWithImage :(NSDictionary *)dict :(NSData *)img1 :(NSString *)imgName :(NSString *)paramName :(NSString *)url success:(void (^)(id result))success failure:(void (^)(NSError *error))failure;
 + (void)postWithImage :(NSDictionary *)dict :(NSData *)img1 :(NSData *)img2 :(NSString *)url success:(void (^)(id result))success failure:(void (^)(NSError *error))failure;
 + (BOOL)connected;
@@ -59,4 +60,6 @@
                            parameters:(NSDictionary *)parameters
                               success:(void (^)(id result))success
                               failure:(void (^)(NSInteger code,NSError *error))failure;
+
+
 @end

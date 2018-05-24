@@ -35,16 +35,14 @@
     BOOL internet=[AppDelegate connectedToNetwork];
     if (internet)
     {
-        //[self CallNewsService];
+        [self CallNewsService];
     }
     else
         [AppDelegate showErrorMessageWithTitle:@"" message:@"Please check your internet connection or try again later." delegate:nil];
     
 }
-/*
 -(void)CallNewsService
 {
-    [KVNProgress show] ;
     NSMutableDictionary *dict1 = [[NSMutableDictionary alloc] init];
     
     [dict1 setValue:KAPIKEY forKey:@"APIKEY"];
@@ -61,39 +59,43 @@
     [dictREQUESTPARAM setObject:arr forKey:@"REQUESTPARAM"];
     [dictREQUESTPARAM setObject:dict1 forKey:@"RESTAURANT"];
     
-    
     NSError* error = nil;
+    NSString *makeURL=[NSString stringWithFormat:@"%@%@",kBaseURL,NEWS];
     
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictREQUESTPARAM options:NSJSONWritingPrettyPrinted error:&error];
-    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&error];
-    
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.responseSerializer.acceptableContentTypes=[NSSet setWithObjects:@"text/html",@"application/json", nil];
-    AFJSONRequestSerializer *serializer = [AFJSONRequestSerializer serializer];
-    [serializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [serializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-    manager.requestSerializer = serializer;
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    
-    [manager POST:kBaseURL parameters:json success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject)
-     {
-         [KVNProgress dismiss];
-         
-         NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"news"] objectForKey:@"SUCCESS"];
-         if ([SUCCESS boolValue] ==YES)
-         {
-             NewsDataArr=[[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"news"] objectForKey:@"result"] objectForKey:@"news"] mutableCopy];
+    // NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                         options:NSJSONReadingMutableContainers
+                                                           error:&error];
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration delegate:nil delegateQueue:nil];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:makeURL] cachePolicy:NSURLRequestUseProtocolCachePolicy   timeoutInterval:60.0];
+    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request addValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [request setHTTPMethod:@"POST"];
+    NSDictionary *mapData = [[NSDictionary alloc] initWithDictionary:json];
+    NSData *postData = [NSJSONSerialization dataWithJSONObject:mapData options:0 error:&error];
+    [request setHTTPBody:postData];
+    NSURLSessionDataTask *postDataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
+      {
+          if (!error)
+          {
              
-             [News_TBL reloadData];
-             
-         }
-     }
-          failure:^(AFHTTPRequestOperation *operation, NSError *error)
-     {
-         NSLog(@"Fail");
-         [KVNProgress dismiss] ;
-     }];
-}*/
+              NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+              NSData *data1 = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+              id json = [NSJSONSerialization JSONObjectWithData:data1 options:0 error:nil];
+              NSMutableDictionary *dicjson = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+              NSLog(@"%@",json);
+          }
+          else
+          {
+              NSLog(@"%@",error.description);
+          }
+      }];
+    
+    
+    [postDataTask resume];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
