@@ -9,6 +9,8 @@
 #import "HomeVC.h"
 #import "MenuListCollectCELL.h"
 #import "saltPepper.pch"
+#import "SlideMenuVC.h"
+
 @interface HomeVC ()
 
 @end
@@ -61,8 +63,8 @@
 }
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    
+    SlideMenuVC *mainVC = [self.storyboard instantiateViewControllerWithIdentifier:@"SlideMenuVC"];
+    [self.navigationController pushViewController:mainVC animated:YES];
 }
 
 #pragma mark Collection view layout things

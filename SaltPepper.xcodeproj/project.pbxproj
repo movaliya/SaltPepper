@@ -39,6 +39,14 @@
 		297D5F0C205662DA00ED5428 /* HomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 297D5F0B205662DA00ED5428 /* HomeVC.m */; };
 		297D5F0E2056BF2A00ED5428 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 297D5F0D2056BF2A00ED5428 /* Main.storyboard */; };
 		298CD2B742089A26D28B12F9 /* libPods-SaltPepper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AC61B705EFD9F887970D0E9 /* libPods-SaltPepper.a */; settings = {ATTRIBUTES = (Weak, ); }; };
+		51094AA020B71A0000A60634 /* EHHorizontalLineViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 51094A9720B719FF00A60634 /* EHHorizontalLineViewCell.m */; };
+		51094AA120B71A0000A60634 /* EHHorizontalSelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 51094A9920B719FF00A60634 /* EHHorizontalSelectionView.m */; };
+		51094AA220B71A0000A60634 /* EHHorizontalViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 51094A9B20B719FF00A60634 /* EHHorizontalViewCell.m */; };
+		51094AA320B71A0000A60634 /* EHRoundedHorizontalViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 51094A9D20B719FF00A60634 /* EHRoundedHorizontalViewCell.m */; };
+		51094AA420B71A0000A60634 /* EHHorizontalViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 51094A9F20B719FF00A60634 /* EHHorizontalViewCell.xib */; };
+		51094AA720B71ADF00A60634 /* SlideMenuVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 51094AA620B71ADF00A60634 /* SlideMenuVC.m */; };
+		51094AAA20B7224800A60634 /* ItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 51094AA920B7224800A60634 /* ItemCell.m */; };
+		51094AAD20B72D7900A60634 /* ForgotPasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 51094AAC20B72D7900A60634 /* ForgotPasswordVC.m */; };
 		B18E77FA2055143E00C50320 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B18E77F92055143E00C50320 /* main.m */; };
 		B18E77FD2055143E00C50320 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B18E77FC2055143E00C50320 /* AppDelegate.m */; };
 		B18E78052055143E00C50320 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B18E78042055143E00C50320 /* Assets.xcassets */; };
@@ -103,6 +111,21 @@
 		297D5F0B205662DA00ED5428 /* HomeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeVC.m; sourceTree = "<group>"; };
 		297D5F0D2056BF2A00ED5428 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		3CD83B87AB40AD090BA3594E /* Pods-SaltPepper.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SaltPepper.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SaltPepper/Pods-SaltPepper.debug.xcconfig"; sourceTree = "<group>"; };
+		51094A9620B719FF00A60634 /* EHHorizontalLineViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHHorizontalLineViewCell.h; sourceTree = "<group>"; };
+		51094A9720B719FF00A60634 /* EHHorizontalLineViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHHorizontalLineViewCell.m; sourceTree = "<group>"; };
+		51094A9820B719FF00A60634 /* EHHorizontalSelectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHHorizontalSelectionView.h; sourceTree = "<group>"; };
+		51094A9920B719FF00A60634 /* EHHorizontalSelectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHHorizontalSelectionView.m; sourceTree = "<group>"; };
+		51094A9A20B719FF00A60634 /* EHHorizontalViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHHorizontalViewCell.h; sourceTree = "<group>"; };
+		51094A9B20B719FF00A60634 /* EHHorizontalViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHHorizontalViewCell.m; sourceTree = "<group>"; };
+		51094A9C20B719FF00A60634 /* EHRoundedHorizontalViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHRoundedHorizontalViewCell.h; sourceTree = "<group>"; };
+		51094A9D20B719FF00A60634 /* EHRoundedHorizontalViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHRoundedHorizontalViewCell.m; sourceTree = "<group>"; };
+		51094A9F20B719FF00A60634 /* EHHorizontalViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EHHorizontalViewCell.xib; sourceTree = "<group>"; };
+		51094AA520B71ADF00A60634 /* SlideMenuVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SlideMenuVC.h; sourceTree = "<group>"; };
+		51094AA620B71ADF00A60634 /* SlideMenuVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SlideMenuVC.m; sourceTree = "<group>"; };
+		51094AA820B7224800A60634 /* ItemCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ItemCell.h; sourceTree = "<group>"; };
+		51094AA920B7224800A60634 /* ItemCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ItemCell.m; sourceTree = "<group>"; };
+		51094AAB20B72D7900A60634 /* ForgotPasswordVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ForgotPasswordVC.h; sourceTree = "<group>"; };
+		51094AAC20B72D7900A60634 /* ForgotPasswordVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ForgotPasswordVC.m; sourceTree = "<group>"; };
 		B18E77F52055143E00C50320 /* SaltPepper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SaltPepper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B18E77F92055143E00C50320 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B18E77FB2055143E00C50320 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -193,6 +216,30 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		51094A9520B719FF00A60634 /* EHHorizontalSelectionView */ = {
+			isa = PBXGroup;
+			children = (
+				51094A9620B719FF00A60634 /* EHHorizontalLineViewCell.h */,
+				51094A9720B719FF00A60634 /* EHHorizontalLineViewCell.m */,
+				51094A9820B719FF00A60634 /* EHHorizontalSelectionView.h */,
+				51094A9920B719FF00A60634 /* EHHorizontalSelectionView.m */,
+				51094A9A20B719FF00A60634 /* EHHorizontalViewCell.h */,
+				51094A9B20B719FF00A60634 /* EHHorizontalViewCell.m */,
+				51094A9C20B719FF00A60634 /* EHRoundedHorizontalViewCell.h */,
+				51094A9D20B719FF00A60634 /* EHRoundedHorizontalViewCell.m */,
+				51094A9E20B719FF00A60634 /* xibs */,
+			);
+			path = EHHorizontalSelectionView;
+			sourceTree = "<group>";
+		};
+		51094A9E20B719FF00A60634 /* xibs */ = {
+			isa = PBXGroup;
+			children = (
+				51094A9F20B719FF00A60634 /* EHHorizontalViewCell.xib */,
+			);
+			path = xibs;
+			sourceTree = "<group>";
+		};
 		9525E4C091C28F81B770AB05 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -224,13 +271,20 @@
 			children = (
 				B1B7446220694FA900A2FE9C /* GlobalFiles */,
 				294B5C47205A9CF700794D47 /* CollectionCell */,
+				51094A9520B719FF00A60634 /* EHHorizontalSelectionView */,
 				297D5EFA20565F2800ED5428 /* Menu */,
 				B18E77FB2055143E00C50320 /* AppDelegate.h */,
 				B18E77FC2055143E00C50320 /* AppDelegate.m */,
+				51094AA520B71ADF00A60634 /* SlideMenuVC.h */,
+				51094AA620B71ADF00A60634 /* SlideMenuVC.m */,
+				51094AA820B7224800A60634 /* ItemCell.h */,
+				51094AA920B7224800A60634 /* ItemCell.m */,
 				297D5EBA2056455400ED5428 /* StartUpVW.h */,
 				297D5EBB2056455400ED5428 /* StartUpVW.m */,
 				297D5EBD2056493400ED5428 /* LoginVW.h */,
 				297D5EBE2056493400ED5428 /* LoginVW.m */,
+				51094AAB20B72D7900A60634 /* ForgotPasswordVC.h */,
+				51094AAC20B72D7900A60634 /* ForgotPasswordVC.m */,
 				297D5EF72056556000ED5428 /* RegisterVW.h */,
 				297D5EF82056556000ED5428 /* RegisterVW.m */,
 				297D5F0A205662DA00ED5428 /* HomeVC.h */,
@@ -360,6 +414,7 @@
 				295CD5B0206A27D1002129FD /* CVCell.xib in Resources */,
 				292090D82055731B0088821E /* 001_splash screen.jpg in Resources */,
 				295E073C206F773D00BC4ADB /* NewsCell.xib in Resources */,
+				51094AA420B71A0000A60634 /* EHHorizontalViewCell.xib in Resources */,
 				294B5C46205A964D00794D47 /* bannerImage.jpg in Resources */,
 				294B5C4C205A9D2B00794D47 /* MenuListCollectCELL.xib in Resources */,
 				295E073E206F783B00BC4ADB /* testImage.jpg in Resources */,
@@ -431,10 +486,15 @@
 				294B5C4B205A9D2B00794D47 /* MenuListCollectCELL.m in Sources */,
 				B18E77FD2055143E00C50320 /* AppDelegate.m in Sources */,
 				297D5F0920565F3A00ED5428 /* DEMOLeftMenuViewController.m in Sources */,
+				51094AA320B71A0000A60634 /* EHRoundedHorizontalViewCell.m in Sources */,
+				51094AA720B71ADF00A60634 /* SlideMenuVC.m in Sources */,
 				297D5F0C205662DA00ED5428 /* HomeVC.m in Sources */,
 				297D5F0820565F3A00ED5428 /* DEMORootViewController.m in Sources */,
 				297D5EF92056556000ED5428 /* RegisterVW.m in Sources */,
+				51094AA220B71A0000A60634 /* EHHorizontalViewCell.m in Sources */,
+				51094AAD20B72D7900A60634 /* ForgotPasswordVC.m in Sources */,
 				297D5F0520565F3A00ED5428 /* RECommonFunctions.m in Sources */,
+				51094AAA20B7224800A60634 /* ItemCell.m in Sources */,
 				295E0737206F772100BC4ADB /* NewsFullView.m in Sources */,
 				295E0730206F720F00BC4ADB /* ReservationVW.m in Sources */,
 				297D5F0620565F3A00ED5428 /* RESideMenu.m in Sources */,
@@ -442,6 +502,8 @@
 				297D5EBC2056455400ED5428 /* StartUpVW.m in Sources */,
 				295E0744206F951C00BC4ADB /* VideoCell.m in Sources */,
 				297D5EBF2056493400ED5428 /* LoginVW.m in Sources */,
+				51094AA120B71A0000A60634 /* EHHorizontalSelectionView.m in Sources */,
+				51094AA020B71A0000A60634 /* EHHorizontalLineViewCell.m in Sources */,
 				B1B744662069502A00A2FE9C /* Reachability.m in Sources */,
 				295E0734206F771800BC4ADB /* NewsVW.m in Sources */,
 				B18E77FA2055143E00C50320 /* main.m in Sources */,

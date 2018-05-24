@@ -8,6 +8,8 @@
 
 #import "LoginVW.h"
 #import "saltPepper.pch"
+#import "ForgotPasswordVC.h"
+#import "RegisterVW.h"
 #import "DEMORootViewController.h"
 @interface LoginVW ()
 
@@ -135,11 +137,13 @@
 
 - (IBAction)ForgetPasswordBtn_Click:(id)sender
 {
-    
+    ForgotPasswordVC *mainVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ForgotPasswordVC"];
+    [self.navigationController pushViewController:mainVC animated:YES];
 }
 - (IBAction)RegisterBtn_Click:(id)sender
 {
-    
+    RegisterVW *mainVC = [self.storyboard instantiateViewControllerWithIdentifier:@"RegisterVW"];
+    [self.navigationController pushViewController:mainVC animated:YES];
 }
 - (IBAction)ShowPasswordBtn_Click:(id)sender
 {
@@ -164,6 +168,12 @@
         [self.navigationController popViewControllerAnimated:YES];
     }
 
+}
+
+- (IBAction)btnLoginFB:(id)sender {
+}
+
+- (IBAction)btnLoginGoogle:(id)sender {
 }
 
 - (void)didReceiveMemoryWarning {

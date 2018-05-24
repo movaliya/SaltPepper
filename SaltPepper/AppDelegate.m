@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "DEMORootViewController.h"
 
 @interface AppDelegate ()
 
@@ -16,6 +17,12 @@
 @synthesize manager;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    if(_rb(@"isSkip"))
+    {
+        DEMORootViewController *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"rootController"];
+        self.window.rootViewController = vcr;
+        //[self.window.rootViewController.navigationController pushViewController:vcr animated:YES];
+    }
     return YES;
 }
 
