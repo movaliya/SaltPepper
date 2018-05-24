@@ -65,9 +65,9 @@
     }
 }
 
+
 -(void)CallForloging :(NSString *)EmailStr Password:(NSString *)PasswordStr
 {
-    
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     NSMutableDictionary *dict1 = [[NSMutableDictionary alloc] init];
     
@@ -95,65 +95,44 @@
     
     NSError* error = nil;
     
+    NSString *makeURL=[NSString stringWithFormat:@"%@%@",kBaseURL,LOGINKEY];
+    
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictREQUESTPARAM options:NSJSONWritingPrettyPrinted error:&error];
     // NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-    
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData
                                                          options:NSJSONReadingMutableContainers
                                                            error:&error];
-    //AFHTTPSessionManager
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration delegate:nil delegateQueue:nil];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:makeURL] cachePolicy:NSURLRequestUseProtocolCachePolicy   timeoutInterval:60.0];
+    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request addValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [request setHTTPMethod:@"POST"];
+    NSDictionary *mapData = [[NSDictionary alloc] initWithDictionary:json];
+    NSData *postData = [NSJSONSerialization dataWithJSONObject:mapData options:0 error:&error];
+    [request setHTTPBody:postData];
+    NSURLSessionDataTask *postDataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
+      {
+          if (!error)
+          {
+              
+              NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+              NSData *data1 = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+              id json = [NSJSONSerialization JSONObjectWithData:data1 options:0 error:nil];
+              NSMutableDictionary *dicjson = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+              NSLog(@"%@",json);
+          }
+          else
+          {
+              NSLog(@"%@",error.description);
+          }
+      }];
+  
     
-    NSString *makeURL=[NSString stringWithFormat:@"%@%@",kBaseURL,LOGINKEY];
-    
-    [Utility postRequest:json url:makeURL success:^(id result)
-    {
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-        NSLog(@"responseObject==%@",result);
-        NSString *SUCCESS=[[[[result objectForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"SUCCESS"];
-        if ([SUCCESS boolValue] ==YES)
-        {
-            //_wo(@"LoginUserDic", result);
-            
-            //[[NSUserDefaults standardUserDefaults]setObject:result forKey:@"LoginUserDic"];
-            
-            DEMORootViewController *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"rootController"];
-            [self.navigationController pushViewController:vcr animated:YES];
-            Email_TXT.text=@"";
-            Password_TXT.text=@"";
-            [AppDelegate showErrorMessageWithTitle:@"" message:@"Login successful" delegate:nil];
-        }
-        else
-        {
-            NSString *DESCRIPTION=[[[[[result objectForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"ERROR"] objectForKey:@"DESCRIPTION"];
-            
-            [AppDelegate showErrorMessageWithTitle:@"" message:DESCRIPTION delegate:nil];
-            //[AppDelegate showErrorMessageWithTitle:@"" message:@"Email and/or Password did not matched." delegate:nil];
-        }
-        
-    } failure:^(NSError *error)
-    {
-        NSLog(@"Fail");
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-    }];
-    
-//    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-//    manager.responseSerializer.acceptableContentTypes=[NSSet setWithObjects:@"text/html",@"application/json", nil];
-//    AFJSONRequestSerializer *serializer = [AFJSONRequestSerializer serializer];
-//    [serializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-//    [serializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-//    manager.requestSerializer = serializer;
-//    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-//
-//    [manager POST:makeURL parameters:json success:^(NSURLSessionDataTask *operation, NSDictionary *responseObject)
-//     {
-//
-//     }
-//
-//          failure:^(NSURLSessionDataTask *operation, NSError *error)
-//     {
-//
-//     }];
+    [postDataTask resume];
+
 }
+
 - (IBAction)ForgetPasswordBtn_Click:(id)sender
 {
     
