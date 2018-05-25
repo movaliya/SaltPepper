@@ -170,10 +170,14 @@
 
 }
 
-- (IBAction)btnLoginFB:(id)sender {
+- (IBAction)btnLoginFB:(id)sender
+{
+    
 }
 
-- (IBAction)btnLoginGoogle:(id)sender {
+- (IBAction)btnLoginGoogle:(id)sender
+{
+    
 }
 
 - (void)didReceiveMemoryWarning {
