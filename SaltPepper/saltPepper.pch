@@ -72,6 +72,8 @@
 #define REGISTERKEY @"Register.php"
 #define CATEGORY @"CategoriesList.php"
 #define NEWS @"news.php"
+#define FORGOTPASS @"ForgetPassword.php"
+#define SOCIALLOGIN @"sociallogin.php"
 
 
 

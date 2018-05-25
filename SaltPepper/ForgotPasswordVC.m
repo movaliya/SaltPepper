@@ -7,12 +7,14 @@
 //
 
 #import "ForgotPasswordVC.h"
+#import "DEMORootViewController.h"
 
 @interface ForgotPasswordVC ()
 
 @end
 
 @implementation ForgotPasswordVC
+@synthesize txtEmail;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -39,17 +41,101 @@
 
 - (IBAction)btnSubmitClicked:(id)sender
 {
+    if ([txtEmail.text isEqualToString:@""])
+    {
+        //[self ShowPOPUP];
+        
+        [AppDelegate showErrorMessageWithTitle:@"Error!" message:@"Please enter email" delegate:nil];
+    }
+    else
+    {
+        if (![AppDelegate IsValidEmail:txtEmail.text])
+        {
+            [AppDelegate showErrorMessageWithTitle:@"Error!" message:@"Please enter valid email" delegate:nil];
+        }
+        else
+        {
+            
+                BOOL internet=[AppDelegate connectedToNetwork];
+                if (internet)
+                    [self callForgetpassService];
+                else
+                    [AppDelegate showErrorMessageWithTitle:@"" message:@"Please check your internet connection or try again later." delegate:nil];
+        }
+    }
+}
+
+-(void)callForgetpassService
+{
     
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    NSMutableDictionary *dict1 = [[NSMutableDictionary alloc] init];
+    
+    [dict1 setValue:KAPIKEY forKey:@"APIKEY"];
+    
+    NSMutableDictionary *dictInner = [[NSMutableDictionary alloc] init];
+    
+    [dictInner setObject:txtEmail.text forKey:@"EMAIL"];
+    
+    
+    NSMutableDictionary *dictSub = [[NSMutableDictionary alloc] init];
+    
+    [dictSub setObject:@"action" forKey:@"MODULE"];
+    
+    [dictSub setObject:@"forgotPassword" forKey:@"METHOD"];
+    
+    [dictSub setObject:dictInner forKey:@"PARAMS"];
+    
+    NSMutableArray *arr = [[NSMutableArray alloc] initWithObjects:dictSub, nil];
+    NSMutableDictionary *dictREQUESTPARAM = [[NSMutableDictionary alloc] init];
+    
+    [dictREQUESTPARAM setObject:arr forKey:@"REQUESTPARAM"];
+    [dictREQUESTPARAM setObject:dict1 forKey:@"RESTAURANT"];
+    
+    NSError* error = nil;
+    
+    NSString *makeURL=[NSString stringWithFormat:@"%@%@",kBaseURL,FORGOTPASS];
+    
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictREQUESTPARAM options:NSJSONWritingPrettyPrinted error:&error];
+    // NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                         options:NSJSONReadingMutableContainers
+                                                           error:&error];
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer.acceptableContentTypes=[NSSet setWithObjects:@"text/html",@"application/json", nil];
+    AFJSONRequestSerializer *serializer = [AFJSONRequestSerializer serializer];
+    [serializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [serializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    manager.requestSerializer = serializer;
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    
+    [manager POST:makeURL parameters:json success:^(NSURLSessionDataTask *operation, NSDictionary *responseObject)
+     {
+         [MBProgressHUD hideHUDForView:self.view animated:YES];
+         
+         NSLog(@"responseObject==%@",responseObject);
+         NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"forgotPassword"] objectForKey:@"SUCCESS"];
+         if ([SUCCESS boolValue] ==YES)
+         {
+             txtEmail.text=@"";
+             DEMORootViewController *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"rootController"];
+             [self.navigationController pushViewController:vcr animated:YES];
+              NSString *DESCRIPTION=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"forgotPassword"] objectForKey:@"result"] objectForKey:@"forgotPassword"];
+             [AppDelegate showErrorMessageWithTitle:@"" message:DESCRIPTION delegate:nil];
+         }
+         else
+         {
+              NSString *DESCRIPTION=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"forgotPassword"] objectForKey:@"ERROR"] objectForKey:@"DESCRIPTION"];
+             [AppDelegate showErrorMessageWithTitle:@"" message:DESCRIPTION delegate:nil];
+         }
+     }
+     
+          failure:^(NSURLSessionDataTask *operation, NSError *error)
+     {
+         [MBProgressHUD hideHUDForView:self.view animated:YES];
+         
+         NSLog(@"Fail");
+     }];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

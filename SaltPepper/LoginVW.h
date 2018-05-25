@@ -10,6 +10,9 @@
 #import <GoogleSignIn/GoogleSignIn.h>
 
 @interface LoginVW : UIViewController<GIDSignInUIDelegate,GIDSignInDelegate>
+{
+    
+}
 
 
 @property (weak, nonatomic) IBOutlet UIButton *LoginBtn;

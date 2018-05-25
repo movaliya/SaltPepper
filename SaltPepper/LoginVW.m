@@ -258,11 +258,8 @@
         NSString *userId = user.userID;
         if ( ( ![email isEqual:[NSNull null]] ) && ( [email length] != 0 ) )
         {
-            //FBSignIndictParams = [[NSMutableDictionary alloc] init];
-            //[FBSignIndictParams setObject:r_p  forKey:@"r_p"];
-            //[FBSignIndictParams setObject:GmailServiceName  forKey:@"service"];
-            //[FBSignIndictParams setObject:email  forKey:@"email"];
-           // [self CallGmailSignup];
+           
+            [self CallGmailLogin:userId Name:fullName Email:email];
         }
         else
         {
@@ -277,7 +274,76 @@
         NSLog(@"%@", error.localizedDescription);
     }
 }
-
+-(void)CallGmailLogin:(NSString *)GID Name:(NSString *)NameStr Email:(NSString *)emailStr
+{
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    NSMutableDictionary *dict1 = [[NSMutableDictionary alloc] init];
+    [dict1 setValue:KAPIKEY forKey:@"APIKEY"];
+    
+    
+    NSMutableDictionary *dictInner = [[NSMutableDictionary alloc] init];
+    [dictInner setObject:emailStr forKey:@"EMAIL"];
+    [dictInner setObject:NameStr forKey:@"NAME"];
+    [dictInner setObject:GID forKey:@"FBID"];
+    
+    
+    NSMutableDictionary *dictSub = [[NSMutableDictionary alloc] init];
+    [dictSub setObject:@"getitem" forKey:@"MODULE"];
+    [dictSub setObject:@"socialLogin" forKey:@"METHOD"];
+    [dictSub setObject:dictInner forKey:@"PARAMS"];
+    
+    
+    NSMutableArray *arr = [[NSMutableArray alloc] initWithObjects:dictSub, nil];
+    NSMutableDictionary *dictREQUESTPARAM = [[NSMutableDictionary alloc] init];
+    
+    [dictREQUESTPARAM setObject:arr forKey:@"REQUESTPARAM"];
+    [dictREQUESTPARAM setObject:dict1 forKey:@"RESTAURANT"];
+    
+    
+    NSError* error = nil;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictREQUESTPARAM options:NSJSONWritingPrettyPrinted error:&error];
+    // NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                         options:NSJSONReadingMutableContainers
+                                                           error:&error];
+    NSString *makeURL=[NSString stringWithFormat:@"%@%@",kBaseURL,SOCIALLOGIN];
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer.acceptableContentTypes=[NSSet setWithObjects:@"text/html",@"application/json", nil];
+    AFJSONRequestSerializer *serializer = [AFJSONRequestSerializer serializer];
+    [serializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [serializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    manager.requestSerializer = serializer;
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    
+    [manager POST:makeURL parameters:json success:^(NSURLSessionDataTask *operation, NSDictionary *responseObject)
+     {
+         [MBProgressHUD hideHUDForView:self.view animated:YES];
+         
+         NSLog(@"responseObject==%@",responseObject);
+         NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"socialLogin"] objectForKey:@"SUCCESS"];
+         if ([SUCCESS boolValue] ==YES)
+         {
+             [[NSUserDefaults standardUserDefaults]setObject:responseObject forKey:@"LoginUserDic"];
+             [AppDelegate showErrorMessageWithTitle:@"" message:@"Login successful" delegate:nil];
+             DEMORootViewController *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"rootController"];
+             [self.navigationController pushViewController:vcr animated:YES];
+             
+         }
+         else
+         {
+             NSString *DESCRIPTION=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"socialLogin"] objectForKey:@"ERROR"] objectForKey:@"DESCRIPTION"];
+             [AppDelegate showErrorMessageWithTitle:@"" message:DESCRIPTION delegate:nil];
+         }
+     }
+     
+          failure:^(NSURLSessionDataTask *operation, NSError *error)
+     {
+         [MBProgressHUD hideHUDForView:self.view animated:YES];
+         
+         NSLog(@"Fail");
+     }];
+}
 - (void)signIn:(GIDSignIn *)signIn didDisconnectWithUser:(GIDGoogleUser *)user withError:(NSError *)error
 {
     // Perform any operations when the user disconnects from app here.
