@@ -19,16 +19,16 @@
 {
     [super viewDidLoad];
     
-    /*
-    NewsTitle_LBL=[self.NewsSelectArr valueForKey:@"title"];
-    NewsDate_LBL=[self.NewsSelectArr valueForKey:@"news_date"];
+    
+    NewsTitle_LBL.text=[self.NewsSelectArr valueForKey:@"title"];
+    NewsDate_LBL.text=[self.NewsSelectArr valueForKey:@"news_date"];
     NewsDes_LBL.text=[self.NewsSelectArr valueForKey:@"content"];
     
     NSString *Urlstr=[self.NewsSelectArr valueForKey:@"image_path"];
     [NewsImg sd_setImageWithURL:[NSURL URLWithString:Urlstr] placeholderImage:[UIImage imageNamed:@"placeholder_img"]];
-    [NewsImg setShowActivityIndicatorView:YES];*/
-    
-    NewsImg.image=[UIImage imageNamed:@"testImage.jpg"];
+    //[NewsImg setShowActivityIndicatorView:YES];
+ 
+    //NewsImg.image=[UIImage imageNamed:@"testImage.jpg"];
     BackView.layer.masksToBounds = NO;
     BackView.layer.shadowOffset = CGSizeMake(0, 1);
     BackView.layer.shadowRadius = 1.0;

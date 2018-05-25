@@ -17,15 +17,31 @@
 @synthesize manager;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    
+    
     if(_rb(@"isSkip"))
     {
         DEMORootViewController *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"rootController"];
         self.window.rootViewController = vcr;
         //[self.window.rootViewController.navigationController pushViewController:vcr animated:YES];
     }
+    //Google
+    [GIDSignIn sharedInstance].clientID = @"628114390774-ps3bah0jagd4pnm3aflmfije8rlr3r56.apps.googleusercontent.com";
+    [GIDSignIn sharedInstance].delegate = self;
     return YES;
 }
-
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options
+{
+    if([[url scheme] isEqualToString:GOOGLE_SCHEME])
+    {
+        return [[GIDSignIn sharedInstance] handleURL:url
+                                   sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
+                                          annotation:options[UIApplicationOpenURLOptionsAnnotationKey]];
+    }
+    
+    return NO;
+}
 + (BOOL)connectedToNetwork{
     Reachability* reachability = [Reachability reachabilityWithHostName:@"www.google.com"];
     NetworkStatus remoteHostStatus = [reachability currentReachabilityStatus];

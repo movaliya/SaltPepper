@@ -67,34 +67,27 @@
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData
                                                          options:NSJSONReadingMutableContainers
                                                            error:&error];
-    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration delegate:nil delegateQueue:nil];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:makeURL] cachePolicy:NSURLRequestUseProtocolCachePolicy   timeoutInterval:60.0];
-    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request addValue:@"application/json" forHTTPHeaderField:@"Accept"];
-    [request setHTTPMethod:@"POST"];
-    NSDictionary *mapData = [[NSDictionary alloc] initWithDictionary:json];
-    NSData *postData = [NSJSONSerialization dataWithJSONObject:mapData options:0 error:&error];
-    [request setHTTPBody:postData];
-    NSURLSessionDataTask *postDataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
-      {
-          if (!error)
-          {
-             
-              NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-              NSData *data1 = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
-              id json = [NSJSONSerialization JSONObjectWithData:data1 options:0 error:nil];
-              NSMutableDictionary *dicjson = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
-              NSLog(@"%@",json);
-          }
-          else
-          {
-              NSLog(@"%@",error.description);
-          }
-      }];
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer.acceptableContentTypes=[NSSet setWithObjects:@"text/html",@"application/json", nil];
+    AFJSONRequestSerializer *serializer = [AFJSONRequestSerializer serializer];
+    [serializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [serializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    manager.requestSerializer = serializer;
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
     
-    
-    [postDataTask resume];
+    [manager POST:makeURL parameters:json success:^(NSURLSessionDataTask *operation, NSDictionary *responseObject)
+     {
+         NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"news"] objectForKey:@"SUCCESS"];
+         if ([SUCCESS boolValue] ==YES)
+         {
+             NewsDataArr=[[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"news"] objectForKey:@"RESULT"] objectForKey:@"news"] mutableCopy];
+             [News_TBL reloadData];
+         }
+     }
+          failure:^(NSURLSessionDataTask *operation, NSError *error)
+     {
+         NSLog(@"Fail");
+     }];
 }
 - (void)didReceiveMemoryWarning
 {
@@ -125,7 +118,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 2;
+    return NewsDataArr.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -145,17 +138,17 @@
     cell.layer.shadowRadius = 5;
     cell.layer.shadowOpacity = .25;
     
-    cell.NewsIMG.image=[UIImage imageNamed:@"testImage.jpg"];
+    //cell.NewsIMG.image=[UIImage imageNamed:@"testImage.jpg"];
     
-    /*
+   
     NSString *Urlstr=[[NewsDataArr valueForKey:@"image_path"] objectAtIndex:indexPath.row];
     [cell.NewsIMG sd_setImageWithURL:[NSURL URLWithString:Urlstr] placeholderImage:[UIImage imageNamed:@"placeholder_img"]];
-    [cell.NewsIMG setShowActivityIndicatorView:YES];
+   // [cell.NewsIMG setShowActivityIndicatorView:YES];
     
     cell.NewsTitle_LBL.text=[[NewsDataArr valueForKey:@"title"] objectAtIndex:indexPath.row];
     cell.Date_LBL.text=[[NewsDataArr valueForKey:@"news_date"] objectAtIndex:indexPath.row];
     [cell setNeedsUpdateConstraints];
-    [cell updateConstraintsIfNeeded];*/
+    [cell updateConstraintsIfNeeded];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return  cell;
 }

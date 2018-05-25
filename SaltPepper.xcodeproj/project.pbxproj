@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		292090D82055731B0088821E /* 001_splash screen.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 292090D72055731B0088821E /* 001_splash screen.jpg */; };
+		29360C9120B8613100283D87 /* client_628114390774-ps3bah0jagd4pnm3aflmfije8rlr3r56.apps.googleusercontent.com.plist in Resources */ = {isa = PBXBuildFile; fileRef = 29360C9020B8613100283D87 /* client_628114390774-ps3bah0jagd4pnm3aflmfije8rlr3r56.apps.googleusercontent.com.plist */; };
 		294B5C46205A964D00794D47 /* bannerImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 294B5C45205A964D00794D47 /* bannerImage.jpg */; };
 		294B5C4B205A9D2B00794D47 /* MenuListCollectCELL.m in Sources */ = {isa = PBXBuildFile; fileRef = 294B5C49205A9D2B00794D47 /* MenuListCollectCELL.m */; };
 		294B5C4C205A9D2B00794D47 /* MenuListCollectCELL.xib in Resources */ = {isa = PBXBuildFile; fileRef = 294B5C4A205A9D2B00794D47 /* MenuListCollectCELL.xib */; };
@@ -58,6 +59,7 @@
 /* Begin PBXFileReference section */
 		1AC61B705EFD9F887970D0E9 /* libPods-SaltPepper.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SaltPepper.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		292090D72055731B0088821E /* 001_splash screen.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "001_splash screen.jpg"; sourceTree = "<group>"; };
+		29360C9020B8613100283D87 /* client_628114390774-ps3bah0jagd4pnm3aflmfije8rlr3r56.apps.googleusercontent.com.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "client_628114390774-ps3bah0jagd4pnm3aflmfije8rlr3r56.apps.googleusercontent.com.plist"; sourceTree = "<group>"; };
 		294B5C45205A964D00794D47 /* bannerImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bannerImage.jpg; sourceTree = "<group>"; };
 		294B5C48205A9D2B00794D47 /* MenuListCollectCELL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuListCollectCELL.h; sourceTree = "<group>"; };
 		294B5C49205A9D2B00794D47 /* MenuListCollectCELL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuListCollectCELL.m; sourceTree = "<group>"; };
@@ -269,6 +271,7 @@
 		B18E77F72055143E00C50320 /* SaltPepper */ = {
 			isa = PBXGroup;
 			children = (
+				29360C9020B8613100283D87 /* client_628114390774-ps3bah0jagd4pnm3aflmfije8rlr3r56.apps.googleusercontent.com.plist */,
 				B1B7446220694FA900A2FE9C /* GlobalFiles */,
 				294B5C47205A9CF700794D47 /* CollectionCell */,
 				51094A9520B719FF00A60634 /* EHHorizontalSelectionView */,
@@ -412,6 +415,7 @@
 				297D5F0E2056BF2A00ED5428 /* Main.storyboard in Resources */,
 				B18E78052055143E00C50320 /* Assets.xcassets in Resources */,
 				295CD5B0206A27D1002129FD /* CVCell.xib in Resources */,
+				29360C9120B8613100283D87 /* client_628114390774-ps3bah0jagd4pnm3aflmfije8rlr3r56.apps.googleusercontent.com.plist in Resources */,
 				292090D82055731B0088821E /* 001_splash screen.jpg in Resources */,
 				295E073C206F773D00BC4ADB /* NewsCell.xib in Resources */,
 				51094AA420B71A0000A60634 /* EHHorizontalViewCell.xib in Resources */,
@@ -431,11 +435,15 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-SaltPepper/Pods-SaltPepper-resources.sh",
+				"${PODS_ROOT}/GTMOAuth2/Source/Touch/GTMOAuth2ViewTouch.xib",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
 				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GTMOAuth2ViewTouch.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQKeyboardManager.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -657,7 +665,7 @@
 					"\"UIKit\"",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.jkinfosoft.SaltPepper;
+				PRODUCT_BUNDLE_IDENTIFIER = com.indiacottageapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
@@ -699,7 +707,7 @@
 					"\"UIKit\"",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.jkinfosoft.SaltPepper;
+				PRODUCT_BUNDLE_IDENTIFIER = com.indiacottageapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};

@@ -10,8 +10,11 @@
 #import "AFNetworking/AFNetworkActivityIndicatorManager.h"
 #import "AFHTTPSessionManager.h"
 #import "Reachability.h"
+#import <GoogleSignIn/GoogleSignIn.h>
+@import GoogleSignIn;
+#define GOOGLE_SCHEME @"com.googleusercontent.apps.628114390774-ps3bah0jagd4pnm3aflmfije8rlr3r56"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate,GIDSignInUIDelegate,GIDSignInDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong,nonatomic) AFHTTPSessionManager *manager;
