@@ -39,6 +39,9 @@
 		297D5F0C205662DA00ED5428 /* HomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 297D5F0B205662DA00ED5428 /* HomeVC.m */; };
 		297D5F0E2056BF2A00ED5428 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 297D5F0D2056BF2A00ED5428 /* Main.storyboard */; };
 		298CD2B742089A26D28B12F9 /* libPods-SaltPepper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AC61B705EFD9F887970D0E9 /* libPods-SaltPepper.a */; settings = {ATTRIBUTES = (Weak, ); }; };
+		B138A0C520B72D1900835899 /* OptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = B138A0C420B72D1900835899 /* OptionView.m */; };
+		B138A0C920B72F5600835899 /* OptionWithCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B138A0C720B72F5600835899 /* OptionWithCell.m */; };
+		B138A0CA20B72F5600835899 /* OptionWithCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B138A0C820B72F5600835899 /* OptionWithCell.xib */; };
 		B18E77FA2055143E00C50320 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B18E77F92055143E00C50320 /* main.m */; };
 		B18E77FD2055143E00C50320 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B18E77FC2055143E00C50320 /* AppDelegate.m */; };
 		B18E78052055143E00C50320 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B18E78042055143E00C50320 /* Assets.xcassets */; };
@@ -103,6 +106,11 @@
 		297D5F0B205662DA00ED5428 /* HomeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeVC.m; sourceTree = "<group>"; };
 		297D5F0D2056BF2A00ED5428 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		3CD83B87AB40AD090BA3594E /* Pods-SaltPepper.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SaltPepper.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SaltPepper/Pods-SaltPepper.debug.xcconfig"; sourceTree = "<group>"; };
+		B138A0C320B72D1900835899 /* OptionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionView.h; sourceTree = "<group>"; };
+		B138A0C420B72D1900835899 /* OptionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionView.m; sourceTree = "<group>"; };
+		B138A0C620B72F5600835899 /* OptionWithCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionWithCell.h; sourceTree = "<group>"; };
+		B138A0C720B72F5600835899 /* OptionWithCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionWithCell.m; sourceTree = "<group>"; };
+		B138A0C820B72F5600835899 /* OptionWithCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OptionWithCell.xib; sourceTree = "<group>"; };
 		B18E77F52055143E00C50320 /* SaltPepper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SaltPepper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B18E77F92055143E00C50320 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B18E77FB2055143E00C50320 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -144,6 +152,9 @@
 				295E0746206F955200BC4ADB /* VideoCell.h */,
 				295E0742206F951C00BC4ADB /* VideoCell.m */,
 				295E0743206F951C00BC4ADB /* VideoCell.xib */,
+				B138A0C620B72F5600835899 /* OptionWithCell.h */,
+				B138A0C720B72F5600835899 /* OptionWithCell.m */,
+				B138A0C820B72F5600835899 /* OptionWithCell.xib */,
 			);
 			name = CollectionCell;
 			sourceTree = "<group>";
@@ -251,6 +262,8 @@
 				295E0740206F943800BC4ADB /* VideoGallaryView.m */,
 				2968F8AA2070CDF2004B5960 /* ContactUSVW.h */,
 				2968F8AB2070CDF2004B5960 /* ContactUSVW.m */,
+				B138A0C320B72D1900835899 /* OptionView.h */,
+				B138A0C420B72D1900835899 /* OptionView.m */,
 				297D5F0D2056BF2A00ED5428 /* Main.storyboard */,
 				294B5C4D205A9F8800794D47 /* saltPepper.pch */,
 				2962DDBF20B543B40086540A /* AFNetworking */,
@@ -363,6 +376,7 @@
 				294B5C46205A964D00794D47 /* bannerImage.jpg in Resources */,
 				294B5C4C205A9D2B00794D47 /* MenuListCollectCELL.xib in Resources */,
 				295E073E206F783B00BC4ADB /* testImage.jpg in Resources */,
+				B138A0CA20B72F5600835899 /* OptionWithCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -428,6 +442,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				295E0741206F943800BC4ADB /* VideoGallaryView.m in Sources */,
+				B138A0C920B72F5600835899 /* OptionWithCell.m in Sources */,
 				294B5C4B205A9D2B00794D47 /* MenuListCollectCELL.m in Sources */,
 				B18E77FD2055143E00C50320 /* AppDelegate.m in Sources */,
 				297D5F0920565F3A00ED5428 /* DEMOLeftMenuViewController.m in Sources */,
@@ -446,6 +461,7 @@
 				295E0734206F771800BC4ADB /* NewsVW.m in Sources */,
 				B18E77FA2055143E00C50320 /* main.m in Sources */,
 				295E073B206F773D00BC4ADB /* NewsCell.m in Sources */,
+				B138A0C520B72D1900835899 /* OptionView.m in Sources */,
 				295CD5AF206A27D1002129FD /* CVCell.m in Sources */,
 				297D5F0720565F3A00ED5428 /* UIViewController+RESideMenu.m in Sources */,
 				2968F8AC2070CDF2004B5960 /* ContactUSVW.m in Sources */,
