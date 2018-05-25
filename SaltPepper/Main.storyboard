@@ -1758,11 +1758,7 @@
                                                 <color key="textColor" red="0.59607843140000005" green="0.59607843140000005" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-<<<<<<< HEAD
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imageView:shK-wB-pe8:image" translatesAutoresizingMaskIntoConstraints="NO" id="shK-wB-pe8">
-=======
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="34305FC0-DF4C-4FF7-9D51-B5359F694C2B" translatesAutoresizingMaskIntoConstraints="NO" id="shK-wB-pe8">
->>>>>>> d7162317f031d7a0f77868353a26672578d2b4c2
                                                 <rect key="frame" x="8" y="50.5" width="18" height="18"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="18" id="618-x6-CMf"/>
@@ -2840,7 +2836,6 @@
         </scene>
     </scenes>
     <resources>
-<<<<<<< HEAD
         <image name="BackBtn" width="17" height="17"/>
         <image name="CartIconWhite" width="25" height="25"/>
         <image name="FB_ic" width="25" height="22"/>
@@ -2851,11 +2846,9 @@
         <image name="brownBackBtn" width="17" height="17"/>
         <image name="contactusblur.jpg" width="1800" height="1200"/>
         <image name="favIcon" width="25" height="25"/>
+        <image name="ic_Fav" width="25" height="22"/>
         <image name="ic_contact" width="25" height="25"/>
         <image name="imageView:shK-wB-pe8:image" width="16" height="16">
-=======
-        <image name="34305FC0-DF4C-4FF7-9D51-B5359F694C2B" width="0.0" height="0.0">
->>>>>>> d7162317f031d7a0f77868353a26672578d2b4c2
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGODlYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoKwHCBEW
 GxwiIyksMjVVJG51bGzUCQoLDA0ODxBWJGNsYXNzXE5TSW1hZ2VGbGFnc1ZOU1JlcHNXTlNDb2xvcoAL
@@ -2870,21 +2863,6 @@ AMYAyAE+AUMBTgFXAV0BYAFpAW4BdgF5AYABiAGVAZoBnAGeAaMBqwGuAbMBuwG+AdAB0wHYAAAAAAAA
 AgEAAAAAAAAAPAAAAAAAAAAAAAAAAAAAAdo
 </mutableData>
         </image>
-<<<<<<< HEAD
-=======
-        <image name="BackBtn" width="17" height="17"/>
-        <image name="CartIconWhite" width="25" height="25"/>
-        <image name="FB_ic" width="25" height="22"/>
-        <image name="LoginLogo" width="126" height="80"/>
-        <image name="MenuBtn" width="24" height="24"/>
-        <image name="ShowPassIcon.png" width="200" height="200"/>
-        <image name="bannerImage.jpg" width="575" height="382"/>
-        <image name="brownBackBtn" width="17" height="17"/>
-        <image name="contactusblur.jpg" width="1800" height="1200"/>
-        <image name="favIcon" width="25" height="25"/>
-        <image name="ic_Fav" width="25" height="22"/>
-        <image name="ic_contact" width="25" height="25"/>
->>>>>>> d7162317f031d7a0f77868353a26672578d2b4c2
         <image name="linkinedin_ic" width="25" height="25"/>
         <image name="location_icon" width="25" height="25"/>
         <image name="message_icon" width="25" height="19"/>
