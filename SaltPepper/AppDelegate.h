@@ -22,6 +22,8 @@
 + (AppDelegate *)sharedInstance;
 +(BOOL)IsValidEmail:(NSString *)checkString;
 
+@property (nonatomic,weak) NSArray *arrCategories;
+
 + (void)showErrorMessageWithTitle:(NSString *)title
                           message:(NSString*)message
                          delegate:(id)delegate;
