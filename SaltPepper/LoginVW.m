@@ -119,7 +119,7 @@
                                                          options:NSJSONReadingMutableContainers
                                                            error:&error];
     
-    [Utility postRequest:json url:makeURL success:^(id result) {
+    [Utility postRequest:json url:makeURL success:^(id responseObject) {
         
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         
@@ -145,7 +145,7 @@
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         
         NSLog(@"Fail");
-    }]
+    }];
     
     /*AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes=[NSSet setWithObjects:@"text/html",@"application/json", nil];
@@ -308,7 +308,7 @@
                                                            error:&error];
     NSString *makeURL=[NSString stringWithFormat:@"%@%@",kBaseURL,SOCIALLOGIN];
     
-    [Utility postRequest:json url:makeURL success:^(id result)
+    [Utility postRequest:json url:makeURL success:^(id responseObject)
     {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         
