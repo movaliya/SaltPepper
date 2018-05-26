@@ -9,6 +9,8 @@ target 'SaltPepper' do
     pod 'IQKeyboardManager', '~> 5.0'
     pod 'MBProgressHUD', '~> 1.0'
     pod 'SDWebImage', '~> 4.1'
-    pod 'GoogleSignIn'
-   
+    
+    pod 'GoogleSignIn', '~> 4.1'
+    
+
 end

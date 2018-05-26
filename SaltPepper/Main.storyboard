@@ -779,7 +779,7 @@
             </objects>
             <point key="canvasLocation" x="3716" y="-109"/>
         </scene>
-        <!--Option View-->
+        <!--Delegate-->
         <scene sceneID="tTb-uD-6Ch">
             <objects>
                 <viewController storyboardIdentifier="OptionView" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="tJy-qj-Z0M" customClass="OptionView" sceneMemberID="viewController">
@@ -827,7 +827,7 @@
                                 <rect key="frame" x="0.0" y="70" width="320" height="710"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xjM-KO-a4J">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="710"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="720"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="With" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KxU-mV-31U">
                                                 <rect key="frame" x="5" y="61" width="310" height="21"/>
@@ -848,14 +848,14 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d4A-fh-c4F" customClass="ASJTagsView">
-                                                <rect key="frame" x="5" y="87" width="310" height="30"/>
+                                                <rect key="frame" x="5" y="87" width="310" height="85"/>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="30" id="Mw0-Iu-i23"/>
-                                                </constraints>
+                                                <connections>
+                                                    <outlet property="delegate" destination="tJy-qj-Z0M" id="LTr-wS-uW6"/>
+                                                </connections>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Without" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kGK-cS-Fr3">
-                                                <rect key="frame" x="5" y="132" width="310" height="21"/>
+                                                <rect key="frame" x="5" y="187" width="310" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="21" id="gl9-JH-Eqp"/>
                                                 </constraints>
@@ -864,20 +864,20 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ONQ-lf-oal" customClass="ASJTagsView">
-                                                <rect key="frame" x="5" y="158" width="310" height="30"/>
+                                                <rect key="frame" x="5" y="213" width="310" height="30"/>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="4Ra-Rm-Lmo"/>
                                                 </constraints>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="With" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9QP-GK-hGq">
-                                                <rect key="frame" x="5" y="203" width="36" height="21"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="With" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9QP-GK-hGq">
+                                                <rect key="frame" x="5" y="268" width="36" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="lxB-X2-WDR">
-                                                <rect key="frame" x="5" y="239" width="310" height="150"/>
+                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="lxB-X2-WDR">
+                                                <rect key="frame" x="5" y="304" width="310" height="150"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="150" id="aXr-w5-6Sl"/>
@@ -903,14 +903,14 @@
                                                     <outlet property="delegate" destination="tJy-qj-Z0M" id="yKs-BI-1ke"/>
                                                 </connections>
                                             </collectionView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Without" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B48-vj-acF">
-                                                <rect key="frame" x="5" y="419" width="61" height="21"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Without" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B48-vj-acF">
+                                                <rect key="frame" x="5" y="484" width="61" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="YcX-CV-r1T">
-                                                <rect key="frame" x="5" y="455" width="310" height="150"/>
+                                                <rect key="frame" x="5" y="520" width="310" height="150"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="150" id="zNY-oe-HLD"/>
@@ -949,10 +949,11 @@
                                             <constraint firstItem="9QP-GK-hGq" firstAttribute="leading" secondItem="xjM-KO-a4J" secondAttribute="leading" constant="5" id="LKL-ad-jSa"/>
                                             <constraint firstAttribute="trailing" secondItem="KxU-mV-31U" secondAttribute="trailing" constant="5" id="M5N-Ne-xPU"/>
                                             <constraint firstAttribute="trailing" secondItem="d4A-fh-c4F" secondAttribute="trailing" constant="5" id="ON8-tn-9VB"/>
-                                            <constraint firstAttribute="bottom" secondItem="YcX-CV-r1T" secondAttribute="bottom" constant="105" id="OdY-nt-mcx"/>
+                                            <constraint firstAttribute="bottom" secondItem="YcX-CV-r1T" secondAttribute="bottom" constant="50" id="OdY-nt-mcx"/>
                                             <constraint firstItem="KxU-mV-31U" firstAttribute="leading" secondItem="xjM-KO-a4J" secondAttribute="leading" constant="5" id="PkV-Br-qD5"/>
                                             <constraint firstAttribute="trailing" secondItem="kGK-cS-Fr3" secondAttribute="trailing" constant="5" id="Rw9-PT-Z02"/>
                                             <constraint firstItem="lxB-X2-WDR" firstAttribute="top" secondItem="9QP-GK-hGq" secondAttribute="bottom" constant="15" id="SSu-Ja-7RN"/>
+                                            <constraint firstAttribute="height" constant="720" id="V4x-q1-LwR"/>
                                             <constraint firstItem="d4A-fh-c4F" firstAttribute="top" secondItem="KxU-mV-31U" secondAttribute="bottom" constant="5" id="Xt9-XY-9gJ"/>
                                             <constraint firstItem="kGK-cS-Fr3" firstAttribute="top" secondItem="d4A-fh-c4F" secondAttribute="bottom" constant="15" id="bbM-oV-EzI"/>
                                             <constraint firstItem="B48-vj-acF" firstAttribute="leading" secondItem="xjM-KO-a4J" secondAttribute="leading" constant="5" id="c8h-BQ-aGR"/>
@@ -974,7 +975,6 @@
                                     <constraint firstItem="xjM-KO-a4J" firstAttribute="leading" secondItem="qXS-Ev-ySo" secondAttribute="leading" id="IQ3-ig-leK"/>
                                     <constraint firstItem="xjM-KO-a4J" firstAttribute="top" secondItem="qXS-Ev-ySo" secondAttribute="top" id="SIo-O3-9NB"/>
                                     <constraint firstItem="xjM-KO-a4J" firstAttribute="centerX" secondItem="qXS-Ev-ySo" secondAttribute="centerX" id="iZN-bF-kpu"/>
-                                    <constraint firstItem="xjM-KO-a4J" firstAttribute="centerY" secondItem="qXS-Ev-ySo" secondAttribute="centerY" id="kUZ-u3-2Ra"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
