@@ -94,7 +94,7 @@
             [self.sideMenuViewController hideMenuViewController];
             break;
         case 8:
-            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"ContactUSVW"]]//  OptionView
+            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"OptionView"]]//  OptionView
                                                          animated:YES];
             [self.sideMenuViewController hideMenuViewController];
             break;

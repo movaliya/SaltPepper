@@ -10,6 +10,7 @@
 #import "OptionWithCell.h"
 #import "saltPepper.pch"
 
+
 @interface OptionView ()
 
 @end
@@ -20,6 +21,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.navigationController.navigationBar.hidden=YES;
     
     UINib *nib2 = [UINib nibWithNibName:@"OptionWithCell" bundle:nil];
     [WithCollection registerNib:nib2 forCellWithReuseIdentifier:@"OptionWithCell"];
@@ -29,7 +31,7 @@
     
     
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    [flowLayout setItemSize:CGSizeMake(120, 150)];
+    [flowLayout setItemSize:CGSizeMake(100, 150)];
     flowLayout.minimumInteritemSpacing = 0;
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
     [WithCollection setCollectionViewLayout:flowLayout];
@@ -37,6 +39,48 @@
     
     [WithCollection reloadData];
     [WithoutCollection reloadData];
+    
+    self.WithTagView.tagColorTheme = TagColorThemeStrawberry;
+    self.WithoutTagsView.tagColorTheme = TagColorThemeStrawberry;
+    [self handleWithTagBlocks];
+    [self handleWithoutTagBlocks];
+
+}
+
+#pragma mark - Tag blocks
+
+- (void)handleWithTagBlocks
+{
+    __weak typeof(self) weakSelf = self;
+    [self.WithTagView setTapBlock:^(NSString *tagText, NSInteger idx)
+     {
+         NSString *message = [NSString stringWithFormat:@"You tapped: %@", tagText];
+         NSLog(@"Click==%@",message);
+     }];
+    
+    [self.WithTagView setDeleteBlock:^(NSString *tagText, NSInteger idx)
+     {
+         NSString *message = [NSString stringWithFormat:@"You deleted: %@", tagText];
+         NSLog(@"Click==%@",message);
+         [weakSelf.WithTagView deleteTagAtIndex:idx];
+     }];
+}
+
+- (void)handleWithoutTagBlocks
+{
+    __weak typeof(self) weakSelf = self;
+    [self.WithoutTagsView setTapBlock:^(NSString *tagText, NSInteger idx)
+     {
+         NSString *message = [NSString stringWithFormat:@"You tapped: %@", tagText];
+         NSLog(@"Click==%@",message);
+     }];
+    
+    [self.WithoutTagsView setDeleteBlock:^(NSString *tagText, NSInteger idx)
+     {
+         NSString *message = [NSString stringWithFormat:@"You deleted: %@", tagText];
+         NSLog(@"Click==%@",message);
+         [weakSelf.WithoutTagsView deleteTagAtIndex:idx];
+     }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -79,6 +123,14 @@
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (collectionView==self.WithCollection)
+    {
+        [self.WithTagView addTag:@"Kaushik"];
+    }
+    else if (collectionView==self.WithoutCollection)
+    {
+        [self.WithoutTagsView addTag:@"Kaushik"];
+    }
 }
 
 #pragma mark Collection view layout things
@@ -86,35 +138,19 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     CGSize mElementSize;
-    mElementSize=CGSizeMake(SCREEN_WIDTH/3.4, 150);
+    mElementSize=CGSizeMake(100, 150);
     return mElementSize;
 }
 
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
-    return 5.0;
+    return 15.0;
 }
 
+- (IBAction)Back_Click:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
-
-
-//// Layout: Set Edges
-//- (UIEdgeInsets)collectionView: (UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
-//{
-//    if (isIphone5 || isiPhone4)
-//    {
-//        return UIEdgeInsetsMake(15,15,5,15);  // top, left, bottom, right
-//    }
-//    else if (isIphone6)
-//    {
-//        return UIEdgeInsetsMake(15,15,5,15);  // top, left, bottom, right
-//    }
-//    else if (isIphone6P)
-//    {
-//        return UIEdgeInsetsMake(15,15,5,15);  // top, left, bottom, right
-//    }
-//    
-//    return UIEdgeInsetsMake(15,15,5,15);  // top, left, bottom, right
-//}
 @end
