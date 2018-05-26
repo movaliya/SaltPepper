@@ -26,10 +26,8 @@
     return [self instance];
 }
 
-+(void)postRequest :(id)dict url:(NSString *)url success:(void (^)(id result))success failure:(void (^)(NSError *))failure
++(void)postRequest :(id)dict url:(NSString *)url success:(void (^)(id responseObject))success failure:(void (^)(NSError *))failure
 {
-    
-    
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes=[NSSet setWithObjects:@"text/html",@"application/json", nil];
     AFJSONRequestSerializer *serializer = [AFJSONRequestSerializer serializer];
@@ -40,11 +38,6 @@
    // manager.responseSerializer = [AFHTTPResponseSerializer serializer];
 
     [manager POST:url parameters:dict progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject
-                                                             options:NSJSONReadingMutableContainers
-                                                               error:nil];
-        NSString *string = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-        
         NSLog(@"JSON: %@", responseObject);
         success(responseObject);
         

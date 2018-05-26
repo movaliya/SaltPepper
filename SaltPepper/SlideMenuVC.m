@@ -19,8 +19,8 @@
     [super viewDidLoad];
     arrCategories = @[@"STARTERS & MAIN", @"HOUSE SPECIAL DISHES", @"SEAFOOD SPECIAL DISHES", @"MILD DISHES", @"TRADITIONAL DISHES", @"BIRYANI DISHES", @"ENGLISH DISHES", @"BREADS", @"RICE", @"SOFT DRINKS"];
     arrItems = @[@"Vegetarian", @"Chicken", @"Lamb", @"Speciality", @"Seafood"];
-    
     _HSSelView.delegate = self;
+    [SharedClass sharedSingleton].index = _index;
     [_tblItem reloadData];
     // Do any additional setup after loading the view.
 }
@@ -34,7 +34,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return arrItems.count;
+    return [[[[SharedClass sharedSingleton].arrCategories objectAtIndex:_index]valueForKey:@"child"] count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -51,7 +51,7 @@
     [cell.viewBack.layer setShadowOpacity:0.8];
     [cell.viewBack.layer setShadowOffset:CGSizeMake(0.0, 0.0)];
     
-    cell.lblItemName.text = arrItems[indexPath.row];
+    cell.lblItemName.text = [[[[[SharedClass sharedSingleton].arrCategories objectAtIndex:_index]valueForKey:@"child"]valueForKey:@"categoryName"]objectAtIndex:indexPath.row];
 
     return cell;
     
@@ -63,7 +63,7 @@
 {
     if (hSelView == _HSSelView)
     {
-        return arrCategories.count;
+        return [SharedClass sharedSingleton].arrCategories.count;
     }
     
     return 0;
@@ -73,7 +73,7 @@
 {
     if (hSelView == _HSSelView )
     {
-        return [arrCategories objectAtIndex:index];
+        return [[[[SharedClass sharedSingleton].arrCategories valueForKey:@"categoryName"] objectAtIndex:index] uppercaseString];
     }
     
     return @"";
@@ -96,6 +96,8 @@
 //        [self displayAlertWithTitle:@"Please check your internet connection..."];
 //    }
 //    [_collectionviewCategory setContentOffset:CGPointZero animated:YES];
+    _index = index;
+    [_tblItem reloadData];
     NSLog(@"%lu",(unsigned long)index);
 }
 

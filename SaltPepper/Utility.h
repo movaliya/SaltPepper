@@ -15,7 +15,7 @@
 
 + (Utility*) instance;
 + (id) initobj;
-+ (void)postRequest :(id )dict url:(NSString *)url success:(void (^)(id result))success failure:(void (^)(NSError *error))failure;
++ (void)postRequest :(id )dict url:(NSString *)url success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
 + (void)postWithImage :(NSDictionary *)dict :(NSData *)img1 :(NSString *)imgName :(NSString *)paramName :(NSString *)url success:(void (^)(id result))success failure:(void (^)(NSError *error))failure;
 + (void)postWithImage :(NSDictionary *)dict :(NSData *)img1 :(NSData *)img2 :(NSString *)url success:(void (^)(id result))success failure:(void (^)(NSError *error))failure;
 + (BOOL)connected;

@@ -118,7 +118,36 @@
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData
                                                          options:NSJSONReadingMutableContainers
                                                            error:&error];
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+    [Utility postRequest:json url:makeURL success:^(id responseObject) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        NSLog(@"responseObject==%@",responseObject);
+        NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"SUCCESS"];
+        if ([SUCCESS boolValue] ==YES)
+        {
+            [[NSUserDefaults standardUserDefaults]setObject:responseObject forKey:@"LoginUserDic"];
+            Email_TXT.text=@"";
+            Password_TXT.text=@"";
+            DEMORootViewController *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"rootController"];
+            [self.navigationController pushViewController:vcr animated:YES];
+            
+            [AppDelegate showErrorMessageWithTitle:@"" message:@"Login successful" delegate:nil];
+        }
+        else
+        {
+            [AppDelegate showErrorMessageWithTitle:@"" message:@"Email and/or Password did not matched." delegate:nil];
+        }
+        
+    } failure:^(NSError *error) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        NSLog(@"Fail");
+    }];
+    
+    /*AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes=[NSSet setWithObjects:@"text/html",@"application/json", nil];
     AFJSONRequestSerializer *serializer = [AFJSONRequestSerializer serializer];
     [serializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
@@ -129,23 +158,23 @@
     [manager POST:makeURL parameters:json success:^(NSURLSessionDataTask *operation, NSDictionary *responseObject)
      {
          [MBProgressHUD hideHUDForView:self.view animated:YES];
-
+         
          NSLog(@"responseObject==%@",responseObject);
-             NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"SUCCESS"];
-             if ([SUCCESS boolValue] ==YES)
-             {
-                 [[NSUserDefaults standardUserDefaults]setObject:responseObject forKey:@"LoginUserDic"];
-                 Email_TXT.text=@"";
-                 Password_TXT.text=@"";
-                 DEMORootViewController *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"rootController"];
-                 [self.navigationController pushViewController:vcr animated:YES];
-
-                 [AppDelegate showErrorMessageWithTitle:@"" message:@"Login successful" delegate:nil];
-             }
-             else
-             {
-                 [AppDelegate showErrorMessageWithTitle:@"" message:@"Email and/or Password did not matched." delegate:nil];
-             }
+         NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"SUCCESS"];
+         if ([SUCCESS boolValue] ==YES)
+         {
+             [[NSUserDefaults standardUserDefaults]setObject:responseObject forKey:@"LoginUserDic"];
+             Email_TXT.text=@"";
+             Password_TXT.text=@"";
+             DEMORootViewController *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"rootController"];
+             [self.navigationController pushViewController:vcr animated:YES];
+             
+             [AppDelegate showErrorMessageWithTitle:@"" message:@"Login successful" delegate:nil];
+         }
+         else
+         {
+             [AppDelegate showErrorMessageWithTitle:@"" message:@"Email and/or Password did not matched." delegate:nil];
+         }
      }
      
           failure:^(NSURLSessionDataTask *operation, NSError *error)
@@ -153,37 +182,7 @@
          [MBProgressHUD hideHUDForView:self.view animated:YES];
 
          NSLog(@"Fail");
-     }];
-    /*
-    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration delegate:nil delegateQueue:nil];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:makeURL] cachePolicy:NSURLRequestUseProtocolCachePolicy   timeoutInterval:60.0];
-    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request addValue:@"application/json" forHTTPHeaderField:@"Accept"];
-    [request setHTTPMethod:@"POST"];
-    NSDictionary *mapData = [[NSDictionary alloc] initWithDictionary:json];
-    NSData *postData = [NSJSONSerialization dataWithJSONObject:mapData options:0 error:&error];
-    [request setHTTPBody:postData];
-    NSURLSessionDataTask *postDataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
-      {
-          if (!error)
-          {
-              
-              NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-              NSData *data1 = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
-              id json = [NSJSONSerialization JSONObjectWithData:data1 options:0 error:nil];
-              NSMutableDictionary *dicjson = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
-              NSLog(@"%@",json);
-          }
-          else
-          {
-              NSLog(@"%@",error.description);
-          }
-      }];
-  
-    
-    [postDataTask resume];*/
-
+     }];*/
 }
 
 - (IBAction)ForgetPasswordBtn_Click:(id)sender
@@ -308,7 +307,36 @@
                                                          options:NSJSONReadingMutableContainers
                                                            error:&error];
     NSString *makeURL=[NSString stringWithFormat:@"%@%@",kBaseURL,SOCIALLOGIN];
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+    [Utility postRequest:json url:makeURL success:^(id responseObject)
+    {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        NSLog(@"responseObject==%@",responseObject);
+        NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"socialLogin"] objectForKey:@"SUCCESS"];
+        if ([SUCCESS boolValue] ==YES)
+        {
+            [[NSUserDefaults standardUserDefaults]setObject:responseObject forKey:@"LoginUserDic"];
+            [AppDelegate showErrorMessageWithTitle:@"" message:@"Login successful" delegate:nil];
+            DEMORootViewController *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"rootController"];
+            [self.navigationController pushViewController:vcr animated:YES];
+            
+        }
+        else
+        {
+            NSString *DESCRIPTION=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"socialLogin"] objectForKey:@"ERROR"] objectForKey:@"DESCRIPTION"];
+            [AppDelegate showErrorMessageWithTitle:@"" message:DESCRIPTION delegate:nil];
+        }
+        
+    } failure:^(NSError *error) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        NSLog(@"Fail");
+        
+    }];
+    
+    /*AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes=[NSSet setWithObjects:@"text/html",@"application/json", nil];
     AFJSONRequestSerializer *serializer = [AFJSONRequestSerializer serializer];
     [serializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
@@ -342,7 +370,7 @@
          [MBProgressHUD hideHUDForView:self.view animated:YES];
          
          NSLog(@"Fail");
-     }];
+     }];*/
 }
 - (void)signIn:(GIDSignIn *)signIn didDisconnectWithUser:(GIDGoogleUser *)user withError:(NSError *)error
 {

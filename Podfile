@@ -11,5 +11,4 @@ target 'SaltPepper' do
     pod 'SDWebImage', '~> 4.1'
     pod 'GoogleSignIn'
    
-   
 end

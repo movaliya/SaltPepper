@@ -189,7 +189,7 @@ typedef NS_ENUM(NSUInteger, EHHorizontalSelectionViewType) {
     if (!_collectionView)
     {
         _cellGap = NSIntegerMin;
-        _selectedIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+        _selectedIndexPath = [NSIndexPath indexPathForRow:[SharedClass sharedSingleton].index inSection:0];
         _flowLayout  = [[UICollectionViewFlowLayout alloc] init];
         [_flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
         _flowLayout.minimumInteritemSpacing = 4.0f;

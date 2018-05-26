@@ -14,6 +14,7 @@
     NSArray *arrCategories;
     NSArray *arrItems;
 }
+@property (nonatomic ) NSInteger index;
 @property (weak, nonatomic) IBOutlet EHHorizontalSelectionView *HSSelView;
 @property (weak, nonatomic) IBOutlet UITableView *tblItem;
 

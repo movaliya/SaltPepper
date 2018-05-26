@@ -14,7 +14,7 @@
 #import "RESideMenu.h"
 #import "AFNetworking.h"
 #import "AFURLSessionManager.h"
-
+#import "SharedClass.h"
 #import "AFNetworking/AFNetworking.h"
 
 #import "UIImageView+WebCache.h"
@@ -74,7 +74,8 @@
 #define NEWS @"news.php"
 #define FORGOTPASS @"ForgetPassword.php"
 #define SOCIALLOGIN @"sociallogin.php"
-
+#define CATEGORY @"CategoriesList.php"
+#define PRODUCTCATEGORY @"ProductsCategoryList.php"
 
 
 //Check if iphone5 or iphone 4
