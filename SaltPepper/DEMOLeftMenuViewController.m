@@ -147,13 +147,19 @@
             case 13:
                 if (_ro(@"LoginUserDic") != nil)
                 {
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
-                                                                    message:@"Are you sure want to Logout?"
-                                                                   delegate:self
-                                                          cancelButtonTitle:@"Cancel"
-                                                          otherButtonTitles:@"Logout",nil];
-                    alert.tag=50;
-                    [alert show];
+                    FCAlertView *alert = [KmyappDelegate ShowAlertWithBtnAction:@"Are you sure want to Logout?" andStrTile:nil andbtnTitle:@"NO" andButtonArray:@[]];
+                    
+                    [alert addButton:@"YES" withActionBlock:^{
+                        
+                        titles = @[@"Home", @"Cart", @"Reservation",@"Reservation History", @"Gallery", @"News", @"Information", @"Video Gallery",@"Message",@"Contact Us", @"Login or Signup"];
+                        
+                        images = @[@"ic_home", @"ic_cart",@"ic_reservation",@"ic_reservation", @"ic_gallery", @"ic_news", @"ic_info", @"ic_videogallery", @"ic_message", @"ic_contactus", @"ic_logout"];
+                        
+                        _Rm(@"LoginUserDic")
+                        [[GIDSignIn sharedInstance] signOut];
+                        [self.MenuTBL reloadData];
+                        [self.sideMenuViewController hideMenuViewController];
+                        }];
                 }
                 else
                 {
@@ -219,13 +225,20 @@
             case 10:
                 if (_ro(@"LoginUserDic") != nil)
                 {
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
-                                                                    message:@"Are you sure want to Logout?"
-                                                                   delegate:self
-                                                          cancelButtonTitle:@"Cancel"
-                                                          otherButtonTitles:@"Logout",nil];
-                    alert.tag=50;
-                    [alert show];
+                    FCAlertView *alert = [KmyappDelegate ShowAlertWithBtnAction:@"Are you sure want to Logout?" andStrTile:nil andbtnTitle:@"NO" andButtonArray:@[]];
+                    
+                    [alert addButton:@"YES" withActionBlock:^{
+                        
+                        titles = @[@"Home", @"Cart", @"Reservation",@"Reservation History", @"Gallery", @"News", @"Information", @"Video Gallery",@"Message",@"Contact Us", @"Login or Signup"];
+                        
+                        images = @[@"ic_home", @"ic_cart",@"ic_reservation",@"ic_reservation", @"ic_gallery", @"ic_news", @"ic_info", @"ic_videogallery", @"ic_message", @"ic_contactus", @"ic_logout"];
+                        
+                        _Rm(@"LoginUserDic")
+                        [[GIDSignIn sharedInstance] signOut];
+                        [self.MenuTBL reloadData];
+                        [self.sideMenuViewController hideMenuViewController];
+                        
+                    }];
                 }
                 else
                 {
@@ -241,24 +254,8 @@
 
     }
 }
-- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
-{
-    // the user clicked Logout
-    if (alertView.tag==50)
-    {
-        if (buttonIndex == 1)
-        {
-            titles = @[@"Home", @"Cart", @"Reservation",@"Reservation History", @"Gallery", @"News", @"Information", @"Video Gallery",@"Message",@"Contact Us", @"Login or Signup"];
-            
-            images = @[@"ic_home", @"ic_cart",@"ic_reservation",@"ic_reservation", @"ic_gallery", @"ic_news", @"ic_info", @"ic_videogallery", @"ic_message", @"ic_contactus", @"ic_logout"];
-            
-            _Rm(@"LoginUserDic")
-            [[GIDSignIn sharedInstance] signOut];
-            [self.MenuTBL reloadData];
-            [self.sideMenuViewController hideMenuViewController];
-        }
-    }
-}
+
+
 #pragma mark -
 #pragma mark UITableView Datasource
 
@@ -287,15 +284,18 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         cell.backgroundColor = [UIColor clearColor];
         cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:18];
-        cell.textLabel.textColor = [UIColor colorWithRed:109.0/255.0f green:18.0/255.0f
-                                                    blue:32.0/255.0f alpha:1.0];
-        cell.textLabel.highlightedTextColor = [UIColor lightGrayColor];
+        cell.textLabel.textColor = [UIColor colorWithRed:254.0/255.0f green:238.0/255.0f
+                                                    blue:207.0/255.0f alpha:1.0];
+        //cell.textLabel.highlightedTextColor = [UIColor lightGrayColor];
         cell.selectedBackgroundView = [[UIView alloc] init];
     }
     
     cell.textLabel.text = titles[indexPath.row];
     cell.imageView.image = [UIImage imageNamed:images[indexPath.row]];
-    
+    cell.imageView.image = [ [UIImage imageNamed:images[indexPath.row]] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+
+    cell.imageView.tintColor=[UIColor colorWithRed:254.0/255.0f green:238.0/255.0f
+                                              blue:207.0/255.0f alpha:1.0];
     return cell;
 }
 
