@@ -9,13 +9,18 @@
 #import <UIKit/UIKit.h>
 #import "EHHorizontalSelectionView.h"
 
-@interface SlideMenuVC : UIViewController<UITableViewDelegate,UITableViewDataSource>
+@interface SlideMenuVC : UIViewController<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource>
 {
     NSArray *arrCategories;
-    NSArray *arrItems;
+    NSMutableArray *arrProductsItems;
 }
 @property (nonatomic ) NSInteger index;
 @property (weak, nonatomic) IBOutlet EHHorizontalSelectionView *HSSelView;
 @property (weak, nonatomic) IBOutlet UITableView *tblItem;
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionViewItem;
+@property (weak, nonatomic) IBOutlet UIView *viewSearch;
+@property (weak, nonatomic) IBOutlet UITextField *txtSearch;
+@property (weak, nonatomic) IBOutlet UIView *viewBottom;
+@property (weak, nonatomic) IBOutlet UILabel *lblTotal;
 
 @end

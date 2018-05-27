@@ -10,6 +10,7 @@
 #import "UIViewController+RESideMenu.h"
 #import "HomeVC.h"
 #import "LoginVW.h"
+#import "ProfileView.h"
 
 @interface DEMOLeftMenuViewController ()
 
@@ -94,7 +95,7 @@
             [self.sideMenuViewController hideMenuViewController];
             break;
         case 8:
-            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"OptionView"]]//  OptionView
+            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"ProfileView"]]//  OptionView // ProfileView
                                                          animated:YES];
             [self.sideMenuViewController hideMenuViewController];
             break;
