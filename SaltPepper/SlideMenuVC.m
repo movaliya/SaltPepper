@@ -11,13 +11,17 @@
 #import "CategoryItemCell.h"
 
 @interface SlideMenuVC ()<EHHorizontalSelectionViewProtocol>
-
+{
+    NSMutableArray *cartArr;
+}
 @end
 
 @implementation SlideMenuVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    cartArr = [[NSMutableArray alloc]init];
+    _viewBottom.hidden = YES;
     _viewSearch.layer.cornerRadius = 20;
     _viewSearch.layer.borderColor = [UIColor lightGrayColor].CGColor;
     _viewSearch.layer.borderWidth = 1.0;
@@ -119,10 +123,10 @@
 }
 
 #pragma mark - Collectionview delegate methods
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
-{
-    return 1;
-}
+//- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+//{
+//    return 1;
+//}
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
@@ -134,6 +138,15 @@
     static NSString *cellIdentifier = @"CategoryItemCell";
     
     CategoryItemCell *cell = (CategoryItemCell *)[collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
+    cell.btnPlus.tag = indexPath.row;
+    cell.btnMinus.tag = indexPath.row;
+    cell.btnAdd.tag = indexPath.row;
+    cell.btnModify.tag = indexPath.row;
+    
+    [cell.btnAdd addTarget:self action:@selector(addToCartClickedCollectionView:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.btnPlus addTarget:self action:@selector(plusClickedCollectionView:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.btnMinus addTarget:self action:@selector(minusClickedCollectionView:) forControlEvents:UIControlEventTouchUpInside];
+    
     cell.lblCatItemName.text = [[arrProductsItems valueForKey:@"productName"] objectAtIndex:indexPath.row];
     cell.lblPrice.text = [NSString stringWithFormat:@"£%@",[[arrProductsItems valueForKey:@"price"] objectAtIndex:indexPath.row]];
     return cell;
@@ -152,6 +165,30 @@
     return CGSizeMake((width/2) - 8,250);
 }
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    if (lastContentOffset > scrollView.contentOffset.y)
+    {
+        _viewBottom.hidden = YES;
+        NSLog(@"Scrolling Up");
+    }
+    else if (lastContentOffset < scrollView.contentOffset.y)
+    {
+        NSLog(@"%f",lastContentOffset - scrollView.contentOffset.y);
+        if(scrollView.contentOffset.y <= 20)
+        {
+            _viewBottom.hidden = YES;
+        }
+        else
+        {
+            _viewBottom.hidden = NO;
+        }
+        NSLog(@"Scrolling Down");
+    }
+    
+    lastContentOffset = scrollView.contentOffset.y;
+}
+
 #pragma mark - TableView Delegate
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -167,6 +204,15 @@
     
     ItemCell *cell = (ItemCell*)[tableView dequeueReusableCellWithIdentifier:@"ItemCell"];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    cell.btnPlus.tag = indexPath.row;
+    cell.btnMinus.tag = indexPath.row;
+    cell.btnAdd.tag = indexPath.row;
+    cell.btnModify.tag = indexPath.row;
+
+    [cell.btnAdd addTarget:self action:@selector(addToCartClickedTableView:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.btnPlus addTarget:self action:@selector(plusClickedTableView:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.btnMinus addTarget:self action:@selector(minusClickedTableView:) forControlEvents:UIControlEventTouchUpInside];
     
     [cell.viewBack.layer setShadowColor:[UIColor grayColor].CGColor];
     [cell.viewBack.layer setShadowOpacity:0.8];
@@ -228,6 +274,76 @@
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+- (IBAction)plusClickedCollectionView:(UIButton *)sender
+{
+    NSIndexPath *changedRow = [NSIndexPath indexPathForRow:sender.tag inSection:0];
+    CategoryItemCell *cell = (CategoryItemCell *)[_collectionViewItem cellForItemAtIndexPath:changedRow];
+    
+    NSInteger val = [cell.lblQty.text integerValue];
+    NSInteger newValue = val + 1;
+    cell.lblQty.text = [NSString stringWithFormat:@"%ld",(long)newValue];
+}
+
+- (IBAction)plusClickedTableView:(UIButton *)sender
+{
+    NSIndexPath *changedRow = [NSIndexPath indexPathForRow:sender.tag inSection:0];
+    ItemCell *cell = (ItemCell *)[_tblItem cellForRowAtIndexPath:changedRow];
+    
+    NSInteger val = [cell.lblQty.text integerValue];
+    NSInteger newValue = val + 1;
+    cell.lblQty.text = [NSString stringWithFormat:@"%ld",(long)newValue];
+    
+}
+
+- (IBAction)minusClickedCollectionView:(UIButton *)sender
+{
+    NSIndexPath *changedRow = [NSIndexPath indexPathForRow:sender.tag inSection:0];
+    CategoryItemCell *cell = (CategoryItemCell *)[_collectionViewItem cellForItemAtIndexPath:changedRow];
+    
+    NSInteger val = [cell.lblQty.text integerValue];
+    if(val > 1)
+    {
+        NSInteger newValue = val - 1;
+        cell.lblQty.text = [NSString stringWithFormat:@"%ld",(long)newValue];
+    }
+}
+
+- (IBAction)minusClickedTableView:(UIButton *)sender
+{
+    NSIndexPath *changedRow = [NSIndexPath indexPathForRow:sender.tag inSection:0];
+    ItemCell *cell = (ItemCell *)[_tblItem cellForRowAtIndexPath:changedRow];
+    
+    NSInteger val = [cell.lblQty.text integerValue];
+    if(val > 1)
+    {
+        NSInteger newValue = val - 1;
+        cell.lblQty.text = [NSString stringWithFormat:@"%ld",(long)newValue];
+    }
+}
+
+- (IBAction)addToCartClickedCollectionView:(UIButton *)sender
+{
+    NSIndexPath *changedRow = [NSIndexPath indexPathForRow:sender.tag inSection:0];
+    CategoryItemCell *cell = (CategoryItemCell *)[_collectionViewItem cellForItemAtIndexPath:changedRow];
+    NSInteger qty = [cell.lblQty.text integerValue];
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
+    [dict setObject:[arrProductsItems objectAtIndex:sender.tag] forKey:@"product"];
+    [dict setObject:[NSNumber numberWithInteger:qty] forKey:@"Qty"];
+    [cartArr addObject:dict];
+}
+
+- (IBAction)addToCartClickedTableView:(UIButton *)sender
+{
+    NSIndexPath *changedRow = [NSIndexPath indexPathForRow:sender.tag inSection:0];
+    ItemCell *cell = (ItemCell *)[_tblItem cellForRowAtIndexPath:changedRow];
+    NSInteger qty = [cell.lblQty.text integerValue];
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
+    [dict setObject:[arrProductsItems objectAtIndex:sender.tag] forKey:@"product"];
+    [dict setObject:[NSNumber numberWithInteger:qty] forKey:@"Qty"];
+    [cartArr addObject:dict];
+}
+
 - (IBAction)btnViewCartClicked:(id)sender {
 }
 - (IBAction)btnCheckoutClicked:(id)sender {

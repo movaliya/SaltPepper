@@ -31,9 +31,60 @@
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
     [MenuCollectionVW setCollectionViewLayout:flowLayout];
 
+    [self SetheaderScroll];
     [self CallCategoryList];
 }
 
+-(void)SetheaderScroll
+{
+    NSArray* subviews = [[NSArray alloc] initWithArray: bannerscroll.subviews];
+    for (UIView* view in subviews)
+    {
+        if ([view isKindOfClass:[UIView class]])
+        {
+            [view removeFromSuperview];
+        }
+        if ([view isKindOfClass:[UIImageView class]])
+        {
+            [view removeFromSuperview];
+        }
+        if ([view isKindOfClass:[UIButton class]])
+        {
+            [view removeFromSuperview];
+        }
+        if ([view isKindOfClass:[UILabel class]])
+        {
+            [view removeFromSuperview];
+        }
+    }
+    
+    int x=0;
+    
+    
+    for (int i=0; i<3; i++)
+    {
+       UIImageView *Headerimg=[[UIImageView alloc]initWithFrame:CGRectMake(x, 0, SCREEN_WIDTH, 260)];
+        Headerimg.image = [UIImage imageNamed:@"bannerImage.jpg"];
+        //Headerimg.image=[UIImage imageNamed:@"HomeLogo"];
+        [bannerscroll addSubview:Headerimg];
+        
+        x=x+SCREEN_WIDTH;
+    }
+    [bannerscroll setContentSize:CGSizeMake(x, 130)];
+    pagesControl.numberOfPages = 3;
+    pagesControl.currentPage = 0;
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)sender
+{
+    if (sender==bannerscroll)
+    {
+        CGFloat pageWidth = bannerscroll.frame.size.width;
+        float fractionalPage = bannerscroll.contentOffset.x / pageWidth;
+        NSInteger page = lround(fractionalPage);
+        pagesControl.currentPage = page;
+    }
+}
 
 - (void)CallCategoryList
 {

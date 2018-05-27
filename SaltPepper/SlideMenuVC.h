@@ -13,6 +13,7 @@
 {
     NSArray *arrCategories;
     NSMutableArray *arrProductsItems;
+    CGFloat lastContentOffset;
 }
 @property (nonatomic ) NSInteger index;
 @property (weak, nonatomic) IBOutlet EHHorizontalSelectionView *HSSelView;
