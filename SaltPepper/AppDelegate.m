@@ -15,6 +15,7 @@
 
 @implementation AppDelegate
 @synthesize manager;
+@synthesize MainCartArr;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
