@@ -1014,8 +1014,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nRM-v1-Bow">
-                                <rect key="frame" x="10" y="70" width="175" height="448"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nRM-v1-Bow">
+                                <rect key="frame" x="10" y="50" width="175" height="498"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="lDa-KQ-SsZ" id="0fr-wn-dZF"/>
@@ -1027,8 +1027,8 @@
                         <constraints>
                             <constraint firstItem="nRM-v1-Bow" firstAttribute="leading" secondItem="oYq-pt-XKf" secondAttribute="leading" constant="10" id="HmJ-Ox-g1O"/>
                             <constraint firstAttribute="trailing" secondItem="nRM-v1-Bow" secondAttribute="trailing" constant="135" id="SiY-E8-zHN"/>
-                            <constraint firstItem="nRM-v1-Bow" firstAttribute="top" secondItem="Se0-h9-yYa" secondAttribute="bottom" constant="50" id="fjU-xy-61G"/>
-                            <constraint firstItem="CRk-Fl-Eim" firstAttribute="top" secondItem="nRM-v1-Bow" secondAttribute="bottom" constant="50" id="gdt-1o-o4g"/>
+                            <constraint firstItem="nRM-v1-Bow" firstAttribute="top" secondItem="Se0-h9-yYa" secondAttribute="bottom" constant="30" id="fjU-xy-61G"/>
+                            <constraint firstItem="CRk-Fl-Eim" firstAttribute="top" secondItem="nRM-v1-Bow" secondAttribute="bottom" constant="20" id="gdt-1o-o4g"/>
                         </constraints>
                     </view>
                     <connections>
