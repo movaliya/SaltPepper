@@ -284,15 +284,18 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         cell.backgroundColor = [UIColor clearColor];
         cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:18];
-        cell.textLabel.textColor = [UIColor colorWithRed:109.0/255.0f green:18.0/255.0f
-                                                    blue:32.0/255.0f alpha:1.0];
-        cell.textLabel.highlightedTextColor = [UIColor lightGrayColor];
+        cell.textLabel.textColor = [UIColor colorWithRed:254.0/255.0f green:238.0/255.0f
+                                                    blue:207.0/255.0f alpha:1.0];
+        //cell.textLabel.highlightedTextColor = [UIColor lightGrayColor];
         cell.selectedBackgroundView = [[UIView alloc] init];
     }
     
     cell.textLabel.text = titles[indexPath.row];
     cell.imageView.image = [UIImage imageNamed:images[indexPath.row]];
-    
+    cell.imageView.image = [ [UIImage imageNamed:images[indexPath.row]] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+
+    cell.imageView.tintColor=[UIColor colorWithRed:254.0/255.0f green:238.0/255.0f
+                                              blue:207.0/255.0f alpha:1.0];
     return cell;
 }
 
