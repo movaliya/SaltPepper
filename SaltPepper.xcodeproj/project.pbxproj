@@ -56,6 +56,9 @@
 		B14ECF9520B8883200286D46 /* ASJTag.xib in Resources */ = {isa = PBXBuildFile; fileRef = B14ECF9020B8883200286D46 /* ASJTag.xib */; };
 		B14ECF9620B8883200286D46 /* ASJTagsView.m in Sources */ = {isa = PBXBuildFile; fileRef = B14ECF9220B8883200286D46 /* ASJTagsView.m */; };
 		B14ECF9720B8883200286D46 /* Resources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B14ECF9320B8883200286D46 /* Resources.bundle */; };
+		B16C72AE20B97FFA0041C6B9 /* ProfileView.m in Sources */ = {isa = PBXBuildFile; fileRef = B16C72AD20B97FFA0041C6B9 /* ProfileView.m */; };
+		B16C72B420B9E4280041C6B9 /* NYPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = B16C72B120B9E4280041C6B9 /* NYPopover.m */; };
+		B16C72B520B9E4280041C6B9 /* NYSliderPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = B16C72B320B9E4280041C6B9 /* NYSliderPopover.m */; };
 		B18E77FA2055143E00C50320 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B18E77F92055143E00C50320 /* main.m */; };
 		B18E77FD2055143E00C50320 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B18E77FC2055143E00C50320 /* AppDelegate.m */; };
 		B18E78052055143E00C50320 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B18E78042055143E00C50320 /* Assets.xcassets */; };
@@ -149,6 +152,12 @@
 		B14ECF9120B8883200286D46 /* ASJTagsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASJTagsView.h; sourceTree = "<group>"; };
 		B14ECF9220B8883200286D46 /* ASJTagsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASJTagsView.m; sourceTree = "<group>"; };
 		B14ECF9320B8883200286D46 /* Resources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Resources.bundle; sourceTree = "<group>"; };
+		B16C72AC20B97FFA0041C6B9 /* ProfileView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileView.h; sourceTree = "<group>"; };
+		B16C72AD20B97FFA0041C6B9 /* ProfileView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileView.m; sourceTree = "<group>"; };
+		B16C72B020B9E4280041C6B9 /* NYPopover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NYPopover.h; sourceTree = "<group>"; };
+		B16C72B120B9E4280041C6B9 /* NYPopover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NYPopover.m; sourceTree = "<group>"; };
+		B16C72B220B9E4280041C6B9 /* NYSliderPopover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NYSliderPopover.h; sourceTree = "<group>"; };
+		B16C72B320B9E4280041C6B9 /* NYSliderPopover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NYSliderPopover.m; sourceTree = "<group>"; };
 		B18E77F52055143E00C50320 /* SaltPepper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SaltPepper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B18E77F92055143E00C50320 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B18E77FB2055143E00C50320 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -287,6 +296,17 @@
 			path = ASJTagsView;
 			sourceTree = "<group>";
 		};
+		B16C72AF20B9E4280041C6B9 /* NYSliderPopover */ = {
+			isa = PBXGroup;
+			children = (
+				B16C72B020B9E4280041C6B9 /* NYPopover.h */,
+				B16C72B120B9E4280041C6B9 /* NYPopover.m */,
+				B16C72B220B9E4280041C6B9 /* NYSliderPopover.h */,
+				B16C72B320B9E4280041C6B9 /* NYSliderPopover.m */,
+			);
+			path = NYSliderPopover;
+			sourceTree = "<group>";
+		};
 		B18E77EC2055143D00C50320 = {
 			isa = PBXGroup;
 			children = (
@@ -309,6 +329,7 @@
 			isa = PBXGroup;
 			children = (
 				29360C9020B8613100283D87 /* client_628114390774-ps3bah0jagd4pnm3aflmfije8rlr3r56.apps.googleusercontent.com.plist */,
+				B16C72AF20B9E4280041C6B9 /* NYSliderPopover */,
 				B14ECF8D20B8883200286D46 /* ASJTagsView */,
 				B1B7446220694FA900A2FE9C /* GlobalFiles */,
 				294B5C47205A9CF700794D47 /* CollectionCell */,
@@ -348,6 +369,8 @@
 				2968F8AB2070CDF2004B5960 /* ContactUSVW.m */,
 				B138A0C320B72D1900835899 /* OptionView.h */,
 				B138A0C420B72D1900835899 /* OptionView.m */,
+				B16C72AC20B97FFA0041C6B9 /* ProfileView.h */,
+				B16C72AD20B97FFA0041C6B9 /* ProfileView.m */,
 				297D5F0D2056BF2A00ED5428 /* Main.storyboard */,
 				294B5C4D205A9F8800794D47 /* saltPepper.pch */,
 				2962DDBF20B543B40086540A /* AFNetworking */,
@@ -521,12 +544,15 @@
 			files = (
 				295E0741206F943800BC4ADB /* VideoGallaryView.m in Sources */,
 				B138A0C920B72F5600835899 /* OptionWithCell.m in Sources */,
+				B16C72AE20B97FFA0041C6B9 /* ProfileView.m in Sources */,
 				294B5C4B205A9D2B00794D47 /* MenuListCollectCELL.m in Sources */,
 				B18E77FD2055143E00C50320 /* AppDelegate.m in Sources */,
 				297D5F0920565F3A00ED5428 /* DEMOLeftMenuViewController.m in Sources */,
 				51094AA320B71A0000A60634 /* EHRoundedHorizontalViewCell.m in Sources */,
 				51094AA720B71ADF00A60634 /* SlideMenuVC.m in Sources */,
 				297D5F0C205662DA00ED5428 /* HomeVC.m in Sources */,
+				B16C72B520B9E4280041C6B9 /* NYSliderPopover.m in Sources */,
+				B16C72B420B9E4280041C6B9 /* NYPopover.m in Sources */,
 				297D5F0820565F3A00ED5428 /* DEMORootViewController.m in Sources */,
 				297D5EF92056556000ED5428 /* RegisterVW.m in Sources */,
 				51094AA220B71A0000A60634 /* EHHorizontalViewCell.m in Sources */,

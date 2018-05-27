@@ -150,7 +150,7 @@
 
 - (IBAction)Back_Click:(id)sender
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.sideMenuViewController presentLeftMenuViewController];
 }
 
 @end
