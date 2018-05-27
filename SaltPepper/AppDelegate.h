@@ -19,8 +19,10 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate,GIDSignInUIDelegate,GIDSignInDelegate>
 {
     FCAlertView *alert;
+    NSMutableArray *MainCartArr,*MainFavArr;
 
 }
+@property (strong, nonatomic) NSMutableArray *MainCartArr,*MainFavArr;
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong,nonatomic) AFHTTPSessionManager *manager;

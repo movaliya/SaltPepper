@@ -91,7 +91,16 @@
             NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"products"] objectForKey:@"SUCCESS"];
             if ([SUCCESS boolValue] ==YES)
             {
-                arrProductsItems = [[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"products"]objectForKey:@"result"]objectForKey:@"products"];
+                arrProductsItems = [[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"products"]objectForKey:@"result"]objectForKey:@"products"] mutableCopy];
+                for (int i=0; i<arrProductsItems.count; i++)
+                {
+                    NSMutableDictionary *intdic=[[NSMutableDictionary alloc]init];
+                    intdic=[[arrProductsItems objectAtIndex:i] mutableCopy];
+                    [intdic setObject:[NSNumber numberWithInt:1] forKey:@"Quantity"];
+                    
+                    [arrProductsItems replaceObjectAtIndex:i withObject:intdic];
+                    
+                }
                 NSLog(@"%@",[[arrProductsItems valueForKey:@"allergy_image_path"] objectAtIndex:0]);
                 if([[arrProductsItems valueForKey:@"allergy_image_path"] objectAtIndex:0] == [NSNull null] || [[[arrProductsItems valueForKey:@"allergy_image_path"] objectAtIndex:0]isEqualToString:@""])
                 {
@@ -141,14 +150,17 @@
     cell.btnPlus.tag = indexPath.row;
     cell.btnMinus.tag = indexPath.row;
     cell.btnAdd.tag = indexPath.row;
+    cell.btnFav.tag = indexPath.row;
     cell.btnModify.tag = indexPath.row;
     
     [cell.btnAdd addTarget:self action:@selector(addToCartClickedCollectionView:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.btnFav addTarget:self action:@selector(addToFavClickedCollectionView:) forControlEvents:UIControlEventTouchUpInside];
     [cell.btnPlus addTarget:self action:@selector(plusClickedCollectionView:) forControlEvents:UIControlEventTouchUpInside];
     [cell.btnMinus addTarget:self action:@selector(minusClickedCollectionView:) forControlEvents:UIControlEventTouchUpInside];
     
     cell.lblCatItemName.text = [[arrProductsItems valueForKey:@"productName"] objectAtIndex:indexPath.row];
     cell.lblPrice.text = [NSString stringWithFormat:@"£%@",[[arrProductsItems valueForKey:@"price"] objectAtIndex:indexPath.row]];
+    cell.lblQty.text=[NSString stringWithFormat:@"%@",[[arrProductsItems objectAtIndex:indexPath.row] valueForKey:@"Quantity"]];
     return cell;
 }
 
@@ -209,6 +221,10 @@
     cell.btnMinus.tag = indexPath.row;
     cell.btnAdd.tag = indexPath.row;
     cell.btnModify.tag = indexPath.row;
+    cell.btnFav.tag = indexPath.row;
+
+    
+    [cell.btnFav addTarget:self action:@selector(addToFavClickedTableView:) forControlEvents:UIControlEventTouchUpInside];
 
     [cell.btnAdd addTarget:self action:@selector(addToCartClickedTableView:) forControlEvents:UIControlEventTouchUpInside];
     [cell.btnPlus addTarget:self action:@selector(plusClickedTableView:) forControlEvents:UIControlEventTouchUpInside];
@@ -220,6 +236,7 @@
     
     cell.lblItemName.text = [[arrProductsItems valueForKey:@"productName"] objectAtIndex:indexPath.row];
     cell.lblPrice.text = [NSString stringWithFormat:@"£%@",[[arrProductsItems valueForKey:@"price"] objectAtIndex:indexPath.row]];
+    cell.lblQty.text=[NSString stringWithFormat:@"%@",[[arrProductsItems objectAtIndex:indexPath.row] valueForKey:@"Quantity"]];
     return cell;
     
 }
@@ -275,88 +292,185 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (IBAction)plusClickedCollectionView:(UIButton *)sender
+- (void)plusClickedCollectionView:(UIButton *)sender
 {
     NSIndexPath *changedRow = [NSIndexPath indexPathForRow:sender.tag inSection:0];
     CategoryItemCell *cell = (CategoryItemCell *)[_collectionViewItem cellForItemAtIndexPath:changedRow];
     
-    NSInteger val = [cell.lblQty.text integerValue];
-    NSInteger newValue = val + 1;
+    int val = [cell.lblQty.text intValue];
+    int newValue = val + 1;
     cell.lblQty.text = [NSString stringWithFormat:@"%ld",(long)newValue];
+    
+    NSMutableDictionary *intdic=[[NSMutableDictionary alloc]init];
+    intdic=[[arrProductsItems objectAtIndex:changedRow.row] mutableCopy];
+    [intdic setObject:[NSNumber numberWithInt:newValue] forKey:@"Quantity"];
+    
+    [arrProductsItems replaceObjectAtIndex:changedRow.row withObject:intdic];
 }
 
-- (IBAction)plusClickedTableView:(UIButton *)sender
+- (void)plusClickedTableView:(UIButton *)sender
 {
     NSIndexPath *changedRow = [NSIndexPath indexPathForRow:sender.tag inSection:0];
     ItemCell *cell = (ItemCell *)[_tblItem cellForRowAtIndexPath:changedRow];
     
-    NSInteger val = [cell.lblQty.text integerValue];
-    NSInteger newValue = val + 1;
+    int val = [cell.lblQty.text intValue];
+    int newValue = val + 1;
     cell.lblQty.text = [NSString stringWithFormat:@"%ld",(long)newValue];
+    
+    NSMutableDictionary *intdic=[[NSMutableDictionary alloc]init];
+    intdic=[[arrProductsItems objectAtIndex:changedRow.row] mutableCopy];
+    [intdic setObject:[NSNumber numberWithInt:newValue] forKey:@"Quantity"];
+    
+    [arrProductsItems replaceObjectAtIndex:changedRow.row withObject:intdic];
     
 }
 
-- (IBAction)minusClickedCollectionView:(UIButton *)sender
+- (void)minusClickedCollectionView:(UIButton *)sender
 {
     NSIndexPath *changedRow = [NSIndexPath indexPathForRow:sender.tag inSection:0];
     CategoryItemCell *cell = (CategoryItemCell *)[_collectionViewItem cellForItemAtIndexPath:changedRow];
     
-    NSInteger val = [cell.lblQty.text integerValue];
+    int val = [cell.lblQty.text intValue];
     if(val > 1)
     {
-        NSInteger newValue = val - 1;
+        int newValue = val - 1;
         cell.lblQty.text = [NSString stringWithFormat:@"%ld",(long)newValue];
+        
+        NSMutableDictionary *intdic=[[NSMutableDictionary alloc]init];
+        intdic=[[arrProductsItems objectAtIndex:changedRow.row] mutableCopy];
+        [intdic setObject:[NSNumber numberWithInt:newValue] forKey:@"Quantity"];
+        
+        [arrProductsItems replaceObjectAtIndex:changedRow.row withObject:intdic];
     }
 }
 
-- (IBAction)minusClickedTableView:(UIButton *)sender
+- (void)minusClickedTableView:(UIButton *)sender
 {
     NSIndexPath *changedRow = [NSIndexPath indexPathForRow:sender.tag inSection:0];
     ItemCell *cell = (ItemCell *)[_tblItem cellForRowAtIndexPath:changedRow];
     
-    NSInteger val = [cell.lblQty.text integerValue];
+    int val = [cell.lblQty.text intValue];
     if(val > 1)
     {
-        NSInteger newValue = val - 1;
+        int newValue = val - 1;
         cell.lblQty.text = [NSString stringWithFormat:@"%ld",(long)newValue];
+        
+        NSMutableDictionary *intdic=[[NSMutableDictionary alloc]init];
+        intdic=[[arrProductsItems objectAtIndex:changedRow.row] mutableCopy];
+        [intdic setObject:[NSNumber numberWithInt:newValue] forKey:@"Quantity"];
+        
+        [arrProductsItems replaceObjectAtIndex:changedRow.row withObject:intdic];
     }
 }
 
-- (IBAction)addToCartClickedCollectionView:(UIButton *)sender
+#pragma mark - ADD TO CART Click Action
+
+- (void)addToCartClickedTableView:(UIButton *)sender
 {
     NSIndexPath *changedRow = [NSIndexPath indexPathForRow:sender.tag inSection:0];
-    CategoryItemCell *cell = (CategoryItemCell *)[_collectionViewItem cellForItemAtIndexPath:changedRow];
-    NSInteger qty = [cell.lblQty.text integerValue];
-    NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
-    [dict setObject:[arrProductsItems objectAtIndex:sender.tag] forKey:@"product"];
-    [dict setObject:[NSNumber numberWithInteger:qty] forKey:@"Qty"];
-    [cartArr addObject:dict];
+    
+    if (KmyappDelegate.MainCartArr==nil)
+    {
+        KmyappDelegate.MainCartArr=[[NSMutableArray alloc]init];
+        [KmyappDelegate.MainCartArr addObject:[arrProductsItems objectAtIndex:changedRow.row]];
+    }
+    else
+    {
+        if ([[KmyappDelegate.MainCartArr valueForKey:@"id"] containsObject:[[arrProductsItems valueForKey:@"id"]objectAtIndex:changedRow.row]])
+        {
+            NSLog(@"Already Added");
+        }
+        else
+        {
+            [KmyappDelegate.MainCartArr addObject:[arrProductsItems objectAtIndex:changedRow.row]];
+        }
+    }
+    NSLog(@"==%@",KmyappDelegate.MainCartArr);
 }
 
-- (IBAction)addToCartClickedTableView:(UIButton *)sender
+- (void)addToCartClickedCollectionView:(UIButton *)sender
+{
+    NSIndexPath *changedRow = [NSIndexPath indexPathForRow:sender.tag inSection:0];
+    
+    if (KmyappDelegate.MainCartArr==nil)
+    {
+        KmyappDelegate.MainCartArr=[[NSMutableArray alloc]init];
+        [KmyappDelegate.MainCartArr addObject:[arrProductsItems objectAtIndex:changedRow.row]];
+    }
+    else
+    {
+        if ([[KmyappDelegate.MainCartArr valueForKey:@"id"] containsObject:[[arrProductsItems valueForKey:@"id"]objectAtIndex:changedRow.row]])
+        {
+            NSLog(@"Already Added");
+        }
+        else
+        {
+            [KmyappDelegate.MainCartArr addObject:[arrProductsItems objectAtIndex:changedRow.row]];
+        }
+    }
+    NSLog(@"==%@",KmyappDelegate.MainCartArr);
+}
+
+#pragma mark - ADD TO FAVORITE Click Action
+
+- (void)addToFavClickedTableView:(UIButton *)sender
 {
     NSIndexPath *changedRow = [NSIndexPath indexPathForRow:sender.tag inSection:0];
     ItemCell *cell = (ItemCell *)[_tblItem cellForRowAtIndexPath:changedRow];
-    NSInteger qty = [cell.lblQty.text integerValue];
-    NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
-    [dict setObject:[arrProductsItems objectAtIndex:sender.tag] forKey:@"product"];
-    [dict setObject:[NSNumber numberWithInteger:qty] forKey:@"Qty"];
-    [cartArr addObject:dict];
+    [cell.btnFav setImage:[UIImage imageNamed:@"RedHeart"] forState:UIControlStateNormal];
+    
+    if (KmyappDelegate.MainFavArr==nil)
+    {
+        KmyappDelegate.MainFavArr=[[NSMutableArray alloc]init];
+        [KmyappDelegate.MainFavArr addObject:[arrProductsItems objectAtIndex:changedRow.row]];
+    }
+    else
+    {
+        if ([[KmyappDelegate.MainFavArr valueForKey:@"id"] containsObject:[[arrProductsItems valueForKey:@"id"]objectAtIndex:changedRow.row]])
+        {
+            NSLog(@"Already Added");
+        }
+        else
+        {
+            [KmyappDelegate.MainFavArr addObject:[arrProductsItems objectAtIndex:changedRow.row]];
+        }
+    }
+    NSLog(@"==%@",KmyappDelegate.MainFavArr);
 }
 
-- (IBAction)btnViewCartClicked:(id)sender {
-}
-- (IBAction)btnCheckoutClicked:(id)sender {
+- (void)addToFavClickedCollectionView:(UIButton *)sender
+{
+    NSIndexPath *changedRow = [NSIndexPath indexPathForRow:sender.tag inSection:0];
+    CategoryItemCell *cell = (CategoryItemCell *)[_collectionViewItem cellForItemAtIndexPath:changedRow];
+    [cell.btnFav setImage:[UIImage imageNamed:@"RedHeart"] forState:UIControlStateNormal];
+    
+    if (KmyappDelegate.MainFavArr==nil)
+    {
+        KmyappDelegate.MainFavArr=[[NSMutableArray alloc]init];
+        [KmyappDelegate.MainFavArr addObject:[arrProductsItems objectAtIndex:changedRow.row]];
+    }
+    else
+    {
+        if ([[KmyappDelegate.MainFavArr valueForKey:@"id"] containsObject:[[arrProductsItems valueForKey:@"id"]objectAtIndex:changedRow.row]])
+        {
+            NSLog(@"Already Added");
+        }
+        else
+        {
+            [KmyappDelegate.MainFavArr addObject:[arrProductsItems objectAtIndex:changedRow.row]];
+        }
+    }
+    NSLog(@"==%@",KmyappDelegate.MainFavArr);
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (IBAction)btnViewCartClicked:(id)sender
+{
+    
 }
-*/
+
+- (IBAction)btnCheckoutClicked:(id)sender
+{
+    
+}
 
 @end

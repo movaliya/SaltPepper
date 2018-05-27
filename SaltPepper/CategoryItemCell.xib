@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -36,8 +36,12 @@
                         </state>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QBy-id-Ylb">
-                        <rect key="frame" x="125" y="10" width="25" height="22"/>
-                        <state key="normal" image="ic_Fav"/>
+                        <rect key="frame" x="128" y="5" width="27" height="27"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="27" id="59l-US-msu"/>
+                            <constraint firstAttribute="width" constant="27" id="gKU-h7-bak"/>
+                        </constraints>
+                        <state key="normal" image="WhiteHeart"/>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G4f-RW-bJg">
                         <rect key="frame" x="123" y="195.5" width="6" height="16"/>
@@ -101,7 +105,7 @@
             <color key="backgroundColor" white="0.66666666666666663" alpha="0.099526848591549297" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="ejC-px-A91" secondAttribute="trailing" id="2Hd-sX-bjj"/>
-                <constraint firstAttribute="trailing" secondItem="QBy-id-Ylb" secondAttribute="trailing" constant="10" id="5FS-AD-aKc"/>
+                <constraint firstAttribute="trailing" secondItem="QBy-id-Ylb" secondAttribute="trailing" constant="5" id="5FS-AD-aKc"/>
                 <constraint firstAttribute="trailing" secondItem="qBW-dN-1ca" secondAttribute="trailing" id="5YW-a1-Pdl"/>
                 <constraint firstItem="qBW-dN-1ca" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="EYP-nd-q44"/>
                 <constraint firstItem="ihU-2z-prd" firstAttribute="centerY" secondItem="G4f-RW-bJg" secondAttribute="centerY" id="EqN-Wf-CoF"/>
@@ -117,7 +121,7 @@
                 <constraint firstItem="3cg-ru-JxN" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="fZd-5e-B5T"/>
                 <constraint firstItem="sGD-eO-FxY" firstAttribute="centerY" secondItem="Xy6-PR-b0H" secondAttribute="centerY" id="hgA-T2-3tL"/>
                 <constraint firstItem="G4f-RW-bJg" firstAttribute="centerY" secondItem="sGD-eO-FxY" secondAttribute="centerY" id="hqB-tU-ulw"/>
-                <constraint firstItem="QBy-id-Ylb" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="jdX-og-smb"/>
+                <constraint firstItem="QBy-id-Ylb" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="jdX-og-smb"/>
                 <constraint firstItem="Xy6-PR-b0H" firstAttribute="centerY" secondItem="6yg-9X-DJR" secondAttribute="centerY" id="nfG-N4-NZw"/>
                 <constraint firstItem="3cg-ru-JxN" firstAttribute="top" secondItem="qBW-dN-1ca" secondAttribute="bottom" constant="10" id="p5H-cG-vZI"/>
                 <constraint firstItem="G4f-RW-bJg" firstAttribute="leading" secondItem="ihU-2z-prd" secondAttribute="trailing" constant="5" id="qNP-nH-jN0"/>
@@ -143,7 +147,7 @@
         </collectionViewCell>
     </objects>
     <resources>
+        <image name="WhiteHeart" width="32" height="32"/>
         <image name="bannerImage.jpg" width="575" height="382"/>
-        <image name="ic_Fav" width="25" height="22"/>
     </resources>
 </document>
