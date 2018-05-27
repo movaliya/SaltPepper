@@ -127,7 +127,9 @@
         NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"SUCCESS"];
         if ([SUCCESS boolValue] ==YES)
         {
-            [[NSUserDefaults standardUserDefaults]setObject:responseObject forKey:@"LoginUserDic"];
+            //[[NSUserDefaults standardUserDefaults]setObject:responseObject forKey:@"LoginUserDic"];
+            _wo(@"LoginUserDic", responseObject);
+            
             Email_TXT.text=@"";
             Password_TXT.text=@"";
             DEMORootViewController *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"rootController"];
@@ -316,7 +318,8 @@
         NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"socialLogin"] objectForKey:@"SUCCESS"];
         if ([SUCCESS boolValue] ==YES)
         {
-            [[NSUserDefaults standardUserDefaults]setObject:responseObject forKey:@"LoginUserDic"];
+            //[[NSUserDefaults standardUserDefaults]setObject:responseObject forKey:@"LoginUserDic"];
+             _wo(@"LoginUserDic", responseObject);
             [AppDelegate showErrorMessageWithTitle:@"" message:@"Login successful" delegate:nil];
             DEMORootViewController *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"rootController"];
             [self.navigationController pushViewController:vcr animated:YES];

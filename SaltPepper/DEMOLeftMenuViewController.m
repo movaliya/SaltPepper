@@ -99,15 +99,42 @@
             [self.sideMenuViewController hideMenuViewController];
             break;
         case 9:
-            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"LoginVW"]]
-                                                         animated:YES];
-            [self.sideMenuViewController hideMenuViewController];
+            if (_ro(@"LoginUserDic") != nil)
+            {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
+                                                                message:@"Are you sure want to Logout?"
+                                                               delegate:self
+                                                      cancelButtonTitle:@"Cancel"
+                                                      otherButtonTitles:@"Logout",nil];
+                alert.tag=50;
+                [alert show];
+            }
+            else
+            {
+                [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"LoginVW"]]
+                                                             animated:YES];
+                [self.sideMenuViewController hideMenuViewController];
+            }
+            
             break;
         default:
             break;
     }
 }
-
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    // the user clicked Logout
+    if (alertView.tag==50)
+    {
+        if (buttonIndex == 1)
+        {
+            _Rm(@"LoginUserDic")
+            [[GIDSignIn sharedInstance] signOut];
+            [self.MenuTBL reloadData];
+            [self.sideMenuViewController hideMenuViewController];
+        }
+    }
+}
 #pragma mark -
 #pragma mark UITableView Datasource
 
@@ -141,9 +168,18 @@
         cell.textLabel.highlightedTextColor = [UIColor lightGrayColor];
         cell.selectedBackgroundView = [[UIView alloc] init];
     }
+    NSArray *titles;
+    if (_ro(@"LoginUserDic") != nil)
+    {
+       titles = @[@"Home", @"Cart", @"Reservation", @"Gallery", @"News", @"Information", @"Video Gallery",@"Message",@"Contact Us", @"Logout"];
+    }
+    else
+    {
+        titles = @[@"Home", @"Cart", @"Reservation", @"Gallery", @"News", @"Information", @"Video Gallery",@"Message",@"Contact Us", @"Login or Signup"];
+    }
     
-    NSArray *titles = @[@"Home", @"Cart", @"Reservation", @"Gallery", @"News", @"Information", @"Video Gallery",@"Message",@"Contact Us", @"Login or Signup"];
     NSArray *images = @[@"ic_home", @"ic_cart",@"ic_reservation", @"ic_gallery", @"ic_news", @"ic_info", @"ic_videogallery", @"ic_message", @"ic_contactus", @"ic_logout"];
+    
     cell.textLabel.text = titles[indexPath.row];
     cell.imageView.image = [UIImage imageNamed:images[indexPath.row]];
     
