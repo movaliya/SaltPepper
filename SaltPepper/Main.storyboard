@@ -1464,22 +1464,23 @@
                                             <constraint firstAttribute="width" constant="35" id="ejg-BM-zfW"/>
                                         </constraints>
                                     </imageView>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Your Dish Here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="psy-f3-p2a">
-                                        <rect key="frame" x="65" y="2.5" width="205" height="35"/>
+                                    <searchBar contentMode="redraw" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="U1o-g6-Bor">
+                                        <rect key="frame" x="55" y="0.0" width="215" height="40"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="35" id="mMJ-c5-3bg"/>
+                                            <constraint firstAttribute="height" constant="40" id="4R4-96-lVt"/>
                                         </constraints>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
-                                    </textField>
+                                        <connections>
+                                            <outlet property="delegate" destination="LkW-H9-Q7y" id="K6G-wH-M38"/>
+                                        </connections>
+                                    </searchBar>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="psy-f3-p2a" firstAttribute="leading" secondItem="f3H-wR-jVM" secondAttribute="trailing" constant="20" id="5C7-58-fro"/>
-                                    <constraint firstAttribute="trailing" secondItem="psy-f3-p2a" secondAttribute="trailing" constant="10" id="5Wj-Zy-WP6"/>
+                                    <constraint firstAttribute="trailing" secondItem="U1o-g6-Bor" secondAttribute="trailing" constant="10" id="MVJ-IM-FUW"/>
+                                    <constraint firstItem="U1o-g6-Bor" firstAttribute="centerY" secondItem="f3H-wR-jVM" secondAttribute="centerY" id="SJj-vm-nXV"/>
                                     <constraint firstItem="f3H-wR-jVM" firstAttribute="centerY" secondItem="JjI-HS-TFR" secondAttribute="centerY" id="XbM-9g-ees"/>
-                                    <constraint firstItem="psy-f3-p2a" firstAttribute="centerY" secondItem="f3H-wR-jVM" secondAttribute="centerY" id="eBX-rc-gbL"/>
+                                    <constraint firstItem="U1o-g6-Bor" firstAttribute="leading" secondItem="f3H-wR-jVM" secondAttribute="trailing" constant="10" id="po8-WH-7cH"/>
                                     <constraint firstAttribute="height" constant="40" id="vRi-Kx-2JR"/>
                                     <constraint firstItem="f3H-wR-jVM" firstAttribute="leading" secondItem="JjI-HS-TFR" secondAttribute="leading" constant="10" id="vcf-e5-QYW"/>
                                 </constraints>
@@ -1748,8 +1749,8 @@
                         <outlet property="HSSelView" destination="Gm3-aF-eWp" id="DcF-q6-gaF"/>
                         <outlet property="collectionViewItem" destination="IzE-w9-DrX" id="pgA-cb-mjR"/>
                         <outlet property="lblTotal" destination="wck-kV-h3s" id="ojx-uZ-gOS"/>
+                        <outlet property="searchBar" destination="U1o-g6-Bor" id="BNN-EK-vGQ"/>
                         <outlet property="tblItem" destination="Mdq-y2-Qtr" id="uk0-S8-X3d"/>
-                        <outlet property="txtSearch" destination="psy-f3-p2a" id="dEc-3Y-YNl"/>
                         <outlet property="viewBottom" destination="3kG-1q-yIH" id="l03-Ik-HII"/>
                         <outlet property="viewSearch" destination="JjI-HS-TFR" id="qWt-9h-X1s"/>
                     </connections>

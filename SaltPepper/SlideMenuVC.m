@@ -29,12 +29,38 @@
 //    arrItems = @[@"Vegetarian", @"Chicken", @"Lamb", @"Speciality", @"Seafood"];
     
     arrProductsItems = [[NSMutableArray alloc]init];
+    filteredProducts = [[NSMutableArray alloc]init];
     
     [_collectionViewItem registerClass:[CategoryItemCell class] forCellWithReuseIdentifier:@"CategoryItemCell"];
     
     _HSSelView.delegate = self;
     //_collectionViewItem.hidden = YES;
     [self CallCategoryProduct];
+    
+    for (UIView *subview in [[self.searchBar.subviews lastObject] subviews]) {
+        if ([subview isKindOfClass:NSClassFromString(@"UISearchBarBackground")]) {
+            [subview removeFromSuperview];
+            break;
+        }
+    }
+    
+    UITextField *searchField = [self.searchBar valueForKey:@"searchField"];
+    
+    // To change background color
+    [searchField setBackgroundColor:[UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:1.0]];
+    //[searchField setBackground: [UIImage imageNamed:@"searchBG"]]; //set your gray background image here
+    [searchField setBorderStyle:UITextBorderStyleNone];
+    // To change text color
+    searchField.textColor = [UIColor blackColor];
+    searchField.clearButtonMode = UITextFieldViewModeWhileEditing;
+    searchField.leftViewMode = UITextFieldViewModeNever;
+    // To change placeholder text color
+    UILabel *placeholderLabel = [searchField valueForKey:@"placeholderLabel"];
+    placeholderLabel.textColor = [UIColor grayColor];
+    placeholderLabel.text = @"Enter Your Dish Here";
+    
+    _collectionViewItem.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
+    _tblItem.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
     
     // Do any additional setup after loading the view.
 }
@@ -130,7 +156,14 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return arrProductsItems.count;
+    if(isFiltered)
+    {
+        return filteredProducts.count;
+    }
+    else
+    {
+        return arrProductsItems.count;
+    }
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -147,8 +180,17 @@
     [cell.btnPlus addTarget:self action:@selector(plusClickedCollectionView:) forControlEvents:UIControlEventTouchUpInside];
     [cell.btnMinus addTarget:self action:@selector(minusClickedCollectionView:) forControlEvents:UIControlEventTouchUpInside];
     
-    cell.lblCatItemName.text = [[arrProductsItems valueForKey:@"productName"] objectAtIndex:indexPath.row];
-    cell.lblPrice.text = [NSString stringWithFormat:@"£%@",[[arrProductsItems valueForKey:@"price"] objectAtIndex:indexPath.row]];
+    if(isFiltered)
+    {
+        cell.lblCatItemName.text = [[filteredProducts valueForKey:@"productName"] objectAtIndex:indexPath.row];
+        cell.lblPrice.text = [NSString stringWithFormat:@"£%@",[[filteredProducts valueForKey:@"price"] objectAtIndex:indexPath.row]];
+    }
+    else
+    {
+        cell.lblCatItemName.text = [[arrProductsItems valueForKey:@"productName"] objectAtIndex:indexPath.row];
+        cell.lblPrice.text = [NSString stringWithFormat:@"£%@",[[arrProductsItems valueForKey:@"price"] objectAtIndex:indexPath.row]];
+        
+    }
     return cell;
 }
 
@@ -193,7 +235,14 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return arrProductsItems.count;
+    if(isFiltered)
+    {
+        return filteredProducts.count;
+    }
+    else
+    {
+        return arrProductsItems.count;
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -217,11 +266,92 @@
     [cell.viewBack.layer setShadowColor:[UIColor grayColor].CGColor];
     [cell.viewBack.layer setShadowOpacity:0.8];
     [cell.viewBack.layer setShadowOffset:CGSizeMake(0.0, 0.0)];
-    
-    cell.lblItemName.text = [[arrProductsItems valueForKey:@"productName"] objectAtIndex:indexPath.row];
-    cell.lblPrice.text = [NSString stringWithFormat:@"£%@",[[arrProductsItems valueForKey:@"price"] objectAtIndex:indexPath.row]];
+    if(isFiltered)
+    {
+        cell.lblItemName.text = [[filteredProducts valueForKey:@"productName"] objectAtIndex:indexPath.row];
+        cell.lblPrice.text = [NSString stringWithFormat:@"£%@",[[filteredProducts valueForKey:@"price"] objectAtIndex:indexPath.row]];
+    }
+    else
+    {
+        cell.lblItemName.text = [[arrProductsItems valueForKey:@"productName"] objectAtIndex:indexPath.row];
+        cell.lblPrice.text = [NSString stringWithFormat:@"£%@",[[arrProductsItems valueForKey:@"price"] objectAtIndex:indexPath.row]];
+        
+    }
     return cell;
+}
+
+#pragma mark - SearchBar Delegate Methods
+
+-(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    [filteredProducts removeAllObjects];
     
+    if(searchText.length > 0)
+    {
+        isFiltered = YES;
+        //NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF contains [search] %@", self.searchBar.text];
+        
+        for(int i = 0; i < arrProductsItems.count; i++)
+        {
+            NSString *name = [[arrProductsItems valueForKey:@"productName"]objectAtIndex:i];
+            
+            if([name containsString:self.searchBar.text])
+            {
+                [filteredProducts addObject:arrProductsItems[i]];
+            }
+        }
+        
+    }
+    else
+    {
+        isFiltered = NO;
+        [filteredProducts removeAllObjects];
+        [self.searchBar resignFirstResponder];
+    }
+    
+    if(_tblItem.hidden)
+    {
+        [_collectionViewItem reloadData];
+    }
+    else
+    {
+        [_tblItem reloadData];
+    }
+}
+
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)SearchBar
+{
+    //SearchBar.showsCancelButton=YES;
+    [SearchBar layoutIfNeeded];
+    
+}
+- (void)searchBarTextDidEndEditing:(UISearchBar *)theSearchBar
+{
+    [theSearchBar resignFirstResponder];
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)SearchBar
+{
+    @try
+    {
+        SearchBar.showsCancelButton=NO;
+        [SearchBar resignFirstResponder];
+        isFiltered = NO;
+        if(_tblItem.hidden)
+        {
+            [_collectionViewItem reloadData];
+        }
+        else
+        {
+            [_tblItem reloadData];
+        }
+    }
+    @catch (NSException *exception) {
+    }
+}
+- (void)searchBarSearchButtonClicked:(UISearchBar *)SearchBar
+{
+    [SearchBar resignFirstResponder];
 }
 
 #pragma mark - EHHorizontalSelectionViewProtocol
@@ -328,9 +458,18 @@
     CategoryItemCell *cell = (CategoryItemCell *)[_collectionViewItem cellForItemAtIndexPath:changedRow];
     NSInteger qty = [cell.lblQty.text integerValue];
     NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
-    [dict setObject:[arrProductsItems objectAtIndex:sender.tag] forKey:@"product"];
-    [dict setObject:[NSNumber numberWithInteger:qty] forKey:@"Qty"];
-    [cartArr addObject:dict];
+    if(isFiltered)
+    {
+        [dict setObject:[filteredProducts objectAtIndex:sender.tag] forKey:@"product"];
+        [dict setObject:[NSNumber numberWithInteger:qty] forKey:@"Qty"];
+        [cartArr addObject:dict];
+    }
+    else
+    {
+        [dict setObject:[arrProductsItems objectAtIndex:sender.tag] forKey:@"product"];
+        [dict setObject:[NSNumber numberWithInteger:qty] forKey:@"Qty"];
+        [cartArr addObject:dict];
+    }
 }
 
 - (IBAction)addToCartClickedTableView:(UIButton *)sender
@@ -339,9 +478,18 @@
     ItemCell *cell = (ItemCell *)[_tblItem cellForRowAtIndexPath:changedRow];
     NSInteger qty = [cell.lblQty.text integerValue];
     NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
-    [dict setObject:[arrProductsItems objectAtIndex:sender.tag] forKey:@"product"];
-    [dict setObject:[NSNumber numberWithInteger:qty] forKey:@"Qty"];
-    [cartArr addObject:dict];
+    if(isFiltered)
+    {
+        [dict setObject:[filteredProducts objectAtIndex:sender.tag] forKey:@"product"];
+        [dict setObject:[NSNumber numberWithInteger:qty] forKey:@"Qty"];
+        [cartArr addObject:dict];
+    }
+    else
+    {
+        [dict setObject:[arrProductsItems objectAtIndex:sender.tag] forKey:@"product"];
+        [dict setObject:[NSNumber numberWithInteger:qty] forKey:@"Qty"];
+        [cartArr addObject:dict];
+    }
 }
 
 - (IBAction)btnViewCartClicked:(id)sender {
