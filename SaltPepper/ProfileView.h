@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "NYSliderPopover.h"
+#import "ASProgressPopUpView.h"
+
 
 @interface ProfileView : UIViewController
+{
+    NSMutableDictionary *ProfileData;
+}
 
 - (IBAction)Back_Click:(id)sender;
 @property (strong, nonatomic) IBOutlet UIImageView *UserIMG;
@@ -36,7 +40,7 @@
 - (IBAction)BasicUpdate_Click:(id)sender;
 - (IBAction)LogOut_Click:(id)sender;
 @property (strong, nonatomic) IBOutlet UIButton *Logout_BTN;
-@property (strong, nonatomic) IBOutlet NYSliderPopover *UpdateSlider;
+@property (strong, nonatomic) IBOutlet ASProgressPopUpView *UpdateSlider;
 - (IBAction)ImageBTN_Click:(id)sender;
 
 @end
