@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="ipad9_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -35,7 +34,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="599-gn-xbO">
-                                <rect key="frame" x="344" y="268" width="81.5" height="24"/>
+                                <rect key="frame" x="343" y="268" width="83.5" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" red="0.7725490196" green="0.7725490196" blue="0.7725490196" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -124,11 +123,12 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="mrR-GX-OCq" sceneMemberID="viewController">
                     <toolbarItems/>
                     <nil key="simulatedTopBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="srr-Th-gZ2">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="srr-Th-gZ2">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="EoD-RX-Y85">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </toolbar>
                     <connections>
@@ -682,9 +682,9 @@
                             <constraint firstItem="nZ5-RU-Dhf" firstAttribute="top" secondItem="0je-bl-GMo" secondAttribute="bottom" id="dXA-BO-nJv"/>
                             <constraint firstItem="0je-bl-GMo" firstAttribute="top" secondItem="fwW-Vn-MQS" secondAttribute="top" id="vhE-Jl-KEf"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="LCT-lR-AKu"/>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="768" height="1024"/>
                     <connections>
                         <outlet property="ConfirmPasswd_TXT" destination="b4F-q2-VZ7" id="QLm-vu-hvc"/>
                         <outlet property="Email_TXT" destination="Ba9-xj-vYy" id="j6Z-DN-e78"/>
@@ -795,7 +795,6 @@
                             <constraint firstItem="8TL-HO-EtI" firstAttribute="leading" secondItem="q7t-FG-lka" secondAttribute="leading" constant="20" id="ub5-lh-R0J"/>
                             <constraint firstItem="cV8-u9-Ith" firstAttribute="top" secondItem="8TL-HO-EtI" secondAttribute="bottom" constant="30" id="wtI-KV-YvP"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="hnC-M8-h5J"/>
                     </view>
                     <connections>
                         <outlet property="btnSubmit" destination="cV8-u9-Ith" id="qH3-12-jAX"/>
