@@ -115,6 +115,7 @@
         NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"postitem"] objectForKey:@"registration"] objectForKey:@"SUCCESS"];
         if ([SUCCESS boolValue] ==YES)
         {
+             _wo(@"LoginUserDic", responseObject);
             [AppDelegate showErrorMessageWithTitle:@"" message:@"Registration successful" delegate:nil];
             DEMORootViewController *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"rootController"];
             [self.navigationController pushViewController:vcr animated:YES];
