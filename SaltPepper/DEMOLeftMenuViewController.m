@@ -102,9 +102,7 @@
                 [self.sideMenuViewController hideMenuViewController];
                 break;
             case 3:
-                [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"ReservationSubVW"]]
-                                                             animated:YES];
-                [self.sideMenuViewController hideMenuViewController];
+                // Reservation Histry
                 break;
             case 4:
                 [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"GalleryVW"]]
@@ -192,9 +190,7 @@
                 [self.sideMenuViewController hideMenuViewController];
                 break;
             case 3:
-                [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"ReservationSubVW"]]
-                                                             animated:YES];
-                [self.sideMenuViewController hideMenuViewController];
+                // Reservation Histry
                 break;
             case 4:
                 [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"GalleryVW"]]

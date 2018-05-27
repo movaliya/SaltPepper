@@ -10,7 +10,7 @@
 
 @interface ReservationSubVW : UIViewController
 {
-    NSString *Hour,*Mint;
+    NSString *Hour,*Mint,*ReservationDate,*ReservationTime;
 }
 @property (weak, nonatomic) IBOutlet UIView *backView;
 @property (weak, nonatomic) IBOutlet UITextField *SelectDate_TXT;

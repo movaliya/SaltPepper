@@ -7,6 +7,7 @@
 //
 
 #import "ReservationVW.h"
+#import "DEMORootViewController.h"
 @interface ReservationVW ()
 
 @end
@@ -156,23 +157,24 @@
             BOOL internet=[AppDelegate connectedToNetwork];
             if (internet)
             {
-               // [self SubmitReservationData];
+                [self SubmitReservationData];
             }
             else
                 [AppDelegate showErrorMessageWithTitle:@"" message:@"Please check your internet connection or try again later." delegate:nil];
         }
     }
 }
-/*
+
 -(void)SubmitReservationData
 {
-    NSMutableDictionary *UserSaveData = [[[NSUserDefaults standardUserDefaults] objectForKey:@"LoginUserDic"] mutableCopy];
-    if (UserSaveData)
+    
+    if (_ro(@"LoginUserDic") != nil)
     {
-        NSString *CoustmerID=[[[[[[UserSaveData objectForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"customerid"];
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        NSString *CutomerID = [[[[[[_ro(@"LoginUserDic") objectForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"customerid"];
         
         
-        [KVNProgress show] ;
+        
         NSMutableDictionary *dict1 = [[NSMutableDictionary alloc] init];
         
         [dict1 setValue:KAPIKEY forKey:@"APIKEY"];
@@ -180,7 +182,7 @@
         
         NSMutableDictionary *dictInner = [[NSMutableDictionary alloc] init];
         
-        [dictInner setObject:CoustmerID forKey:@"REGID"];
+        [dictInner setObject:CutomerID forKey:@"REGID"];
         [dictInner setObject:_EmailTXT.text forKey:@"CUSTOMER_EMAIL"];
         [dictInner setObject:_NameTXT.text forKey:@"CUSTOMER_NAME"];
         [dictInner setObject:_PhoneNumberTXT.text forKey:@"CUSTOMER_TELEPHONE"];
@@ -189,8 +191,6 @@
         [dictInner setObject:self.Stay_Hour forKey:@"RESERVATION_DURATION_HOUR"];
         [dictInner setObject:self.Stay_Mint forKey:@"RESERVATION_DURATION_MINUTE"];
         [dictInner setObject:self.aultNo forKey:@"ADULT"];
-        [dictInner setObject:self.childerNo forKey:@"CHILDREN"];
-        [dictInner setObject:self.InfantsNo forKey:@"INFANTS"];
         [dictInner setObject:_MessageTXT.text forKey:@"MESSAGE"];
         
         NSMutableDictionary *dictSub = [[NSMutableDictionary alloc] init];
@@ -212,48 +212,38 @@
         NSError* error = nil;
         
         NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictREQUESTPARAM options:NSJSONWritingPrettyPrinted error:&error];
-        // NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
         
         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData
                                                              options:NSJSONReadingMutableContainers
                                                                error:&error];
         
+        NSString *makeURL=[NSString stringWithFormat:@"%@%@",kBaseURL,RESERVATION];
         
-        
-        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-        manager.responseSerializer.acceptableContentTypes=[NSSet setWithObjects:@"text/html",@"application/json", nil];
-        AFJSONRequestSerializer *serializer = [AFJSONRequestSerializer serializer];
-        [serializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-        [serializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-        manager.requestSerializer = serializer;
-        manager.requestSerializer = [AFJSONRequestSerializer serializer];
-        
-        [manager POST:kBaseURL parameters:json success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject)
-         {
-             NSLog(@"responseObject Reservation==%@",responseObject);
-             NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"postitem"] objectForKey:@"reservation"] objectForKey:@"SUCCESS"];
-             if ([SUCCESS boolValue] ==YES)
-             {
-                 
-                 NSString *Message=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"postitem"] objectForKey:@"reservation"] objectForKey:@"result"] objectForKey:@"reservation"];
-                  [self.navigationController popToRootViewControllerAnimated:NO];
-                 
-                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"SUCCESS" message:Message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                 [alert show];
-                 // [AppDelegate showErrorMessageWithTitle:@"" message:Message delegate:nil];
-             }
-             else
-             {
-                 [AppDelegate showErrorMessageWithTitle:@"" message:@"Server Error." delegate:nil];
-             }
-             
-             [KVNProgress dismiss] ;
-         }
-              failure:^(AFHTTPRequestOperation *operation, NSError *error)
-         {
-             NSLog(@"Fail");
-             [KVNProgress dismiss] ;
-         }];
+        [Utility postRequest:json url:makeURL success:^(id responseObject) {
+            
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            
+            NSLog(@"responseObject==%@",responseObject);
+            NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"postitem"] objectForKey:@"reservation"] objectForKey:@"SUCCESS"];
+            if ([SUCCESS boolValue] ==YES)
+            {
+                 NSString *MESSAGE=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"postitem"] objectForKey:@"reservation"] objectForKey:@"RESULT"]objectForKey:@"reservation"];
+                DEMORootViewController *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"rootController"];
+                [self.navigationController pushViewController:vcr animated:YES];
+                [AppDelegate showErrorMessageWithTitle:@"" message:MESSAGE delegate:nil];
+            }
+            else
+            {
+                NSString *DESCRIPTION=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"postitem"] objectForKey:@"reservation"] objectForKey:@"ERROR"] objectForKey:@"DESCRIPTION"];
+                [AppDelegate showErrorMessageWithTitle:@"" message:DESCRIPTION delegate:nil];
+            }
+            
+        } failure:^(NSError *error) {
+            
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            
+            NSLog(@"Fail");
+        }];
         
     }
     else
@@ -262,7 +252,7 @@
         [AppDelegate showErrorMessageWithTitle:@"" message:@"You are not Login." delegate:nil];
     }
     
-}*/
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
