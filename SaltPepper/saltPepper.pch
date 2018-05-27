@@ -78,6 +78,8 @@
 #define SOCIALLOGIN @"sociallogin.php"
 #define CATEGORY @"CategoriesList.php"
 #define PRODUCTCATEGORY @"ProductsCategoryList.php"
+#define GETPROFILE @"GetProfileDetails.php"
+#define UPDATEPROFILE @"UpdateProfile.php"
 
 
 //Check if iphone5 or iphone 4

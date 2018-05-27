@@ -10,6 +10,9 @@
 #import "NYSliderPopover.h"
 
 @interface ProfileView : UIViewController
+{
+    NSMutableDictionary *ProfileData;
+}
 
 - (IBAction)Back_Click:(id)sender;
 @property (strong, nonatomic) IBOutlet UIImageView *UserIMG;
