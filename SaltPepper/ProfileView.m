@@ -7,7 +7,7 @@
 //
 
 #import "ProfileView.h"
-
+#import "saltPepper.pch"
 
 @interface ProfileView ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate,ASProgressPopUpViewDataSource>
 {
@@ -441,29 +441,19 @@
 
 - (IBAction)LogOut_Click:(id)sender
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
-                                                    message:@"Are you sure want to Logout?"
-                                                   delegate:self
-                                          cancelButtonTitle:@"Cancel"
-                                          otherButtonTitles:@"Logout",nil];
-    alert.tag=50;
-    [alert show];
+    FCAlertView *alert = [KmyappDelegate ShowAlertWithBtnAction:@"Are you sure want to Logout?" andStrTile:nil andbtnTitle:@"NO" andButtonArray:@[]];
+    
+    [alert addButton:@"YES" withActionBlock:^{
+        
+        _Rm(@"LoginUserDic")
+        [[GIDSignIn sharedInstance] signOut];
+        [self.sideMenuViewController hideMenuViewController];
+        DEMORootViewController *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"rootController"];
+        [self.navigationController pushViewController:vcr animated:YES];
+        
+    }];
 }
-- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
-{
-    // the user clicked Logout
-    if (alertView.tag==50)
-    {
-        if (buttonIndex == 1)
-        {
-            _Rm(@"LoginUserDic")
-            [[GIDSignIn sharedInstance] signOut];
-            [self.sideMenuViewController hideMenuViewController];
-            DEMORootViewController *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"rootController"];
-            [self.navigationController pushViewController:vcr animated:YES];
-        }
-    }
-}
+
 - (IBAction)Search_Click:(id)sender
 {
     

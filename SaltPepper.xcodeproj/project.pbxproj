@@ -68,6 +68,7 @@
 		B1B744662069502A00A2FE9C /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B744652069502A00A2FE9C /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B1B9F1D520BA7E7A008D2FAD /* ASPopUpView.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B9F1D220BA7E7A008D2FAD /* ASPopUpView.m */; };
 		B1B9F1D620BA7E7A008D2FAD /* ASProgressPopUpView.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B9F1D420BA7E7A008D2FAD /* ASProgressPopUpView.m */; };
+		B1B9F1DA20BACB3F008D2FAD /* FCAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B9F1D920BACB3F008D2FAD /* FCAlertView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -176,6 +177,8 @@
 		B1B9F1D220BA7E7A008D2FAD /* ASPopUpView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASPopUpView.m; sourceTree = "<group>"; };
 		B1B9F1D320BA7E7A008D2FAD /* ASProgressPopUpView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASProgressPopUpView.h; sourceTree = "<group>"; };
 		B1B9F1D420BA7E7A008D2FAD /* ASProgressPopUpView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASProgressPopUpView.m; sourceTree = "<group>"; };
+		B1B9F1D820BACB3F008D2FAD /* FCAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCAlertView.h; sourceTree = "<group>"; };
+		B1B9F1D920BACB3F008D2FAD /* FCAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCAlertView.m; sourceTree = "<group>"; };
 		EB4D7B11EDDF068EAB13BA59 /* Pods-SaltPepper.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SaltPepper.release.xcconfig"; path = "Pods/Target Support Files/Pods-SaltPepper/Pods-SaltPepper.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -328,6 +331,7 @@
 			isa = PBXGroup;
 			children = (
 				29360C9020B8613100283D87 /* client_628114390774-ps3bah0jagd4pnm3aflmfije8rlr3r56.apps.googleusercontent.com.plist */,
+				B1B9F1D720BACB3F008D2FAD /* FCAlertView */,
 				B1B9F1D020BA7E7A008D2FAD /* ASProgressPopUpView */,
 				B14ECF8D20B8883200286D46 /* ASJTagsView */,
 				B1B7446220694FA900A2FE9C /* GlobalFiles */,
@@ -421,6 +425,15 @@
 				B1B9F1D420BA7E7A008D2FAD /* ASProgressPopUpView.m */,
 			);
 			path = ASProgressPopUpView;
+			sourceTree = "<group>";
+		};
+		B1B9F1D720BACB3F008D2FAD /* FCAlertView */ = {
+			isa = PBXGroup;
+			children = (
+				B1B9F1D820BACB3F008D2FAD /* FCAlertView.h */,
+				B1B9F1D920BACB3F008D2FAD /* FCAlertView.m */,
+			);
+			path = FCAlertView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -583,6 +596,7 @@
 				5105385B20B88337003DF489 /* SharedClass.m in Sources */,
 				297D5EBF2056493400ED5428 /* LoginVW.m in Sources */,
 				51094AA120B71A0000A60634 /* EHHorizontalSelectionView.m in Sources */,
+				B1B9F1DA20BACB3F008D2FAD /* FCAlertView.m in Sources */,
 				51094AA020B71A0000A60634 /* EHHorizontalLineViewCell.m in Sources */,
 				B1B744662069502A00A2FE9C /* Reachability.m in Sources */,
 				295E0734206F771800BC4ADB /* NewsVW.m in Sources */,

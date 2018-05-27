@@ -120,7 +120,7 @@
                 arrProductsItems = [[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"products"]objectForKey:@"result"]objectForKey:@"products"];
                 NSLog(@"%@",[[arrProductsItems valueForKey:@"allergy_image_path"] objectAtIndex:0]);
                 if([[arrProductsItems valueForKey:@"allergy_image_path"] objectAtIndex:0] == [NSNull null] || [[[arrProductsItems valueForKey:@"allergy_image_path"] objectAtIndex:0]isEqualToString:@""])
-                {
+                { 
                     _tblItem.hidden = NO;
                     _collectionViewItem.hidden = YES;
                     [_tblItem reloadData];

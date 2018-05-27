@@ -168,6 +168,12 @@
     if (pickerView == self.pickerViewComingtime)
     {
         ComingTime_TXT.text = self.ComingTimepickerNames[row];
+       // @"5:30 PM
+        
+        Hour=[[ComingTime_TXT.text componentsSeparatedByString:@":"] objectAtIndex:0];
+        Mint=[[ComingTime_TXT.text componentsSeparatedByString:@":"] objectAtIndex:1];
+        Mint = [Mint stringByReplacingOccurrencesOfString:@"PM"  withString:@""];
+        Mint = [Mint stringByReplacingOccurrencesOfString:@" "  withString:@""];
         
     }
 }
@@ -187,7 +193,7 @@
     
     [datePicker setMinimumDate:[NSDate date]];
     
-    datePicker.datePickerMode = UIDatePickerModeDate;
+    datePicker.datePickerMode = UIDatePickerModeDateAndTime;
     [datePicker addTarget:self action:@selector(dateTextField:) forControlEvents:UIControlEventValueChanged];
     
     UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
@@ -206,11 +212,19 @@
     UIDatePicker *picker = (UIDatePicker*)SelectDate_TXT.inputView;
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     NSDate *eventDate = picker.date;
-    [dateFormat setDateFormat:@"dd-MM-yyyy"];
+    [dateFormat setDateFormat:@"yyyy-MM-dd h:mm a"];
     
     
     NSString *dateString = [dateFormat stringFromDate:eventDate];
     SelectDate_TXT.text = [NSString stringWithFormat:@"%@",dateString];
+    
+    [dateFormat setDateFormat:@"yyyy-MM-dd"];
+     NSString *dateSep = [dateFormat stringFromDate:eventDate];
+    ReservationDate = [NSString stringWithFormat:@"%@",dateSep];
+    
+    [dateFormat setDateFormat:@"h:mm a"];
+    NSString *TimeSep = [dateFormat stringFromDate:eventDate];
+    ReservationTime = [NSString stringWithFormat:@"%@",TimeSep];
 }
 -(void)SelectTimeFuc
 {
@@ -305,8 +319,8 @@
     else
     {
         ReservationVW *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ReservationVW"];
-        vcr.Res_date=SelectDate_TXT.text;
-        vcr.Res_Time=ComingTime_TXT.text;
+        vcr.Res_date=ReservationDate;
+        vcr.Res_Time=ReservationTime;
         vcr.aultNo=Ault14_TXT.text;
         vcr.Stay_Hour=Hour;
         vcr.Stay_Mint=Mint;

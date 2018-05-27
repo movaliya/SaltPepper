@@ -11,10 +11,16 @@
 #import "AFHTTPSessionManager.h"
 #import "Reachability.h"
 #import <GoogleSignIn/GoogleSignIn.h>
+#import "FCAlertView.h"
+
 @import GoogleSignIn;
 #define GOOGLE_SCHEME @"com.googleusercontent.apps.628114390774-ps3bah0jagd4pnm3aflmfije8rlr3r56"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate,GIDSignInUIDelegate,GIDSignInDelegate>
+{
+    FCAlertView *alert;
+
+}
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong,nonatomic) AFHTTPSessionManager *manager;
@@ -23,12 +29,18 @@
 +(BOOL)IsValidEmail:(NSString *)checkString;
 
 @property (nonatomic,weak) NSArray *arrCategories;
-
+@property (strong, nonatomic) NSMutableArray *MainCartArr;
 + (void)showErrorMessageWithTitle:(NSString *)title
                           message:(NSString*)message
                          delegate:(id)delegate;
 
 +(void)showInternetErrorMessageWithTitle:(NSString *)title delegate:(id)delegate;
 
+//Alert Methods
+-(void)ShowAlertWithOneBtn:(NSString*)strMessage andStrTitle:(NSString*)strTitle andbtnTitle:(NSString*)strButtonTitle;
+-(FCAlertView*)ShowAlertWithOneBtnWithAttribute:(NSAttributedString*)strMessage andStrTitle:(NSString*)strTitle andbtnTitle:(NSString*)strButtonTitle;
+-(void)ShowAlertWithMutableAttribute:(NSMutableAttributedString*)strMessage andStrTitle:(NSString*)strTitle andbtnTitle:(NSString*)strButtonTitle;
+-(FCAlertView*)ShowAlertWithBtnAction:(NSString*)strMessage andStrTile:(NSString*)strTitle andbtnTitle:(NSString*)strButtonTitle andButtonArray:(NSArray*)arrBtnTitle;
+-(void)ShowAlertWithBtnActionCenter:(NSString*)strMessage andStrTile:(NSString*)strTitle andbtnTitle:(NSString*)strButtonTitle andButtonArray:(NSArray*)arrBtnTitle;
 @end
 

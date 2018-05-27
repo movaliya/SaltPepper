@@ -10,11 +10,13 @@
 #import "DEMORootViewController.h"
 
 @interface AppDelegate ()
-
+{
+}
 @end
 
 @implementation AppDelegate
 @synthesize manager;
+@synthesize MainCartArr;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
@@ -157,5 +159,135 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+
+
+#pragma mark - Custom Alert
+
+-(void)ShowAlertWithOneBtn:(NSString*)strMessage andStrTitle:(NSString *)strTitle andbtnTitle:(NSString *)strButtonTitle
+{
+    alert = [self ShowAlertWithBtnAction:strMessage andStrTile:strTitle andbtnTitle:strButtonTitle andButtonArray:@[]];
+    
+    [alert showAlertInWindow:self.window
+                   withTitle:strTitle
+                withSubtitle:strMessage
+             withCustomImage:nil
+         withDoneButtonTitle:strButtonTitle
+                  andButtons:@[]];
+}
+
+-(FCAlertView*)ShowAlertWithOneBtnWithAttribute:(NSAttributedString *)strMessage andStrTitle:(NSString *)strTitle andbtnTitle:(NSString *)strButtonTitle
+{
+    alert = [[FCAlertView alloc] init];
+    
+    [self setUpAttribute:alert];
+    
+    if (strTitle == nil)
+    {
+        alert.subtitleFont = [self setFont:HelveticaNLig andSize:14];
+        alert.messageAlignment = NSTextAlignmentCenter;
+    }
+    else
+    {
+        alert.subtitleFont = [self setFont:HelveticaNLig andSize:13];
+        alert.messageAlignment = NSTextAlignmentLeft;
+    }
+    
+    [alert showAlertWithTitle:strTitle
+       withAttributedSubtitle:strMessage
+              withCustomImage:nil
+          withDoneButtonTitle:strButtonTitle
+                   andButtons:@[]];
+    return alert;
+}
+
+-(void)ShowAlertWithMutableAttribute:(NSMutableAttributedString*)strMessage andStrTitle:(NSString*)strTitle andbtnTitle:(NSString*)strButtonTitle
+{
+    alert = [[FCAlertView alloc] init];
+    
+    [self setUpAttribute:alert];
+    
+    if (strTitle == nil)
+    {
+        alert.subtitleFont = [self setFont:HelveticaNLig andSize:14];
+        alert.messageAlignment = NSTextAlignmentCenter;
+    }
+    else
+    {
+        alert.subtitleFont = [self setFont:HelveticaNLig andSize:13];
+        alert.messageAlignment = NSTextAlignmentLeft;
+    }
+    
+    [alert showAlertWithTitle:strTitle
+       withAttributedSubtitle:strMessage
+              withCustomImage:nil
+          withDoneButtonTitle:strButtonTitle
+                   andButtons:@[]];
+}
+
+-(FCAlertView*)ShowAlertWithBtnAction:(NSString*)strMessage andStrTile:(NSString*)strTitle andbtnTitle:(NSString*)strButtonTitle andButtonArray:(NSArray*)arrBtnTitle
+{
+    alert = [[FCAlertView alloc] init];
+    
+    [self setUpAttribute:alert];
+    
+    if (strTitle == nil)
+    {
+        alert.subtitleFont = [self setFont:HelveticaNLig andSize:14];
+        alert.messageAlignment = NSTextAlignmentCenter;
+    }
+    else
+    {
+        alert.subtitleFont = [self setFont:HelveticaNLig andSize:13];
+        alert.messageAlignment = NSTextAlignmentLeft;
+    }
+    
+    [alert showAlertInWindow:self.window
+                   withTitle:nil
+                withSubtitle:strMessage
+             withCustomImage:nil
+         withDoneButtonTitle:strButtonTitle
+                  andButtons:arrBtnTitle];
+    
+    return alert;
+}
+
+-(void)ShowAlertWithBtnActionCenter:(NSString*)strMessage andStrTile:(NSString*)strTitle andbtnTitle:(NSString*)strButtonTitle andButtonArray:(NSArray*)arrBtnTitle
+{
+    alert = [[FCAlertView alloc] init];
+    
+    [self setUpAttribute:alert];
+    
+    alert.subtitleFont = [self setFont:HelveticaNLig andSize:14];
+    alert.messageAlignment = NSTextAlignmentCenter;
+    
+    [alert showAlertInWindow:self.window
+                   withTitle:strTitle
+                withSubtitle:strMessage
+             withCustomImage:nil
+         withDoneButtonTitle:strButtonTitle
+                  andButtons:arrBtnTitle];
+}
+
+-(void)setUpAttribute:(FCAlertView*)alertView
+{
+    alert.titleFont = [self setFont:HelveticaNBold andSize:16];
+    alert.titleColor = [UIColor blackColor];
+    alert.subTitleColor = [UIColor blackColor];
+    alert.detachButtons = YES;
+    alert.doneButtonTitleColor = [UIColor whiteColor];
+    alert.doneButtonCustomFont = [self setFont:HelveticaNBold andSize:15];
+    alert.cornerRadius = 7.0f;
+    
+    alert.firstButtonCustomFont = [self setFont:HelveticaNBold andSize:15];
+    alert.firstButtonTitleColor = [UIColor whiteColor];
+    alert.firstButtonBackgroundColor = kMarunColor;
+    
+    alert.titleAlignment = NSTextAlignmentCenter;
+}
+
+-(UIFont*)setFont:(NSString *)strFontName andSize:(CGFloat)fontSize
+{
+    return [UIFont fontWithName:strFontName size:fontSize];
+}
 
 @end

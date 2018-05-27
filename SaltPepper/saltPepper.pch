@@ -48,6 +48,17 @@
 
 
 
+//Fonts
+#define HelveticaNReg  @"HelveticaNeue"
+#define HelveticaNBold @"HelveticaNeue-Bold"
+#define HelveticaNMed  @"HelveticaNeue-Medium"
+#define HelveticaNLig  @"HelveticaNeue-Light"
+#define HelveticaNIta  @"HelveticaNeue-Italic"
+
+//Colorcode
+#define kMarunColor [UIColor colorWithRed:123.0/255.0f green:11.0/255.0f blue:12.0/255.0f alpha:1.0]
+
+
 //Calender
 #ifdef __IPHONE_8_0
 #define GregorianCalendar NSCalendarIdentifierGregorian
@@ -80,6 +91,7 @@
 #define PRODUCTCATEGORY @"ProductsCategoryList.php"
 #define GETPROFILE @"GetProfileDetails.php"
 #define UPDATEPROFILE @"UpdateProfile.php"
+#define RESERVATION @"Reservation.php"
 
 
 //Check if iphone5 or iphone 4
