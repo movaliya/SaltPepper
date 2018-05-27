@@ -302,10 +302,6 @@
     {
         [AppDelegate showErrorMessageWithTitle:@"Error!" message:@"Please select coming time." delegate:nil];
     }
-    else if ([StayTime_TXT.text isEqualToString:@""])
-    {
-        [AppDelegate showErrorMessageWithTitle:@"Error!" message:@"Please select stay time." delegate:nil];
-    }
     else
     {
         ReservationVW *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ReservationVW"];
@@ -315,8 +311,8 @@
         vcr.Stay_Hour=Hour;
         vcr.Stay_Mint=Mint;
         
-        vcr.childerNo=Children_TXT.text;
-        vcr.InfantsNo=_infantsAge_TXT.text;
+       // vcr.childerNo=Children_TXT.text;
+        //vcr.InfantsNo=_infantsAge_TXT.text;
         
         [self.navigationController pushViewController:vcr animated:YES];
     }

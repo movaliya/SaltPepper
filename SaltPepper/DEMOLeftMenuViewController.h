@@ -10,6 +10,10 @@
 #import "RESideMenu.h"
 
 @interface DEMOLeftMenuViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, RESideMenuDelegate>
+{
+    NSArray *titles;
+    NSArray *images;
+}
 @property (weak, nonatomic) IBOutlet UIImageView *profilePictIMVW;
 @property (weak, nonatomic) IBOutlet UILabel *Username_LBL;
 @property (weak, nonatomic) IBOutlet UILabel *Notification_LBL;
