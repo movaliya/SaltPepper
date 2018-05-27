@@ -128,6 +128,7 @@
 {
     SlideMenuVC *mainVC = [self.storyboard instantiateViewControllerWithIdentifier:@"SlideMenuVC"];
     mainVC.index = indexPath.row;
+    [SharedClass sharedSingleton].index = mainVC.index;
     [self.navigationController pushViewController:mainVC animated:YES];
 }
 
