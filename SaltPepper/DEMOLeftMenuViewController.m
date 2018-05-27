@@ -51,6 +51,27 @@
     Notification_LBL.layer.masksToBounds = YES;
     Notification_LBL.layer.cornerRadius = 14.0;
     
+    
+   
+    
+}
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    if (_ro(@"LoginUserDic") != nil)
+    {
+        titles = @[@"Home", @"Cart", @"Reservation",@"Reservation History", @"Gallery", @"News", @"Profile",@"Order History" ,@"Favourite",@"Information", @"Video Gallery",@"Message",@"Contact Us", @"Logout"];
+        
+        images = @[@"ic_home", @"ic_cart",@"ic_reservation",@"ic_reservation", @"ic_gallery", @"ic_news",@"ic_profile",@"ic_orderHistry",@"ic_profile",@"ic_info", @"ic_videogallery", @"ic_message", @"ic_contactus", @"ic_logout"];
+    }
+    else
+    {
+        titles = @[@"Home", @"Cart", @"Reservation",@"Reservation History", @"Gallery", @"News", @"Information", @"Video Gallery",@"Message",@"Contact Us", @"Login or Signup"];
+        
+        images = @[@"ic_home", @"ic_cart",@"ic_reservation",@"ic_reservation", @"ic_gallery", @"ic_news", @"ic_info", @"ic_videogallery", @"ic_message", @"ic_contactus", @"ic_logout"];
+    }
+    
 }
 - (IBAction)Logout_BT_Action:(id)sender
 {
@@ -63,63 +84,161 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    switch (indexPath.row) {
-        case 0:
-            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"HomeVC"]]
-                                                         animated:YES];
-            [self.sideMenuViewController hideMenuViewController];
-            break;
-        case 1:
-            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"AddaroomVC"]]
-                                                         animated:YES];
-            [self.sideMenuViewController hideMenuViewController];
-            break;
-        case 2:
-            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"ReservationSubVW"]]
-                                                         animated:YES];
-            [self.sideMenuViewController hideMenuViewController];
-            break;
-        case 3:
-            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"GalleryVW"]]
-                                                         animated:YES];
-            [self.sideMenuViewController hideMenuViewController];
-            break;
-        case 4:
-            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"NewsVW"]]
-                                                         animated:YES];
-            [self.sideMenuViewController hideMenuViewController];
-            break;
-        case 6:
-            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"VideoGallaryView"]]
-                                                         animated:YES];
-            [self.sideMenuViewController hideMenuViewController];
-            break;
-        case 8:
-            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"ProfileView"]]//  OptionView // ProfileView
-                                                         animated:YES];
-            [self.sideMenuViewController hideMenuViewController];
-            break;
-        case 9:
-            if (_ro(@"LoginUserDic") != nil)
-            {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
-                                                                message:@"Are you sure want to Logout?"
-                                                               delegate:self
-                                                      cancelButtonTitle:@"Cancel"
-                                                      otherButtonTitles:@"Logout",nil];
-                alert.tag=50;
-                [alert show];
-            }
-            else
-            {
-                [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"LoginVW"]]
+    if (_ro(@"LoginUserDic") != nil)
+    {
+        //User Login
+        switch (indexPath.row) {
+            case 0:
+                [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"HomeVC"]]
                                                              animated:YES];
                 [self.sideMenuViewController hideMenuViewController];
-            }
-            
-            break;
-        default:
-            break;
+                break;
+            case 1:
+                //Cart
+                break;
+            case 2:
+                [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"ReservationSubVW"]]
+                                                             animated:YES];
+                [self.sideMenuViewController hideMenuViewController];
+                break;
+            case 3:
+                [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"ReservationSubVW"]]
+                                                             animated:YES];
+                [self.sideMenuViewController hideMenuViewController];
+                break;
+            case 4:
+                [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"GalleryVW"]]
+                                                             animated:YES];
+                [self.sideMenuViewController hideMenuViewController];
+                break;
+            case 5:
+                [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"NewsVW"]]
+                                                             animated:YES];
+                [self.sideMenuViewController hideMenuViewController];
+                break;
+            case 6:
+                [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"ProfileView"]]//  OptionView // ProfileView
+                                                             animated:YES];
+                [self.sideMenuViewController hideMenuViewController];
+                break;
+            case 7:
+                //Order Histry
+                break;
+            case 8:
+                //Favourite
+                break;
+            case 9:
+                //Information
+                break;
+            case 10:
+                [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"VideoGallaryView"]]
+                                                             animated:YES];
+                [self.sideMenuViewController hideMenuViewController];
+                break;
+            case 11:
+                //Message
+                break;
+            case 12:
+                //ContactUs
+                [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"ContactUSVW"]]
+                                                             animated:YES];
+                [self.sideMenuViewController hideMenuViewController];
+                break;
+            case 13:
+                if (_ro(@"LoginUserDic") != nil)
+                {
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
+                                                                    message:@"Are you sure want to Logout?"
+                                                                   delegate:self
+                                                          cancelButtonTitle:@"Cancel"
+                                                          otherButtonTitles:@"Logout",nil];
+                    alert.tag=50;
+                    [alert show];
+                }
+                else
+                {
+                    [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"LoginVW"]]
+                                                                 animated:YES];
+                    [self.sideMenuViewController hideMenuViewController];
+                }
+                
+                break;
+            default:
+                break;
+        }
+
+    }
+    else
+    {
+        //Usernot Login
+        switch (indexPath.row) {
+            case 0:
+                [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"HomeVC"]]
+                                                             animated:YES];
+                [self.sideMenuViewController hideMenuViewController];
+                break;
+            case 1:
+                //Cart View
+                break;
+            case 2:
+                [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"ReservationSubVW"]]
+                                                             animated:YES];
+                [self.sideMenuViewController hideMenuViewController];
+                break;
+            case 3:
+                [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"ReservationSubVW"]]
+                                                             animated:YES];
+                [self.sideMenuViewController hideMenuViewController];
+                break;
+            case 4:
+                [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"GalleryVW"]]
+                                                             animated:YES];
+                [self.sideMenuViewController hideMenuViewController];
+                break;
+            case 5:
+                [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"NewsVW"]]
+                                                             animated:YES];
+                [self.sideMenuViewController hideMenuViewController];
+                break;
+            case 6:
+                //Information VW
+                break;
+            case 7:
+                [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"VideoGallaryView"]]
+                                                             animated:YES];
+                [self.sideMenuViewController hideMenuViewController];
+                break;
+            case 8:
+                //Message
+                break;
+            case 9:
+                [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"ContactUSVW"]]
+                                                             animated:YES];
+                [self.sideMenuViewController hideMenuViewController];
+                break;
+            case 10:
+                if (_ro(@"LoginUserDic") != nil)
+                {
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
+                                                                    message:@"Are you sure want to Logout?"
+                                                                   delegate:self
+                                                          cancelButtonTitle:@"Cancel"
+                                                          otherButtonTitles:@"Logout",nil];
+                    alert.tag=50;
+                    [alert show];
+                }
+                else
+                {
+                    [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"LoginVW"]]
+                                                                 animated:YES];
+                    [self.sideMenuViewController hideMenuViewController];
+                }
+                
+                break;
+            default:
+                break;
+        }
+
     }
 }
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
@@ -129,6 +248,10 @@
     {
         if (buttonIndex == 1)
         {
+            titles = @[@"Home", @"Cart", @"Reservation",@"Reservation History", @"Gallery", @"News", @"Information", @"Video Gallery",@"Message",@"Contact Us", @"Login or Signup"];
+            
+            images = @[@"ic_home", @"ic_cart",@"ic_reservation",@"ic_reservation", @"ic_gallery", @"ic_news", @"ic_info", @"ic_videogallery", @"ic_message", @"ic_contactus", @"ic_logout"];
+            
             _Rm(@"LoginUserDic")
             [[GIDSignIn sharedInstance] signOut];
             [self.MenuTBL reloadData];
@@ -151,7 +274,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)sectionIndex
 {
-    return 10;
+    return titles.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -169,17 +292,6 @@
         cell.textLabel.highlightedTextColor = [UIColor lightGrayColor];
         cell.selectedBackgroundView = [[UIView alloc] init];
     }
-    NSArray *titles;
-    if (_ro(@"LoginUserDic") != nil)
-    {
-       titles = @[@"Home", @"Cart", @"Reservation", @"Gallery", @"News", @"Information", @"Video Gallery",@"Message",@"Contact Us", @"Logout"];
-    }
-    else
-    {
-        titles = @[@"Home", @"Cart", @"Reservation", @"Gallery", @"News", @"Information", @"Video Gallery",@"Message",@"Contact Us", @"Login or Signup"];
-    }
-    
-    NSArray *images = @[@"ic_home", @"ic_cart",@"ic_reservation", @"ic_gallery", @"ic_news", @"ic_info", @"ic_videogallery", @"ic_message", @"ic_contactus", @"ic_logout"];
     
     cell.textLabel.text = titles[indexPath.row];
     cell.imageView.image = [UIImage imageNamed:images[indexPath.row]];

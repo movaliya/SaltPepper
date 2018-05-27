@@ -8,11 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "ASProgressPopUpView.h"
+#import "DEMORootViewController.h"
 
 
 @interface ProfileView : UIViewController
 {
     NSMutableDictionary *ProfileData;
+    float ProgressValue;
 }
 
 - (IBAction)Back_Click:(id)sender;
