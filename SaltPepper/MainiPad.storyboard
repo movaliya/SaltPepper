@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="ipad9_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -18,7 +18,6 @@
         <!--Start UpVW-->
         <scene sceneID="cTu-uJ-Ubi">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qZH-UQ-o76" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="StartUpVW" useStoryboardIdentifierAsRestorationIdentifier="YES" id="b5e-qK-xbF" customClass="StartUpVW" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zgu-dj-TT7"/>
@@ -107,7 +106,6 @@
                             <constraint firstItem="599-gn-xbO" firstAttribute="centerX" secondItem="6GU-99-YWn" secondAttribute="centerX" id="vNM-qO-gYz"/>
                             <constraint firstItem="sbV-8j-4pZ" firstAttribute="leading" secondItem="Woc-fX-2xV" secondAttribute="leading" constant="10" id="vyk-Oe-9Pt"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="ZDO-1W-wdj"/>
                     </view>
                     <navigationItem key="navigationItem" id="Aer-Ip-Ls2"/>
                     <nil key="simulatedTopBarMetrics"/>
@@ -116,6 +114,7 @@
                         <outlet property="RegisterBtn" destination="6wi-Xe-UAD" id="6eg-qv-6ic"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qZH-UQ-o76" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1606" y="-57"/>
         </scene>
@@ -125,7 +124,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="mrR-GX-OCq" sceneMemberID="viewController">
                     <toolbarItems/>
                     <nil key="simulatedTopBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="srr-Th-gZ2">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="srr-Th-gZ2">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -348,7 +347,6 @@
                             <constraint firstItem="5RC-gV-Pd9" firstAttribute="top" secondItem="zY1-ih-JFr" secondAttribute="bottom" constant="8" id="tco-Mw-ZbX"/>
                             <constraint firstItem="hhG-xe-VKE" firstAttribute="top" secondItem="AES-Nb-52p" secondAttribute="bottom" id="vQV-iV-cfg"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="Ehc-jK-0wu"/>
                     </view>
                     <connections>
                         <outlet property="Email_TXT" destination="Wa6-HI-S43" id="Vj5-tW-bFw"/>

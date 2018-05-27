@@ -38,10 +38,10 @@
 		297D5F0820565F3A00ED5428 /* DEMORootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 297D5F0220565F3A00ED5428 /* DEMORootViewController.m */; };
 		297D5F0920565F3A00ED5428 /* DEMOLeftMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 297D5F0420565F3A00ED5428 /* DEMOLeftMenuViewController.m */; };
 		297D5F0C205662DA00ED5428 /* HomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 297D5F0B205662DA00ED5428 /* HomeVC.m */; };
-		297D5F0E2056BF2A00ED5428 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 297D5F0D2056BF2A00ED5428 /* Main.storyboard */; };
 		298CD2B742089A26D28B12F9 /* libPods-SaltPepper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AC61B705EFD9F887970D0E9 /* libPods-SaltPepper.a */; settings = {ATTRIBUTES = (Weak, ); }; };
 		5105385B20B88337003DF489 /* SharedClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 5105385920B88336003DF489 /* SharedClass.m */; };
 		51093A8220BA9034008A05C7 /* MainiPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51093A8120BA9034008A05C7 /* MainiPad.storyboard */; };
+		51093A8420BA9BA6008A05C7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51093A8320BA9BA6008A05C7 /* Main.storyboard */; };
 		51094AA020B71A0000A60634 /* EHHorizontalLineViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 51094A9720B719FF00A60634 /* EHHorizontalLineViewCell.m */; };
 		51094AA120B71A0000A60634 /* EHHorizontalSelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 51094A9920B719FF00A60634 /* EHHorizontalSelectionView.m */; };
 		51094AA220B71A0000A60634 /* EHHorizontalViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 51094A9B20B719FF00A60634 /* EHHorizontalViewCell.m */; };
@@ -125,11 +125,11 @@
 		297D5F0420565F3A00ED5428 /* DEMOLeftMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEMOLeftMenuViewController.m; sourceTree = "<group>"; };
 		297D5F0A205662DA00ED5428 /* HomeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeVC.h; sourceTree = "<group>"; };
 		297D5F0B205662DA00ED5428 /* HomeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeVC.m; sourceTree = "<group>"; };
-		297D5F0D2056BF2A00ED5428 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		3CD83B87AB40AD090BA3594E /* Pods-SaltPepper.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SaltPepper.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SaltPepper/Pods-SaltPepper.debug.xcconfig"; sourceTree = "<group>"; };
 		5105385920B88336003DF489 /* SharedClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharedClass.m; sourceTree = "<group>"; };
 		5105385A20B88336003DF489 /* SharedClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedClass.h; sourceTree = "<group>"; };
 		51093A8120BA9034008A05C7 /* MainiPad.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainiPad.storyboard; sourceTree = "<group>"; };
+		51093A8320BA9BA6008A05C7 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		51094A9620B719FF00A60634 /* EHHorizontalLineViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHHorizontalLineViewCell.h; sourceTree = "<group>"; };
 		51094A9720B719FF00A60634 /* EHHorizontalLineViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHHorizontalLineViewCell.m; sourceTree = "<group>"; };
 		51094A9820B719FF00A60634 /* EHHorizontalSelectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHHorizontalSelectionView.h; sourceTree = "<group>"; };
@@ -370,7 +370,7 @@
 				B138A0C420B72D1900835899 /* OptionView.m */,
 				B16C72AC20B97FFA0041C6B9 /* ProfileView.h */,
 				B16C72AD20B97FFA0041C6B9 /* ProfileView.m */,
-				297D5F0D2056BF2A00ED5428 /* Main.storyboard */,
+				51093A8320BA9BA6008A05C7 /* Main.storyboard */,
 				51093A8120BA9034008A05C7 /* MainiPad.storyboard */,
 				294B5C4D205A9F8800794D47 /* saltPepper.pch */,
 				2962DDBF20B543B40086540A /* AFNetworking */,
@@ -488,7 +488,6 @@
 				2968F8AE2070CF23004B5960 /* contactusblur.jpg in Resources */,
 				295E0745206F951C00BC4ADB /* VideoCell.xib in Resources */,
 				51093A8220BA9034008A05C7 /* MainiPad.storyboard in Resources */,
-				297D5F0E2056BF2A00ED5428 /* Main.storyboard in Resources */,
 				B14ECF9520B8883200286D46 /* ASJTag.xib in Resources */,
 				B18E78052055143E00C50320 /* Assets.xcassets in Resources */,
 				295CD5B0206A27D1002129FD /* CVCell.xib in Resources */,
@@ -501,6 +500,7 @@
 				294B5C46205A964D00794D47 /* bannerImage.jpg in Resources */,
 				294B5C4C205A9D2B00794D47 /* MenuListCollectCELL.xib in Resources */,
 				295E073E206F783B00BC4ADB /* testImage.jpg in Resources */,
+				51093A8420BA9BA6008A05C7 /* Main.storyboard in Resources */,
 				B138A0CA20B72F5600835899 /* OptionWithCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
