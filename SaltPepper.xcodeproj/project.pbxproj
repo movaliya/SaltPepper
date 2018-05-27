@@ -59,14 +59,14 @@
 		B14ECF9620B8883200286D46 /* ASJTagsView.m in Sources */ = {isa = PBXBuildFile; fileRef = B14ECF9220B8883200286D46 /* ASJTagsView.m */; };
 		B14ECF9720B8883200286D46 /* Resources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B14ECF9320B8883200286D46 /* Resources.bundle */; };
 		B16C72AE20B97FFA0041C6B9 /* ProfileView.m in Sources */ = {isa = PBXBuildFile; fileRef = B16C72AD20B97FFA0041C6B9 /* ProfileView.m */; };
-		B16C72B420B9E4280041C6B9 /* NYPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = B16C72B120B9E4280041C6B9 /* NYPopover.m */; };
-		B16C72B520B9E4280041C6B9 /* NYSliderPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = B16C72B320B9E4280041C6B9 /* NYSliderPopover.m */; };
 		B18E77FA2055143E00C50320 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B18E77F92055143E00C50320 /* main.m */; };
 		B18E77FD2055143E00C50320 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B18E77FC2055143E00C50320 /* AppDelegate.m */; };
 		B18E78052055143E00C50320 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B18E78042055143E00C50320 /* Assets.xcassets */; };
 		B18E78082055143E00C50320 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B18E78062055143E00C50320 /* LaunchScreen.storyboard */; };
 		B1B7446120694F9400A2FE9C /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B7446020694F9400A2FE9C /* Utility.m */; };
 		B1B744662069502A00A2FE9C /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B744652069502A00A2FE9C /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		B1B9F1D520BA7E7A008D2FAD /* ASPopUpView.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B9F1D220BA7E7A008D2FAD /* ASPopUpView.m */; };
+		B1B9F1D620BA7E7A008D2FAD /* ASProgressPopUpView.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B9F1D420BA7E7A008D2FAD /* ASProgressPopUpView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -159,10 +159,6 @@
 		B14ECF9320B8883200286D46 /* Resources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Resources.bundle; sourceTree = "<group>"; };
 		B16C72AC20B97FFA0041C6B9 /* ProfileView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileView.h; sourceTree = "<group>"; };
 		B16C72AD20B97FFA0041C6B9 /* ProfileView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileView.m; sourceTree = "<group>"; };
-		B16C72B020B9E4280041C6B9 /* NYPopover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NYPopover.h; sourceTree = "<group>"; };
-		B16C72B120B9E4280041C6B9 /* NYPopover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NYPopover.m; sourceTree = "<group>"; };
-		B16C72B220B9E4280041C6B9 /* NYSliderPopover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NYSliderPopover.h; sourceTree = "<group>"; };
-		B16C72B320B9E4280041C6B9 /* NYSliderPopover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NYSliderPopover.m; sourceTree = "<group>"; };
 		B18E77F52055143E00C50320 /* SaltPepper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SaltPepper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B18E77F92055143E00C50320 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B18E77FB2055143E00C50320 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -174,6 +170,10 @@
 		B1B7446020694F9400A2FE9C /* Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
 		B1B744642069502A00A2FE9C /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		B1B744652069502A00A2FE9C /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		B1B9F1D120BA7E7A008D2FAD /* ASPopUpView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASPopUpView.h; sourceTree = "<group>"; };
+		B1B9F1D220BA7E7A008D2FAD /* ASPopUpView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASPopUpView.m; sourceTree = "<group>"; };
+		B1B9F1D320BA7E7A008D2FAD /* ASProgressPopUpView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASProgressPopUpView.h; sourceTree = "<group>"; };
+		B1B9F1D420BA7E7A008D2FAD /* ASProgressPopUpView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASProgressPopUpView.m; sourceTree = "<group>"; };
 		EB4D7B11EDDF068EAB13BA59 /* Pods-SaltPepper.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SaltPepper.release.xcconfig"; path = "Pods/Target Support Files/Pods-SaltPepper/Pods-SaltPepper.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -304,17 +304,6 @@
 			path = ASJTagsView;
 			sourceTree = "<group>";
 		};
-		B16C72AF20B9E4280041C6B9 /* NYSliderPopover */ = {
-			isa = PBXGroup;
-			children = (
-				B16C72B020B9E4280041C6B9 /* NYPopover.h */,
-				B16C72B120B9E4280041C6B9 /* NYPopover.m */,
-				B16C72B220B9E4280041C6B9 /* NYSliderPopover.h */,
-				B16C72B320B9E4280041C6B9 /* NYSliderPopover.m */,
-			);
-			path = NYSliderPopover;
-			sourceTree = "<group>";
-		};
 		B18E77EC2055143D00C50320 = {
 			isa = PBXGroup;
 			children = (
@@ -337,7 +326,7 @@
 			isa = PBXGroup;
 			children = (
 				29360C9020B8613100283D87 /* client_628114390774-ps3bah0jagd4pnm3aflmfije8rlr3r56.apps.googleusercontent.com.plist */,
-				B16C72AF20B9E4280041C6B9 /* NYSliderPopover */,
+				B1B9F1D020BA7E7A008D2FAD /* ASProgressPopUpView */,
 				B14ECF8D20B8883200286D46 /* ASJTagsView */,
 				B1B7446220694FA900A2FE9C /* GlobalFiles */,
 				294B5C47205A9CF700794D47 /* CollectionCell */,
@@ -418,6 +407,17 @@
 				B1B744652069502A00A2FE9C /* Reachability.m */,
 			);
 			path = Reachability;
+			sourceTree = "<group>";
+		};
+		B1B9F1D020BA7E7A008D2FAD /* ASProgressPopUpView */ = {
+			isa = PBXGroup;
+			children = (
+				B1B9F1D120BA7E7A008D2FAD /* ASPopUpView.h */,
+				B1B9F1D220BA7E7A008D2FAD /* ASPopUpView.m */,
+				B1B9F1D320BA7E7A008D2FAD /* ASProgressPopUpView.h */,
+				B1B9F1D420BA7E7A008D2FAD /* ASProgressPopUpView.m */,
+			);
+			path = ASProgressPopUpView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -560,18 +560,18 @@
 				51094AA320B71A0000A60634 /* EHRoundedHorizontalViewCell.m in Sources */,
 				51094AA720B71ADF00A60634 /* SlideMenuVC.m in Sources */,
 				297D5F0C205662DA00ED5428 /* HomeVC.m in Sources */,
-				B16C72B520B9E4280041C6B9 /* NYSliderPopover.m in Sources */,
-				B16C72B420B9E4280041C6B9 /* NYPopover.m in Sources */,
 				297D5F0820565F3A00ED5428 /* DEMORootViewController.m in Sources */,
 				297D5EF92056556000ED5428 /* RegisterVW.m in Sources */,
 				51094AA220B71A0000A60634 /* EHHorizontalViewCell.m in Sources */,
 				51094AAD20B72D7900A60634 /* ForgotPasswordVC.m in Sources */,
 				B14ECF9420B8883200286D46 /* ASJTag.m in Sources */,
 				297D5F0520565F3A00ED5428 /* RECommonFunctions.m in Sources */,
+				B1B9F1D620BA7E7A008D2FAD /* ASProgressPopUpView.m in Sources */,
 				51094AAA20B7224800A60634 /* ItemCell.m in Sources */,
 				295E0737206F772100BC4ADB /* NewsFullView.m in Sources */,
 				295E0730206F720F00BC4ADB /* ReservationVW.m in Sources */,
 				297D5F0620565F3A00ED5428 /* RESideMenu.m in Sources */,
+				B1B9F1D520BA7E7A008D2FAD /* ASPopUpView.m in Sources */,
 				5126749A20B9DBCC002321F7 /* CategoryItemCell.m in Sources */,
 				295E0731206F720F00BC4ADB /* ReservationSubVW.m in Sources */,
 				297D5EBC2056455400ED5428 /* StartUpVW.m in Sources */,

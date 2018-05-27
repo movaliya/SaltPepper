@@ -8,7 +8,8 @@
 
 #import "ProfileView.h"
 
-@interface ProfileView ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate>
+
+@interface ProfileView ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate,ASProgressPopUpViewDataSource>
 
 @end
 
@@ -28,22 +29,24 @@
     BasicDetailHight.constant=50.0f;
     [self ShowhideBasicDetailViewData:YES];
    
-    [self performSelector:@selector(Updateslider) withObject:nil afterDelay:1.0f];
+    [self performSelector:@selector(Updateslider:) withObject:nil afterDelay:1.0f];
     
     [self updateButton:BasicUpdate_BTN];
     [self updateButton:BasicCancel_BTN];
     [self updateButton:Logout_BTN];
     
 }
--(void)Updateslider
+-(void)Updateslider :(float)val
 {
-    self.UpdateSlider.value=70.0f;
-    self.UpdateSlider.popover.textLabel.text = [NSString stringWithFormat:@"%.2f", 70.00f];
-    [UIView animateWithDuration:3
-                     animations:^{
-                         
-                         [self.view setNeedsLayout];
-                     }];
+    self.UpdateSlider.popUpViewCornerRadius = 15.0f;
+    self.UpdateSlider.font = [UIFont boldSystemFontOfSize:12];
+    self.UpdateSlider.popUpViewAnimatedColors = @[[UIColor colorWithRed:123.0f/255.0f green:11.0f/255.0f blue:12.0f/255.0f alpha:1.0f],[UIColor colorWithRed:123.0f/255.0f green:11.0f/255.0f blue:12.0f/255.0f alpha:1.0f]];
+    
+    [self.UpdateSlider showPopUpViewAnimated:YES];
+    
+    [self.UpdateSlider setProgress:0.5 animated:YES];
+
+    
 
 }
 
