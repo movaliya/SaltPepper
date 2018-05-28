@@ -9,10 +9,13 @@
 #import "FavoriteCell.h"
 
 @implementation FavoriteCell
+@synthesize AddToCartBTN;
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    AddToCartBTN.layer.cornerRadius = 12;
+    AddToCartBTN.clipsToBounds = YES;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

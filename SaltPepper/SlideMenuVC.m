@@ -571,6 +571,7 @@
         }
     }
     NSLog(@"==%@",KmyappDelegate.MainFavArr);
+    _wo(@"FavDIC", KmyappDelegate.MainFavArr);
 }
 
 - (void)addToFavClickedCollectionView:(UIButton *)sender
@@ -595,7 +596,10 @@
             [KmyappDelegate.MainFavArr addObject:[arrProductsItems objectAtIndex:changedRow.row]];
         }
     }
-    NSLog(@"==%@",KmyappDelegate.MainFavArr);
+   
+    NSLog(@"MainFavArr==%@",KmyappDelegate.MainFavArr);
+    //[[NSUserDefaults standardUserDefaults] setObject:tempArry forKey:@"FavDIC"];
+    //_wo(@"FavDIC",KmyappDelegate.MainFavArr);
 }
 
 - (IBAction)btnViewCartClicked:(id)sender

@@ -26,6 +26,8 @@
 		295E0741206F943800BC4ADB /* VideoGallaryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 295E0740206F943800BC4ADB /* VideoGallaryView.m */; };
 		295E0744206F951C00BC4ADB /* VideoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 295E0742206F951C00BC4ADB /* VideoCell.m */; };
 		295E0745206F951C00BC4ADB /* VideoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 295E0743206F951C00BC4ADB /* VideoCell.xib */; };
+		2966E5A620BC1E6600DF0551 /* FavouriteVW.m in Sources */ = {isa = PBXBuildFile; fileRef = 2966E5A520BC1E6600DF0551 /* FavouriteVW.m */; };
+		2966E5A920BC525900DF0551 /* CartVW.m in Sources */ = {isa = PBXBuildFile; fileRef = 2966E5A820BC525900DF0551 /* CartVW.m */; };
 		2968F8AC2070CDF2004B5960 /* ContactUSVW.m in Sources */ = {isa = PBXBuildFile; fileRef = 2968F8AB2070CDF2004B5960 /* ContactUSVW.m */; };
 		2968F8AE2070CF23004B5960 /* contactusblur.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2968F8AD2070CF23004B5960 /* contactusblur.jpg */; };
 		297D5EBC2056455400ED5428 /* StartUpVW.m in Sources */ = {isa = PBXBuildFile; fileRef = 297D5EBB2056455400ED5428 /* StartUpVW.m */; };
@@ -107,6 +109,10 @@
 		295E0742206F951C00BC4ADB /* VideoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCell.m; sourceTree = "<group>"; };
 		295E0743206F951C00BC4ADB /* VideoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoCell.xib; sourceTree = "<group>"; };
 		295E0746206F955200BC4ADB /* VideoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCell.h; sourceTree = "<group>"; };
+		2966E5A420BC1E6600DF0551 /* FavouriteVW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavouriteVW.h; sourceTree = "<group>"; };
+		2966E5A520BC1E6600DF0551 /* FavouriteVW.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavouriteVW.m; sourceTree = "<group>"; };
+		2966E5A720BC525900DF0551 /* CartVW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartVW.h; sourceTree = "<group>"; };
+		2966E5A820BC525900DF0551 /* CartVW.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartVW.m; sourceTree = "<group>"; };
 		2968F8AA2070CDF2004B5960 /* ContactUSVW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactUSVW.h; sourceTree = "<group>"; };
 		2968F8AB2070CDF2004B5960 /* ContactUSVW.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactUSVW.m; sourceTree = "<group>"; };
 		2968F8AD2070CF23004B5960 /* contactusblur.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = contactusblur.jpg; sourceTree = "<group>"; };
@@ -373,10 +379,14 @@
 				297D5EF82056556000ED5428 /* RegisterVW.m */,
 				297D5F0A205662DA00ED5428 /* HomeVC.h */,
 				297D5F0B205662DA00ED5428 /* HomeVC.m */,
+				2966E5A720BC525900DF0551 /* CartVW.h */,
+				2966E5A820BC525900DF0551 /* CartVW.m */,
 				295E072C206F720F00BC4ADB /* ReservationVW.h */,
 				295E072D206F720F00BC4ADB /* ReservationVW.m */,
 				295E072E206F720F00BC4ADB /* ReservationSubVW.h */,
 				295E072F206F720F00BC4ADB /* ReservationSubVW.m */,
+				2966E5A420BC1E6600DF0551 /* FavouriteVW.h */,
+				2966E5A520BC1E6600DF0551 /* FavouriteVW.m */,
 				295CD5A9206A2725002129FD /* GalleryVW.h */,
 				295CD5AA206A2725002129FD /* GalleryVW.m */,
 				295CD5B1206A27F6002129FD /* GalleryFullView.h */,
@@ -600,7 +610,9 @@
 				51094AA720B71ADF00A60634 /* SlideMenuVC.m in Sources */,
 				297D5F0C205662DA00ED5428 /* HomeVC.m in Sources */,
 				B13EE80120BB31EE006E4471 /* FavoriteCell.m in Sources */,
+				2966E5A620BC1E6600DF0551 /* FavouriteVW.m in Sources */,
 				297D5F0820565F3A00ED5428 /* DEMORootViewController.m in Sources */,
+				2966E5A920BC525900DF0551 /* CartVW.m in Sources */,
 				297D5EF92056556000ED5428 /* RegisterVW.m in Sources */,
 				51094AA220B71A0000A60634 /* EHHorizontalViewCell.m in Sources */,
 				51094AAD20B72D7900A60634 /* ForgotPasswordVC.m in Sources */,
