@@ -9,6 +9,7 @@
 #import "SlideMenuVC.h"
 #import "ItemCell.h"
 #import "CategoryItemCell.h"
+#import "ProductDetailVC.h"
 
 @interface SlideMenuVC ()<EHHorizontalSelectionViewProtocol>
 {
@@ -127,8 +128,9 @@
                     [arrProductsItems replaceObjectAtIndex:i withObject:intdic];
                     
                 }
+                
                 NSLog(@"%@",[[arrProductsItems valueForKey:@"allergy_image_path"] objectAtIndex:0]);
-                if([[arrProductsItems valueForKey:@"allergy_image_path"] objectAtIndex:0] == [NSNull null] || [[[arrProductsItems valueForKey:@"allergy_image_path"] objectAtIndex:0]isEqualToString:@""])
+                if([[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"products"] objectForKey:@"result"] objectForKey:@"containImg"] == [NSNull null] || [[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"products"] objectForKey:@"result"] objectForKey:@"containImg"]isEqualToString:@""])
                 { 
                     _tblItem.hidden = NO;
                     _collectionViewItem.hidden = YES;
@@ -136,9 +138,20 @@
                 }
                 else
                 {
-                    _tblItem.hidden = YES;
-                    _collectionViewItem.hidden = NO;
-                    [_collectionViewItem reloadData];
+                    BOOL ImageFag=[[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"products"] objectForKey:@"result"] objectForKey:@"containImg"] boolValue];
+                    
+                    if(ImageFag)
+                    {
+                        _tblItem.hidden = YES;
+                        _collectionViewItem.hidden = NO;
+                        [_collectionViewItem reloadData];
+                    }
+                    else
+                    {
+                        _tblItem.hidden = NO;
+                        _collectionViewItem.hidden = YES;
+                        [_tblItem reloadData];
+                    }
                 }
             }
             else
@@ -193,18 +206,83 @@
     
     cell.lblQty.text=[NSString stringWithFormat:@"%@",[[arrProductsItems objectAtIndex:indexPath.row] valueForKey:@"Quantity"]];
 
+//    NSString *urlToDownload = [NSString stringWithFormat:@"%@temp/uploads/images/allergyImages/chicken.png" ,BASE_PROFILE_IMAGE_URL];
+//    if ([urlToDownload isEqualToString:@""])
+//    {
+//        cell.imgCategoryItem.image = [UIImage imageNamed:@""];
+//    }
+//    else
+//    {
+//        dispatch_async(dispatch_get_main_queue(),
+//                       ^{
+//                           dispatch_async(dispatch_get_main_queue(), ^{
+//                               [cell.imgCategoryItem sd_setImageWithURL:[NSURL URLWithString:urlToDownload] placeholderImage:[UIImage imageNamed:@""]];
+//                               //[cell.imgVegNonVeg setShowActivityIndicatorView:YES];
+//                           });
+//
+//                       });
+//    }
+    
     if(isFiltered)
     {
+        NSString *urlToDownload = [NSString stringWithFormat:@"%@%@" ,BASE_PROFILE_IMAGE_URL,[[filteredProducts objectAtIndex:indexPath.row] valueForKey:@"allergy_image_path"]];
+        if ([urlToDownload isEqualToString:@""])
+        {
+            cell.imgVegNonVeg.image = [UIImage imageNamed:@""];
+        }
+        else
+        {
+            dispatch_async(dispatch_get_main_queue(),
+                           ^{
+                               dispatch_async(dispatch_get_main_queue(), ^{
+                                   [cell.imgVegNonVeg sd_setImageWithURL:[NSURL URLWithString:urlToDownload] placeholderImage:[UIImage imageNamed:@""]];
+                                   //[cell.imgVegNonVeg setShowActivityIndicatorView:YES];
+                               });
+                               
+                           });
+        }
         cell.lblCatItemName.text = [[filteredProducts valueForKey:@"productName"] objectAtIndex:indexPath.row];
         cell.lblPrice.text = [NSString stringWithFormat:@"£%@",[[filteredProducts valueForKey:@"price"] objectAtIndex:indexPath.row]];
     }
     else
     {
+        NSString *urlToDownload = [NSString stringWithFormat:@"%@%@" ,BASE_PROFILE_IMAGE_URL,[[arrProductsItems objectAtIndex:indexPath.row] valueForKey:@"allergy_image_path"]];
+        if ([urlToDownload isEqualToString:@""])
+        {
+            cell.imgVegNonVeg.image = [UIImage imageNamed:@""];
+        }
+        else
+        {
+            dispatch_async(dispatch_get_main_queue(),
+                           ^{
+                               dispatch_async(dispatch_get_main_queue(), ^{
+                                   [cell.imgVegNonVeg sd_setImageWithURL:[NSURL URLWithString:urlToDownload] placeholderImage:[UIImage imageNamed:@""]];
+                                   //[cell.imgVegNonVeg setShowActivityIndicatorView:YES];
+                               });
+                               
+                           });
+        }
         cell.lblCatItemName.text = [[arrProductsItems valueForKey:@"productName"] objectAtIndex:indexPath.row];
         cell.lblPrice.text = [NSString stringWithFormat:@"£%@",[[arrProductsItems valueForKey:@"price"] objectAtIndex:indexPath.row]];
         
     }
     return cell;
+}
+
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    ProductDetailVC *mainVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ProductDetailVC"];
+    mainVC.productDetail = [[NSMutableDictionary alloc]init];
+    if(isFiltered)
+    {
+        mainVC.productDetail = [filteredProducts objectAtIndex:indexPath.row];
+    }
+    else
+    {
+        mainVC.productDetail = [arrProductsItems objectAtIndex:indexPath.row];
+    }
+        
+    [self.navigationController pushViewController:mainVC animated:YES];
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
@@ -288,11 +366,43 @@
  
     if(isFiltered)
     {
+        NSString *urlToDownload = [NSString stringWithFormat:@"%@%@" ,BASE_PROFILE_IMAGE_URL,[[filteredProducts objectAtIndex:indexPath.row] valueForKey:@"allergy_image_path"]];
+        if ([urlToDownload isEqualToString:@""])
+        {
+            cell.imgIcon.image = [UIImage imageNamed:@""];
+        }
+        else
+        {
+            dispatch_async(dispatch_get_main_queue(),
+                           ^{
+                               dispatch_async(dispatch_get_main_queue(), ^{
+                                   [cell.imgIcon sd_setImageWithURL:[NSURL URLWithString:urlToDownload] placeholderImage:[UIImage imageNamed:@""]];
+                                   //[cell.imgVegNonVeg setShowActivityIndicatorView:YES];
+                               });
+                               
+                           });
+        }
         cell.lblItemName.text = [[filteredProducts valueForKey:@"productName"] objectAtIndex:indexPath.row];
         cell.lblPrice.text = [NSString stringWithFormat:@"£%@",[[filteredProducts valueForKey:@"price"] objectAtIndex:indexPath.row]];
     }
     else
     {
+        NSString *urlToDownload = [NSString stringWithFormat:@"%@%@" ,BASE_PROFILE_IMAGE_URL,[[arrProductsItems objectAtIndex:indexPath.row] valueForKey:@"allergy_image_path"]];
+        if ([urlToDownload isEqualToString:@""])
+        {
+            cell.imgIcon.image = [UIImage imageNamed:@""];
+        }
+        else
+        {
+            dispatch_async(dispatch_get_main_queue(),
+                           ^{
+                               dispatch_async(dispatch_get_main_queue(), ^{
+                                   [cell.imgIcon sd_setImageWithURL:[NSURL URLWithString:urlToDownload] placeholderImage:[UIImage imageNamed:@""]];
+                                   //[cell.imgVegNonVeg setShowActivityIndicatorView:YES];
+                               });
+                               
+                           });
+        }
         cell.lblItemName.text = [[arrProductsItems valueForKey:@"productName"] objectAtIndex:indexPath.row];
         cell.lblPrice.text = [NSString stringWithFormat:@"£%@",[[arrProductsItems valueForKey:@"price"] objectAtIndex:indexPath.row]];
         
@@ -320,7 +430,6 @@
                 [filteredProducts addObject:arrProductsItems[i]];
             }
         }
-        
     }
     else
     {
@@ -434,11 +543,23 @@
     int newValue = val + 1;
     cell.lblQty.text = [NSString stringWithFormat:@"%ld",(long)newValue];
     
-    NSMutableDictionary *intdic=[[NSMutableDictionary alloc]init];
-    intdic=[[arrProductsItems objectAtIndex:changedRow.row] mutableCopy];
-    [intdic setObject:[NSNumber numberWithInt:newValue] forKey:@"Quantity"];
+    if(isFiltered)
+    {
+        NSMutableDictionary *intdic=[[NSMutableDictionary alloc]init];
+        intdic=[[filteredProducts objectAtIndex:changedRow.row] mutableCopy];
+        [intdic setObject:[NSNumber numberWithInt:newValue] forKey:@"Quantity"];
+        
+        [filteredProducts replaceObjectAtIndex:changedRow.row withObject:intdic];
+    }
+    else
+    {
+        NSMutableDictionary *intdic=[[NSMutableDictionary alloc]init];
+        intdic=[[arrProductsItems objectAtIndex:changedRow.row] mutableCopy];
+        [intdic setObject:[NSNumber numberWithInt:newValue] forKey:@"Quantity"];
+        
+        [arrProductsItems replaceObjectAtIndex:changedRow.row withObject:intdic];
+    }
     
-    [arrProductsItems replaceObjectAtIndex:changedRow.row withObject:intdic];
 }
 
 - (void)plusClickedTableView:(UIButton *)sender
@@ -450,11 +571,23 @@
     int newValue = val + 1;
     cell.lblQty.text = [NSString stringWithFormat:@"%ld",(long)newValue];
     
-    NSMutableDictionary *intdic=[[NSMutableDictionary alloc]init];
-    intdic=[[arrProductsItems objectAtIndex:changedRow.row] mutableCopy];
-    [intdic setObject:[NSNumber numberWithInt:newValue] forKey:@"Quantity"];
+    if(isFiltered)
+    {
+        NSMutableDictionary *intdic=[[NSMutableDictionary alloc]init];
+        intdic=[[filteredProducts objectAtIndex:changedRow.row] mutableCopy];
+        [intdic setObject:[NSNumber numberWithInt:newValue] forKey:@"Quantity"];
+        
+        [filteredProducts replaceObjectAtIndex:changedRow.row withObject:intdic];
+    }
+    else
+    {
+        NSMutableDictionary *intdic=[[NSMutableDictionary alloc]init];
+        intdic=[[arrProductsItems objectAtIndex:changedRow.row] mutableCopy];
+        [intdic setObject:[NSNumber numberWithInt:newValue] forKey:@"Quantity"];
+        
+        [arrProductsItems replaceObjectAtIndex:changedRow.row withObject:intdic];
+    }
     
-    [arrProductsItems replaceObjectAtIndex:changedRow.row withObject:intdic];
     
 }
 
@@ -469,11 +602,24 @@
         int newValue = val - 1;
         cell.lblQty.text = [NSString stringWithFormat:@"%ld",(long)newValue];
         
-        NSMutableDictionary *intdic=[[NSMutableDictionary alloc]init];
-        intdic=[[arrProductsItems objectAtIndex:changedRow.row] mutableCopy];
-        [intdic setObject:[NSNumber numberWithInt:newValue] forKey:@"Quantity"];
+        if(isFiltered)
+        {
+            NSMutableDictionary *intdic=[[NSMutableDictionary alloc]init];
+            intdic=[[filteredProducts objectAtIndex:changedRow.row] mutableCopy];
+            [intdic setObject:[NSNumber numberWithInt:newValue] forKey:@"Quantity"];
+            
+            [filteredProducts replaceObjectAtIndex:changedRow.row withObject:intdic];
+        }
+        else
+        {
+            NSMutableDictionary *intdic=[[NSMutableDictionary alloc]init];
+            intdic=[[arrProductsItems objectAtIndex:changedRow.row] mutableCopy];
+            [intdic setObject:[NSNumber numberWithInt:newValue] forKey:@"Quantity"];
+            
+            [arrProductsItems replaceObjectAtIndex:changedRow.row withObject:intdic];
+        }
         
-        [arrProductsItems replaceObjectAtIndex:changedRow.row withObject:intdic];
+        
     }
 }
 
@@ -488,11 +634,22 @@
         int newValue = val - 1;
         cell.lblQty.text = [NSString stringWithFormat:@"%ld",(long)newValue];
         
-        NSMutableDictionary *intdic=[[NSMutableDictionary alloc]init];
-        intdic=[[arrProductsItems objectAtIndex:changedRow.row] mutableCopy];
-        [intdic setObject:[NSNumber numberWithInt:newValue] forKey:@"Quantity"];
-        
-        [arrProductsItems replaceObjectAtIndex:changedRow.row withObject:intdic];
+        if(isFiltered)
+        {
+            NSMutableDictionary *intdic=[[NSMutableDictionary alloc]init];
+            intdic=[[filteredProducts objectAtIndex:changedRow.row] mutableCopy];
+            [intdic setObject:[NSNumber numberWithInt:newValue] forKey:@"Quantity"];
+            
+            [filteredProducts replaceObjectAtIndex:changedRow.row withObject:intdic];
+        }
+        else
+        {
+            NSMutableDictionary *intdic=[[NSMutableDictionary alloc]init];
+            intdic=[[arrProductsItems objectAtIndex:changedRow.row] mutableCopy];
+            [intdic setObject:[NSNumber numberWithInt:newValue] forKey:@"Quantity"];
+            
+            [arrProductsItems replaceObjectAtIndex:changedRow.row withObject:intdic];
+        }
     }
 }
 
@@ -501,24 +658,47 @@
 - (void)addToCartClickedTableView:(UIButton *)sender
 {
     NSIndexPath *changedRow = [NSIndexPath indexPathForRow:sender.tag inSection:0];
-    
-    if (KmyappDelegate.MainCartArr==nil)
+    if(isFiltered)
     {
-        KmyappDelegate.MainCartArr=[[NSMutableArray alloc]init];
-        [KmyappDelegate.MainCartArr addObject:[arrProductsItems objectAtIndex:changedRow.row]];
-    }
-    else
-    {
-        if ([[KmyappDelegate.MainCartArr valueForKey:@"id"] containsObject:[[arrProductsItems valueForKey:@"id"]objectAtIndex:changedRow.row]])
+        if (KmyappDelegate.MainCartArr==nil)
         {
-            NSLog(@"Already Added");
+            KmyappDelegate.MainCartArr=[[NSMutableArray alloc]init];
+            [KmyappDelegate.MainCartArr addObject:[filteredProducts objectAtIndex:changedRow.row]];
         }
         else
         {
+            if ([[KmyappDelegate.MainCartArr valueForKey:@"id"] containsObject:[[filteredProducts valueForKey:@"id"]objectAtIndex:changedRow.row]])
+            {
+                NSLog(@"Already Added");
+            }
+            else
+            {
+                [KmyappDelegate.MainCartArr addObject:[filteredProducts objectAtIndex:changedRow.row]];
+            }
+        }
+        NSLog(@"==%@",KmyappDelegate.MainCartArr);
+    }
+    else
+    {
+        if (KmyappDelegate.MainCartArr==nil)
+        {
+            KmyappDelegate.MainCartArr=[[NSMutableArray alloc]init];
             [KmyappDelegate.MainCartArr addObject:[arrProductsItems objectAtIndex:changedRow.row]];
         }
+        else
+        {
+            if ([[KmyappDelegate.MainCartArr valueForKey:@"id"] containsObject:[[arrProductsItems valueForKey:@"id"]objectAtIndex:changedRow.row]])
+            {
+                NSLog(@"Already Added");
+            }
+            else
+            {
+                [KmyappDelegate.MainCartArr addObject:[arrProductsItems objectAtIndex:changedRow.row]];
+            }
+        }
+        NSLog(@"==%@",KmyappDelegate.MainCartArr);
     }
-    NSLog(@"==%@",KmyappDelegate.MainCartArr);
+    
 }
 
 - (void)addToCartClickedCollectionView:(UIButton *)sender
@@ -526,23 +706,48 @@
     
     NSIndexPath *changedRow = [NSIndexPath indexPathForRow:sender.tag inSection:0];
     
-    if (KmyappDelegate.MainCartArr==nil)
+    if(isFiltered)
     {
-        KmyappDelegate.MainCartArr=[[NSMutableArray alloc]init];
-        [KmyappDelegate.MainCartArr addObject:[arrProductsItems objectAtIndex:changedRow.row]];
-    }
-    else
-    {
-        if ([[KmyappDelegate.MainCartArr valueForKey:@"id"] containsObject:[[arrProductsItems valueForKey:@"id"]objectAtIndex:changedRow.row]])
+        if (KmyappDelegate.MainCartArr==nil)
         {
-            NSLog(@"Already Added");
+            KmyappDelegate.MainCartArr=[[NSMutableArray alloc]init];
+            [KmyappDelegate.MainCartArr addObject:[filteredProducts objectAtIndex:changedRow.row]];
         }
         else
         {
+            if ([[KmyappDelegate.MainCartArr valueForKey:@"id"] containsObject:[[filteredProducts valueForKey:@"id"]objectAtIndex:changedRow.row]])
+            {
+                NSLog(@"Already Added");
+            }
+            else
+            {
+                [KmyappDelegate.MainCartArr addObject:[filteredProducts objectAtIndex:changedRow.row]];
+            }
+        }
+        NSLog(@"==%@",KmyappDelegate.MainCartArr);
+    }
+    else
+    {
+        if (KmyappDelegate.MainCartArr==nil)
+        {
+            KmyappDelegate.MainCartArr=[[NSMutableArray alloc]init];
             [KmyappDelegate.MainCartArr addObject:[arrProductsItems objectAtIndex:changedRow.row]];
         }
+        else
+        {
+            if ([[KmyappDelegate.MainCartArr valueForKey:@"id"] containsObject:[[arrProductsItems valueForKey:@"id"]objectAtIndex:changedRow.row]])
+            {
+                NSLog(@"Already Added");
+            }
+            else
+            {
+                [KmyappDelegate.MainCartArr addObject:[arrProductsItems objectAtIndex:changedRow.row]];
+            }
+        }
+        NSLog(@"==%@",KmyappDelegate.MainCartArr);
     }
-    NSLog(@"==%@",KmyappDelegate.MainCartArr);
+    
+    
 
 }
 
@@ -554,24 +759,50 @@
     ItemCell *cell = (ItemCell *)[_tblItem cellForRowAtIndexPath:changedRow];
     [cell.btnFav setImage:[UIImage imageNamed:@"RedHeart"] forState:UIControlStateNormal];
     
-    if (KmyappDelegate.MainFavArr==nil)
+    if(isFiltered)
     {
-        KmyappDelegate.MainFavArr=[[NSMutableArray alloc]init];
-        [KmyappDelegate.MainFavArr addObject:[arrProductsItems objectAtIndex:changedRow.row]];
-    }
-    else
-    {
-        if ([[KmyappDelegate.MainFavArr valueForKey:@"id"] containsObject:[[arrProductsItems valueForKey:@"id"]objectAtIndex:changedRow.row]])
+        if (KmyappDelegate.MainFavArr==nil)
         {
-            NSLog(@"Already Added");
+            KmyappDelegate.MainFavArr=[[NSMutableArray alloc]init];
+            [KmyappDelegate.MainFavArr addObject:[filteredProducts objectAtIndex:changedRow.row]];
         }
         else
         {
+            if ([[KmyappDelegate.MainFavArr valueForKey:@"id"] containsObject:[[filteredProducts valueForKey:@"id"]objectAtIndex:changedRow.row]])
+            {
+                NSLog(@"Already Added");
+            }
+            else
+            {
+                [KmyappDelegate.MainFavArr addObject:[filteredProducts objectAtIndex:changedRow.row]];
+            }
+        }
+        NSLog(@"==%@",KmyappDelegate.MainFavArr);
+        _wo(@"FavDIC", KmyappDelegate.MainFavArr);
+    }
+    else
+    {
+        if (KmyappDelegate.MainFavArr==nil)
+        {
+            KmyappDelegate.MainFavArr=[[NSMutableArray alloc]init];
             [KmyappDelegate.MainFavArr addObject:[arrProductsItems objectAtIndex:changedRow.row]];
         }
+        else
+        {
+            if ([[KmyappDelegate.MainFavArr valueForKey:@"id"] containsObject:[[arrProductsItems valueForKey:@"id"]objectAtIndex:changedRow.row]])
+            {
+                NSLog(@"Already Added");
+            }
+            else
+            {
+                [KmyappDelegate.MainFavArr addObject:[arrProductsItems objectAtIndex:changedRow.row]];
+            }
+        }
+        NSLog(@"==%@",KmyappDelegate.MainFavArr);
+        _wo(@"FavDIC", KmyappDelegate.MainFavArr);
     }
-    NSLog(@"==%@",KmyappDelegate.MainFavArr);
-    _wo(@"FavDIC", KmyappDelegate.MainFavArr);
+    
+    
 }
 
 - (void)addToFavClickedCollectionView:(UIButton *)sender
@@ -580,24 +811,50 @@
     CategoryItemCell *cell = (CategoryItemCell *)[_collectionViewItem cellForItemAtIndexPath:changedRow];
     [cell.btnFav setImage:[UIImage imageNamed:@"RedHeart"] forState:UIControlStateNormal];
     
-    if (KmyappDelegate.MainFavArr==nil)
+    if(isFiltered)
     {
-        KmyappDelegate.MainFavArr=[[NSMutableArray alloc]init];
-        [KmyappDelegate.MainFavArr addObject:[arrProductsItems objectAtIndex:changedRow.row]];
-    }
-    else
-    {
-        if ([[KmyappDelegate.MainFavArr valueForKey:@"id"] containsObject:[[arrProductsItems valueForKey:@"id"]objectAtIndex:changedRow.row]])
+        if (KmyappDelegate.MainFavArr==nil)
         {
-            NSLog(@"Already Added");
+            KmyappDelegate.MainFavArr=[[NSMutableArray alloc]init];
+            [KmyappDelegate.MainFavArr addObject:[filteredProducts objectAtIndex:changedRow.row]];
         }
         else
         {
+            if ([[KmyappDelegate.MainFavArr valueForKey:@"id"] containsObject:[[filteredProducts valueForKey:@"id"]objectAtIndex:changedRow.row]])
+            {
+                NSLog(@"Already Added");
+            }
+            else
+            {
+                [KmyappDelegate.MainFavArr addObject:[filteredProducts objectAtIndex:changedRow.row]];
+            }
+        }
+        NSLog(@"MainFavArr==%@",KmyappDelegate.MainFavArr);
+    }
+    else
+    {
+        if (KmyappDelegate.MainFavArr==nil)
+        {
+            KmyappDelegate.MainFavArr=[[NSMutableArray alloc]init];
             [KmyappDelegate.MainFavArr addObject:[arrProductsItems objectAtIndex:changedRow.row]];
         }
+        else
+        {
+            if ([[KmyappDelegate.MainFavArr valueForKey:@"id"] containsObject:[[arrProductsItems valueForKey:@"id"]objectAtIndex:changedRow.row]])
+            {
+                NSLog(@"Already Added");
+            }
+            else
+            {
+                [KmyappDelegate.MainFavArr addObject:[arrProductsItems objectAtIndex:changedRow.row]];
+            }
+        }
+        NSLog(@"MainFavArr==%@",KmyappDelegate.MainFavArr);
     }
+    
+    
    
-    NSLog(@"MainFavArr==%@",KmyappDelegate.MainFavArr);
+    
     //[[NSUserDefaults standardUserDefaults] setObject:tempArry forKey:@"FavDIC"];
     //_wo(@"FavDIC",KmyappDelegate.MainFavArr);
 }

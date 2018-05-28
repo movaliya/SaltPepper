@@ -27,7 +27,6 @@
 
     RegisterBtn.layer.cornerRadius = 22;
     RegisterBtn.clipsToBounds = YES;
-   
     
     LoginBtn.layer.cornerRadius = 22;
     LoginBtn.clipsToBounds = YES;

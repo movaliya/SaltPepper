@@ -79,7 +79,7 @@
 
 //Dummy Key
 #define KAPIKEY    @"DoPUQBErcpKPtRmbjpcFvbb8YCMeBjr4w6OcyjtA"
-
+#define BASE_PROFILE_IMAGE_URL  @"https://indiancottagehorndean.co.uk/demo/"
 // Service key
 #define LOGINKEY @"Login.php"
 #define REGISTERKEY @"Register.php"
