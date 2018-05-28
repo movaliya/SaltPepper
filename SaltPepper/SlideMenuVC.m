@@ -226,6 +226,10 @@
     {
         [cell.btnFav setImage:[UIImage imageNamed:@"RedHeart"] forState:UIControlStateNormal];
     }
+    else
+    {
+        [cell.btnFav setImage:[UIImage imageNamed:@"BlackHeart"] forState:UIControlStateNormal];
+    }
     
     cell.lblQty.text=[NSString stringWithFormat:@"%@",[[arrProductsItems objectAtIndex:indexPath.row] valueForKey:@"Quantity"]];
 
@@ -365,7 +369,15 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    ItemCell *cell = (ItemCell*)[tableView dequeueReusableCellWithIdentifier:@"ItemCell"];
+    static NSString *CellIdentifier = @"ItemCell";
+    ItemCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    cell=nil;
+    if (cell == nil)
+    {
+        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    }
+    
+    //ItemCell *cell = (ItemCell*)[tableView dequeueReusableCellWithIdentifier:@"ItemCell"];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     cell.btnPlus.tag = indexPath.row;
@@ -378,7 +390,10 @@
     {
         [cell.btnFav setImage:[UIImage imageNamed:@"RedHeart"] forState:UIControlStateNormal];
     }
-    
+    else
+    {
+        [cell.btnFav setImage:[UIImage imageNamed:@"BlackHeart"] forState:UIControlStateNormal];
+    }
     [cell.btnFav addTarget:self action:@selector(addToFavClickedTableView:) forControlEvents:UIControlEventTouchUpInside];
 
     [cell.btnAdd addTarget:self action:@selector(addToCartClickedTableView:) forControlEvents:UIControlEventTouchUpInside];
@@ -832,6 +847,20 @@
     }
     NSLog(@"==%@",KmyappDelegate.MainFavArr);
     //_wo(@"FavDIC", KmyappDelegate.MainFavArr);
+    
+    NSMutableDictionary *intdic=[[NSMutableDictionary alloc]init];
+    intdic=[[arrProductsItems objectAtIndex:changedRow.row] mutableCopy];
+    if (KmyappDelegate.MainFavArr!=nil)
+    {
+        NSLog(@"%@",[[KmyappDelegate.MainFavArr objectAtIndex:KmyappDelegate.MainFavArr.count-1] valueForKey:@"id"]);
+        if ([[[KmyappDelegate.MainFavArr objectAtIndex:KmyappDelegate.MainFavArr.count-1] valueForKey:@"id"] integerValue]==[[intdic valueForKey:@"id"]integerValue])
+        {
+            [intdic setObject:@"YES" forKey:@"Favorite"];
+            [arrProductsItems replaceObjectAtIndex:changedRow.row withObject:intdic];
+        }
+       
+    }
+    [_tblItem reloadData];
 
 }
 
@@ -881,7 +910,19 @@
         }
         NSLog(@"MainFavArr==%@",KmyappDelegate.MainFavArr);
     }
-    
+    NSMutableDictionary *intdic=[[NSMutableDictionary alloc]init];
+    intdic=[[arrProductsItems objectAtIndex:changedRow.row] mutableCopy];
+    if (KmyappDelegate.MainFavArr!=nil)
+    {
+        NSLog(@"%@",[[KmyappDelegate.MainFavArr objectAtIndex:KmyappDelegate.MainFavArr.count-1] valueForKey:@"id"]);
+        if ([[[KmyappDelegate.MainFavArr objectAtIndex:KmyappDelegate.MainFavArr.count-1] valueForKey:@"id"] integerValue]==[[intdic valueForKey:@"id"]integerValue])
+        {
+            [intdic setObject:@"YES" forKey:@"Favorite"];
+            [arrProductsItems replaceObjectAtIndex:changedRow.row withObject:intdic];
+        }
+        
+    }
+    [_collectionViewItem reloadData];
     
    
     

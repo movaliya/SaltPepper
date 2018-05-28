@@ -117,8 +117,15 @@
 
 - (void)Delete_Clcik:(UIButton *)sender
 {
-    [KmyappDelegate.MainFavArr removeObjectAtIndex:[sender tag]];
-    [TableVW reloadData];
+    FCAlertView *alert = [KmyappDelegate ShowAlertWithBtnAction:@"Are you sure want to remove from favourite?" andStrTile:nil andbtnTitle:@"NO" andButtonArray:@[]];
+    
+    [alert addButton:@"YES" withActionBlock:^{
+        
+        [KmyappDelegate.MainFavArr removeObjectAtIndex:[sender tag]];
+        [TableVW reloadData];
+    }];
+    
+    
 }
 
 
