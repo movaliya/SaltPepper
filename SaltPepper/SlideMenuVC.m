@@ -96,13 +96,13 @@
     
     NSError* error = nil;
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictREQUESTPARAM options:NSJSONWritingPrettyPrinted error:&error];
-    // NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData
                                                          options:NSJSONReadingMutableContainers
                                                            error:&error];
     NSString *makeURL=[NSString stringWithFormat:@"%@%@",kBaseURL,PRODUCTCATEGORY];
     
-    [Utility postRequest:json url:makeURL success:^(id responseObject) {
+    [Utility postRequest:json url:makeURL success:^(id responseObject)
+    {
         
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         arrProductsItems = [[NSMutableArray alloc]init];
@@ -118,16 +118,33 @@
             if ([SUCCESS boolValue] ==YES)
             {
                 arrProductsItems = [[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"products"]objectForKey:@"result"]objectForKey:@"products"] mutableCopy];
+               
                 for (int i=0; i<arrProductsItems.count; i++)
                 {
+                    NSLog(@"==%@",KmyappDelegate.MainFavArr);
+                    
                     NSMutableDictionary *intdic=[[NSMutableDictionary alloc]init];
                     intdic=[[arrProductsItems objectAtIndex:i] mutableCopy];
+                    if (KmyappDelegate.MainFavArr!=nil)
+                    {
+                        if ([[KmyappDelegate.MainFavArr valueForKey:@"id"] containsObject:[[arrProductsItems valueForKey:@"id"]objectAtIndex:i]])
+                        {
+                            [intdic setObject:@"YES" forKey:@"Favorite"];
+                        }
+                        else
+                        {
+                            [intdic setObject:@"NO" forKey:@"Favorite"];
+                        }
+                    }
+                    
+                    
                     [intdic setObject:[NSNumber numberWithInt:1] forKey:@"Quantity"];
                     
                     [arrProductsItems replaceObjectAtIndex:i withObject:intdic];
                     
                 }
-                NSLog(@"%@",[[arrProductsItems valueForKey:@"allergy_image_path"] objectAtIndex:0]);
+                //NSLog(@"%@",[[arrProductsItems valueForKey:@"allergy_image_path"] objectAtIndex:0]);
+                
                 if([[arrProductsItems valueForKey:@"allergy_image_path"] objectAtIndex:0] == [NSNull null] || [[[arrProductsItems valueForKey:@"allergy_image_path"] objectAtIndex:0]isEqualToString:@""])
                 { 
                     _tblItem.hidden = NO;
@@ -190,6 +207,12 @@
     [cell.btnFav addTarget:self action:@selector(addToFavClickedCollectionView:) forControlEvents:UIControlEventTouchUpInside];
     [cell.btnPlus addTarget:self action:@selector(plusClickedCollectionView:) forControlEvents:UIControlEventTouchUpInside];
     [cell.btnMinus addTarget:self action:@selector(minusClickedCollectionView:) forControlEvents:UIControlEventTouchUpInside];
+    
+    //Favorite
+    if ([[[arrProductsItems objectAtIndex:indexPath.row] valueForKey:@"Favorite"] isEqualToString:@"YES"])
+    {
+        [cell.btnFav setImage:[UIImage imageNamed:@"RedHeart"] forState:UIControlStateNormal];
+    }
     
     cell.lblQty.text=[NSString stringWithFormat:@"%@",[[arrProductsItems objectAtIndex:indexPath.row] valueForKey:@"Quantity"]];
 
@@ -273,6 +296,10 @@
     cell.btnModify.tag = indexPath.row;
     cell.btnFav.tag = indexPath.row;
 
+    if ([[[arrProductsItems objectAtIndex:indexPath.row] valueForKey:@"Favorite"] isEqualToString:@"YES"])
+    {
+        [cell.btnFav setImage:[UIImage imageNamed:@"RedHeart"] forState:UIControlStateNormal];
+    }
     
     [cell.btnFav addTarget:self action:@selector(addToFavClickedTableView:) forControlEvents:UIControlEventTouchUpInside];
 
@@ -518,6 +545,7 @@
             [KmyappDelegate.MainCartArr addObject:[arrProductsItems objectAtIndex:changedRow.row]];
         }
     }
+    _wo(@"FavDIC", KmyappDelegate.MainCartArr);
     NSLog(@"==%@",KmyappDelegate.MainCartArr);
 }
 
@@ -571,7 +599,7 @@
         }
     }
     NSLog(@"==%@",KmyappDelegate.MainFavArr);
-    _wo(@"FavDIC", KmyappDelegate.MainFavArr);
+    //_wo(@"FavDIC", KmyappDelegate.MainFavArr);
 }
 
 - (void)addToFavClickedCollectionView:(UIButton *)sender

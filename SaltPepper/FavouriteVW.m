@@ -47,12 +47,12 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return KmyappDelegate.MainFavArr.count;;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return KmyappDelegate.MainFavArr.count;
+    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -65,6 +65,10 @@
         cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     }
     
+    cell.AddToCartBTN.tag=indexPath.section;
+    cell.Delete_BTN.tag=indexPath.section;
+    
+    
     [cell setNeedsUpdateConstraints];
     [cell updateConstraintsIfNeeded];
     cell.layer.shadowOffset = CGSizeMake(1, 0);
@@ -73,8 +77,10 @@
     cell.layer.shadowOpacity = .25;
     
     
-    cell.Title_LBL.text=[NSString stringWithFormat:@"%@",[[KmyappDelegate.MainFavArr valueForKey:@"productName"] objectAtIndex:indexPath.row]];
-    cell.Price_BTN.text=[NSString stringWithFormat:@"£%@",[[KmyappDelegate.MainFavArr valueForKey:@"price"] objectAtIndex:indexPath.row]];
+    [cell.AddToCartBTN addTarget:self action:@selector(AddToCartBTN_Clcik:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.Delete_BTN addTarget:self action:@selector(Delete_Clcik:) forControlEvents:UIControlEventTouchUpInside];
+    cell.Title_LBL.text=[NSString stringWithFormat:@"%@",[[KmyappDelegate.MainFavArr valueForKey:@"productName"] objectAtIndex:indexPath.section]];
+    cell.Price_BTN.text=[NSString stringWithFormat:@"£%@",[[KmyappDelegate.MainFavArr valueForKey:@"price"] objectAtIndex:indexPath.section]];
     
     [cell setNeedsUpdateConstraints];
     [cell updateConstraintsIfNeeded];
@@ -89,7 +95,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
-    return 120.0f;
+    return 115.0f;
 }
 
 - (IBAction)Menu_action:(id)sender
@@ -102,14 +108,18 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
+#pragma mark - ADD TO CART Click Action
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)AddToCartBTN_Clcik:(UIButton *)sender
+{
+    
 }
-*/
+
+- (void)Delete_Clcik:(UIButton *)sender
+{
+    [KmyappDelegate.MainFavArr removeObjectAtIndex:[sender tag]];
+    [TableVW reloadData];
+}
+
 
 @end

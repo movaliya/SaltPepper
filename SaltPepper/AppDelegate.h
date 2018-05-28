@@ -37,6 +37,8 @@
 
 +(void)showInternetErrorMessageWithTitle:(NSString *)title delegate:(id)delegate;
 
+-(NSMutableDictionary*)replaceNULL:(id)dictData;
+
 //Alert Methods
 -(void)ShowAlertWithOneBtn:(NSString*)strMessage andStrTitle:(NSString*)strTitle andbtnTitle:(NSString*)strButtonTitle;
 -(FCAlertView*)ShowAlertWithOneBtnWithAttribute:(NSAttributedString*)strMessage andStrTitle:(NSString*)strTitle andbtnTitle:(NSString*)strButtonTitle;

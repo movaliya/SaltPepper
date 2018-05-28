@@ -159,7 +159,17 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-
+-(NSMutableDictionary*)replaceNULL:(id)dictData
+{
+    NSMutableDictionary * dictUserData = [[NSMutableDictionary alloc] init];
+    dictUserData=[dictData mutableCopy];
+    for (id dict in [dictData allKeys])
+    {
+        ([dictData valueForKey:dict] == [NSNull null]) ? [dictUserData setValue:@"" forKey:dict] :[dictUserData setValue:[dictData valueForKey:dict] forKey:dict];
+    }
+    
+    return dictUserData;
+}
 
 #pragma mark - Custom Alert
 
