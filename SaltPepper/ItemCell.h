@@ -18,5 +18,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnPlus;
 @property (weak, nonatomic) IBOutlet UIButton *btnMinus;
 @property (weak, nonatomic) IBOutlet UILabel *lblQty;
+@property (weak, nonatomic) IBOutlet UIImageView *imgIcon;
 
 @end
