@@ -15,11 +15,11 @@
 @end
 
 @implementation AppDelegate
-@synthesize manager;
-@synthesize MainCartArr;
+@synthesize manager,MainCartArr,MainFavArr;
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    
     if(_rb(@"isSkip"))
     {
         DEMORootViewController *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"rootController"];

@@ -19,8 +19,10 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate,GIDSignInUIDelegate,GIDSignInDelegate>
 {
     FCAlertView *alert;
+    NSMutableArray *MainCartArr,*MainFavArr;
 
 }
+@property (strong, nonatomic) NSMutableArray *MainCartArr,*MainFavArr;
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong,nonatomic) AFHTTPSessionManager *manager;
@@ -29,7 +31,6 @@
 +(BOOL)IsValidEmail:(NSString *)checkString;
 
 @property (nonatomic,weak) NSArray *arrCategories;
-@property (strong, nonatomic) NSMutableArray *MainCartArr;
 + (void)showErrorMessageWithTitle:(NSString *)title
                           message:(NSString*)message
                          delegate:(id)delegate;
