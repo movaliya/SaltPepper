@@ -95,6 +95,9 @@
                 break;
             case 1:
                 //Cart
+                [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"CartVW"]]
+                                                             animated:YES];
+                [self.sideMenuViewController hideMenuViewController];
                 break;
             case 2:
                 [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"ReservationSubVW"]]
@@ -124,6 +127,9 @@
                 break;
             case 8:
                 //Favourite
+                [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"FavouriteVW"]]//  Favourite //
+                                                             animated:YES];
+                [self.sideMenuViewController hideMenuViewController];
                 break;
             case 9:
                 //Information
@@ -182,7 +188,15 @@
                 [self.sideMenuViewController hideMenuViewController];
                 break;
             case 1:
-                //Cart View
+                //Cart View CartVW
+                if (_ro(@"LoginUserDic") != nil)
+                {
+                    FCAlertView *alert = [KmyappDelegate ShowAlertWithBtnAction:@"You are not Login" andStrTile:nil andbtnTitle:@"OK" andButtonArray:@[]];
+                    [alert addButton:@"OK" withActionBlock:^{
+                        
+                        [self.sideMenuViewController hideMenuViewController];
+                    }];
+                }
                 break;
             case 2:
                 [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"ReservationSubVW"]]

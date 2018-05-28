@@ -318,7 +318,6 @@
         NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"socialLogin"] objectForKey:@"SUCCESS"];
         if ([SUCCESS boolValue] ==YES)
         {
-            //[[NSUserDefaults standardUserDefaults]setObject:responseObject forKey:@"LoginUserDic"];
              _wo(@"LoginUserDic", responseObject);
             [AppDelegate showErrorMessageWithTitle:@"" message:@"Login successful" delegate:nil];
             DEMORootViewController *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"rootController"];
