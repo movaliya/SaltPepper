@@ -248,6 +248,51 @@
      [self.sideMenuViewController presentLeftMenuViewController];
 }
 
+- (IBAction)btnFavClicked:(id)sender
+{
+    if (_ro(@"LoginUserDic") != nil)
+    {
+        [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"FavouriteVW"]]
+                                                     animated:YES];
+        [self.sideMenuViewController hideMenuViewController];
+    }
+    else
+    {
+        FCAlertView *alert = [KmyappDelegate ShowAlertWithBtnAction:@"Please First Login" andStrTile:nil andbtnTitle:@"Cancel" andButtonArray:@[]];
+        
+        [alert addButton:@"Login" withActionBlock:^{
+            
+            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"LoginVW"]]
+                                                         animated:YES];
+            [self.sideMenuViewController hideMenuViewController];
+            
+        }];
+    }
+}
+
+- (IBAction)btnCartClicked:(id)sender
+{
+    if (_ro(@"LoginUserDic") != nil)
+    {
+        [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"CartVW"]]
+                                                     animated:YES];
+        [self.sideMenuViewController hideMenuViewController];
+    }
+    else
+    {
+        FCAlertView *alert = [KmyappDelegate ShowAlertWithBtnAction:@"Please First Login" andStrTile:nil andbtnTitle:@"Cancel" andButtonArray:@[]];
+        
+        [alert addButton:@"Login" withActionBlock:^{
+            
+            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"LoginVW"]]
+                                                         animated:YES];
+            [self.sideMenuViewController hideMenuViewController];
+            
+        }];
+    }
+}
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

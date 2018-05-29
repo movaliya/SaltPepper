@@ -43,10 +43,13 @@
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
-- (IBAction)btnCheckoutClicked:(id)sender {
+- (IBAction)btnCheckoutClicked:(id)sender
+{
+    
 }
 - (IBAction)btnAddToCartClicked:(id)sender
 {
+    NSLog(@"%@",KmyappDelegate.MainCartArr);
     if (KmyappDelegate.MainCartArr==nil)
     {
         KmyappDelegate.MainCartArr=[[NSMutableArray alloc]init];
@@ -54,17 +57,23 @@
     }
     else
     {
-        if ([[KmyappDelegate.MainCartArr valueForKey:@"id"] containsObject:_productDetail])
+        if ([[KmyappDelegate.MainCartArr valueForKey:@"id"] containsObject:[_productDetail valueForKey:@"id"]])
         {
             NSLog(@"Already Added");
         }
         else
         {
             [KmyappDelegate.MainCartArr addObject:_productDetail];
+            NSLog(@"%@",KmyappDelegate.MainCartArr);
         }
     }
+    NSData *dataSave = [NSKeyedArchiver archivedDataWithRootObject:KmyappDelegate.MainCartArr];
+    [[NSUserDefaults standardUserDefaults] setObject:dataSave forKey:@"CartDIC"];
+    
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
-- (IBAction)btnModifyClicked:(id)sender {
+- (IBAction)btnModifyClicked:(id)sender
+{
 }
 - (IBAction)btnPlusClicked:(id)sender
 {
@@ -79,6 +88,27 @@
     {
         int newValue = val - 1;
         _lblQty.text = [NSString stringWithFormat:@"%ld",(long)newValue];
+    }
+}
+- (IBAction)btnCartClicked:(id)sender
+{
+    if (_ro(@"LoginUserDic") != nil)
+    {
+        [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"CartVW"]]
+                                                     animated:YES];
+        [self.sideMenuViewController hideMenuViewController];
+    }
+    else
+    {
+        FCAlertView *alert = [KmyappDelegate ShowAlertWithBtnAction:@"Please First Login" andStrTile:nil andbtnTitle:@"Cancel" andButtonArray:@[]];
+        
+        [alert addButton:@"Login" withActionBlock:^{
+            
+            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"LoginVW"]]
+                                                         animated:YES];
+            [self.sideMenuViewController hideMenuViewController];
+            
+        }];
     }
 }
 

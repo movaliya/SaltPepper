@@ -7,6 +7,7 @@
 //
 
 #import "ContactUSVW.h"
+#import "SendFeedbackVC.h"
 
 @interface ContactUSVW ()
 
@@ -23,6 +24,26 @@
 {
     [self.sideMenuViewController presentLeftMenuViewController];
 
+}
+- (IBAction)btnCall:(id)sender
+{
+    NSURL *url = [NSURL URLWithString:@"telprompt://0138478007"];
+    [[UIApplication  sharedApplication] openURL:url];
+}
+- (IBAction)btnFeedback:(id)sender
+{
+    SendFeedbackVC *mainVC = [self.storyboard instantiateViewControllerWithIdentifier:@"SendFeedbackVC"];
+    [self.navigationController pushViewController:mainVC animated:YES];
+}
+- (IBAction)btnGetLocation:(id)sender {
+}
+- (IBAction)btnFB:(id)sender {
+}
+- (IBAction)btnLinked:(id)sender {
+}
+- (IBAction)btnTwitter:(id)sender {
+}
+- (IBAction)btnYoutube:(id)sender {
 }
 
 - (void)didReceiveMemoryWarning
