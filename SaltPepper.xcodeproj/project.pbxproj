@@ -62,6 +62,10 @@
 		B13EE80120BB31EE006E4471 /* FavoriteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B13EE7FF20BB31EE006E4471 /* FavoriteCell.m */; };
 		B13EE80220BB31EE006E4471 /* FavoriteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B13EE80020BB31EE006E4471 /* FavoriteCell.xib */; };
 		B1409E3220BC802F000E1C29 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1409E3120BC802F000E1C29 /* Main.storyboard */; };
+		B141AB7320BDC7FC009C06B4 /* AlertViewPromoCode.m in Sources */ = {isa = PBXBuildFile; fileRef = B141AB7120BDC7FC009C06B4 /* AlertViewPromoCode.m */; };
+		B141AB7420BDC7FC009C06B4 /* AlertViewPromoCode.xib in Resources */ = {isa = PBXBuildFile; fileRef = B141AB7220BDC7FC009C06B4 /* AlertViewPromoCode.xib */; };
+		B141AB7820BDD9A5009C06B4 /* AlertViewAddAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = B141AB7620BDD9A5009C06B4 /* AlertViewAddAddress.m */; };
+		B141AB7920BDD9A5009C06B4 /* AlertViewAddAddress.xib in Resources */ = {isa = PBXBuildFile; fileRef = B141AB7720BDD9A5009C06B4 /* AlertViewAddAddress.xib */; };
 		B14ECF9420B8883200286D46 /* ASJTag.m in Sources */ = {isa = PBXBuildFile; fileRef = B14ECF8F20B8883200286D46 /* ASJTag.m */; };
 		B14ECF9520B8883200286D46 /* ASJTag.xib in Resources */ = {isa = PBXBuildFile; fileRef = B14ECF9020B8883200286D46 /* ASJTag.xib */; };
 		B14ECF9620B8883200286D46 /* ASJTagsView.m in Sources */ = {isa = PBXBuildFile; fileRef = B14ECF9220B8883200286D46 /* ASJTagsView.m */; };
@@ -173,6 +177,12 @@
 		B13EE7FF20BB31EE006E4471 /* FavoriteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoriteCell.m; sourceTree = "<group>"; };
 		B13EE80020BB31EE006E4471 /* FavoriteCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FavoriteCell.xib; sourceTree = "<group>"; };
 		B1409E3120BC802F000E1C29 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		B141AB7020BDC7FC009C06B4 /* AlertViewPromoCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertViewPromoCode.h; sourceTree = "<group>"; };
+		B141AB7120BDC7FC009C06B4 /* AlertViewPromoCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertViewPromoCode.m; sourceTree = "<group>"; };
+		B141AB7220BDC7FC009C06B4 /* AlertViewPromoCode.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlertViewPromoCode.xib; sourceTree = "<group>"; };
+		B141AB7520BDD9A5009C06B4 /* AlertViewAddAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertViewAddAddress.h; sourceTree = "<group>"; };
+		B141AB7620BDD9A5009C06B4 /* AlertViewAddAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertViewAddAddress.m; sourceTree = "<group>"; };
+		B141AB7720BDD9A5009C06B4 /* AlertViewAddAddress.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlertViewAddAddress.xib; sourceTree = "<group>"; };
 		B14ECF8E20B8883200286D46 /* ASJTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASJTag.h; sourceTree = "<group>"; };
 		B14ECF8F20B8883200286D46 /* ASJTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASJTag.m; sourceTree = "<group>"; };
 		B14ECF9020B8883200286D46 /* ASJTag.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ASJTag.xib; sourceTree = "<group>"; };
@@ -328,6 +338,19 @@
 			name = TableCell;
 			sourceTree = "<group>";
 		};
+		B141AB6F20BDC7E7009C06B4 /* CustomAlertPopup */ = {
+			isa = PBXGroup;
+			children = (
+				B141AB7020BDC7FC009C06B4 /* AlertViewPromoCode.h */,
+				B141AB7120BDC7FC009C06B4 /* AlertViewPromoCode.m */,
+				B141AB7220BDC7FC009C06B4 /* AlertViewPromoCode.xib */,
+				B141AB7520BDD9A5009C06B4 /* AlertViewAddAddress.h */,
+				B141AB7620BDD9A5009C06B4 /* AlertViewAddAddress.m */,
+				B141AB7720BDD9A5009C06B4 /* AlertViewAddAddress.xib */,
+			);
+			name = CustomAlertPopup;
+			sourceTree = "<group>";
+		};
 		B14ECF8D20B8883200286D46 /* ASJTagsView */ = {
 			isa = PBXGroup;
 			children = (
@@ -363,6 +386,7 @@
 			isa = PBXGroup;
 			children = (
 				29360C9020B8613100283D87 /* client_628114390774-ps3bah0jagd4pnm3aflmfije8rlr3r56.apps.googleusercontent.com.plist */,
+				B141AB6F20BDC7E7009C06B4 /* CustomAlertPopup */,
 				B13EE7FD20BB31D0006E4471 /* TableCell */,
 				B1B9F1D720BACB3F008D2FAD /* FCAlertView */,
 				B1B9F1D020BA7E7A008D2FAD /* ASProgressPopUpView */,
@@ -538,6 +562,7 @@
 			files = (
 				B1409E3220BC802F000E1C29 /* Main.storyboard in Resources */,
 				B18E78082055143E00C50320 /* LaunchScreen.storyboard in Resources */,
+				B141AB7920BDD9A5009C06B4 /* AlertViewAddAddress.xib in Resources */,
 				297D5EF620564FF300ED5428 /* ShowPassIcon.png in Resources */,
 				2968F8AE2070CF23004B5960 /* contactusblur.jpg in Resources */,
 				295E0745206F951C00BC4ADB /* VideoCell.xib in Resources */,
@@ -557,6 +582,7 @@
 				294B5C4C205A9D2B00794D47 /* MenuListCollectCELL.xib in Resources */,
 				295E073E206F783B00BC4ADB /* testImage.jpg in Resources */,
 				B138A0CA20B72F5600835899 /* OptionWithCell.xib in Resources */,
+				B141AB7420BDC7FC009C06B4 /* AlertViewPromoCode.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -619,9 +645,11 @@
 				297D5F0920565F3A00ED5428 /* DEMOLeftMenuViewController.m in Sources */,
 				51094AA320B71A0000A60634 /* EHRoundedHorizontalViewCell.m in Sources */,
 				51094AA720B71ADF00A60634 /* SlideMenuVC.m in Sources */,
+				B141AB7320BDC7FC009C06B4 /* AlertViewPromoCode.m in Sources */,
 				297D5F0C205662DA00ED5428 /* HomeVC.m in Sources */,
 				B13EE80120BB31EE006E4471 /* FavoriteCell.m in Sources */,
 				2966E5A620BC1E6600DF0551 /* FavouriteVW.m in Sources */,
+				B141AB7820BDD9A5009C06B4 /* AlertViewAddAddress.m in Sources */,
 				297D5F0820565F3A00ED5428 /* DEMORootViewController.m in Sources */,
 				2966E5A920BC525900DF0551 /* CartVW.m in Sources */,
 				297D5EF92056556000ED5428 /* RegisterVW.m in Sources */,

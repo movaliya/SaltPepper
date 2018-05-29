@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="HelveticaNeue.ttc">
+            <string>HelveticaNeue-Bold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="AlertViewPromoCode">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q4X-Ru-XYX">
+                    <rect key="frame" x="37" y="243" width="300" height="180"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" tag="10" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PROMOTIONAL CODE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T0M-98-d7M">
+                            <rect key="frame" x="0.0" y="15" width="300" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="21" id="XQy-RF-dhf"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" tag="200" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kF1-uO-NFC">
+                            <rect key="frame" x="20" y="132" width="110" height="36"/>
+                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="110" id="J6y-Mr-hC4"/>
+                                <constraint firstAttribute="height" constant="36" id="VLJ-sr-o4H"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="20"/>
+                            <state key="normal" title="CANCEL"/>
+                        </button>
+                        <button opaque="NO" tag="200" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x0U-2K-BPA">
+                            <rect key="frame" x="170" y="132" width="110" height="36"/>
+                            <color key="backgroundColor" red="0.4823529411764706" green="0.043137254901960784" blue="0.047058823529411764" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="36" id="W0E-r9-Di2"/>
+                                <constraint firstAttribute="width" constant="110" id="ow9-ug-oc1"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="20"/>
+                            <state key="normal" title="APPLAY"/>
+                        </button>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Enter your promocode" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vfV-d1-3mf">
+                            <rect key="frame" x="8" y="66" width="284" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="Hyj-VR-v8L"/>
+                            </constraints>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
+                        </textField>
+                    </subviews>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="T0M-98-d7M" firstAttribute="leading" secondItem="q4X-Ru-XYX" secondAttribute="leading" id="757-XB-1yF"/>
+                        <constraint firstItem="vfV-d1-3mf" firstAttribute="top" secondItem="T0M-98-d7M" secondAttribute="bottom" constant="30" id="BZ0-iB-X4T"/>
+                        <constraint firstItem="vfV-d1-3mf" firstAttribute="leading" secondItem="q4X-Ru-XYX" secondAttribute="leading" constant="8" id="Gci-3W-PfJ"/>
+                        <constraint firstItem="x0U-2K-BPA" firstAttribute="leading" secondItem="kF1-uO-NFC" secondAttribute="trailing" constant="40" id="J1d-ye-q2a"/>
+                        <constraint firstAttribute="width" constant="300" id="MYD-3a-7cK"/>
+                        <constraint firstItem="kF1-uO-NFC" firstAttribute="centerY" secondItem="x0U-2K-BPA" secondAttribute="centerY" id="YAA-N0-jW0"/>
+                        <constraint firstAttribute="trailing" secondItem="T0M-98-d7M" secondAttribute="trailing" id="gc2-UT-nbx"/>
+                        <constraint firstAttribute="bottom" secondItem="kF1-uO-NFC" secondAttribute="bottom" constant="12" id="nCd-vk-ez8"/>
+                        <constraint firstAttribute="height" constant="180" id="pCG-5X-cDu"/>
+                        <constraint firstItem="T0M-98-d7M" firstAttribute="top" secondItem="q4X-Ru-XYX" secondAttribute="top" constant="15" id="tRQ-Zd-NUK"/>
+                        <constraint firstItem="x0U-2K-BPA" firstAttribute="centerX" secondItem="q4X-Ru-XYX" secondAttribute="centerX" constant="75" id="tbR-3p-62B"/>
+                        <constraint firstAttribute="trailing" secondItem="vfV-d1-3mf" secondAttribute="trailing" constant="8" id="xoe-MI-C0M"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="7"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="q4X-Ru-XYX" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="bqV-Cj-2r4"/>
+                <constraint firstItem="q4X-Ru-XYX" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="otZ-4Z-CCO"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="Applay_BTN" destination="x0U-2K-BPA" id="n9Y-lx-kFo"/>
+                <outlet property="BackView" destination="q4X-Ru-XYX" id="Egc-4V-bsV"/>
+                <outlet property="Cancel_BTN" destination="kF1-uO-NFC" id="0R4-MF-RVZ"/>
+                <outlet property="Promo_TXT" destination="vfV-d1-3mf" id="eFz-IH-40t"/>
+                <outlet property="Title_LBL" destination="T0M-98-d7M" id="PgM-WF-sFs"/>
+            </connections>
+            <point key="canvasLocation" x="-926" y="64"/>
+        </view>
+    </objects>
+</document>

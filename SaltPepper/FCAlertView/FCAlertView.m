@@ -1785,7 +1785,8 @@
     
 }
 
-- (void)addTextFieldWithCustomTextField:(UITextField *)field andPlaceholder:(NSString *)placeholder andTextReturnBlock:(FCTextReturnBlock)textReturn {
+- (void)addTextFieldWithCustomTextField:(UITextField *)field andPlaceholder:(NSString *)placeholder andTextReturnBlock:(FCTextReturnBlock)textReturn
+{
     
     if (placeholder == nil)
         placeholder = @"";

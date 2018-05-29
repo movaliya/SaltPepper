@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "AlertViewPromoCode.h"
 @interface CartVW : UIViewController
 {
      NSInteger QTYINT;
@@ -20,5 +20,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *GrandTotal_LBL;
 @property (weak, nonatomic) IBOutlet UIButton *ProceedToPayBTN;
 @property (weak, nonatomic) IBOutlet UITableView *TableVW;
+
+- (IBAction)ClearCart_Click:(id)sender;
+- (IBAction)Promocode_Click:(id)sender;
+
+@property (strong,nonatomic)AlertViewPromoCode *POPView;
 
 @end
