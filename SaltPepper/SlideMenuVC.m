@@ -740,8 +740,10 @@
         }
         NSLog(@"==%@",KmyappDelegate.MainCartArr);
     }
-    //_wo(@"FavDIC", KmyappDelegate.MainCartArr);
-    NSLog(@"==%@",KmyappDelegate.MainCartArr);
+    NSData *dataSave = [NSKeyedArchiver archivedDataWithRootObject:KmyappDelegate.MainCartArr];
+    [[NSUserDefaults standardUserDefaults] setObject:dataSave forKey:@"CartDIC"];
+    
+    [[NSUserDefaults standardUserDefaults] synchronize];
 
 }
 
@@ -790,7 +792,10 @@
         }
         NSLog(@"==%@",KmyappDelegate.MainCartArr);
     }
+    NSData *dataSave = [NSKeyedArchiver archivedDataWithRootObject:KmyappDelegate.MainCartArr];
+    [[NSUserDefaults standardUserDefaults] setObject:dataSave forKey:@"CartDIC"];
     
+    [[NSUserDefaults standardUserDefaults] synchronize];
     
 
 }
@@ -846,7 +851,11 @@
         //_wo(@"FavDIC", KmyappDelegate.MainFavArr);
     }
     NSLog(@"==%@",KmyappDelegate.MainFavArr);
-    //_wo(@"FavDIC", KmyappDelegate.MainFavArr);
+    NSData *dataSave = [NSKeyedArchiver archivedDataWithRootObject:KmyappDelegate.MainFavArr];
+    [[NSUserDefaults standardUserDefaults] setObject:dataSave forKey:@"FavDIC"];
+    
+    [[NSUserDefaults standardUserDefaults] synchronize];
+   // _wo(@"FavDIC", dataSave);
     
     NSMutableDictionary *intdic=[[NSMutableDictionary alloc]init];
     intdic=[[arrProductsItems objectAtIndex:changedRow.row] mutableCopy];
@@ -910,6 +919,10 @@
         }
         NSLog(@"MainFavArr==%@",KmyappDelegate.MainFavArr);
     }
+    NSData *dataSave = [NSKeyedArchiver archivedDataWithRootObject:KmyappDelegate.MainFavArr];
+    [[NSUserDefaults standardUserDefaults] setObject:dataSave forKey:@"FavDIC"];
+    
+    [[NSUserDefaults standardUserDefaults] synchronize];
     NSMutableDictionary *intdic=[[NSMutableDictionary alloc]init];
     intdic=[[arrProductsItems objectAtIndex:changedRow.row] mutableCopy];
     if (KmyappDelegate.MainFavArr!=nil)

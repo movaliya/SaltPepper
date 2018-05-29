@@ -10,6 +10,9 @@
 #import "RESideMenu.h"
 
 @interface FavouriteVW : UIViewController
+{
+   
+}
 @property (weak, nonatomic) IBOutlet UITableView *TableVW;
 
 @end

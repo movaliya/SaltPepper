@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="HkM-um-Q1w">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="HkM-um-Q1w">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -2324,7 +2324,7 @@
                                                 <color key="textColor" red="0.59607843140000005" green="0.59607843140000005" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imageView:shK-wB-pe8:image" translatesAutoresizingMaskIntoConstraints="NO" id="shK-wB-pe8">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="63469A79-14E0-4D1A-8CFD-F240688FBB0C" translatesAutoresizingMaskIntoConstraints="NO" id="shK-wB-pe8">
                                                 <rect key="frame" x="8" y="51" width="18" height="18"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="18" id="618-x6-CMf"/>
@@ -3542,6 +3542,9 @@
                                             <constraint firstAttribute="height" constant="43" id="IKa-lq-43w"/>
                                         </constraints>
                                         <state key="normal" title="   " image="MenuBtn"/>
+                                        <connections>
+                                            <action selector="MenuBtn_click:" destination="hVj-UR-Lif" eventType="touchUpInside" id="OoJ-iK-Xtx"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Cart" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TBp-mB-qsW">
                                         <rect key="frame" x="70" y="30" width="74" height="24"/>
@@ -3720,6 +3723,10 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vgh-gr-7x0">
                                 <rect key="frame" x="8" y="128" width="359" height="306"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="hVj-UR-Lif" id="64Y-52-8yt"/>
+                                    <outlet property="delegate" destination="hVj-UR-Lif" id="75H-nK-WWW"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.81960784313725488" green="0.81960784313725488" blue="0.81960784313725488" alpha="1" colorSpace="calibratedRGB"/>
@@ -3755,6 +3762,7 @@
                         <outlet property="Quantity_LBL" destination="EMr-0B-oBd" id="aft-dq-N6N"/>
                         <outlet property="SubTotal" destination="nFy-wU-XPp" id="Exv-va-pCO"/>
                         <outlet property="SubTotalUpperLBL" destination="EpS-45-KaW" id="8v2-Av-dv3"/>
+                        <outlet property="TableVW" destination="vgh-gr-7x0" id="fw6-pH-tRI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v5i-y8-DDQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3836,6 +3844,21 @@
         </scene>
     </scenes>
     <resources>
+        <image name="63469A79-14E0-4D1A-8CFD-F240688FBB0C" width="0.0" height="0.0">
+            <mutableData key="keyedArchiveRepresentation">
+YnBsaXN0MDDUAQIDBAUGODlYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoKwHCBEW
+GxwiIyksMjVVJG51bGzUCQoLDA0ODxBWJGNsYXNzXE5TSW1hZ2VGbGFnc1ZOU1JlcHNXTlNDb2xvcoAL
+EgTAAACAAoAJ0hIJExVaTlMub2JqZWN0c6EUgAOACNISCRcVohgZgASABYAIEAXTHQkeHyAhV05TLmJh
+c2VbTlMucmVsYXRpdmWAAIAHgAZfEHNmaWxlOi8vL0FwcGxpY2F0aW9ucy9YY29kZS5hcHAvQ29udGVu
+dHMvUGx1Z0lucy9JREVJbnRlcmZhY2VCdWlsZGVyS2l0LmZyYW1ld29yay9SZXNvdXJjZXMvSUJNaXNz
+aW5nSW1hZ2VHbHlwaC50aWZm0iQlJidaJGNsYXNzbmFtZVgkY2xhc3Nlc1VOU1VSTKImKFhOU09iamVj
+dNIkJSorV05TQXJyYXmiKijTLS4JLzAxV05TV2hpdGVcTlNDb2xvclNwYWNlRDAgMAAQA4AK0iQlMzRX
+TlNDb2xvcqIzKNIkJTY3V05TSW1hZ2WiNihfEA9OU0tleWVkQXJjaGl2ZXLROjtUcm9vdIABAAgAEQAa
+ACMALQAyADcARABKAFMAWgBnAG4AdgB4AH0AfwCBAIYAkQCTAJUAlwCcAJ8AoQCjAKUApwCuALYAwgDE
+AMYAyAE+AUMBTgFXAV0BYAFpAW4BdgF5AYABiAGVAZoBnAGeAaMBqwGuAbMBuwG+AdAB0wHYAAAAAAAA
+AgEAAAAAAAAAPAAAAAAAAAAAAAAAAAAAAdo
+</mutableData>
+        </image>
         <image name="BackBtn" width="17" height="17"/>
         <image name="BlackHeart" width="32" height="32"/>
         <image name="CartIconWhite" width="25" height="25"/>
@@ -3851,21 +3874,6 @@
         <image name="favIcon" width="25" height="25"/>
         <image name="ic_Fav" width="25" height="22"/>
         <image name="ic_contact" width="25" height="25"/>
-        <image name="imageView:shK-wB-pe8:image" width="16" height="16">
-            <mutableData key="keyedArchiveRepresentation">
-YnBsaXN0MDDUAQIDBAUGODlYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoKwHCBEW
-GxwiIyksMjVVJG51bGzUCQoLDA0ODxBWJGNsYXNzXE5TSW1hZ2VGbGFnc1ZOU1JlcHNXTlNDb2xvcoAL
-EgTAAACAAoAJ0hIJExVaTlMub2JqZWN0c6EUgAOACNISCRcVohgZgASABYAIEAXTHQkeHyAhV05TLmJh
-c2VbTlMucmVsYXRpdmWAAIAHgAZfEHNmaWxlOi8vL0FwcGxpY2F0aW9ucy9YY29kZS5hcHAvQ29udGVu
-dHMvUGx1Z0lucy9JREVJbnRlcmZhY2VCdWlsZGVyS2l0LmZyYW1ld29yay9SZXNvdXJjZXMvSUJNaXNz
-aW5nSW1hZ2VHbHlwaC50aWZm0iQlJidaJGNsYXNzbmFtZVgkY2xhc3Nlc1VOU1VSTKImKFhOU09iamVj
-dNIkJSorV05TQXJyYXmiKijTLS4JLzAxV05TV2hpdGVcTlNDb2xvclNwYWNlRDAgMAAQA4AK0iQlMzRX
-TlNDb2xvcqIzKNIkJTY3V05TSW1hZ2WiNihfEA9OU0tleWVkQXJjaGl2ZXLROjtUcm9vdIABAAgAEQAa
-ACMALQAyADcARABKAFMAWgBnAG4AdgB4AH0AfwCBAIYAkQCTAJUAlwCcAJ8AoQCjAKUApwCuALYAwgDE
-AMYAyAE+AUMBTgFXAV0BYAFpAW4BdgF5AYABiAGVAZoBnAGeAaMBqwGuAbMBuwG+AdAB0wHYAAAAAAAA
-AgEAAAAAAAAAPAAAAAAAAAAAAAAAAAAAAdo
-</mutableData>
-        </image>
         <image name="linkinedin_ic" width="25" height="25"/>
         <image name="location_icon" width="25" height="25"/>
         <image name="message_icon" width="25" height="19"/>
