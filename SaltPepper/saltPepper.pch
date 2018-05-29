@@ -92,7 +92,7 @@
 #define GETPROFILE @"GetProfileDetails.php"
 #define UPDATEPROFILE @"UpdateProfile.php"
 #define RESERVATION @"Reservation.php"
-
+#define CONTACTUS @"contactus.php"
 
 //Check if iphone5 or iphone 4
 #define isIPhone5 ([UIScreen mainScreen].bounds.size.height == 568.0)
