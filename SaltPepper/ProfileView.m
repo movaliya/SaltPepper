@@ -120,8 +120,8 @@
 -(void)GetProfileDetail
 {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    
-    NSString *CutomerID = [[[[[[_ro(@"LoginUserDic") objectForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"customerid"];
+    NSMutableArray *Userdata=[AppDelegate GetData:@"LoginUserDic"];
+    NSString *CutomerID = [[[[[[Userdata valueForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"customerid"];
     
     NSMutableDictionary *dict1 = [[NSMutableDictionary alloc] init];
     [dict1 setValue:KAPIKEY forKey:@"APIKEY"];

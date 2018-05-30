@@ -785,10 +785,8 @@
         }
         NSLog(@"==%@",KmyappDelegate.MainCartArr);
     }
-    NSData *dataSave = [NSKeyedArchiver archivedDataWithRootObject:KmyappDelegate.MainCartArr];
-    [[NSUserDefaults standardUserDefaults] setObject:dataSave forKey:@"CartDIC"];
-    
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    [AppDelegate WriteData:@"CartDIC" RootObject:KmyappDelegate.MainCartArr];
+  
 
     FCAlertView *alert = [KmyappDelegate ShowAlertWithBtnAction:@"Item added to cart successfully" andStrTile:nil andbtnTitle:@"OK" andButtonArray:@[]];
     
@@ -839,10 +837,8 @@
         }
         NSLog(@"==%@",KmyappDelegate.MainCartArr);
     }
-    NSData *dataSave = [NSKeyedArchiver archivedDataWithRootObject:KmyappDelegate.MainCartArr];
-    [[NSUserDefaults standardUserDefaults] setObject:dataSave forKey:@"CartDIC"];
-    
-    [[NSUserDefaults standardUserDefaults] synchronize];
+     [AppDelegate WriteData:@"CartDIC" RootObject:KmyappDelegate.MainCartArr];
+   
     
     FCAlertView *alert = [KmyappDelegate ShowAlertWithBtnAction:@"Item added to cart successfully" andStrTile:nil andbtnTitle:@"OK" andButtonArray:@[]];
 }
@@ -898,10 +894,7 @@
         //_wo(@"FavDIC", KmyappDelegate.MainFavArr);
     }
     NSLog(@"==%@",KmyappDelegate.MainFavArr);
-    NSData *dataSave = [NSKeyedArchiver archivedDataWithRootObject:KmyappDelegate.MainFavArr];
-    [[NSUserDefaults standardUserDefaults] setObject:dataSave forKey:@"FavDIC"];
-    
-    [[NSUserDefaults standardUserDefaults] synchronize];
+     [AppDelegate WriteData:@"FavDIC" RootObject:KmyappDelegate.MainFavArr];
    // _wo(@"FavDIC", dataSave);
     
     NSMutableDictionary *intdic=[[NSMutableDictionary alloc]init];
@@ -966,10 +959,8 @@
         }
         NSLog(@"MainFavArr==%@",KmyappDelegate.MainFavArr);
     }
-    NSData *dataSave = [NSKeyedArchiver archivedDataWithRootObject:KmyappDelegate.MainFavArr];
-    [[NSUserDefaults standardUserDefaults] setObject:dataSave forKey:@"FavDIC"];
-    
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    [AppDelegate WriteData:@"FavDIC" RootObject:KmyappDelegate.MainFavArr];
+
     NSMutableDictionary *intdic=[[NSMutableDictionary alloc]init];
     intdic=[[arrProductsItems objectAtIndex:changedRow.row] mutableCopy];
     if (KmyappDelegate.MainFavArr!=nil)

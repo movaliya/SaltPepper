@@ -29,6 +29,9 @@
     
     Applay_BTN.layer.cornerRadius=18.0f;
     Cancel_BTN.layer.cornerRadius=18.0f;
+    
+    
+    
  
 }
 

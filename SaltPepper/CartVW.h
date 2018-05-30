@@ -19,7 +19,12 @@
 @property (weak, nonatomic) IBOutlet UILabel *Discount_LBL;
 @property (weak, nonatomic) IBOutlet UILabel *GrandTotal_LBL;
 @property (weak, nonatomic) IBOutlet UIButton *ProceedToPayBTN;
+@property (weak, nonatomic) IBOutlet UIView *UpperView;
 @property (weak, nonatomic) IBOutlet UITableView *TableVW;
+@property (weak, nonatomic) IBOutlet UILabel *NotItem_LBL;
+@property (weak, nonatomic) IBOutlet UIView *TotalView;
+@property (weak, nonatomic) IBOutlet UIButton *ClearBtn;
+@property (weak, nonatomic) IBOutlet UIButton *PromoBtn;
 
 - (IBAction)ClearCart_Click:(id)sender;
 - (IBAction)Promocode_Click:(id)sender;

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -111,7 +111,7 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Date of Birht" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KZE-dg-AtT">
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Contact Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KZE-dg-AtT">
                                             <rect key="frame" x="10" y="350" width="335" height="40"/>
                                             <color key="backgroundColor" red="0.83921568629999999" green="0.84313725490000002" blue="0.84313725490000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
@@ -135,7 +135,7 @@
                                                 <constraint firstAttribute="width" constant="120" id="ow9-ug-oc1"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="20"/>
-                                            <state key="normal" title="APPLAY"/>
+                                            <state key="normal" title="APPLY"/>
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -212,6 +212,13 @@
                 <outlet property="Applay_BTN" destination="x0U-2K-BPA" id="n9Y-lx-kFo"/>
                 <outlet property="BackView" destination="q4X-Ru-XYX" id="Egc-4V-bsV"/>
                 <outlet property="Cancel_BTN" destination="kF1-uO-NFC" id="0R4-MF-RVZ"/>
+                <outlet property="ContactNumberTXT" destination="KZE-dg-AtT" id="vGR-Ck-3CE"/>
+                <outlet property="CountryTXT" destination="vIk-oa-BHi" id="ljH-UO-seT"/>
+                <outlet property="HouseNoNameTXT" destination="G8E-Kt-rup" id="MwJ-BD-ujH"/>
+                <outlet property="PostCodeTXT" destination="fry-g5-wgc" id="BDr-Ch-hd0"/>
+                <outlet property="StateTXT" destination="DZk-WE-O2J" id="S6s-5W-Mm1"/>
+                <outlet property="StreetTXT" destination="Qcl-Or-NPy" id="XEa-ei-LZk"/>
+                <outlet property="TownTXT" destination="2bY-iS-rHV" id="6eE-uU-hnW"/>
             </connections>
             <point key="canvasLocation" x="-926.5" y="63.5"/>
         </view>
