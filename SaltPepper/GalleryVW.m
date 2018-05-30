@@ -55,7 +55,7 @@
     
     NSMutableDictionary *dictSub = [[NSMutableDictionary alloc] init];
     [dictSub setObject:@"getitem" forKey:@"MODULE"];
-    [dictSub setObject:@"topCategories" forKey:@"METHOD"];
+    [dictSub setObject:@"galleryImages" forKey:@"METHOD"];
     
     NSMutableArray *arr = [[NSMutableArray alloc] initWithObjects:dictSub, nil];
     NSMutableDictionary *dictREQUESTPARAM = [[NSMutableDictionary alloc] init];
@@ -68,13 +68,13 @@
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictREQUESTPARAM options:NSJSONWritingPrettyPrinted error:&error];
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&error];
     
-    NSString *makeURL=[NSString stringWithFormat:@"%@%@",kBaseURL,CATEGORY];
+    NSString *makeURL=[NSString stringWithFormat:@"%@%@",kBaseURL,GALLERYIMAGE];
     
     [Utility postRequest:json url:makeURL success:^(id result)
      {
          if (![result isKindOfClass:[NSString class]])
          {
-             [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
             NSString *SUCCESS=[[[[result objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"galleryImages"] objectForKey:@"SUCCESS"];
              if ([SUCCESS boolValue] ==YES)
              {
@@ -135,7 +135,7 @@
     
     NSString *Urlstr=[[GalleryDataArr valueForKey:@"image_path"] objectAtIndex:indexPath.row];
     [cell.IconImageview sd_setImageWithURL:[NSURL URLWithString:Urlstr] placeholderImage:[UIImage imageNamed:@"placeholder_img"]];
-    //[cell.IconImageview setShowActivityIndicatorView:YES];
+    [cell.IconImageview sd_setShowActivityIndicatorView:YES];
     return cell;
     
 }

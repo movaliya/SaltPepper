@@ -45,6 +45,8 @@
 		297D5F0920565F3A00ED5428 /* DEMOLeftMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 297D5F0420565F3A00ED5428 /* DEMOLeftMenuViewController.m */; };
 		297D5F0C205662DA00ED5428 /* HomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 297D5F0B205662DA00ED5428 /* HomeVC.m */; };
 		298CD2B742089A26D28B12F9 /* libPods-SaltPepper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AC61B705EFD9F887970D0E9 /* libPods-SaltPepper.a */; settings = {ATTRIBUTES = (Weak, ); }; };
+		51001DAE20BF19AC003887DC /* ReservationHistoryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 51001DAD20BF19AC003887DC /* ReservationHistoryVC.m */; };
+		51001DB120BF19CB003887DC /* ResHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 51001DB020BF19CB003887DC /* ResHistoryCell.m */; };
 		5105385B20B88337003DF489 /* SharedClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 5105385920B88336003DF489 /* SharedClass.m */; };
 		51061D4E20BDC54E0019FA10 /* SendFeedbackVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 51061D4D20BDC54E0019FA10 /* SendFeedbackVC.m */; };
 		51093A8220BA9034008A05C7 /* MainiPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51093A8120BA9034008A05C7 /* MainiPad.storyboard */; };
@@ -150,6 +152,10 @@
 		297D5F0A205662DA00ED5428 /* HomeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeVC.h; sourceTree = "<group>"; };
 		297D5F0B205662DA00ED5428 /* HomeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeVC.m; sourceTree = "<group>"; };
 		3CD83B87AB40AD090BA3594E /* Pods-SaltPepper.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SaltPepper.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SaltPepper/Pods-SaltPepper.debug.xcconfig"; sourceTree = "<group>"; };
+		51001DAC20BF19AC003887DC /* ReservationHistoryVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReservationHistoryVC.h; sourceTree = "<group>"; };
+		51001DAD20BF19AC003887DC /* ReservationHistoryVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReservationHistoryVC.m; sourceTree = "<group>"; };
+		51001DAF20BF19CB003887DC /* ResHistoryCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ResHistoryCell.h; sourceTree = "<group>"; };
+		51001DB020BF19CB003887DC /* ResHistoryCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ResHistoryCell.m; sourceTree = "<group>"; };
 		5105385920B88336003DF489 /* SharedClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharedClass.m; sourceTree = "<group>"; };
 		5105385A20B88336003DF489 /* SharedClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedClass.h; sourceTree = "<group>"; };
 		51061D4C20BDC54E0019FA10 /* SendFeedbackVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SendFeedbackVC.h; sourceTree = "<group>"; };
@@ -427,6 +433,10 @@
 				295E072D206F720F00BC4ADB /* ReservationVW.m */,
 				295E072E206F720F00BC4ADB /* ReservationSubVW.h */,
 				295E072F206F720F00BC4ADB /* ReservationSubVW.m */,
+				51001DAC20BF19AC003887DC /* ReservationHistoryVC.h */,
+				51001DAD20BF19AC003887DC /* ReservationHistoryVC.m */,
+				51001DAF20BF19CB003887DC /* ResHistoryCell.h */,
+				51001DB020BF19CB003887DC /* ResHistoryCell.m */,
 				2966E5A420BC1E6600DF0551 /* FavouriteVW.h */,
 				2966E5A520BC1E6600DF0551 /* FavouriteVW.m */,
 				295CD5A9206A2725002129FD /* GalleryVW.h */,
@@ -649,6 +659,7 @@
 				295E0741206F943800BC4ADB /* VideoGallaryView.m in Sources */,
 				B138A0C920B72F5600835899 /* OptionWithCell.m in Sources */,
 				B16C72AE20B97FFA0041C6B9 /* ProfileView.m in Sources */,
+				51001DB120BF19CB003887DC /* ResHistoryCell.m in Sources */,
 				51061D4E20BDC54E0019FA10 /* SendFeedbackVC.m in Sources */,
 				2920EB6B20BD9A4A0094916F /* CartCell.m in Sources */,
 				294B5C4B205A9D2B00794D47 /* MenuListCollectCELL.m in Sources */,
@@ -676,6 +687,7 @@
 				295E0730206F720F00BC4ADB /* ReservationVW.m in Sources */,
 				297D5F0620565F3A00ED5428 /* RESideMenu.m in Sources */,
 				B1B9F1D520BA7E7A008D2FAD /* ASPopUpView.m in Sources */,
+				51001DAE20BF19AC003887DC /* ReservationHistoryVC.m in Sources */,
 				5126749A20B9DBCC002321F7 /* CategoryItemCell.m in Sources */,
 				295E0731206F720F00BC4ADB /* ReservationSubVW.m in Sources */,
 				297D5EBC2056455400ED5428 /* StartUpVW.m in Sources */,

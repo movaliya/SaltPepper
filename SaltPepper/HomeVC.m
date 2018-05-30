@@ -31,8 +31,10 @@
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
     [MenuCollectionVW setCollectionViewLayout:flowLayout];
 
-    [self SetheaderScroll];
+    BannerImageDataArr=[[NSMutableArray alloc]init];
+
     [self CallCategoryList];
+    [self CallBannerImage];
 }
 
 -(void)SetheaderScroll
@@ -61,10 +63,14 @@
     int x=0;
     
     
-    for (int i=0; i<3; i++)
+    for (int i=0; i<BannerImageDataArr.count; i++)
     {
        UIImageView *Headerimg=[[UIImageView alloc]initWithFrame:CGRectMake(x, 0, SCREEN_WIDTH, 260)];
-        Headerimg.image = [UIImage imageNamed:@"bannerImage.jpg"];
+        //Headerimg.image = [UIImage imageNamed:@"bannerImage.jpg"];
+        NSString *Urlstr = [[BannerImageDataArr valueForKey:@"image_path"] objectAtIndex:i];
+        [Headerimg sd_setImageWithURL:[NSURL URLWithString:Urlstr] placeholderImage:[UIImage imageNamed:@"placeholder_img"]];
+        [Headerimg sd_setShowActivityIndicatorView:YES];
+        
         //Headerimg.image=[UIImage imageNamed:@"HomeLogo"];
         [bannerscroll addSubview:Headerimg];
         
@@ -84,6 +90,59 @@
         NSInteger page = lround(fractionalPage);
         pagesControl.currentPage = page;
     }
+}
+
+-(void)CallBannerImage
+{
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    NSMutableDictionary *dict1 = [[NSMutableDictionary alloc] init];
+    
+    [dict1 setValue:KAPIKEY forKey:@"APIKEY"];
+    
+    NSMutableDictionary *dictSub = [[NSMutableDictionary alloc] init];
+    [dictSub setObject:@"getitem" forKey:@"MODULE"];
+    [dictSub setObject:@"bannerImages" forKey:@"METHOD"];
+    
+    NSMutableArray *arr = [[NSMutableArray alloc] initWithObjects:dictSub, nil];
+    NSMutableDictionary *dictREQUESTPARAM = [[NSMutableDictionary alloc] init];
+    
+    [dictREQUESTPARAM setObject:arr forKey:@"REQUESTPARAM"];
+    [dictREQUESTPARAM setObject:dict1 forKey:@"RESTAURANT"];
+    
+    NSError* error = nil;
+    
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictREQUESTPARAM options:NSJSONWritingPrettyPrinted error:&error];
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&error];
+    
+    NSString *makeURL=[NSString stringWithFormat:@"%@%@",kBaseURL,BANNERIMAGE];
+    
+    [Utility postRequest:json url:makeURL success:^(id result)
+     {
+         if (![result isKindOfClass:[NSString class]])
+         {
+             [MBProgressHUD hideHUDForView:self.view animated:YES];
+             NSString *SUCCESS=[[[[result objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"bannerImages"] objectForKey:@"SUCCESS"];
+             if ([SUCCESS boolValue] ==YES)
+             {
+                 BannerImageDataArr=[[[[[[result objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"bannerImages"] objectForKey:@"result"] objectForKey:@"bannerImages"] mutableCopy];
+                 [self SetheaderScroll];
+             }
+         }
+     }failure:^(NSError *error)
+     {
+         [MBProgressHUD hideHUDForView:self.view animated:YES];
+         if (![Utility connected])
+         {
+             //[sharedAppDel ShowAlertWithOneBtn:kReachability andStrTitle:nil andbtnTitle:@"OK"];
+         }
+         else
+         {
+             //[sharedAppDel ShowAlertWithOneBtn:[result valueForKey:@"message"] andStrTitle:nil andbtnTitle:@"OK"];
+         }
+     }];
+    
+    
 }
 
 - (void)CallCategoryList

@@ -105,6 +105,9 @@
                 [self.sideMenuViewController hideMenuViewController];
                 break;
             case 3:
+                [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"ReservationHistoryVC"]]
+                                                             animated:YES];
+                [self.sideMenuViewController hideMenuViewController];
                 // Reservation Histry
                 break;
             case 4:
