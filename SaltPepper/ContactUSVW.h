@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface ContactUSVW : UIViewController
-
+@property (weak, nonatomic) IBOutlet UILabel *lblAddress;
 @end

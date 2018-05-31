@@ -12,6 +12,7 @@
 @interface HomeVC : UIViewController
 {
     NSMutableArray *BannerImageDataArr;
+    NSMutableArray *OfferTextArr;
 }
 @property (weak, nonatomic) IBOutlet UICollectionView *MenuCollectionVW;
 @property (weak, nonatomic) IBOutlet UIPageControl *pagesControl;

@@ -32,9 +32,12 @@
     [MenuCollectionVW setCollectionViewLayout:flowLayout];
 
     BannerImageDataArr=[[NSMutableArray alloc]init];
+    OfferTextArr=[[NSMutableArray alloc]init];
 
+    [self CallOfferText];
     [self CallCategoryList];
     [self CallBannerImage];
+    
 }
 
 -(void)SetheaderScroll
@@ -73,6 +76,110 @@
         
         //Headerimg.image=[UIImage imageNamed:@"HomeLogo"];
         [bannerscroll addSubview:Headerimg];
+        [bannerscroll bringSubviewToFront:Headerimg];
+        
+        if (OfferTextArr.count>i)
+        {
+            if (i==0)
+            {
+                for (int i =0 ; i<OfferTextArr.count; i++)
+                {
+                    if (i==0)
+                    {
+                        UILabel *First_LBL=[[UILabel alloc]initWithFrame:CGRectMake(x, 260-190, SCREEN_WIDTH, 40)];
+                        First_LBL.text=[OfferTextArr objectAtIndex:i];
+                        First_LBL.font=[UIFont boldSystemFontOfSize:30];
+                        First_LBL.textAlignment=NSTextAlignmentCenter;
+                        First_LBL.textColor=[UIColor whiteColor];
+                        [bannerscroll addSubview:First_LBL];
+                    }
+                    else if (i==1)
+                    {
+                        UILabel *Second_LBL=[[UILabel alloc]initWithFrame:CGRectMake(x, 260-145, SCREEN_WIDTH, 30)];
+                        Second_LBL.text=[OfferTextArr objectAtIndex:i];
+                        Second_LBL.font=[UIFont boldSystemFontOfSize:20];
+                        Second_LBL.textAlignment=NSTextAlignmentCenter;
+                        Second_LBL.textColor=[UIColor whiteColor];
+                        [bannerscroll addSubview:Second_LBL];
+                    }
+                    else if (i==2)
+                    {
+                        UILabel *thert_LBL=[[UILabel alloc]initWithFrame:CGRectMake(x, 260-115, SCREEN_WIDTH, 30)];
+                        thert_LBL.text=[OfferTextArr objectAtIndex:i];
+                        thert_LBL.font=[UIFont boldSystemFontOfSize:12];
+                        thert_LBL.textAlignment=NSTextAlignmentCenter;
+                        thert_LBL.textColor=[UIColor whiteColor];
+                        [bannerscroll addSubview:thert_LBL];
+                    }
+                }
+            }
+            else if (i==1)
+            {
+                for (int i =0 ; i<OfferTextArr.count; i++)
+                {
+                    if (i==0)
+                    {
+                        UILabel *First_LBL=[[UILabel alloc]initWithFrame:CGRectMake(x, 260-190, SCREEN_WIDTH, 40)];
+                        First_LBL.text=[OfferTextArr  objectAtIndex:i];
+                        First_LBL.font=[UIFont boldSystemFontOfSize:30];
+                        First_LBL.textAlignment=NSTextAlignmentCenter;
+                        First_LBL.textColor=[UIColor whiteColor];
+                        [bannerscroll addSubview:First_LBL];
+                    }
+                    else if (i==1)
+                    {
+                        UILabel *Second_LBL=[[UILabel alloc]initWithFrame:CGRectMake(x, 260-145, SCREEN_WIDTH, 30)];
+                        Second_LBL.text=[OfferTextArr objectAtIndex:i];
+                        Second_LBL.font=[UIFont boldSystemFontOfSize:20];
+                        Second_LBL.textAlignment=NSTextAlignmentCenter;
+                        Second_LBL.textColor=[UIColor whiteColor];
+                        [bannerscroll addSubview:Second_LBL];
+                    }
+                    else if (i==2)
+                    {
+                        UILabel *thert_LBL=[[UILabel alloc]initWithFrame:CGRectMake(x, 260-115, SCREEN_WIDTH, 30)];
+                        thert_LBL.text=[OfferTextArr objectAtIndex:i];
+                        thert_LBL.font=[UIFont boldSystemFontOfSize:12];
+                        thert_LBL.textAlignment=NSTextAlignmentCenter;
+                        thert_LBL.textColor=[UIColor whiteColor];
+                        [bannerscroll addSubview:thert_LBL];
+                    }
+                }
+            }
+            else if (i==2)
+            {
+                for (int i =0 ; i<OfferTextArr.count; i++)
+                {
+                    if (i==0)
+                    {
+                        UILabel *First_LBL=[[UILabel alloc]initWithFrame:CGRectMake(x, 260-190, SCREEN_WIDTH, 40)];
+                        First_LBL.text=[OfferTextArr  objectAtIndex:i];
+                        First_LBL.font=[UIFont boldSystemFontOfSize:30];
+                        First_LBL.textAlignment=NSTextAlignmentCenter;
+                        First_LBL.textColor=[UIColor whiteColor];
+                        [bannerscroll addSubview:First_LBL];
+                    }
+                    else if (i==1)
+                    {
+                        UILabel *Second_LBL=[[UILabel alloc]initWithFrame:CGRectMake(x, 260-145, SCREEN_WIDTH, 30)];
+                        Second_LBL.text=[OfferTextArr objectAtIndex:i];
+                        Second_LBL.font=[UIFont boldSystemFontOfSize:20];
+                        Second_LBL.textAlignment=NSTextAlignmentCenter;
+                        Second_LBL.textColor=[UIColor whiteColor];
+                        [bannerscroll addSubview:Second_LBL];
+                    }
+                    else if (i==2)
+                    {
+                        UILabel *thert_LBL=[[UILabel alloc]initWithFrame:CGRectMake(x, 260-115, SCREEN_WIDTH, 30)];
+                        thert_LBL.text=[OfferTextArr objectAtIndex:i];
+                        thert_LBL.font=[UIFont boldSystemFontOfSize:12];
+                        thert_LBL.textAlignment=NSTextAlignmentCenter;
+                        thert_LBL.textColor=[UIColor whiteColor];
+                        [bannerscroll addSubview:thert_LBL];
+                    }
+                }
+            }
+        }
         
         x=x+SCREEN_WIDTH;
     }
@@ -83,6 +190,11 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)sender
 {
+    if([sender isKindOfClass:[UITableView class]])
+    {
+        return;
+    }
+    
     if (sender==bannerscroll)
     {
         CGFloat pageWidth = bannerscroll.frame.size.width;
@@ -90,6 +202,59 @@
         NSInteger page = lround(fractionalPage);
         pagesControl.currentPage = page;
     }
+}
+
+-(void)CallOfferText
+{
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    NSMutableDictionary *dict1 = [[NSMutableDictionary alloc] init];
+    
+    [dict1 setValue:KAPIKEY forKey:@"APIKEY"];
+    
+    NSMutableDictionary *dictSub = [[NSMutableDictionary alloc] init];
+    [dictSub setObject:@"getitem" forKey:@"MODULE"];
+    [dictSub setObject:@"offerText" forKey:@"METHOD"];
+    
+    NSMutableArray *arr = [[NSMutableArray alloc] initWithObjects:dictSub, nil];
+    NSMutableDictionary *dictREQUESTPARAM = [[NSMutableDictionary alloc] init];
+    
+    [dictREQUESTPARAM setObject:arr forKey:@"REQUESTPARAM"];
+    [dictREQUESTPARAM setObject:dict1 forKey:@"RESTAURANT"];
+    
+    NSError* error = nil;
+    
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictREQUESTPARAM options:NSJSONWritingPrettyPrinted error:&error];
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&error];
+    
+    NSString *makeURL=[NSString stringWithFormat:@"%@%@",kBaseURL,OFFERTEXT];
+    
+    [Utility postRequest:json url:makeURL success:^(id result)
+     {
+         if (![result isKindOfClass:[NSString class]])
+         {
+             [MBProgressHUD hideHUDForView:self.view animated:YES];
+             NSString *SUCCESS=[[[[result objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"offerText"] objectForKey:@"SUCCESS"];
+             if ([SUCCESS boolValue] ==YES)
+             {
+                 OfferTextArr=[[[[[[result objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"offerText"] objectForKey:@"result"] objectForKey:@"offerText"] mutableCopy];
+                 [self SetheaderScroll];
+             }
+         }
+     }failure:^(NSError *error)
+     {
+         [MBProgressHUD hideHUDForView:self.view animated:YES];
+         if (![Utility connected])
+         {
+             //[sharedAppDel ShowAlertWithOneBtn:kReachability andStrTitle:nil andbtnTitle:@"OK"];
+         }
+         else
+         {
+             //[sharedAppDel ShowAlertWithOneBtn:[result valueForKey:@"message"] andStrTitle:nil andbtnTitle:@"OK"];
+         }
+     }];
+    
+    
 }
 
 -(void)CallBannerImage

@@ -94,8 +94,6 @@
              //[sharedAppDel ShowAlertWithOneBtn:[result valueForKey:@"message"] andStrTitle:nil andbtnTitle:@"OK"];
          }
      }];
-    
-    
 }
 
 - (IBAction)backBtn_action:(id)sender

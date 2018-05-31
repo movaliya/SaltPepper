@@ -99,7 +99,7 @@
     [dictInner setObject:_txtFName.text forKey:@"FULLNAME"];
     [dictInner setObject:_txtEmail.text forKey:@"EMAIL"];
     [dictInner setObject:_txtMsg.text forKey:@"MESSAGE"];
-    [dictInner setObject:_txtMsg.text forKey:@"PHONE"];
+    [dictInner setObject:_txtContact.text forKey:@"PHONE"];
     
     NSMutableDictionary *dictSub = [[NSMutableDictionary alloc] init];
     [dictSub setObject:@"action" forKey:@"MODULE"];
