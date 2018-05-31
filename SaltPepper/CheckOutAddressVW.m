@@ -70,13 +70,13 @@
         [self AcceptedOrderTypes];
     else
         [AppDelegate showErrorMessageWithTitle:@"" message:@"Please check your internet connection or try again later." delegate:nil];
-    NSLog(@"dic==%@",_ro(@"LoginUserDic"));
     // Do any additional setup after loading the view.
 }
 -(void)CollTimeTextField:(id)sender
 {
     UIDatePicker *picker = (UIDatePicker*)self.CollectionTimeTXT.inputView;
     self.CollectionTime_LBL.text = [self formatDate:picker.date];
+  
 }
 -(void)DeliveyTimeTextField:(id)sender
 {
@@ -89,6 +89,10 @@
     [dateFormatter setDateStyle:NSDateFormatterShortStyle];
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     NSString *formattedDate = [dateFormatter stringFromDate:date];
+    
+    [dateFormatter setDateFormat:@"EEEE"];
+    NSLog(@"%@",[dateFormatter stringFromDate:date]);
+    [self Discount:[dateFormatter stringFromDate:date]];
     return formattedDate;
 }
 
@@ -137,6 +141,7 @@
                 self.DeliveryBtn.hidden=NO;
                 self.CollectionView.hidden=NO;
                 self.DeliveryView.hidden=YES;
+                UserOrderType=@"Collection";
             }
             else if ([getAcceptedOrderTypes isEqualToString:@"Collection"])
             {
@@ -145,6 +150,7 @@
                 self.DeliveryBtn.hidden=YES;
                 self.CollectionView.hidden=NO;
                 self.DeliveryView.hidden=YES;
+                 UserOrderType=@"Collection";
             }
             else
             {
@@ -154,6 +160,7 @@
                 self.DeliveryBtn.hidden=NO;
                 self.CollectionView.hidden=YES;
                 self.DeliveryView.hidden=NO;
+                 UserOrderType=@"Delivery";
             }
         }
 
@@ -171,7 +178,6 @@
     [self.CollectionBtn setImage:[UIImage imageNamed:@"RadioON"] forState:UIControlStateNormal];
     [self.DeliveryBtn setImage:[UIImage imageNamed:@"RadioOFF"] forState:UIControlStateNormal];
    
-    
     switch ([sender tag])
     {
         case 0:
@@ -181,12 +187,14 @@
                 [self.DeliveryBtn setImage:[UIImage imageNamed:@"RadioON"] forState:UIControlStateNormal];
                 self.CollectionView.hidden=YES;
                 self.DeliveryView.hidden=NO;
+                 UserOrderType=@"Delivery";
             }
             else{
                 [self.CollectionBtn setImage:[UIImage imageNamed:@"RadioON"] forState:UIControlStateNormal];
                 [self.DeliveryBtn setImage:[UIImage imageNamed:@"RadioOFF"] forState:UIControlStateNormal];
                 self.CollectionView.hidden=NO;
                 self.DeliveryView.hidden=YES;
+                 UserOrderType=@"Collection";
                 
             }
             
@@ -198,6 +206,7 @@
                 [self.CollectionBtn setImage:[UIImage imageNamed:@"RadioON"] forState:UIControlStateNormal];
                 self.CollectionView.hidden=NO;
                 self.DeliveryView.hidden=YES;
+                UserOrderType=@"Collection";
                 
             }
             else{
@@ -205,6 +214,7 @@
                 [self.CollectionBtn setImage:[UIImage imageNamed:@"RadioOFF"] forState:UIControlStateNormal];
                 self.CollectionView.hidden=YES;
                 self.DeliveryView.hidden=NO;
+                 UserOrderType=@"Delivery";
             }
             
             break;
@@ -212,7 +222,65 @@
             break;
     }
 }
-
+-(void)Discount:(NSString *)day
+{
+   
+    self.GrandTotal = [ self.GrandTotal stringByReplacingOccurrencesOfString:@"£"  withString:@""];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    NSMutableDictionary *dict1 = [[NSMutableDictionary alloc] init];
+    [dict1 setValue:KAPIKEY forKey:@"APIKEY"];
+    
+    
+    NSMutableDictionary *dictInner = [[NSMutableDictionary alloc] init];
+    [dictInner setObject:self.GrandTotal forKey:@"TOTALSUM"];
+    [dictInner setObject:day forKey:@"DAY"];
+    [dictInner setObject:UserOrderType forKey:@"ORDERTYPE"];
+    
+    
+    NSMutableDictionary *dictSub = [[NSMutableDictionary alloc] init];
+    [dictSub setObject:@"getitem" forKey:@"MODULE"];
+    [dictSub setObject:@"orderDiscount" forKey:@"METHOD"];
+    [dictSub setObject:dictInner forKey:@"PARAMS"];
+    
+    
+    NSMutableArray *arr = [[NSMutableArray alloc] initWithObjects:dictSub, nil];
+    NSMutableDictionary *dictREQUESTPARAM = [[NSMutableDictionary alloc] init];
+    
+    [dictREQUESTPARAM setObject:arr forKey:@"REQUESTPARAM"];
+    [dictREQUESTPARAM setObject:dict1 forKey:@"RESTAURANT"];
+    
+    
+    NSError* error = nil;
+    
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictREQUESTPARAM options:NSJSONWritingPrettyPrinted error:&error];
+    // NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                         options:NSJSONReadingMutableContainers
+                                                           error:&error];
+    NSString *makeURL=[NSString stringWithFormat:@"%@%@",kBaseURL,DISCOUNT];
+    [Utility postRequest:json url:makeURL success:^(id responseObject) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"orderDiscount"] objectForKey:@"SUCCESS"];
+        if ([SUCCESS boolValue] ==YES)
+        {
+            orderDiscount=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"orderDiscount"] objectForKey:@"RESULT"] objectForKey:@"orderDiscount"];
+            
+            self.GrandTotal_LBL.text=[NSString stringWithFormat:@"£%@",[orderDiscount objectForKey:@"totalprice"]];
+            self.Discount_LBL.text=[NSString stringWithFormat:@"£%@",[orderDiscount objectForKey:@"discount"]];
+        }
+        
+    } failure:^(NSError *error) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        NSLog(@"Fail");
+    }];
+    
+}
 - (IBAction)SetAddress_Click:(id)sender
 {
     [self ShowPopUpAnimation];

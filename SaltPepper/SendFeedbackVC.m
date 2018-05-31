@@ -31,6 +31,16 @@
     _viewContact.layer.borderWidth = 1.0;
     
     _btnSubmit.layer.cornerRadius = 20;
+    
+    NSMutableArray *Userdata=[AppDelegate GetData:@"LoginUserDic"];
+    if (Userdata)
+    {
+        NSString *customer_name = [[[[[[[Userdata valueForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"myProfile"] objectForKey:@"customer_name"];
+        NSString *customer_email = [[[[[[[Userdata valueForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"myProfile"] objectForKey:@"email"];
+        _txtFName.text=customer_name;
+        _txtEmail.text=customer_email;
+    }
+   
     // Do any additional setup after loading the view.
 }
 

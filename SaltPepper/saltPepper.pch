@@ -99,6 +99,7 @@
 #define GALLERYIMAGE @"GalleryImage.php"
 #define VIDEOGALLERY @"VideoGallery.php"
 #define BANNERIMAGE @"BannerImage.php"
+#define DISCOUNT @"discount.php"
 
 //Check if iphone5 or iphone 4
 #define isIPhone5 ([UIScreen mainScreen].bounds.size.height == 568.0)

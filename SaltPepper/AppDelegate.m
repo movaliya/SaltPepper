@@ -60,6 +60,7 @@
     }
     return isInternet;
 }
+// Save NSDictnory in NSUserDefaults
 +(void)WriteData:(NSString *)DictName RootObject:(id)rootObject
 {
     NSData *dataSave = [NSKeyedArchiver archivedDataWithRootObject:rootObject];
@@ -67,6 +68,8 @@
     
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
+
+// Retrive NSDictnory From NSUserDefaults
 +(NSMutableArray*)GetData:(NSString *)DictName
 {
     NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:DictName];

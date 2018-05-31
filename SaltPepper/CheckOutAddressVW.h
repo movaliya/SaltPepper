@@ -12,8 +12,10 @@
 @interface CheckOutAddressVW : UIViewController
 {
     NSString *getAcceptedOrderTypes;
+    NSDictionary *orderDiscount;
     UIDatePicker *datepicker,*datepicke1;
     UIBarButtonItem *rightBtn;
+    NSString *UserOrderType;
 }
 @property (strong, nonatomic) NSString *GrandTotal;
 @property (strong, nonatomic) NSString *Discount;

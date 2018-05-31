@@ -10,7 +10,7 @@
 #import "DEMORootViewController.h"
 @interface ReservationVW ()
 {
-    NSMutableDictionary *UserSaveData;
+    NSMutableArray *UserSaveData;
 }
 @end
 
@@ -42,7 +42,7 @@
     //NSMutableDictionary *UserSaveData = [[[NSUserDefaults standardUserDefaults] objectForKey:@"LoginUserDic"] mutableCopy];
     if (UserSaveData)
     {
-        NSString *CoustmerID=[[[[[[UserSaveData objectForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"customerid"];
+        NSString *CoustmerID=[[[[[[UserSaveData valueForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"customerid"];
         
         NSMutableDictionary *dict1 = [[NSMutableDictionary alloc] init];
         
@@ -160,7 +160,7 @@
     if (_ro(@"LoginUserDic") != nil)
     {
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        NSString *CoustmerID=[[[[[[UserSaveData objectForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"customerid"];
+        NSString *CoustmerID=[[[[[[UserSaveData valueForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"customerid"];
         
 
         NSMutableDictionary *dict1 = [[NSMutableDictionary alloc] init];
