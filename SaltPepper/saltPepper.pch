@@ -69,18 +69,19 @@
 #define KmyappDelegate ((AppDelegate *)[[UIApplication sharedApplication] delegate])
 
 //Base URL
-#define kBaseURL    @"https://indiancottagehorndean.co.uk/demo/API/"
+#define kBaseURL    @"https://tiffintom.net/demo/API/"
 
 
 //Live Key
 //#define KAPIKEY    @"jurd3WvjnweVASwx6oU5kwuA1mBAo9vwtMAnyUvL"
 
 
-
+//https://tiffintom.net
 //Dummy Key
 #define KAPIKEY    @"DoPUQBErcpKPtRmbjpcFvbb8YCMeBjr4w6OcyjtA"
-#define BASE_PROFILE_IMAGE_URL  @"https://indiancottagehorndean.co.uk/demo/"
-// Service key
+//#define BASE_PROFILE_IMAGE_URL  @"https://indiancottagehorndean.co.uk/demo/"
+#define BASE_PROFILE_IMAGE_URL  @"https://tiffintom.net/demo/"
+// Service key 
 #define LOGINKEY @"Login.php"
 #define REGISTERKEY @"Register.php"
 #define CATEGORY @"CategoriesList.php"
@@ -92,7 +93,16 @@
 #define GETPROFILE @"GetProfileDetails.php"
 #define UPDATEPROFILE @"UpdateProfile.php"
 #define RESERVATION @"Reservation.php"
-#define CONTACTUS @"contactus.php"
+#define RESERVATIONHISTORY @"reservationHistory.php"
+#define CONTACTUS @"ContactUs.php"
+#define ORDERTYPE @"getAcceptedOrderTypes.php"
+#define GALLERYIMAGE @"GalleryImage.php"
+#define VIDEOGALLERY @"VideoGallery.php"
+#define BANNERIMAGE @"BannerImage.php"
+#define OFFERTEXT @"OfferText.php"
+#define DISCOUNT @"discount.php"
+#define MAPADDRESS @"mapAddress.php"
+#define TELEPHONE @"restaurantTelephone.php"
 
 //Check if iphone5 or iphone 4
 #define isIPhone5 ([UIScreen mainScreen].bounds.size.height == 568.0)

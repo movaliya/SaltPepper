@@ -8,6 +8,7 @@
 
 #import "CartVW.h"
 #import "CartCell.h"
+#import "CheckOutAddressVW.h"
 @interface CartVW ()
 
 @end
@@ -45,10 +46,25 @@
     // News_TBL.estimatedRowHeight = 220;
     TableVW.rowHeight = UITableViewAutomaticDimension;
     
-    NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:@"CartDIC"];
-    KmyappDelegate.MainCartArr = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-    NSLog(@"MainCartArr=%@", KmyappDelegate.MainCartArr);
-     [self CalculateTotal];
+    KmyappDelegate.MainCartArr = [AppDelegate GetData:@"CartDIC"];
+    
+    if ( KmyappDelegate.MainCartArr.count!=0)
+    {
+        NSLog(@"MainCartArr=%@", KmyappDelegate.MainCartArr);
+        self.NotItem_LBL.hidden=YES;
+        [self CalculateTotal];
+    }
+    else
+    {
+         self.NotItem_LBL.hidden=NO;
+        self.UpperView.hidden=YES;
+         self.TableVW.hidden=YES;
+         self.TotalView.hidden=YES;
+         self.ClearBtn.hidden=YES;
+         self.PromoBtn.hidden=YES;
+         self.ProceedToPayBTN.hidden=YES;
+    }
+   
 }
 
 
@@ -136,9 +152,8 @@
     [intdic setObject:[NSNumber numberWithInt:newValue] forKey:@"Quantity"];
     [KmyappDelegate.MainCartArr replaceObjectAtIndex:changedRow.section withObject:intdic];
     
-    NSData *dataSave = [NSKeyedArchiver archivedDataWithRootObject:KmyappDelegate.MainCartArr];
-    [[NSUserDefaults standardUserDefaults] setObject:dataSave forKey:@"CartDIC"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    [AppDelegate WriteData:@"CartDIC" RootObject:KmyappDelegate.MainCartArr];
+   
     
     [self CalculateTotal];
     
@@ -160,9 +175,8 @@
         [intdic setObject:[NSNumber numberWithInt:newValue] forKey:@"Quantity"];
         [KmyappDelegate.MainCartArr replaceObjectAtIndex:changedRow.section withObject:intdic];
         
-        NSData *dataSave = [NSKeyedArchiver archivedDataWithRootObject:KmyappDelegate.MainCartArr];
-        [[NSUserDefaults standardUserDefaults] setObject:dataSave forKey:@"CartDIC"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
+        [AppDelegate WriteData:@"CartDIC" RootObject:KmyappDelegate.MainCartArr];
+
         
         [self CalculateTotal];
     }
@@ -177,9 +191,19 @@
         [KmyappDelegate.MainCartArr removeObjectAtIndex:[sender tag]];
         [TableVW reloadData];
         [self CalculateTotal];
-        NSData *dataSave = [NSKeyedArchiver archivedDataWithRootObject:KmyappDelegate.MainCartArr];
-        [[NSUserDefaults standardUserDefaults] setObject:dataSave forKey:@"CartDIC"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        [AppDelegate WriteData:@"CartDIC" RootObject:KmyappDelegate.MainCartArr];
+        if ( KmyappDelegate.MainCartArr.count==0)
+        {
+            self.NotItem_LBL.hidden=NO;
+            self.UpperView.hidden=YES;
+            self.TableVW.hidden=YES;
+            self.TotalView.hidden=YES;
+            self.ClearBtn.hidden=YES;
+            self.PromoBtn.hidden=YES;
+            self.ProceedToPayBTN.hidden=YES;
+        }
+       
     }];
 }
 
@@ -189,7 +213,7 @@
     QTYINT=0;
     for (int rr=0; rr<KmyappDelegate.MainCartArr.count; rr++)
     {
-        subTotalINT=subTotalINT+[[[KmyappDelegate.MainCartArr valueForKey:@"price"] objectAtIndex:rr] floatValue];
+        subTotalINT=subTotalINT+[[[KmyappDelegate.MainCartArr valueForKey:@"price"] objectAtIndex:rr] floatValue]*[[[KmyappDelegate.MainCartArr valueForKey:@"Quantity"] objectAtIndex:rr] integerValue];
         QTYINT=QTYINT+[[[KmyappDelegate.MainCartArr valueForKey:@"Quantity"] objectAtIndex:rr] integerValue];
         
         self.Quantity_LBL.text=[NSString stringWithFormat:@"%ld",(long)QTYINT];
@@ -220,9 +244,17 @@
         [KmyappDelegate.MainCartArr removeAllObjects];
         KmyappDelegate.MainCartArr=[[NSMutableArray alloc]init];
         
-        NSData *dataSave = [NSKeyedArchiver archivedDataWithRootObject:KmyappDelegate.MainCartArr];
-        [[NSUserDefaults standardUserDefaults] setObject:dataSave forKey:@"CartDIC"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
+        [AppDelegate WriteData:@"CartDIC" RootObject:KmyappDelegate.MainCartArr];
+
+        [TableVW reloadData];
+        [self CalculateTotal];
+        self.NotItem_LBL.hidden=NO;
+        self.UpperView.hidden=YES;
+        self.TableVW.hidden=YES;
+        self.TotalView.hidden=YES;
+        self.ClearBtn.hidden=YES;
+        self.PromoBtn.hidden=YES;
+        self.ProceedToPayBTN.hidden=YES;
     }];
     
 }
@@ -276,6 +308,13 @@
         [POPView removeFromSuperview];
         
     }];
+}
+- (IBAction)ProceedToPay_Click:(id)sender
+{
+    CheckOutAddressVW *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"CheckOutAddressVW"];
+    vcr.GrandTotal=self.GrandTotal_LBL.text;
+    vcr.Discount=self.Discount_LBL.text;
+    [self.navigationController pushViewController:vcr animated:YES];
 }
 
 @end

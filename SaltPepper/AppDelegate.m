@@ -60,6 +60,23 @@
     }
     return isInternet;
 }
+// Save NSDictnory in NSUserDefaults
++(void)WriteData:(NSString *)DictName RootObject:(id)rootObject
+{
+    NSData *dataSave = [NSKeyedArchiver archivedDataWithRootObject:rootObject];
+    [[NSUserDefaults standardUserDefaults] setObject:dataSave forKey:DictName];
+    
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+// Retrive NSDictnory From NSUserDefaults
++(NSMutableArray*)GetData:(NSString *)DictName
+{
+    NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:DictName];
+   NSMutableArray *Temparry = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    return Temparry;
+}
+
 + (AppDelegate *)sharedInstance
 {
     return (AppDelegate *)[UIApplication sharedApplication].delegate;

@@ -84,6 +84,7 @@
 
 -(void)CallForloging :(NSString *)EmailStr Password:(NSString *)PasswordStr
 {
+   
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     NSMutableDictionary *dict1 = [[NSMutableDictionary alloc] init];
     
@@ -93,7 +94,7 @@
     
     [dictInner setObject:EmailStr forKey:@"EMAIL"];
     [dictInner setObject:PasswordStr forKey:@"PASSWORD"];
-    [dictInner setObject:@"" forKey:@"REGID"];
+    [dictInner setObject:@"firebase" forKey:@"REGID"];
     
     NSMutableDictionary *dictSub = [[NSMutableDictionary alloc] init];
     
@@ -127,9 +128,8 @@
         NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"SUCCESS"];
         if ([SUCCESS boolValue] ==YES)
         {
-            //[[NSUserDefaults standardUserDefaults]setObject:responseObject forKey:@"LoginUserDic"];
-            _wo(@"LoginUserDic", responseObject);
-            
+            [AppDelegate WriteData:@"LoginUserDic" RootObject:responseObject];
+            _wb(@"isSkip", YES);
             Email_TXT.text=@"";
             Password_TXT.text=@"";
             DEMORootViewController *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"rootController"];
@@ -318,7 +318,8 @@
         NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"socialLogin"] objectForKey:@"SUCCESS"];
         if ([SUCCESS boolValue] ==YES)
         {
-             _wo(@"LoginUserDic", responseObject);
+            [AppDelegate WriteData:@"LoginUserDic" RootObject:responseObject];
+              _wb(@"isSkip", YES);
             [AppDelegate showErrorMessageWithTitle:@"" message:@"Login successful" delegate:nil];
             DEMORootViewController *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"rootController"];
             [self.navigationController pushViewController:vcr animated:YES];

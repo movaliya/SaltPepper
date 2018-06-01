@@ -30,8 +30,7 @@
       //NSDictionary *FavrtDic = _ro(@"FavDIC");
      // NSLog(@"MainFavArr==%@",FavrtDic);
     
-    NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:@"FavDIC"];
-    KmyappDelegate.MainFavArr = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    KmyappDelegate.MainFavArr=[AppDelegate GetData:@"FavDIC"];
    // NSData *data = _ro(@"FavDIC");
     //NSArray *savedArray = [NSKeyedUnarchiver unarchiveObjectWithData:data];
   // KmyappDelegate.MainFavArr = [NSKeyedUnarchiver unarchiveObjectWithData:data];
@@ -129,10 +128,7 @@
         
         [KmyappDelegate.MainFavArr removeObjectAtIndex:[sender tag]];
         [TableVW reloadData];
-        NSData *dataSave = [NSKeyedArchiver archivedDataWithRootObject:KmyappDelegate.MainFavArr];
-        [[NSUserDefaults standardUserDefaults] setObject:dataSave forKey:@"FavDIC"];
-        
-        [[NSUserDefaults standardUserDefaults] synchronize];
+        [AppDelegate WriteData:@"FavDIC" RootObject:KmyappDelegate.MainFavArr];
     }];
     
     

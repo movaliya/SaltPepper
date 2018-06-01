@@ -10,6 +10,10 @@
 #import "RESideMenu.h"
 
 @interface HomeVC : UIViewController
+{
+    NSMutableArray *BannerImageDataArr;
+    NSMutableArray *OfferTextArr;
+}
 @property (weak, nonatomic) IBOutlet UICollectionView *MenuCollectionVW;
 @property (weak, nonatomic) IBOutlet UIPageControl *pagesControl;
 @property (weak, nonatomic) IBOutlet UIScrollView *bannerscroll;

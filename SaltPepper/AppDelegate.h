@@ -27,6 +27,9 @@
 @property (strong,nonatomic) AFHTTPSessionManager *manager;
 +(BOOL)connectedToNetwork;
 + (AppDelegate *)sharedInstance;
++(void)WriteData:(NSString *)DictName RootObject:(id)rootObject;
++(NSMutableArray*)GetData:(NSString *)DictName;
+
 +(BOOL)IsValidEmail:(NSString *)checkString;
 
 @property (nonatomic,weak) NSArray *arrCategories;

@@ -31,6 +31,16 @@
     _viewContact.layer.borderWidth = 1.0;
     
     _btnSubmit.layer.cornerRadius = 20;
+    
+    NSMutableArray *Userdata=[AppDelegate GetData:@"LoginUserDic"];
+    if (Userdata)
+    {
+        NSString *customer_name = [[[[[[[Userdata valueForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"myProfile"] objectForKey:@"customer_name"];
+        NSString *customer_email = [[[[[[[Userdata valueForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"myProfile"] objectForKey:@"email"];
+        _txtFName.text=customer_name;
+        _txtEmail.text=customer_email;
+    }
+   
     // Do any additional setup after loading the view.
 }
 
@@ -41,7 +51,9 @@
 
 #pragma mark - Button ClickAction
 
-- (IBAction)btnBackClicked:(id)sender {
+- (IBAction)btnBackClicked:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 - (IBAction)btnSubmitClicked:(id)sender
 {
@@ -59,11 +71,19 @@
     }
     else if ([_txtMsg.text isEqualToString:@""])
     {
-        [AppDelegate showErrorMessageWithTitle:@"Error!" message:@"Please enter M" delegate:nil];
+        [AppDelegate showErrorMessageWithTitle:@"Error!" message:@"Please enter Message" delegate:nil];
+    }
+    else if ([_txtContact.text isEqualToString:@""])
+    {
+        [AppDelegate showErrorMessageWithTitle:@"Error!" message:@"Please enter Contact Number" delegate:nil];
     }
     else
     {
-        [self CallSendFeedback];
+        BOOL internet=[AppDelegate connectedToNetwork];
+        if (internet)
+            [self CallSendFeedback];
+        else
+            [AppDelegate showErrorMessageWithTitle:@"" message:@"Please check your internet connection or try again later." delegate:nil];
     }
 }
 
@@ -79,6 +99,7 @@
     [dictInner setObject:_txtFName.text forKey:@"FULLNAME"];
     [dictInner setObject:_txtEmail.text forKey:@"EMAIL"];
     [dictInner setObject:_txtMsg.text forKey:@"MESSAGE"];
+    [dictInner setObject:_txtContact.text forKey:@"PHONE"];
     
     NSMutableDictionary *dictSub = [[NSMutableDictionary alloc] init];
     [dictSub setObject:@"action" forKey:@"MODULE"];
@@ -106,15 +127,17 @@
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         
         NSLog(@"responseObject==%@",responseObject);
-        NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"postitem"] objectForKey:@"registration"] objectForKey:@"SUCCESS"];
+        NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"contactUs"] objectForKey:@"SUCCESS"];
         if ([SUCCESS boolValue] ==YES)
         {
-            _wo(@"LoginUserDic", responseObject);
-            [AppDelegate showErrorMessageWithTitle:@"" message:@"Registration successful" delegate:nil];
+            [self.navigationController popViewControllerAnimated:YES];
+            NSString *DESCRIPTION=[[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"contactUs"] objectForKey:@"result"] objectForKey:@"contactUs"] objectForKey:@"msg"];
+            [AppDelegate showErrorMessageWithTitle:@"" message:DESCRIPTION delegate:nil];
         }
         else
         {
-            NSString *DESCRIPTION=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"postitem"] objectForKey:@"registration"] objectForKey:@"ERROR"] objectForKey:@"DESCRIPTION"];
+            [self.navigationController popViewControllerAnimated:YES];
+            NSString *DESCRIPTION=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"contactUs"] objectForKey:@"ERROR"] objectForKey:@"DESCRIPTION"];
             [AppDelegate showErrorMessageWithTitle:@"" message:DESCRIPTION delegate:nil];
         }
         

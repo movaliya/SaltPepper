@@ -38,26 +38,25 @@
     
     [VideoTBL registerNib:nib forCellReuseIdentifier:@"VideoCell"];
     
-    VideoArr=[[NSMutableArray alloc]initWithObjects:@"https://youtu.be/wWUzXFG_F4g",@"https://www.youtube.com/watch?v=b_J7ByLJw5A",@"https://www.youtube.com/watch?v=C0DPdy98e4c", nil];
+    //VideoArr=[[NSMutableArray alloc]initWithObjects:@"https://youtu.be/wWUzXFG_F4g",@"https://www.youtube.com/watch?v=b_J7ByLJw5A",@"https://www.youtube.com/watch?v=C0DPdy98e4c", nil];
+
+ //   [VideoTBL reloadData];
     
-    VideoIdArr=[[NSMutableArray alloc]init];
-    for (int i=0; i<VideoArr.count; i++)
+    BOOL internet=[AppDelegate connectedToNetwork];
+    if (internet)
     {
-        NSString *VideoID= [self extractYoutubeIdFromLink:[VideoArr objectAtIndex:i]];
-        [VideoIdArr addObject:VideoID];
+        [self VideoGalleryService];
     }
+    else
+        [AppDelegate showErrorMessageWithTitle:@"" message:@"Please check your internet connection or try again later." delegate:nil];
     
-    
-    [VideoTBL reloadData];
-    
-    //[self VideoGalleryService];
     
 }
 
-/*
+
 -(void)VideoGalleryService
 {
-    [KVNProgress show] ;
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     NSMutableDictionary *dict1 = [[NSMutableDictionary alloc] init];
     
     [dict1 setValue:KAPIKEY forKey:@"APIKEY"];
@@ -78,39 +77,40 @@
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictREQUESTPARAM options:NSJSONWritingPrettyPrinted error:&error];
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&error];
     
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.responseSerializer.acceptableContentTypes=[NSSet setWithObjects:@"text/html",@"application/json", nil];
-    AFJSONRequestSerializer *serializer = [AFJSONRequestSerializer serializer];
-    [serializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [serializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-    manager.requestSerializer = serializer;
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    NSString *makeURL=[NSString stringWithFormat:@"%@%@",kBaseURL,VIDEOGALLERY];
     
-    [manager POST:kBaseURL parameters:json success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject)
+    [Utility postRequest:json url:makeURL success:^(id result)
      {
-         [KVNProgress dismiss];
-         NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"videoGallery"] objectForKey:@"SUCCESS"];
-         if ([SUCCESS boolValue] ==YES)
+         if (![result isKindOfClass:[NSString class]])
          {
-             VideoArr=[[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"videoGallery"] objectForKey:@"result"] objectForKey:@"videoGallery"] mutableCopy];
-             VideoIdArr=[[NSMutableArray alloc]init];
-             for (int i=0; i<VideoArr.count; i++)
+             [MBProgressHUD hideHUDForView:self.view animated:YES];
+             NSString *SUCCESS=[[[[result objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"videoGallery"] objectForKey:@"SUCCESS"];
+             if ([SUCCESS boolValue] ==YES)
              {
-                 NSString *VideoID= [self extractYoutubeIdFromLink:[[VideoArr objectAtIndex:i] valueForKey:@"url"]];
-                 [VideoIdArr addObject:VideoID];
+                 VideoArr=[[[[[[result objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"videoGallery"] objectForKey:@"result"] objectForKey:@"videoGallery"] mutableCopy];
+                 VideoIdArr=[[NSMutableArray alloc]init];
+                 for (int i=0; i<VideoArr.count; i++)
+                 {
+                     NSString *VideoID= [self extractYoutubeIdFromLink:[[VideoArr valueForKey:@"content"] objectAtIndex:i]];
+                     [VideoIdArr addObject:VideoID];
+                 }
+                 [VideoTBL reloadData];
              }
-             
-             
-             [VideoTBL reloadData];
          }
-     }
-          failure:^(AFHTTPRequestOperation *operation, NSError *error)
+     }failure:^(NSError *error)
      {
-         NSLog(@"Fail");
-         [KVNProgress dismiss] ;
+         [MBProgressHUD hideHUDForView:self.view animated:YES];
+         if (![Utility connected])
+         {
+             //[sharedAppDel ShowAlertWithOneBtn:kReachability andStrTitle:nil andbtnTitle:@"OK"];
+         }
+         else
+         {
+             //[sharedAppDel ShowAlertWithOneBtn:[result valueForKey:@"message"] andStrTitle:nil andbtnTitle:@"OK"];
+         }
      }];
 }
-*/
+
 - (NSString *)extractYoutubeIdFromLink:(NSString *)link
 {
     NSString *regexString = @"((?<=(v|V)/)|(?<=be/)|(?<=(\\?|\\&)v=)|(?<=embed/))([\\w-]++)";

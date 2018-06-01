@@ -9,7 +9,9 @@
 #import "ReservationVW.h"
 #import "DEMORootViewController.h"
 @interface ReservationVW ()
-
+{
+    NSMutableArray *UserSaveData;
+}
 @end
 
 @implementation ReservationVW
@@ -23,27 +25,25 @@
     self.BackView.layer.shadowColor = [UIColor colorWithRed:115.0f/255.0f green:115.0f/255.0f blue:115.0f/255.0f alpha:1.0f].CGColor;
     self.BackView.layer.shadowOpacity = 0.5;
     
-    
-     NSDictionary *UserSaveData=[[NSUserDefaults standardUserDefaults]objectForKey:@"LoginUserDic"];
     // Do any additional setup after loading the view.
     BOOL internet=[AppDelegate connectedToNetwork];
     if (internet)
     {
-        //[self GetUserProfileData];
+        [self GetUserProfileData];
     }
     else
         [AppDelegate showErrorMessageWithTitle:@"" message:@"Please check your internet connection or try again later." delegate:nil];
 }
-/*
+
 -(void)GetUserProfileData
 {
-    NSMutableDictionary *UserSaveData = [[[NSUserDefaults standardUserDefaults] objectForKey:@"LoginUserDic"] mutableCopy];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    UserSaveData = [AppDelegate GetData:@"LoginUserDic"];
+    //NSMutableDictionary *UserSaveData = [[[NSUserDefaults standardUserDefaults] objectForKey:@"LoginUserDic"] mutableCopy];
     if (UserSaveData)
     {
-        NSString *CoustmerID=[[[[[[UserSaveData objectForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"customerid"];
+        NSString *CoustmerID=[[[[[[UserSaveData valueForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"customerid"];
         
-        
-        [KVNProgress show] ;
         NSMutableDictionary *dict1 = [[NSMutableDictionary alloc] init];
         
         [dict1 setValue:KAPIKEY forKey:@"APIKEY"];
@@ -70,65 +70,54 @@
         [dictREQUESTPARAM setObject:arr forKey:@"REQUESTPARAM"];
         [dictREQUESTPARAM setObject:dict1 forKey:@"RESTAURANT"];
         
-        
         NSError* error = nil;
         
         NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictREQUESTPARAM options:NSJSONWritingPrettyPrinted error:&error];
-        // NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-        
         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData
                                                              options:NSJSONReadingMutableContainers
                                                                error:&error];
+        NSString *makeURL=[NSString stringWithFormat:@"%@%@",kBaseURL,GETPROFILE];
         
-        
-        
-        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-        manager.responseSerializer.acceptableContentTypes=[NSSet setWithObjects:@"text/html",@"application/json", nil];
-        AFJSONRequestSerializer *serializer = [AFJSONRequestSerializer serializer];
-        [serializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-        [serializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-        manager.requestSerializer = serializer;
-        manager.requestSerializer = [AFJSONRequestSerializer serializer];
-        
-        [manager POST:kBaseURL parameters:json success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject)
+        [Utility postRequest:json url:makeURL success:^(id result)
          {
-             NSLog(@"responseObject==%@",responseObject);
-             NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"myProfile"] objectForKey:@"SUCCESS"];
-             if ([SUCCESS boolValue] ==YES)
+             if (![result isKindOfClass:[NSString class]])
              {
-                 
-                 NSMutableDictionary *myProfileDic=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"myProfile"] objectForKey:@"result"] objectForKey:@"myProfile"];
-                 
-                 self.NameTXT.text=[myProfileDic valueForKey:@"customerName"];
-                 self.EmailTXT.text=[myProfileDic valueForKey:@"email"];
-                 
-                 if ([myProfileDic valueForKey:@"mobile"] != (id)[NSNull null])
+                 [MBProgressHUD hideHUDForView:self.view animated:YES];
+                 NSString *SUCCESS=[[[[result objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"myProfile"] objectForKey:@"SUCCESS"];
+                 if ([SUCCESS boolValue] ==YES)
                  {
-                     self.PhoneNumberTXT.text=[myProfileDic valueForKey:@"mobile"];
+                     NSMutableDictionary *myProfileDic=[[[[[result objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"myProfile"] objectForKey:@"result"] objectForKey:@"myProfile"];
+                     self.NameTXT.text=[myProfileDic valueForKey:@"customerName"];
+                     self.EmailTXT.text=[myProfileDic valueForKey:@"email"];
+                     
+                     if ([myProfileDic valueForKey:@"mobile"] != (id)[NSNull null])
+                     {
+                         self.PhoneNumberTXT.text=[myProfileDic valueForKey:@"mobile"];
+                     }
                  }
+             }
+         }
+        failure:^(NSError *error)
+         {
+             [MBProgressHUD hideHUDForView:self.view animated:YES];
+             if (![Utility connected])
+             {
+                 //[sharedAppDel ShowAlertWithOneBtn:kReachability andStrTitle:nil andbtnTitle:@"OK"];
              }
              else
              {
-                 [AppDelegate showErrorMessageWithTitle:@"" message:@"Server Error." delegate:nil];
+                 //[sharedAppDel ShowAlertWithOneBtn:[result valueForKey:@"message"] andStrTitle:nil andbtnTitle:@"OK"];
              }
-             
-             [KVNProgress dismiss] ;
-         }
-              failure:^(AFHTTPRequestOperation *operation, NSError *error)
-         {
-             NSLog(@"Fail");
-             [KVNProgress dismiss] ;
          }];
-        
     }
     else
     {
-    
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
         [AppDelegate showErrorMessageWithTitle:@"" message:@"You are not Login." delegate:nil];
     }
     
 }
-*/
+
 - (IBAction)SubmitBtn_Action:(id)sender
 {
    
@@ -171,10 +160,9 @@
     if (_ro(@"LoginUserDic") != nil)
     {
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        NSString *CutomerID = [[[[[[_ro(@"LoginUserDic") objectForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"customerid"];
+        NSString *CoustmerID=[[[[[[UserSaveData valueForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"customerid"];
         
-        
-        
+
         NSMutableDictionary *dict1 = [[NSMutableDictionary alloc] init];
         
         [dict1 setValue:KAPIKEY forKey:@"APIKEY"];
@@ -182,7 +170,7 @@
         
         NSMutableDictionary *dictInner = [[NSMutableDictionary alloc] init];
         
-        [dictInner setObject:CutomerID forKey:@"REGID"];
+        [dictInner setObject:CoustmerID forKey:@"REGID"];
         [dictInner setObject:_EmailTXT.text forKey:@"CUSTOMER_EMAIL"];
         [dictInner setObject:_NameTXT.text forKey:@"CUSTOMER_NAME"];
         [dictInner setObject:_PhoneNumberTXT.text forKey:@"CUSTOMER_TELEPHONE"];

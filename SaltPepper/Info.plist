@@ -4,6 +4,8 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Allow location to show current location</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -40,10 +42,10 @@
 	</dict>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
-    <key>NSCameraUsageDescription</key>
-    <string>Please allow camera</string>
-    <key>NSPhotoLibraryUsageDescription</key>
-    <string>Access Library</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Please allow camera</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Access Library</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>
