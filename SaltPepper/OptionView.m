@@ -12,15 +12,20 @@
 
 
 @interface OptionView ()
-
+{
+    NSMutableArray *withoutIntegrate,*WithIntegrate;
+    
+}
 @end
 
 @implementation OptionView
 @synthesize WithCollection,WithoutCollection;
+@synthesize ModifyDic;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     self.navigationController.navigationBar.hidden=YES;
     
     UINib *nib2 = [UINib nibWithNibName:@"OptionWithCell" bundle:nil];
@@ -44,6 +49,27 @@
     self.WithoutTagsView.tagColorTheme = TagColorThemeStrawberry;
     [self handleWithTagBlocks];
     [self handleWithoutTagBlocks];
+    
+    NSLog(@"Dic==%@",ModifyDic);
+    
+    int count=0;
+    withoutIntegrate=[[NSMutableArray alloc] init];
+    WithIntegrate=[[NSMutableArray alloc] init];
+    
+    for (NSMutableArray *dic1 in [ModifyDic valueForKey:@"ingredients"])
+    {
+        if ([[dic1 valueForKey:@"is_with"] boolValue]==0)
+        {
+            [withoutIntegrate addObject:dic1];
+        }
+        else
+        {
+            [WithIntegrate addObject:dic1];
+        }
+        count++;
+    }
+    NSLog(@"withoutIntegrate=%@",withoutIntegrate);
+    
 
 }
 
@@ -98,7 +124,15 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 10;
+    if (collectionView==WithCollection)
+    {
+        return WithIntegrate.count;
+    }
+    else
+    {
+        return withoutIntegrate.count;
+    }
+    return 0;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -108,14 +142,42 @@
         static NSString *cellIdentifier = @"OptionWithCell";
         OptionWithCell *cell = (OptionWithCell *)[collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
         
-        // cell.MainIMG.image=[UIImage imageNamed:[Array objectAtIndex:indexPath.row]];
+        cell.Title_LBL.text=[NSString stringWithFormat:@"%@",[[WithIntegrate objectAtIndex:indexPath.row] valueForKey:@"ingredient_name"]];
+        
+        cell.Price_LBL.text=[NSString stringWithFormat:@"%@",[[WithIntegrate objectAtIndex:indexPath.row] valueForKey:@"price"]];
+        
+        NSString *ImgURL = [NSString stringWithFormat:@"%@%@" ,BASE_PROFILE_IMAGE_URL,[[WithIntegrate objectAtIndex:indexPath.row] valueForKey:@"image_path"]];
+        [cell.IMG sd_setShowActivityIndicatorView:YES];
+        [cell.IMG sd_setIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        
+        [cell.IMG sd_setImageWithURL:[NSURL URLWithString:ImgURL]
+                        placeholderImage:[UIImage imageNamed:@"bannerImage.jpg"]
+                               completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+                                   
+                                   [cell.IMG sd_setShowActivityIndicatorView:NO];
+                               }];
+        
         return cell;
     }
     else{
         static NSString *cellIdentifier = @"OptionWithCell";
         OptionWithCell *cell = (OptionWithCell *)[collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
         
-        // cell.MainIMG.image=[UIImage imageNamed:[Array objectAtIndex:indexPath.row]];
+        cell.Title_LBL.text=[NSString stringWithFormat:@"%@",[[withoutIntegrate objectAtIndex:indexPath.row] valueForKey:@"ingredient_name"]];
+        
+        cell.Price_LBL.text=[NSString stringWithFormat:@"%@",[[withoutIntegrate objectAtIndex:indexPath.row] valueForKey:@"price"]];
+        
+        NSString *ImgURL = [NSString stringWithFormat:@"%@%@" ,BASE_PROFILE_IMAGE_URL,[[withoutIntegrate objectAtIndex:indexPath.row] valueForKey:@"image_path"]];
+        [cell.IMG sd_setShowActivityIndicatorView:YES];
+        [cell.IMG sd_setIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        
+        [cell.IMG sd_setImageWithURL:[NSURL URLWithString:ImgURL]
+                    placeholderImage:[UIImage imageNamed:@"bannerImage.jpg"]
+                           completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+                               
+                               [cell.IMG sd_setShowActivityIndicatorView:NO];
+                           }];
+        
         return cell;
     }
     return nil;
@@ -150,7 +212,7 @@
 
 - (IBAction)Back_Click:(id)sender
 {
-    [self.sideMenuViewController presentLeftMenuViewController];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end
