@@ -23,7 +23,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    [self UpdateDataInDictnory];
     self.navigationController.navigationBar.hidden=YES;
     
     UserIMG.layer.cornerRadius=60.0f;
@@ -439,7 +439,18 @@
     }
     
 }
-
+-(void)UpdateDataInDictnory
+{
+    NSMutableDictionary *Userdata=[[AppDelegate GetData:@"LoginUserDic"] mutableCopy];
+    NSString *CutomerID = [[[[[[Userdata valueForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"customerid"];
+    NSMutableDictionary *myProfile=[[[[[[[Userdata valueForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"myProfile"] mutableCopy];
+    
+    
+    [myProfile setValue:@"123" forKey:@"mobile"];
+    [Userdata setValue:myProfile forKey:@"myProfile"];
+    NSLog(@"userdata=%@",Userdata);
+    //[UserData setValue:Address2_TXT.text forKey:@"u_address2"];
+}
 - (IBAction)LogOut_Click:(id)sender
 {
     FCAlertView *alert = [KmyappDelegate ShowAlertWithBtnAction:@"Are you sure want to Logout?" andStrTile:nil andbtnTitle:@"NO" andButtonArray:@[]];

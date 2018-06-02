@@ -70,10 +70,10 @@
 }
 
 // Retrive NSDictnory From NSUserDefaults
-+(NSMutableArray*)GetData:(NSString *)DictName
++(id)GetData:(NSString *)DictName
 {
     NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:DictName];
-   NSMutableArray *Temparry = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+   NSMutableDictionary *Temparry = [NSKeyedUnarchiver unarchiveObjectWithData:data];
     return Temparry;
 }
 
