@@ -47,6 +47,8 @@
 		298CD2B742089A26D28B12F9 /* libPods-SaltPepper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AC61B705EFD9F887970D0E9 /* libPods-SaltPepper.a */; settings = {ATTRIBUTES = (Weak, ); }; };
 		51001DAE20BF19AC003887DC /* ReservationHistoryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 51001DAD20BF19AC003887DC /* ReservationHistoryVC.m */; };
 		51001DB120BF19CB003887DC /* ResHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 51001DB020BF19CB003887DC /* ResHistoryCell.m */; };
+		51048E7220C2F54600AFD5B8 /* OrderHistoryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 51048E7120C2F54600AFD5B8 /* OrderHistoryVC.m */; };
+		51048E7520C2F63F00AFD5B8 /* OrderHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 51048E7420C2F63F00AFD5B8 /* OrderHistoryCell.m */; };
 		5105385B20B88337003DF489 /* SharedClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 5105385920B88336003DF489 /* SharedClass.m */; };
 		51061D4E20BDC54E0019FA10 /* SendFeedbackVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 51061D4D20BDC54E0019FA10 /* SendFeedbackVC.m */; };
 		51093A8220BA9034008A05C7 /* MainiPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51093A8120BA9034008A05C7 /* MainiPad.storyboard */; };
@@ -161,6 +163,10 @@
 		51001DAD20BF19AC003887DC /* ReservationHistoryVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReservationHistoryVC.m; sourceTree = "<group>"; };
 		51001DAF20BF19CB003887DC /* ResHistoryCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ResHistoryCell.h; sourceTree = "<group>"; };
 		51001DB020BF19CB003887DC /* ResHistoryCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ResHistoryCell.m; sourceTree = "<group>"; };
+		51048E7020C2F54600AFD5B8 /* OrderHistoryVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderHistoryVC.h; sourceTree = "<group>"; };
+		51048E7120C2F54600AFD5B8 /* OrderHistoryVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderHistoryVC.m; sourceTree = "<group>"; };
+		51048E7320C2F63F00AFD5B8 /* OrderHistoryCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderHistoryCell.h; sourceTree = "<group>"; };
+		51048E7420C2F63F00AFD5B8 /* OrderHistoryCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderHistoryCell.m; sourceTree = "<group>"; };
 		5105385920B88336003DF489 /* SharedClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharedClass.m; sourceTree = "<group>"; };
 		5105385A20B88336003DF489 /* SharedClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedClass.h; sourceTree = "<group>"; };
 		51061D4C20BDC54E0019FA10 /* SendFeedbackVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SendFeedbackVC.h; sourceTree = "<group>"; };
@@ -454,6 +460,10 @@
 				51001DAD20BF19AC003887DC /* ReservationHistoryVC.m */,
 				51001DAF20BF19CB003887DC /* ResHistoryCell.h */,
 				51001DB020BF19CB003887DC /* ResHistoryCell.m */,
+				51048E7020C2F54600AFD5B8 /* OrderHistoryVC.h */,
+				51048E7120C2F54600AFD5B8 /* OrderHistoryVC.m */,
+				51048E7320C2F63F00AFD5B8 /* OrderHistoryCell.h */,
+				51048E7420C2F63F00AFD5B8 /* OrderHistoryCell.m */,
 				2966E5A420BC1E6600DF0551 /* FavouriteVW.h */,
 				2966E5A520BC1E6600DF0551 /* FavouriteVW.m */,
 				295CD5A9206A2725002129FD /* GalleryVW.h */,
@@ -703,6 +713,7 @@
 				51094AAD20B72D7900A60634 /* ForgotPasswordVC.m in Sources */,
 				B14ECF9420B8883200286D46 /* ASJTag.m in Sources */,
 				297D5F0520565F3A00ED5428 /* RECommonFunctions.m in Sources */,
+				51048E7220C2F54600AFD5B8 /* OrderHistoryVC.m in Sources */,
 				51F8ABE620BC63C6007BFB3F /* ProductDetailVC.m in Sources */,
 				2968F77920BE7DDB0019D4E4 /* CheckOutAddressVW.m in Sources */,
 				B1B9F1D620BA7E7A008D2FAD /* ASProgressPopUpView.m in Sources */,
@@ -725,6 +736,7 @@
 				295E0734206F771800BC4ADB /* NewsVW.m in Sources */,
 				B18E77FA2055143E00C50320 /* main.m in Sources */,
 				295E073B206F773D00BC4ADB /* NewsCell.m in Sources */,
+				51048E7520C2F63F00AFD5B8 /* OrderHistoryCell.m in Sources */,
 				B14ECF9620B8883200286D46 /* ASJTagsView.m in Sources */,
 				5116686520C0568000986D39 /* OurLocationVC.m in Sources */,
 				B138A0C520B72D1900835899 /* OptionView.m in Sources */,
