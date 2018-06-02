@@ -63,6 +63,8 @@
 		5116686920C057B200986D39 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5116686820C057B200986D39 /* MapKit.framework */; };
 		5126749A20B9DBCC002321F7 /* CategoryItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5126749820B9DBCC002321F7 /* CategoryItemCell.m */; };
 		5126749B20B9DBCC002321F7 /* CategoryItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5126749920B9DBCC002321F7 /* CategoryItemCell.xib */; };
+		51F66ECB20C2BDF7004DB1DD /* PaymentMethodVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 51F66ECA20C2BDF7004DB1DD /* PaymentMethodVC.m */; };
+		51F66ECE20C2C5EF004DB1DD /* OrderCompleteVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 51F66ECD20C2C5EF004DB1DD /* OrderCompleteVC.m */; };
 		51F8ABE620BC63C6007BFB3F /* ProductDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 51F8ABE520BC63C6007BFB3F /* ProductDetailVC.m */; };
 		B138A0C520B72D1900835899 /* OptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = B138A0C420B72D1900835899 /* OptionView.m */; };
 		B138A0C920B72F5600835899 /* OptionWithCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B138A0C720B72F5600835899 /* OptionWithCell.m */; };
@@ -186,6 +188,10 @@
 		5126749720B9DBCC002321F7 /* CategoryItemCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CategoryItemCell.h; sourceTree = "<group>"; };
 		5126749820B9DBCC002321F7 /* CategoryItemCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CategoryItemCell.m; sourceTree = "<group>"; };
 		5126749920B9DBCC002321F7 /* CategoryItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryItemCell.xib; sourceTree = "<group>"; };
+		51F66EC920C2BDF7004DB1DD /* PaymentMethodVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PaymentMethodVC.h; sourceTree = "<group>"; };
+		51F66ECA20C2BDF7004DB1DD /* PaymentMethodVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PaymentMethodVC.m; sourceTree = "<group>"; };
+		51F66ECC20C2C5EF004DB1DD /* OrderCompleteVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderCompleteVC.h; sourceTree = "<group>"; };
+		51F66ECD20C2C5EF004DB1DD /* OrderCompleteVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderCompleteVC.m; sourceTree = "<group>"; };
 		51F8ABE420BC63C6007BFB3F /* ProductDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductDetailVC.h; sourceTree = "<group>"; };
 		51F8ABE520BC63C6007BFB3F /* ProductDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductDetailVC.m; sourceTree = "<group>"; };
 		B138A0C320B72D1900835899 /* OptionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionView.h; sourceTree = "<group>"; };
@@ -466,6 +472,10 @@
 				51061D4D20BDC54E0019FA10 /* SendFeedbackVC.m */,
 				5116686320C0568000986D39 /* OurLocationVC.h */,
 				5116686420C0568000986D39 /* OurLocationVC.m */,
+				51F66EC920C2BDF7004DB1DD /* PaymentMethodVC.h */,
+				51F66ECA20C2BDF7004DB1DD /* PaymentMethodVC.m */,
+				51F66ECC20C2C5EF004DB1DD /* OrderCompleteVC.h */,
+				51F66ECD20C2C5EF004DB1DD /* OrderCompleteVC.m */,
 				B138A0C320B72D1900835899 /* OptionView.h */,
 				B138A0C420B72D1900835899 /* OptionView.m */,
 				B16C72AC20B97FFA0041C6B9 /* ProfileView.h */,
@@ -671,6 +681,7 @@
 			files = (
 				295E0741206F943800BC4ADB /* VideoGallaryView.m in Sources */,
 				B138A0C920B72F5600835899 /* OptionWithCell.m in Sources */,
+				51F66ECE20C2C5EF004DB1DD /* OrderCompleteVC.m in Sources */,
 				B16C72AE20B97FFA0041C6B9 /* ProfileView.m in Sources */,
 				51001DB120BF19CB003887DC /* ResHistoryCell.m in Sources */,
 				51061D4E20BDC54E0019FA10 /* SendFeedbackVC.m in Sources */,
@@ -719,6 +730,7 @@
 				B138A0C520B72D1900835899 /* OptionView.m in Sources */,
 				295CD5AF206A27D1002129FD /* CVCell.m in Sources */,
 				297D5F0720565F3A00ED5428 /* UIViewController+RESideMenu.m in Sources */,
+				51F66ECB20C2BDF7004DB1DD /* PaymentMethodVC.m in Sources */,
 				2968F8AC2070CDF2004B5960 /* ContactUSVW.m in Sources */,
 				B1B7446120694F9400A2FE9C /* Utility.m in Sources */,
 				295CD5B3206A27F6002129FD /* GalleryFullView.m in Sources */,
