@@ -126,6 +126,9 @@
                 [self.sideMenuViewController hideMenuViewController];
                 break;
             case 7:
+                [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"OrderHistoryVC"]]//  OptionView // ProfileView
+                                                             animated:YES];
+                [self.sideMenuViewController hideMenuViewController];
                 //Order Histry
                 break;
             case 8:

@@ -24,7 +24,7 @@
     self.UserEmail_LBL.text=customer_email;
    
     
-    NSString *fulladd=[NSString stringWithFormat:@"%@ %@ %@ %@ %@ %@ %@",POPView.HouseNoNameTXT.text,POPView.StreetTXT.text,POPView.TownTXT.text,POPView.StateTXT.text,POPView.PostCodeTXT.text ,POPView.ContactNumberTXT.text,POPView.ContactNumberTXT.text];
+    NSString *fulladd=[NSString stringWithFormat:@"%@ %@ %@ %@ %@ %@ %@",POPView.HouseNoNameTXT.text,POPView.StreetTXT.text,POPView.TownTXT.text,POPView.StateTXT.text,POPView.PostCodeTXT.text ,POPView.ContactNumberTXT.text,POPView.CountryTXT.text];
     
     self.FullAddress_LBL.text=fulladd;
     
@@ -44,6 +44,11 @@
     self.GrandTotal_LBL.text=self.GrandTotal;
     self.Discount_LBL.text=self.Discount;
     
+    self.PayBtn.layer.cornerRadius = 22;
+    self.PayBtn.clipsToBounds = YES;
+    [self.PayBtn setTitle:[NSString stringWithFormat:@"PAY %@",self.GrandTotal] forState: UIControlStateNormal];
+    
+
     //Set Collection DatePicker
     datepicker = [[UIDatePicker alloc]init];
     [datepicker setDate:[NSDate date]]; //this returns today's date
@@ -139,7 +144,13 @@
             getAcceptedOrderTypes=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"getAcceptedOrderTypes"] objectForKey:@"RESULT"] objectForKey:@"getAcceptedOrderTypes"];
             
             NSLog(@"getAcceptedOrderTypes==%@",getAcceptedOrderTypes);
-            [self GetProfileDetail];
+            
+            BOOL internet=[AppDelegate connectedToNetwork];
+            if (internet)
+                [self GetProfileDetail];
+            else
+                [AppDelegate showErrorMessageWithTitle:@"" message:@"Please check your internet connection or try again later." delegate:nil];
+            
             if ([getAcceptedOrderTypes isEqualToString:@"Collection & Delivery"])
             {
                 self.CollectionBtn.hidden=NO;
@@ -266,10 +277,17 @@
     }
     else
     {
-        NSString *fulladd=[NSString stringWithFormat:@"%@ %@ %@ %@ %@ %@ %@",POPView.HouseNoNameTXT.text,POPView.StreetTXT.text,POPView.TownTXT.text,POPView.StateTXT.text,POPView.PostCodeTXT.text ,POPView.ContactNumberTXT.text,POPView.ContactNumberTXT.text];
+        NSString *fulladd=[NSString stringWithFormat:@"%@ %@ %@ %@ %@ %@ %@",POPView.HouseNoNameTXT.text,POPView.StreetTXT.text,POPView.TownTXT.text,POPView.StateTXT.text,POPView.PostCodeTXT.text ,POPView.ContactNumberTXT.text,POPView.CountryTXT.text];
         
         self.FullAddress_LBL.text=fulladd;
         [self HidePopUpAnimation];
+        BOOL internet=[AppDelegate connectedToNetwork];
+        if (internet)
+            [self UpdateAddress];
+        else
+            [AppDelegate showErrorMessageWithTitle:@"" message:@"Please check your internet connection or try again later." delegate:nil];
+        
+        
     }
 }
 -(void)CancelAddress_Click:(id)sender
@@ -312,7 +330,93 @@
         
     }];
 }
-- (IBAction)PayBtn_Click:(id)sender {
+- (IBAction)PayBtn_Click:(id)sender
+{
+    if ([UserOrderType isEqualToString:@"Collection"])
+    {
+        
+    }
+    else
+    {
+        BOOL internet=[AppDelegate connectedToNetwork];
+        if (internet)
+            [self checkDeliveryAddress];
+        else
+            [AppDelegate showErrorMessageWithTitle:@"" message:@"Please check your internet connection or try again later." delegate:nil];
+    }
+   
+}
+-(void)checkDeliveryAddress
+{
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    Userdata=[AppDelegate GetData:@"LoginUserDic"];
+    NSString *CutomerID = [[[[[[Userdata valueForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"customerid"];
+    
+    NSMutableDictionary *dict1 = [[NSMutableDictionary alloc] init];
+    [dict1 setValue:KAPIKEY forKey:@"APIKEY"];
+    NSMutableDictionary *dictInner = [[NSMutableDictionary alloc] init];
+    [dictInner setObject:CutomerID forKey:@"CUSTOMERID"];
+    [dictInner setObject:POPView.StreetTXT.text forKey:@"STREET"];
+    [dictInner setObject:POPView.PostCodeTXT.text forKey:@"POSTCODE"];
+    [dictInner setObject:POPView.CountryTXT.text forKey:@"COUNTRY"];
+    [dictInner setObject:POPView.ContactNumberTXT.text forKey:@"MOBILE"];
+    
+    
+    if (![POPView.HouseNoNameTXT.text isEqualToString:@""]) {
+        [dictInner setObject:POPView.HouseNoNameTXT.text forKey:@"HOUSENAME"];
+    }
+    if (![POPView.TownTXT.text isEqualToString:@""]) {
+        [dictInner setObject:POPView.TownTXT.text forKey:@"TOWN"];
+    }
+    if (![POPView.StateTXT.text isEqualToString:@""]) {
+        [dictInner setObject:POPView.StateTXT.text forKey:@"STATE"];
+    }
+    
+    NSMutableDictionary *dictSub = [[NSMutableDictionary alloc] init];
+    
+    [dictSub setObject:@"putitem" forKey:@"MODULE"];
+    [dictSub setObject:@"deliveryAddress" forKey:@"METHOD"];
+    [dictSub setObject:dictInner forKey:@"PARAMS"];
+    
+    
+    NSMutableArray *arr = [[NSMutableArray alloc] initWithObjects:dictSub, nil];
+    NSMutableDictionary *dictREQUESTPARAM = [[NSMutableDictionary alloc] init];
+    
+    [dictREQUESTPARAM setObject:arr forKey:@"REQUESTPARAM"];
+    [dictREQUESTPARAM setObject:dict1 forKey:@"RESTAURANT"];
+    
+    
+    NSError* error = nil;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictREQUESTPARAM options:NSJSONWritingPrettyPrinted error:&error];
+    // NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                         options:NSJSONReadingMutableContainers
+                                                           error:&error];
+    NSString *makeURL=[NSString stringWithFormat:@"%@%@",kBaseURL,DELIVERYADDRESS];
+    
+    [Utility postRequest:json url:makeURL success:^(id responseObject) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"putitem"] objectForKey:@"deliveryAddress"] objectForKey:@"SUCCESS"];
+        if ([SUCCESS boolValue] ==YES)
+        {
+            
+            
+        }
+        else
+        {
+            NSString *DESCRIPTION=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"putitem"] objectForKey:@"deliveryAddress"] objectForKey:@"ERROR"] objectForKey:@"DESCRIPTION"];
+            [AppDelegate showErrorMessageWithTitle:@"" message:DESCRIPTION delegate:nil];
+        }
+        
+    } failure:^(NSError *error) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        NSLog(@"Fail");
+        
+    }];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -414,7 +518,7 @@
     }];
     
 }
--(void)DeliveryAddress
+-(void)UpdateAddress
 {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     Userdata=[AppDelegate GetData:@"LoginUserDic"];
@@ -422,14 +526,30 @@
     
     NSMutableDictionary *dict1 = [[NSMutableDictionary alloc] init];
     [dict1 setValue:KAPIKEY forKey:@"APIKEY"];
-    
-    
     NSMutableDictionary *dictInner = [[NSMutableDictionary alloc] init];
     [dictInner setObject:CutomerID forKey:@"CUSTOMERID"];
+    [dictInner setObject:POPView.StreetTXT.text forKey:@"STREET"];
+    [dictInner setObject:POPView.PostCodeTXT.text forKey:@"POSTCODE"];
+    [dictInner setObject:POPView.CountryTXT.text forKey:@"COUNTRY"];
+    [dictInner setObject:POPView.ContactNumberTXT.text forKey:@"MOBILE"];
+    
+    if (![POPView.HouseNoNameTXT.text isEqualToString:@""]) {
+        [dictInner setObject:POPView.HouseNoNameTXT.text forKey:@"HOUSENO"];
+    }
+    
+    if (![POPView.TownTXT.text isEqualToString:@""]) {
+        [dictInner setObject:POPView.TownTXT.text forKey:@"TOWN"];
+    }
+    if (![POPView.StateTXT.text isEqualToString:@""]) {
+        [dictInner setObject:POPView.StateTXT.text forKey:@"STATE"];
+    }
     
     NSMutableDictionary *dictSub = [[NSMutableDictionary alloc] init];
-    [dictSub setObject:@"getitem" forKey:@"MODULE"];
+    
+    [dictSub setObject:@"putitem" forKey:@"MODULE"];
+    
     [dictSub setObject:@"myProfile" forKey:@"METHOD"];
+    
     [dictSub setObject:dictInner forKey:@"PARAMS"];
     
     
@@ -446,52 +566,22 @@
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData
                                                          options:NSJSONReadingMutableContainers
                                                            error:&error];
-    NSString *makeURL=[NSString stringWithFormat:@"%@%@",kBaseURL,DELIVERYADDRESS];
+    NSString *makeURL=[NSString stringWithFormat:@"%@%@",kBaseURL,UPDATEPROFILE];
     
     [Utility postRequest:json url:makeURL success:^(id responseObject) {
         
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         
-        NSLog(@"responseObject==%@",responseObject);
-        NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"myProfile"] objectForKey:@"SUCCESS"];
+        NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"putitem"] objectForKey:@"myProfile"] objectForKey:@"SUCCESS"];
         if ([SUCCESS boolValue] ==YES)
         {
-            ProfileData=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"myProfile"] objectForKey:@"result"]objectForKey:@"myProfile"];
+            NSString *DESCRIPTION=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"putitem"] objectForKey:@"myProfile"] objectForKey:@"result"] objectForKey:@"myProfile"];
+            [AppDelegate showErrorMessageWithTitle:@"" message:@"updated successfully." delegate:nil];
             
-            if ([ProfileData valueForKey:@"mobile"] != (id)[NSNull null])
-            {
-                POPView.ContactNumberTXT.text=[ProfileData valueForKey:@"mobile"];
-            }
-            if ([ProfileData valueForKey:@"postCode"] != (id)[NSNull null])
-            {
-                POPView.PostCodeTXT.text=[ProfileData valueForKey:@"postCode"];
-            }
-            if ([ProfileData valueForKey:@"houseNo"] != (id)[NSNull null])
-            {
-                POPView.HouseNoNameTXT.text=[ProfileData valueForKey:@"houseNo"];
-            }
-            if ([ProfileData valueForKey:@"street"] != (id)[NSNull null])
-            {
-                POPView.StreetTXT.text=[ProfileData valueForKey:@"street"];
-            }
-            if ([ProfileData valueForKey:@"post_town"] != (id)[NSNull null])
-            {
-                POPView.TownTXT.text=[ProfileData valueForKey:@"post_town"];
-            }
-            if ([ProfileData valueForKey:@"state"] != (id)[NSNull null])
-            {
-                POPView.StateTXT.text=[ProfileData valueForKey:@"state"];
-            }
-            if ([ProfileData valueForKey:@"country"] != (id)[NSNull null])
-            {
-                POPView.CountryTXT.text=[ProfileData valueForKey:@"country"];
-            }
-            NSString *fulladd=[NSString stringWithFormat:@"%@ %@ %@ %@ %@ %@ %@",POPView.HouseNoNameTXT.text,POPView.StreetTXT.text,POPView.TownTXT.text,POPView.StateTXT.text,POPView.PostCodeTXT.text ,POPView.ContactNumberTXT.text,POPView.CountryTXT.text];
-            self.FullAddress_LBL.text=fulladd;
         }
         else
         {
-            NSString *DESCRIPTION=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"myProfile"] objectForKey:@"ERROR"] objectForKey:@"DESCRIPTION"];
+            NSString *DESCRIPTION=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"putitem"] objectForKey:@"myProfile"] objectForKey:@"ERROR"] objectForKey:@"DESCRIPTION"];
             [AppDelegate showErrorMessageWithTitle:@"" message:DESCRIPTION delegate:nil];
         }
         

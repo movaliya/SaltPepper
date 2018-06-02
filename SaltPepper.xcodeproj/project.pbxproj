@@ -30,7 +30,6 @@
 		295E0745206F951C00BC4ADB /* VideoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 295E0743206F951C00BC4ADB /* VideoCell.xib */; };
 		2966E5A620BC1E6600DF0551 /* FavouriteVW.m in Sources */ = {isa = PBXBuildFile; fileRef = 2966E5A520BC1E6600DF0551 /* FavouriteVW.m */; };
 		2966E5A920BC525900DF0551 /* CartVW.m in Sources */ = {isa = PBXBuildFile; fileRef = 2966E5A820BC525900DF0551 /* CartVW.m */; };
-		2968F77620BE6E210019D4E4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2968F77520BE6E210019D4E4 /* Main.storyboard */; };
 		2968F77920BE7DDB0019D4E4 /* CheckOutAddressVW.m in Sources */ = {isa = PBXBuildFile; fileRef = 2968F77820BE7DDB0019D4E4 /* CheckOutAddressVW.m */; };
 		2968F8AC2070CDF2004B5960 /* ContactUSVW.m in Sources */ = {isa = PBXBuildFile; fileRef = 2968F8AB2070CDF2004B5960 /* ContactUSVW.m */; };
 		2968F8AE2070CF23004B5960 /* contactusblur.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2968F8AD2070CF23004B5960 /* contactusblur.jpg */; };
@@ -47,6 +46,8 @@
 		298CD2B742089A26D28B12F9 /* libPods-SaltPepper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AC61B705EFD9F887970D0E9 /* libPods-SaltPepper.a */; settings = {ATTRIBUTES = (Weak, ); }; };
 		51001DAE20BF19AC003887DC /* ReservationHistoryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 51001DAD20BF19AC003887DC /* ReservationHistoryVC.m */; };
 		51001DB120BF19CB003887DC /* ResHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 51001DB020BF19CB003887DC /* ResHistoryCell.m */; };
+		51048E7220C2F54600AFD5B8 /* OrderHistoryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 51048E7120C2F54600AFD5B8 /* OrderHistoryVC.m */; };
+		51048E7520C2F63F00AFD5B8 /* OrderHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 51048E7420C2F63F00AFD5B8 /* OrderHistoryCell.m */; };
 		5105385B20B88337003DF489 /* SharedClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 5105385920B88336003DF489 /* SharedClass.m */; };
 		51061D4E20BDC54E0019FA10 /* SendFeedbackVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 51061D4D20BDC54E0019FA10 /* SendFeedbackVC.m */; };
 		51093A8220BA9034008A05C7 /* MainiPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51093A8120BA9034008A05C7 /* MainiPad.storyboard */; };
@@ -63,6 +64,7 @@
 		5116686920C057B200986D39 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5116686820C057B200986D39 /* MapKit.framework */; };
 		5126749A20B9DBCC002321F7 /* CategoryItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5126749820B9DBCC002321F7 /* CategoryItemCell.m */; };
 		5126749B20B9DBCC002321F7 /* CategoryItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5126749920B9DBCC002321F7 /* CategoryItemCell.xib */; };
+		519427BD20C2FC46000AE928 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 519427BC20C2FC46000AE928 /* Main.storyboard */; };
 		51F66ECB20C2BDF7004DB1DD /* PaymentMethodVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 51F66ECA20C2BDF7004DB1DD /* PaymentMethodVC.m */; };
 		51F66ECE20C2C5EF004DB1DD /* OrderCompleteVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 51F66ECD20C2C5EF004DB1DD /* OrderCompleteVC.m */; };
 		51F8ABE620BC63C6007BFB3F /* ProductDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 51F8ABE520BC63C6007BFB3F /* ProductDetailVC.m */; };
@@ -131,7 +133,6 @@
 		2966E5A520BC1E6600DF0551 /* FavouriteVW.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavouriteVW.m; sourceTree = "<group>"; };
 		2966E5A720BC525900DF0551 /* CartVW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartVW.h; sourceTree = "<group>"; };
 		2966E5A820BC525900DF0551 /* CartVW.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartVW.m; sourceTree = "<group>"; };
-		2968F77520BE6E210019D4E4 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		2968F77720BE7DDB0019D4E4 /* CheckOutAddressVW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckOutAddressVW.h; sourceTree = "<group>"; };
 		2968F77820BE7DDB0019D4E4 /* CheckOutAddressVW.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckOutAddressVW.m; sourceTree = "<group>"; };
 		2968F8AA2070CDF2004B5960 /* ContactUSVW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactUSVW.h; sourceTree = "<group>"; };
@@ -161,6 +162,10 @@
 		51001DAD20BF19AC003887DC /* ReservationHistoryVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReservationHistoryVC.m; sourceTree = "<group>"; };
 		51001DAF20BF19CB003887DC /* ResHistoryCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ResHistoryCell.h; sourceTree = "<group>"; };
 		51001DB020BF19CB003887DC /* ResHistoryCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ResHistoryCell.m; sourceTree = "<group>"; };
+		51048E7020C2F54600AFD5B8 /* OrderHistoryVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderHistoryVC.h; sourceTree = "<group>"; };
+		51048E7120C2F54600AFD5B8 /* OrderHistoryVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderHistoryVC.m; sourceTree = "<group>"; };
+		51048E7320C2F63F00AFD5B8 /* OrderHistoryCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderHistoryCell.h; sourceTree = "<group>"; };
+		51048E7420C2F63F00AFD5B8 /* OrderHistoryCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderHistoryCell.m; sourceTree = "<group>"; };
 		5105385920B88336003DF489 /* SharedClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharedClass.m; sourceTree = "<group>"; };
 		5105385A20B88336003DF489 /* SharedClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedClass.h; sourceTree = "<group>"; };
 		51061D4C20BDC54E0019FA10 /* SendFeedbackVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SendFeedbackVC.h; sourceTree = "<group>"; };
@@ -188,6 +193,7 @@
 		5126749720B9DBCC002321F7 /* CategoryItemCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CategoryItemCell.h; sourceTree = "<group>"; };
 		5126749820B9DBCC002321F7 /* CategoryItemCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CategoryItemCell.m; sourceTree = "<group>"; };
 		5126749920B9DBCC002321F7 /* CategoryItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryItemCell.xib; sourceTree = "<group>"; };
+		519427BC20C2FC46000AE928 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		51F66EC920C2BDF7004DB1DD /* PaymentMethodVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PaymentMethodVC.h; sourceTree = "<group>"; };
 		51F66ECA20C2BDF7004DB1DD /* PaymentMethodVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PaymentMethodVC.m; sourceTree = "<group>"; };
 		51F66ECC20C2C5EF004DB1DD /* OrderCompleteVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderCompleteVC.h; sourceTree = "<group>"; };
@@ -454,6 +460,10 @@
 				51001DAD20BF19AC003887DC /* ReservationHistoryVC.m */,
 				51001DAF20BF19CB003887DC /* ResHistoryCell.h */,
 				51001DB020BF19CB003887DC /* ResHistoryCell.m */,
+				51048E7020C2F54600AFD5B8 /* OrderHistoryVC.h */,
+				51048E7120C2F54600AFD5B8 /* OrderHistoryVC.m */,
+				51048E7320C2F63F00AFD5B8 /* OrderHistoryCell.h */,
+				51048E7420C2F63F00AFD5B8 /* OrderHistoryCell.m */,
 				2966E5A420BC1E6600DF0551 /* FavouriteVW.h */,
 				2966E5A520BC1E6600DF0551 /* FavouriteVW.m */,
 				295CD5A9206A2725002129FD /* GalleryVW.h */,
@@ -480,7 +490,7 @@
 				B138A0C420B72D1900835899 /* OptionView.m */,
 				B16C72AC20B97FFA0041C6B9 /* ProfileView.h */,
 				B16C72AD20B97FFA0041C6B9 /* ProfileView.m */,
-				2968F77520BE6E210019D4E4 /* Main.storyboard */,
+				519427BC20C2FC46000AE928 /* Main.storyboard */,
 				51093A8120BA9034008A05C7 /* MainiPad.storyboard */,
 				294B5C4D205A9F8800794D47 /* saltPepper.pch */,
 				2962DDBF20B543B40086540A /* AFNetworking */,
@@ -603,7 +613,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2968F77620BE6E210019D4E4 /* Main.storyboard in Resources */,
 				B18E78082055143E00C50320 /* LaunchScreen.storyboard in Resources */,
 				B141AB7920BDD9A5009C06B4 /* AlertViewAddAddress.xib in Resources */,
 				297D5EF620564FF300ED5428 /* ShowPassIcon.png in Resources */,
@@ -616,6 +625,7 @@
 				29360C9120B8613100283D87 /* client_628114390774-ps3bah0jagd4pnm3aflmfije8rlr3r56.apps.googleusercontent.com.plist in Resources */,
 				B13EE80220BB31EE006E4471 /* FavoriteCell.xib in Resources */,
 				292090D82055731B0088821E /* 001_splash screen.jpg in Resources */,
+				519427BD20C2FC46000AE928 /* Main.storyboard in Resources */,
 				B14ECF9720B8883200286D46 /* Resources.bundle in Resources */,
 				295E073C206F773D00BC4ADB /* NewsCell.xib in Resources */,
 				5126749B20B9DBCC002321F7 /* CategoryItemCell.xib in Resources */,
@@ -703,6 +713,7 @@
 				51094AAD20B72D7900A60634 /* ForgotPasswordVC.m in Sources */,
 				B14ECF9420B8883200286D46 /* ASJTag.m in Sources */,
 				297D5F0520565F3A00ED5428 /* RECommonFunctions.m in Sources */,
+				51048E7220C2F54600AFD5B8 /* OrderHistoryVC.m in Sources */,
 				51F8ABE620BC63C6007BFB3F /* ProductDetailVC.m in Sources */,
 				2968F77920BE7DDB0019D4E4 /* CheckOutAddressVW.m in Sources */,
 				B1B9F1D620BA7E7A008D2FAD /* ASProgressPopUpView.m in Sources */,
@@ -725,6 +736,7 @@
 				295E0734206F771800BC4ADB /* NewsVW.m in Sources */,
 				B18E77FA2055143E00C50320 /* main.m in Sources */,
 				295E073B206F773D00BC4ADB /* NewsCell.m in Sources */,
+				51048E7520C2F63F00AFD5B8 /* OrderHistoryCell.m in Sources */,
 				B14ECF9620B8883200286D46 /* ASJTagsView.m in Sources */,
 				5116686520C0568000986D39 /* OurLocationVC.m in Sources */,
 				B138A0C520B72D1900835899 /* OptionView.m in Sources */,
