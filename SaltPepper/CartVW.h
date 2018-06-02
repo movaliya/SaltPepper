@@ -12,6 +12,7 @@
 {
      NSInteger QTYINT;
     float subTotalINT;
+    NSString *dayName;
 }
 @property (weak, nonatomic) IBOutlet UILabel *Quantity_LBL;
 @property (weak, nonatomic) IBOutlet UILabel *SubTotalUpperLBL;

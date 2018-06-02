@@ -17,11 +17,16 @@
     self.navigationController.navigationBar.hidden=YES;
 
     [super viewDidLoad];
-    NSMutableArray *Userdata=[AppDelegate GetData:@"LoginUserDic"];
+    Userdata=[AppDelegate GetData:@"LoginUserDic"];
     NSString *customer_name = [[[[[[[Userdata valueForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"myProfile"] objectForKey:@"customer_name"];
     NSString *customer_email = [[[[[[[Userdata valueForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"myProfile"] objectForKey:@"email"];
     self.UserName_LBL.text=customer_name;
     self.UserEmail_LBL.text=customer_email;
+   
+    
+    NSString *fulladd=[NSString stringWithFormat:@"%@ %@ %@ %@ %@ %@ %@",POPView.HouseNoNameTXT.text,POPView.StreetTXT.text,POPView.TownTXT.text,POPView.StateTXT.text,POPView.PostCodeTXT.text ,POPView.ContactNumberTXT.text,POPView.ContactNumberTXT.text];
+    
+    self.FullAddress_LBL.text=fulladd;
     
     
     POPView = [[[NSBundle mainBundle] loadNibNamed:@"AlertViewAddAddress" owner:nil options:nil] firstObject];
@@ -72,6 +77,7 @@
         [AppDelegate showErrorMessageWithTitle:@"" message:@"Please check your internet connection or try again later." delegate:nil];
     // Do any additional setup after loading the view.
 }
+
 -(void)CollTimeTextField:(id)sender
 {
     UIDatePicker *picker = (UIDatePicker*)self.CollectionTimeTXT.inputView;
@@ -92,7 +98,6 @@
     
     [dateFormatter setDateFormat:@"EEEE"];
     NSLog(@"%@",[dateFormatter stringFromDate:date]);
-    [self Discount:[dateFormatter stringFromDate:date]];
     return formattedDate;
 }
 
@@ -134,7 +139,7 @@
             getAcceptedOrderTypes=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"getAcceptedOrderTypes"] objectForKey:@"RESULT"] objectForKey:@"getAcceptedOrderTypes"];
             
             NSLog(@"getAcceptedOrderTypes==%@",getAcceptedOrderTypes);
-            
+            [self GetProfileDetail];
             if ([getAcceptedOrderTypes isEqualToString:@"Collection & Delivery"])
             {
                 self.CollectionBtn.hidden=NO;
@@ -222,65 +227,7 @@
             break;
     }
 }
--(void)Discount:(NSString *)day
-{
-   
-    self.GrandTotal = [ self.GrandTotal stringByReplacingOccurrencesOfString:@"£"  withString:@""];
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    
-    NSMutableDictionary *dict1 = [[NSMutableDictionary alloc] init];
-    [dict1 setValue:KAPIKEY forKey:@"APIKEY"];
-    
-    
-    NSMutableDictionary *dictInner = [[NSMutableDictionary alloc] init];
-    [dictInner setObject:self.GrandTotal forKey:@"TOTALSUM"];
-    [dictInner setObject:day forKey:@"DAY"];
-    [dictInner setObject:UserOrderType forKey:@"ORDERTYPE"];
-    
-    
-    NSMutableDictionary *dictSub = [[NSMutableDictionary alloc] init];
-    [dictSub setObject:@"getitem" forKey:@"MODULE"];
-    [dictSub setObject:@"orderDiscount" forKey:@"METHOD"];
-    [dictSub setObject:dictInner forKey:@"PARAMS"];
-    
-    
-    NSMutableArray *arr = [[NSMutableArray alloc] initWithObjects:dictSub, nil];
-    NSMutableDictionary *dictREQUESTPARAM = [[NSMutableDictionary alloc] init];
-    
-    [dictREQUESTPARAM setObject:arr forKey:@"REQUESTPARAM"];
-    [dictREQUESTPARAM setObject:dict1 forKey:@"RESTAURANT"];
-    
-    
-    NSError* error = nil;
-    
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictREQUESTPARAM options:NSJSONWritingPrettyPrinted error:&error];
-    // NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-    
-    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData
-                                                         options:NSJSONReadingMutableContainers
-                                                           error:&error];
-    NSString *makeURL=[NSString stringWithFormat:@"%@%@",kBaseURL,DISCOUNT];
-    [Utility postRequest:json url:makeURL success:^(id responseObject) {
-        
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-        
-        NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"orderDiscount"] objectForKey:@"SUCCESS"];
-        if ([SUCCESS boolValue] ==YES)
-        {
-            orderDiscount=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"orderDiscount"] objectForKey:@"RESULT"] objectForKey:@"orderDiscount"];
-            
-            self.GrandTotal_LBL.text=[NSString stringWithFormat:@"£%@",[orderDiscount objectForKey:@"totalprice"]];
-            self.Discount_LBL.text=[NSString stringWithFormat:@"£%@",[orderDiscount objectForKey:@"discount"]];
-        }
-        
-    } failure:^(NSError *error) {
-        
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-        
-        NSLog(@"Fail");
-    }];
-    
-}
+
 - (IBAction)SetAddress_Click:(id)sender
 {
     [self ShowPopUpAnimation];
@@ -365,6 +312,8 @@
         
     }];
 }
+- (IBAction)PayBtn_Click:(id)sender {
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -373,6 +322,187 @@
 {
     [self.navigationController popViewControllerAnimated:YES];
 
+}
+
+-(void)GetProfileDetail
+{
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+   Userdata=[AppDelegate GetData:@"LoginUserDic"];
+    NSString *CutomerID = [[[[[[Userdata valueForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"customerid"];
+    
+    NSMutableDictionary *dict1 = [[NSMutableDictionary alloc] init];
+    [dict1 setValue:KAPIKEY forKey:@"APIKEY"];
+    
+    
+    NSMutableDictionary *dictInner = [[NSMutableDictionary alloc] init];
+    [dictInner setObject:CutomerID forKey:@"CUSTOMERID"];
+    
+    NSMutableDictionary *dictSub = [[NSMutableDictionary alloc] init];
+    [dictSub setObject:@"getitem" forKey:@"MODULE"];
+    [dictSub setObject:@"myProfile" forKey:@"METHOD"];
+    [dictSub setObject:dictInner forKey:@"PARAMS"];
+    
+    
+    NSMutableArray *arr = [[NSMutableArray alloc] initWithObjects:dictSub, nil];
+    NSMutableDictionary *dictREQUESTPARAM = [[NSMutableDictionary alloc] init];
+    
+    [dictREQUESTPARAM setObject:arr forKey:@"REQUESTPARAM"];
+    [dictREQUESTPARAM setObject:dict1 forKey:@"RESTAURANT"];
+    
+    
+    NSError* error = nil;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictREQUESTPARAM options:NSJSONWritingPrettyPrinted error:&error];
+    // NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                         options:NSJSONReadingMutableContainers
+                                                           error:&error];
+    NSString *makeURL=[NSString stringWithFormat:@"%@%@",kBaseURL,GETPROFILE];
+    
+    [Utility postRequest:json url:makeURL success:^(id responseObject) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        NSLog(@"responseObject==%@",responseObject);
+        NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"myProfile"] objectForKey:@"SUCCESS"];
+        if ([SUCCESS boolValue] ==YES)
+        {
+            ProfileData=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"myProfile"] objectForKey:@"result"]objectForKey:@"myProfile"];
+            
+            if ([ProfileData valueForKey:@"mobile"] != (id)[NSNull null])
+            {
+                POPView.ContactNumberTXT.text=[ProfileData valueForKey:@"mobile"];
+            }
+            if ([ProfileData valueForKey:@"postCode"] != (id)[NSNull null])
+            {
+                POPView.PostCodeTXT.text=[ProfileData valueForKey:@"postCode"];
+            }
+            if ([ProfileData valueForKey:@"houseNo"] != (id)[NSNull null])
+            {
+                POPView.HouseNoNameTXT.text=[ProfileData valueForKey:@"houseNo"];
+            }
+            if ([ProfileData valueForKey:@"street"] != (id)[NSNull null])
+            {
+                POPView.StreetTXT.text=[ProfileData valueForKey:@"street"];
+            }
+            if ([ProfileData valueForKey:@"post_town"] != (id)[NSNull null])
+            {
+                POPView.TownTXT.text=[ProfileData valueForKey:@"post_town"];
+            }
+            if ([ProfileData valueForKey:@"state"] != (id)[NSNull null])
+            {
+                POPView.StateTXT.text=[ProfileData valueForKey:@"state"];
+            }
+            if ([ProfileData valueForKey:@"country"] != (id)[NSNull null])
+            {
+                POPView.CountryTXT.text=[ProfileData valueForKey:@"country"];
+            }
+            NSString *fulladd=[NSString stringWithFormat:@"%@ %@ %@ %@ %@ %@ %@",POPView.HouseNoNameTXT.text,POPView.StreetTXT.text,POPView.TownTXT.text,POPView.StateTXT.text,POPView.PostCodeTXT.text ,POPView.ContactNumberTXT.text,POPView.CountryTXT.text];
+             self.FullAddress_LBL.text=fulladd;
+        }
+        else
+        {
+            NSString *DESCRIPTION=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"myProfile"] objectForKey:@"ERROR"] objectForKey:@"DESCRIPTION"];
+            [AppDelegate showErrorMessageWithTitle:@"" message:DESCRIPTION delegate:nil];
+        }
+        
+    } failure:^(NSError *error) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        NSLog(@"Fail");
+        
+    }];
+    
+}
+-(void)DeliveryAddress
+{
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    Userdata=[AppDelegate GetData:@"LoginUserDic"];
+    NSString *CutomerID = [[[[[[Userdata valueForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"customerid"];
+    
+    NSMutableDictionary *dict1 = [[NSMutableDictionary alloc] init];
+    [dict1 setValue:KAPIKEY forKey:@"APIKEY"];
+    
+    
+    NSMutableDictionary *dictInner = [[NSMutableDictionary alloc] init];
+    [dictInner setObject:CutomerID forKey:@"CUSTOMERID"];
+    
+    NSMutableDictionary *dictSub = [[NSMutableDictionary alloc] init];
+    [dictSub setObject:@"getitem" forKey:@"MODULE"];
+    [dictSub setObject:@"myProfile" forKey:@"METHOD"];
+    [dictSub setObject:dictInner forKey:@"PARAMS"];
+    
+    
+    NSMutableArray *arr = [[NSMutableArray alloc] initWithObjects:dictSub, nil];
+    NSMutableDictionary *dictREQUESTPARAM = [[NSMutableDictionary alloc] init];
+    
+    [dictREQUESTPARAM setObject:arr forKey:@"REQUESTPARAM"];
+    [dictREQUESTPARAM setObject:dict1 forKey:@"RESTAURANT"];
+    
+    
+    NSError* error = nil;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictREQUESTPARAM options:NSJSONWritingPrettyPrinted error:&error];
+    // NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                         options:NSJSONReadingMutableContainers
+                                                           error:&error];
+    NSString *makeURL=[NSString stringWithFormat:@"%@%@",kBaseURL,DELIVERYADDRESS];
+    
+    [Utility postRequest:json url:makeURL success:^(id responseObject) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        NSLog(@"responseObject==%@",responseObject);
+        NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"myProfile"] objectForKey:@"SUCCESS"];
+        if ([SUCCESS boolValue] ==YES)
+        {
+            ProfileData=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"myProfile"] objectForKey:@"result"]objectForKey:@"myProfile"];
+            
+            if ([ProfileData valueForKey:@"mobile"] != (id)[NSNull null])
+            {
+                POPView.ContactNumberTXT.text=[ProfileData valueForKey:@"mobile"];
+            }
+            if ([ProfileData valueForKey:@"postCode"] != (id)[NSNull null])
+            {
+                POPView.PostCodeTXT.text=[ProfileData valueForKey:@"postCode"];
+            }
+            if ([ProfileData valueForKey:@"houseNo"] != (id)[NSNull null])
+            {
+                POPView.HouseNoNameTXT.text=[ProfileData valueForKey:@"houseNo"];
+            }
+            if ([ProfileData valueForKey:@"street"] != (id)[NSNull null])
+            {
+                POPView.StreetTXT.text=[ProfileData valueForKey:@"street"];
+            }
+            if ([ProfileData valueForKey:@"post_town"] != (id)[NSNull null])
+            {
+                POPView.TownTXT.text=[ProfileData valueForKey:@"post_town"];
+            }
+            if ([ProfileData valueForKey:@"state"] != (id)[NSNull null])
+            {
+                POPView.StateTXT.text=[ProfileData valueForKey:@"state"];
+            }
+            if ([ProfileData valueForKey:@"country"] != (id)[NSNull null])
+            {
+                POPView.CountryTXT.text=[ProfileData valueForKey:@"country"];
+            }
+            NSString *fulladd=[NSString stringWithFormat:@"%@ %@ %@ %@ %@ %@ %@",POPView.HouseNoNameTXT.text,POPView.StreetTXT.text,POPView.TownTXT.text,POPView.StateTXT.text,POPView.PostCodeTXT.text ,POPView.ContactNumberTXT.text,POPView.CountryTXT.text];
+            self.FullAddress_LBL.text=fulladd;
+        }
+        else
+        {
+            NSString *DESCRIPTION=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"myProfile"] objectForKey:@"ERROR"] objectForKey:@"DESCRIPTION"];
+            [AppDelegate showErrorMessageWithTitle:@"" message:DESCRIPTION delegate:nil];
+        }
+        
+    } failure:^(NSError *error) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        NSLog(@"Fail");
+        
+    }];
+    
 }
 
 /*

@@ -103,6 +103,10 @@
 #define DISCOUNT @"discount.php"
 #define MAPADDRESS @"mapAddress.php"
 #define TELEPHONE @"restaurantTelephone.php"
+#define DELIVERYADDRESS @"deliveryAddress.php"
+
+
+
 
 //Check if iphone5 or iphone 4
 #define isIPhone5 ([UIScreen mainScreen].bounds.size.height == 568.0)

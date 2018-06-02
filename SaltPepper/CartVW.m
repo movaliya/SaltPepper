@@ -22,6 +22,11 @@
     
     [super viewDidLoad];
     
+    NSDate *now = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"EEEE"];
+    dayName=[dateFormatter stringFromDate:now];
+    
     POPView = [[[NSBundle mainBundle] loadNibNamed:@"AlertViewPromoCode" owner:nil options:nil] firstObject];
     POPView.frame = self.view.frame;
     
@@ -64,6 +69,8 @@
          self.PromoBtn.hidden=YES;
          self.ProceedToPayBTN.hidden=YES;
     }
+    
+    
    
 }
 
@@ -221,8 +228,69 @@
         self.SubTotalUpperLBL.text=[NSString stringWithFormat:@"£%.2f",subTotalINT];
         self.GrandTotal_LBL.text=[NSString stringWithFormat:@"£%.2f",subTotalINT];
     }
+     NSString *GToal = [ self.GrandTotal_LBL.text stringByReplacingOccurrencesOfString:@"£"  withString:@""];
+    [self Discount:dayName GrandTotal:GToal];
 }
 
+-(void)Discount:(NSString *)day GrandTotal:(NSString *)GT
+{
+    
+   
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    NSMutableDictionary *dict1 = [[NSMutableDictionary alloc] init];
+    [dict1 setValue:KAPIKEY forKey:@"APIKEY"];
+    
+    
+    NSMutableDictionary *dictInner = [[NSMutableDictionary alloc] init];
+    [dictInner setObject:GT forKey:@"TOTALSUM"];
+    [dictInner setObject:day forKey:@"DAY"];
+    [dictInner setObject:@"Collection" forKey:@"ORDERTYPE"];
+    
+    
+    NSMutableDictionary *dictSub = [[NSMutableDictionary alloc] init];
+    [dictSub setObject:@"getitem" forKey:@"MODULE"];
+    [dictSub setObject:@"orderDiscount" forKey:@"METHOD"];
+    [dictSub setObject:dictInner forKey:@"PARAMS"];
+    
+    
+    NSMutableArray *arr = [[NSMutableArray alloc] initWithObjects:dictSub, nil];
+    NSMutableDictionary *dictREQUESTPARAM = [[NSMutableDictionary alloc] init];
+    
+    [dictREQUESTPARAM setObject:arr forKey:@"REQUESTPARAM"];
+    [dictREQUESTPARAM setObject:dict1 forKey:@"RESTAURANT"];
+    
+    
+    NSError* error = nil;
+    
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictREQUESTPARAM options:NSJSONWritingPrettyPrinted error:&error];
+    // NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                         options:NSJSONReadingMutableContainers
+                                                           error:&error];
+    NSString *makeURL=[NSString stringWithFormat:@"%@%@",kBaseURL,DISCOUNT];
+    [Utility postRequest:json url:makeURL success:^(id responseObject) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"orderDiscount"] objectForKey:@"SUCCESS"];
+        if ([SUCCESS boolValue] ==YES)
+        {
+           NSDictionary *orderDiscount=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"orderDiscount"] objectForKey:@"RESULT"] objectForKey:@"orderDiscount"];
+            
+            self.GrandTotal_LBL.text=[NSString stringWithFormat:@"£%@",[orderDiscount objectForKey:@"totalprice"]];
+            self.Discount_LBL.text=[NSString stringWithFormat:@"£%@",[orderDiscount objectForKey:@"discount"]];
+        }
+        
+    } failure:^(NSError *error) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        NSLog(@"Fail");
+    }];
+    
+}
 - (IBAction)MenuBtn_click:(id)sender
 {
     [self.sideMenuViewController presentLeftMenuViewController];

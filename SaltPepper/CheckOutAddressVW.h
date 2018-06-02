@@ -16,7 +16,10 @@
     UIDatePicker *datepicker,*datepicke1;
     UIBarButtonItem *rightBtn;
     NSString *UserOrderType;
+    NSMutableArray *Userdata;
+    NSDictionary *ProfileData;
 }
+@property (weak, nonatomic) IBOutlet UIButton *PayBtn;
 @property (strong, nonatomic) NSString *GrandTotal;
 @property (strong, nonatomic) NSString *Discount;
 
