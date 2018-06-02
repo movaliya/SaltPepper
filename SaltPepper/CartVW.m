@@ -229,7 +229,13 @@
         self.GrandTotal_LBL.text=[NSString stringWithFormat:@"£%.2f",subTotalINT];
     }
      NSString *GToal = [ self.GrandTotal_LBL.text stringByReplacingOccurrencesOfString:@"£"  withString:@""];
-    [self Discount:dayName GrandTotal:GToal];
+    
+    BOOL internet=[AppDelegate connectedToNetwork];
+    if (internet)
+         [self Discount:dayName GrandTotal:GToal];
+    else
+        [AppDelegate showErrorMessageWithTitle:@"" message:@"Please check your internet connection or try again later." delegate:nil];
+   
 }
 
 -(void)Discount:(NSString *)day GrandTotal:(NSString *)GT
