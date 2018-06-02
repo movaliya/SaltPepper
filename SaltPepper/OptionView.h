@@ -13,6 +13,8 @@
 {
     
 }
+@property (strong, nonatomic) IBOutlet NSMutableDictionary *ModifyDic;
+
 @property (strong, nonatomic) IBOutlet UICollectionView *WithCollection;
 @property (strong, nonatomic) IBOutlet UICollectionView *WithoutCollection;
 

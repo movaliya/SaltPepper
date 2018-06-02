@@ -10,6 +10,7 @@
 #import "ItemCell.h"
 #import "CategoryItemCell.h"
 #import "ProductDetailVC.h"
+#import "OptionView.h"
 
 @interface SlideMenuVC ()<EHHorizontalSelectionViewProtocol>
 {
@@ -220,6 +221,7 @@
     [cell.btnFav addTarget:self action:@selector(addToFavClickedCollectionView:) forControlEvents:UIControlEventTouchUpInside];
     [cell.btnPlus addTarget:self action:@selector(plusClickedCollectionView:) forControlEvents:UIControlEventTouchUpInside];
     [cell.btnMinus addTarget:self action:@selector(minusClickedCollectionView:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.btnModify addTarget:self action:@selector(ModifyClickedCollectionView:) forControlEvents:UIControlEventTouchUpInside];
     
     //Favorite
     if ([[[arrProductsItems objectAtIndex:indexPath.row] valueForKey:@"Favorite"] isEqualToString:@"YES"])
@@ -399,6 +401,7 @@
     [cell.btnAdd addTarget:self action:@selector(addToCartClickedTableView:) forControlEvents:UIControlEventTouchUpInside];
     [cell.btnPlus addTarget:self action:@selector(plusClickedTableView:) forControlEvents:UIControlEventTouchUpInside];
     [cell.btnMinus addTarget:self action:@selector(minusClickedTableView:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.btnModify addTarget:self action:@selector(ModifyClickedTableView:) forControlEvents:UIControlEventTouchUpInside];
     
     [cell.viewBack.layer setShadowColor:[UIColor grayColor].CGColor];
     [cell.viewBack.layer setShadowOpacity:0.8];
@@ -739,6 +742,42 @@
     }
 }
 
+#pragma mark - Modify Click Action
+
+-(void)ModifyClickedCollectionView:(UIButton *)sender
+{
+    NSIndexPath *changedRow = [NSIndexPath indexPathForRow:sender.tag inSection:0];
+    NSDictionary *PassDic=[[NSDictionary alloc]init];
+    if(isFiltered)
+    {
+        PassDic=[[filteredProducts objectAtIndex:changedRow.row]mutableCopy];
+    }
+    else
+    {
+        PassDic=[[arrProductsItems objectAtIndex:changedRow.row]mutableCopy];
+    }
+    OptionView *mainVC = [self.storyboard instantiateViewControllerWithIdentifier:@"OptionView"];
+    mainVC.ModifyDic=[[NSMutableDictionary alloc]initWithDictionary:PassDic];
+    [self.navigationController pushViewController:mainVC animated:YES];
+
+}
+-(void)ModifyClickedTableView:(UIButton *)sender
+{
+    NSIndexPath *changedRow = [NSIndexPath indexPathForRow:sender.tag inSection:0];
+    NSDictionary *PassDic=[[NSDictionary alloc]init];
+    if(isFiltered)
+    {
+        PassDic=[[filteredProducts objectAtIndex:changedRow.row]mutableCopy];
+    }
+    else
+    {
+        PassDic=[[arrProductsItems objectAtIndex:changedRow.row]mutableCopy];
+    }
+    OptionView *mainVC = [self.storyboard instantiateViewControllerWithIdentifier:@"OptionView"];
+    mainVC.ModifyDic=[[NSMutableDictionary alloc]initWithDictionary:PassDic];
+    [self.navigationController pushViewController:mainVC animated:YES];
+}
+
 
 #pragma mark - ADD TO CART Click Action
 
@@ -757,6 +796,16 @@
             if ([[KmyappDelegate.MainCartArr valueForKey:@"id"] containsObject:[[filteredProducts valueForKey:@"id"]objectAtIndex:changedRow.row]])
             {
                 NSLog(@"Already Added");
+                NSMutableArray *IdArr=[KmyappDelegate.MainCartArr valueForKey:@"id"];
+                NSInteger idx=[IdArr indexOfObject:[[filteredProducts valueForKey:@"id"]objectAtIndex:changedRow.row]];
+                
+                NSMutableDictionary *intdic=[[NSMutableDictionary alloc]init];
+                intdic=[[KmyappDelegate.MainCartArr objectAtIndex:idx] mutableCopy];
+                int qnt=[[intdic valueForKey:@"Quantity"] intValue];
+                qnt=qnt + 1;
+                [intdic setObject:[NSNumber numberWithInt:qnt] forKey:@"Quantity"];
+                
+                [KmyappDelegate.MainCartArr replaceObjectAtIndex:idx withObject:intdic];
             }
             else
             {
@@ -777,6 +826,16 @@
             if ([[KmyappDelegate.MainCartArr valueForKey:@"id"] containsObject:[[arrProductsItems valueForKey:@"id"]objectAtIndex:changedRow.row]])
             {
                 NSLog(@"Already Added");
+                NSMutableArray *IdArr=[KmyappDelegate.MainCartArr valueForKey:@"id"];
+                NSInteger idx=[IdArr indexOfObject:[[arrProductsItems valueForKey:@"id"]objectAtIndex:changedRow.row]];
+                
+                NSMutableDictionary *intdic=[[NSMutableDictionary alloc]init];
+                intdic=[[KmyappDelegate.MainCartArr objectAtIndex:idx] mutableCopy];
+                int qnt=[[intdic valueForKey:@"Quantity"] intValue];
+                qnt=qnt + 1;
+                [intdic setObject:[NSNumber numberWithInt:qnt] forKey:@"Quantity"];
+                
+                [KmyappDelegate.MainCartArr replaceObjectAtIndex:idx withObject:intdic];
             }
             else
             {
@@ -809,6 +868,16 @@
             if ([[KmyappDelegate.MainCartArr valueForKey:@"id"] containsObject:[[filteredProducts valueForKey:@"id"]objectAtIndex:changedRow.row]])
             {
                 NSLog(@"Already Added");
+                NSMutableArray *IdArr=[KmyappDelegate.MainCartArr valueForKey:@"id"];
+                NSInteger idx=[IdArr indexOfObject:[[filteredProducts valueForKey:@"id"]objectAtIndex:changedRow.row]];
+                
+                NSMutableDictionary *intdic=[[NSMutableDictionary alloc]init];
+                intdic=[[KmyappDelegate.MainCartArr objectAtIndex:idx] mutableCopy];
+                int qnt=[[intdic valueForKey:@"Quantity"] intValue];
+                qnt=qnt + 1;
+                [intdic setObject:[NSNumber numberWithInt:qnt] forKey:@"Quantity"];
+                
+                [KmyappDelegate.MainCartArr replaceObjectAtIndex:idx withObject:intdic];
             }
             else
             {
@@ -829,6 +898,16 @@
             if ([[KmyappDelegate.MainCartArr valueForKey:@"id"] containsObject:[[arrProductsItems valueForKey:@"id"]objectAtIndex:changedRow.row]])
             {
                 NSLog(@"Already Added");
+                NSMutableArray *IdArr=[KmyappDelegate.MainCartArr valueForKey:@"id"];
+                NSInteger idx=[IdArr indexOfObject:[[arrProductsItems valueForKey:@"id"]objectAtIndex:changedRow.row]];
+                
+                NSMutableDictionary *intdic=[[NSMutableDictionary alloc]init];
+                intdic=[[KmyappDelegate.MainCartArr objectAtIndex:idx] mutableCopy];
+                int qnt=[[intdic valueForKey:@"Quantity"] intValue];
+                qnt=qnt + 1;
+                [intdic setObject:[NSNumber numberWithInt:qnt] forKey:@"Quantity"];
+                
+                [KmyappDelegate.MainCartArr replaceObjectAtIndex:idx withObject:intdic];
             }
             else
             {

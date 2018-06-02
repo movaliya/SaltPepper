@@ -9,5 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface OptionWithCell : UICollectionViewCell
+{
+    
+}
+@property (strong, nonatomic) IBOutlet UIImageView *IMG;
+@property (strong, nonatomic) IBOutlet UILabel *Title_LBL;
+@property (strong, nonatomic) IBOutlet UILabel *Price_LBL;
 
 @end
