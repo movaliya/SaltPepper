@@ -127,6 +127,7 @@
 
 - (void)setup
 {
+    self.scrollEnabled=NO;
   [self setupDefaults];
   [self listenForOrientationChanges];
 }
