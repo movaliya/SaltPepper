@@ -104,7 +104,9 @@
 #define MAPADDRESS @"mapAddress.php"
 #define TELEPHONE @"restaurantTelephone.php"
 #define DELIVERYADDRESS @"deliveryAddress.php"
-
+#define ORDERHISTORY @"orderHistory.php"
+#define BUTTONSTATE @"buttonState.php"
+#define APPBUTTON @"appButtons.php"
 
 
 
