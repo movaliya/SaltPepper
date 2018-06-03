@@ -13,7 +13,7 @@
 @end
 
 @implementation CheckOutAddressVW
-@synthesize POPView;
+@synthesize POPView,CommentTXT;
 - (void)viewDidLoad {
     self.navigationController.navigationBar.hidden=YES;
 
@@ -24,7 +24,8 @@
     self.UserName_LBL.text=customer_name;
     self.UserEmail_LBL.text=customer_email;
    
-    
+     CommentTXT.textColor=[UIColor grayColor];
+
     NSString *fulladd=[NSString stringWithFormat:@"%@ %@ %@ %@ %@ %@ %@",POPView.HouseNoNameTXT.text,POPView.StreetTXT.text,POPView.TownTXT.text,POPView.StateTXT.text,POPView.PostCodeTXT.text ,POPView.ContactNumberTXT.text,POPView.CountryTXT.text];
     
     self.FullAddress_LBL.text=fulladd;
@@ -339,7 +340,14 @@
             PaymentMethodVC *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"PaymentMethodVC"];
             vcr.FinalTotal=self.GrandTotal_LBL.text;
             vcr.OrderType=UserOrderType;
-            vcr.CommentTxt=self.CommentTXT.text;
+            
+            if ([self.CommentTXT.text isEqualToString:@"Enter Text"]) {
+                vcr.CommentTxt = @"";
+            }
+            else
+            {
+                vcr.CommentTxt=self.CommentTXT.text;
+            }
              vcr.OrderDiscount=self.Discount_LBL.text;
             [self.navigationController pushViewController:vcr animated:YES];
         }
@@ -620,6 +628,34 @@
     
 }
 
+-(void)textViewDidBeginEditing:(UITextView *)textView
+{
+    
+    CommentTXT.textColor=[UIColor blackColor];
+  
+    //Message_Icon.image=[UIImage imageNamed:@"MessageIconEnable"];
+    
+    
+    if ([textView.text isEqualToString:@"Enter Text"]) {
+        textView.text = @"";
+        textView.textColor = [UIColor blackColor]; //optional
+    }
+    [textView becomeFirstResponder];
+}
+
+
+-(void)textViewDidEndEditing:(UITextView *)textView
+{
+    
+    CommentTXT.textColor=[UIColor blackColor];
+    
+    if ([textView.text isEqualToString:@""]) {
+        textView.text = @"Enter Text";
+        textView.textColor = [UIColor grayColor]; //optional
+    }
+    [textView resignFirstResponder];
+    
+}
 /*
 #pragma mark - Navigation
 
