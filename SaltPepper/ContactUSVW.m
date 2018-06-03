@@ -23,11 +23,72 @@
     [super viewDidLoad];
     locationInfo = [[NSMutableDictionary alloc]init];
     ContactInfo = [[NSMutableDictionary alloc]init];
+    [self CallReservationHistory];
     [self CallLocationService];
     [self CallTelephoneService];
     self.navigationController.navigationBar.hidden=YES;
     
 }
+
+- (void)CallReservationHistory
+{
+    NSMutableDictionary *dict1 = [[NSMutableDictionary alloc] init];
+    
+    [dict1 setValue:KAPIKEY forKey:@"APIKEY"];
+    
+    
+    NSMutableDictionary *dictInner = [[NSMutableDictionary alloc] init];
+    
+    NSMutableDictionary *dictSub = [[NSMutableDictionary alloc] init];
+    
+    [dictSub setObject:@"getitem" forKey:@"MODULE"];
+    
+    [dictSub setObject:@"appButtons" forKey:@"METHOD"];
+    
+    [dictSub setObject:dictInner forKey:@"PARAMS"];
+    
+    
+    NSMutableArray *arr = [[NSMutableArray alloc] initWithObjects:dictSub, nil];
+    NSMutableDictionary *dictREQUESTPARAM = [[NSMutableDictionary alloc] init];
+    
+    [dictREQUESTPARAM setObject:arr forKey:@"REQUESTPARAM"];
+    [dictREQUESTPARAM setObject:dict1 forKey:@"RESTAURANT"];
+    
+    
+    NSError* error = nil;
+    
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictREQUESTPARAM options:NSJSONWritingPrettyPrinted error:&error];
+    
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                         options:NSJSONReadingMutableContainers
+                                                           error:&error];
+    
+    NSString *makeURL=[NSString stringWithFormat:@"%@%@",kBaseURL,APPBUTTON];
+    
+    [Utility postRequest:json url:makeURL success:^(id responseObject) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        NSLog(@"responseObject==%@",responseObject);
+        NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"buttonState"] objectForKey:@"SUCCESS"];
+        if ([SUCCESS boolValue] ==YES)
+        {
+            
+        }
+        else
+        {
+            NSString *DESCRIPTION=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"postitem"] objectForKey:@"reservation"] objectForKey:@"ERROR"] objectForKey:@"DESCRIPTION"];
+            [AppDelegate showErrorMessageWithTitle:@"" message:DESCRIPTION delegate:nil];
+        }
+        
+    } failure:^(NSError *error) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        NSLog(@"Fail");
+    }];
+}
+
 
 -(void)CallLocationService
 {
@@ -141,7 +202,13 @@
     NSString *contact = [ContactInfo valueForKey:@"restaurantTelephone"];
     NSString *telephone = [NSString stringWithFormat:@"telprompt://%@",contact];
     NSURL *url = [NSURL URLWithString:telephone];
-    [[UIApplication  sharedApplication] openURL:url];
+    UIApplication *application = [UIApplication sharedApplication];
+    [application openURL:url options:@{} completionHandler:^(BOOL success) {
+        if (success) {
+            NSLog(@"Opened url");
+        }
+    }];
+    //[[UIApplication  sharedApplication] openURL:url];
 }
 - (IBAction)btnFeedback:(id)sender
 {
@@ -155,13 +222,45 @@
     mainVC.locationDetail = [locationInfo mutableCopy];
     [self.navigationController pushViewController:mainVC animated:YES];
 }
-- (IBAction)btnFB:(id)sender {
+- (IBAction)btnFB:(id)sender
+{
+    UIApplication *application = [UIApplication sharedApplication];
+    NSURL *URL = [NSURL URLWithString:@"https://www.facebook.com/apple/"];
+    [application openURL:URL options:@{} completionHandler:^(BOOL success) {
+        if (success) {
+            NSLog(@"Opened url");
+        }
+    }];
 }
-- (IBAction)btnLinked:(id)sender {
+- (IBAction)btnLinked:(id)sender
+{
+    UIApplication *application = [UIApplication sharedApplication];
+    NSURL *URL = [NSURL URLWithString:@"https://www.linkedin.com/company/apple"];
+    [application openURL:URL options:@{} completionHandler:^(BOOL success) {
+        if (success) {
+            NSLog(@"Opened url");
+        }
+    }];
 }
-- (IBAction)btnTwitter:(id)sender {
+- (IBAction)btnTwitter:(id)sender
+{
+    UIApplication *application = [UIApplication sharedApplication];
+    NSURL *URL = [NSURL URLWithString:@"https://twitter.com/apple?lang=en"];
+    [application openURL:URL options:@{} completionHandler:^(BOOL success) {
+        if (success) {
+            NSLog(@"Opened url");
+        }
+    }];
 }
-- (IBAction)btnYoutube:(id)sender {
+- (IBAction)btnYoutube:(id)sender
+{
+    UIApplication *application = [UIApplication sharedApplication];
+    NSURL *URL = [NSURL URLWithString:@"https://www.youtube.com/user/Apple"];
+    [application openURL:URL options:@{} completionHandler:^(BOOL success) {
+        if (success) {
+            NSLog(@"Opened url");
+        }
+    }];
 }
 
 - (void)didReceiveMemoryWarning

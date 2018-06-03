@@ -8,10 +8,14 @@
 
 #import "AppDelegate.h"
 #import "DEMORootViewController.h"
+#import "Constant.h"
+
+@import Stripe;
 
 @interface AppDelegate ()
 {
 }
+
 @end
 
 @implementation AppDelegate
@@ -29,6 +33,14 @@
     //Google
     [GIDSignIn sharedInstance].clientID = @"628114390774-ps3bah0jagd4pnm3aflmfije8rlr3r56.apps.googleusercontent.com";
     [GIDSignIn sharedInstance].delegate = self;
+    
+    //Get Stripe Publish key
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        [self performSelector:@selector(GetPublishableKey) withObject:nil afterDelay:6.5f];
+    });
+    [[STPPaymentConfiguration sharedConfiguration] setSmsAutofillDisabled:NO];
+    
     return YES;
 }
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options
@@ -59,6 +71,49 @@
         
     }
     return isInternet;
+}
+-(void)GetPublishableKey
+{
+    NSMutableDictionary *dict1 = [[NSMutableDictionary alloc] init];
+    [dict1 setValue:KAPIKEY forKey:@"APIKEY"];
+    NSMutableDictionary *dictSub = [[NSMutableDictionary alloc] init];
+    [dictSub setObject:@"getitem" forKey:@"MODULE"];
+    [dictSub setObject:@"publishableKey" forKey:@"METHOD"];
+    
+    NSMutableArray *arr = [[NSMutableArray alloc] initWithObjects:dictSub, nil];
+    NSMutableDictionary *dictREQUESTPARAM = [[NSMutableDictionary alloc] init];
+    
+    [dictREQUESTPARAM setObject:arr forKey:@"REQUESTPARAM"];
+    [dictREQUESTPARAM setObject:dict1 forKey:@"RESTAURANT"];
+    
+    NSError* error = nil;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictREQUESTPARAM options:NSJSONWritingPrettyPrinted error:&error];
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&error];
+    NSString *makeURL=[NSString stringWithFormat:@"%@%@",kBaseURL,GETPUBLISHKEY];
+
+    [Utility postRequest:json url:makeURL success:^(id responseObject)
+    {
+         NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"publishableKey"] objectForKey:@"SUCCESS"];
+            if ([SUCCESS boolValue] ==YES)
+             {
+                 kstrStripePublishableKey=[[NSString alloc]init];
+                 kstrStripePublishableKey=[[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"publishableKey"] objectForKey:@"result"] objectForKey:@"publishableKey"] objectForKey:@"value"];
+                 
+                 [[NSUserDefaults standardUserDefaults] setObject:kstrStripePublishableKey forKey:@"PublishableKey"];
+                 [[NSUserDefaults standardUserDefaults] synchronize];
+                 
+                 NSLog(@"kstrStripePublishableKey==%@",kstrStripePublishableKey);
+                 if (kstrStripePublishableKey != nil)
+                 {
+                     [[STPPaymentConfiguration sharedConfiguration] setPublishableKey:kstrStripePublishableKey];
+                 }
+                 //  [self checkReservationState];
+             }
+         
+     }
+      failure:^(NSError *error) {
+         NSLog(@"Fail");
+     }];
 }
 // Save NSDictnory in NSUserDefaults
 +(void)WriteData:(NSString *)DictName RootObject:(id)rootObject

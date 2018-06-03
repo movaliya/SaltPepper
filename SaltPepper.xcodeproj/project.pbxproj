@@ -28,6 +28,17 @@
 		295E0741206F943800BC4ADB /* VideoGallaryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 295E0740206F943800BC4ADB /* VideoGallaryView.m */; };
 		295E0744206F951C00BC4ADB /* VideoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 295E0742206F951C00BC4ADB /* VideoCell.m */; };
 		295E0745206F951C00BC4ADB /* VideoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 295E0743206F951C00BC4ADB /* VideoCell.xib */; };
+		295E6A8520C3BB0300DEDCAF /* Stripe.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 295E6A8320C3BB0300DEDCAF /* Stripe.bundle */; };
+		295E6A8620C3BB0300DEDCAF /* Stripe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 295E6A8420C3BB0300DEDCAF /* Stripe.framework */; };
+		295E6A8920C3BE1B00DEDCAF /* Stripe.bundle in Embed PlugIns */ = {isa = PBXBuildFile; fileRef = 295E6A8320C3BB0300DEDCAF /* Stripe.bundle */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		295E6A8A20C3BE1B00DEDCAF /* Stripe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 295E6A8420C3BB0300DEDCAF /* Stripe.framework */; };
+		295E6A8B20C3BE1B00DEDCAF /* Stripe.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 295E6A8420C3BB0300DEDCAF /* Stripe.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		295E6A8F20C3DA2400DEDCAF /* ic_visa.png in Resources */ = {isa = PBXBuildFile; fileRef = 295E6A8E20C3DA2400DEDCAF /* ic_visa.png */; };
+		295E6A9120C3DA6100DEDCAF /* ic_mastercard.png in Resources */ = {isa = PBXBuildFile; fileRef = 295E6A9020C3DA6100DEDCAF /* ic_mastercard.png */; };
+		295E6A9320C3DA8E00DEDCAF /* ic_unknown.png in Resources */ = {isa = PBXBuildFile; fileRef = 295E6A9220C3DA8E00DEDCAF /* ic_unknown.png */; };
+		295E6A9520C3DB5B00DEDCAF /* ic_amex.png in Resources */ = {isa = PBXBuildFile; fileRef = 295E6A9420C3DB5B00DEDCAF /* ic_amex.png */; };
+		295E6A9720C3DB9F00DEDCAF /* ic_card_error.png in Resources */ = {isa = PBXBuildFile; fileRef = 295E6A9620C3DB9F00DEDCAF /* ic_card_error.png */; };
+		295E6A9920C3DC3E00DEDCAF /* ic_maestro.png in Resources */ = {isa = PBXBuildFile; fileRef = 295E6A9820C3DC3E00DEDCAF /* ic_maestro.png */; };
 		2966E5A620BC1E6600DF0551 /* FavouriteVW.m in Sources */ = {isa = PBXBuildFile; fileRef = 2966E5A520BC1E6600DF0551 /* FavouriteVW.m */; };
 		2966E5A920BC525900DF0551 /* CartVW.m in Sources */ = {isa = PBXBuildFile; fileRef = 2966E5A820BC525900DF0551 /* CartVW.m */; };
 		2968F77920BE7DDB0019D4E4 /* CheckOutAddressVW.m in Sources */ = {isa = PBXBuildFile; fileRef = 2968F77820BE7DDB0019D4E4 /* CheckOutAddressVW.m */; };
@@ -59,6 +70,7 @@
 		51094AA720B71ADF00A60634 /* SlideMenuVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 51094AA620B71ADF00A60634 /* SlideMenuVC.m */; };
 		51094AAA20B7224800A60634 /* ItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 51094AA920B7224800A60634 /* ItemCell.m */; };
 		51094AAD20B72D7900A60634 /* ForgotPasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 51094AAC20B72D7900A60634 /* ForgotPasswordVC.m */; };
+		510AED2120C3F2AE00078105 /* TrackOrderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 510AED2020C3F2AE00078105 /* TrackOrderVC.m */; };
 		5116686520C0568000986D39 /* OurLocationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5116686420C0568000986D39 /* OurLocationVC.m */; };
 		5116686720C057AC00986D39 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5116686620C057AC00986D39 /* CoreLocation.framework */; };
 		5116686920C057B200986D39 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5116686820C057B200986D39 /* MapKit.framework */; };
@@ -92,6 +104,31 @@
 		B1B9F1D620BA7E7A008D2FAD /* ASProgressPopUpView.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B9F1D420BA7E7A008D2FAD /* ASProgressPopUpView.m */; };
 		B1B9F1DA20BACB3F008D2FAD /* FCAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B9F1D920BACB3F008D2FAD /* FCAlertView.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		295E6A8C20C3BE1B00DEDCAF /* Embed PlugIns */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				295E6A8920C3BE1B00DEDCAF /* Stripe.bundle in Embed PlugIns */,
+			);
+			name = "Embed PlugIns";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		295E6A8D20C3BE1B00DEDCAF /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				295E6A8B20C3BE1B00DEDCAF /* Stripe.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1AC61B705EFD9F887970D0E9 /* libPods-SaltPepper.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SaltPepper.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -129,6 +166,15 @@
 		295E0742206F951C00BC4ADB /* VideoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCell.m; sourceTree = "<group>"; };
 		295E0743206F951C00BC4ADB /* VideoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoCell.xib; sourceTree = "<group>"; };
 		295E0746206F955200BC4ADB /* VideoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCell.h; sourceTree = "<group>"; };
+		295E6A8320C3BB0300DEDCAF /* Stripe.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Stripe.bundle; sourceTree = "<group>"; };
+		295E6A8420C3BB0300DEDCAF /* Stripe.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Stripe.framework; sourceTree = "<group>"; };
+		295E6A8720C3BCB100DEDCAF /* Constant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constant.h; sourceTree = "<group>"; };
+		295E6A8E20C3DA2400DEDCAF /* ic_visa.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_visa.png; sourceTree = "<group>"; };
+		295E6A9020C3DA6100DEDCAF /* ic_mastercard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_mastercard.png; sourceTree = "<group>"; };
+		295E6A9220C3DA8E00DEDCAF /* ic_unknown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_unknown.png; sourceTree = "<group>"; };
+		295E6A9420C3DB5B00DEDCAF /* ic_amex.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_amex.png; sourceTree = "<group>"; };
+		295E6A9620C3DB9F00DEDCAF /* ic_card_error.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_card_error.png; sourceTree = "<group>"; };
+		295E6A9820C3DC3E00DEDCAF /* ic_maestro.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_maestro.png; sourceTree = "<group>"; };
 		2966E5A420BC1E6600DF0551 /* FavouriteVW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavouriteVW.h; sourceTree = "<group>"; };
 		2966E5A520BC1E6600DF0551 /* FavouriteVW.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavouriteVW.m; sourceTree = "<group>"; };
 		2966E5A720BC525900DF0551 /* CartVW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartVW.h; sourceTree = "<group>"; };
@@ -186,6 +232,8 @@
 		51094AA920B7224800A60634 /* ItemCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ItemCell.m; sourceTree = "<group>"; };
 		51094AAB20B72D7900A60634 /* ForgotPasswordVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ForgotPasswordVC.h; sourceTree = "<group>"; };
 		51094AAC20B72D7900A60634 /* ForgotPasswordVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ForgotPasswordVC.m; sourceTree = "<group>"; };
+		510AED1F20C3F2AE00078105 /* TrackOrderVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrackOrderVC.h; sourceTree = "<group>"; };
+		510AED2020C3F2AE00078105 /* TrackOrderVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TrackOrderVC.m; sourceTree = "<group>"; };
 		5116686320C0568000986D39 /* OurLocationVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OurLocationVC.h; sourceTree = "<group>"; };
 		5116686420C0568000986D39 /* OurLocationVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OurLocationVC.m; sourceTree = "<group>"; };
 		5116686620C057AC00986D39 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -250,6 +298,8 @@
 				5116686920C057B200986D39 /* MapKit.framework in Frameworks */,
 				5116686720C057AC00986D39 /* CoreLocation.framework in Frameworks */,
 				298CD2B742089A26D28B12F9 /* libPods-SaltPepper.a in Frameworks */,
+				295E6A8A20C3BE1B00DEDCAF /* Stripe.framework in Frameworks */,
+				295E6A8620C3BB0300DEDCAF /* Stripe.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,6 +341,12 @@
 		297D5EF420564FDF00ED5428 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				295E6A9620C3DB9F00DEDCAF /* ic_card_error.png */,
+				295E6A9820C3DC3E00DEDCAF /* ic_maestro.png */,
+				295E6A8E20C3DA2400DEDCAF /* ic_visa.png */,
+				295E6A9420C3DB5B00DEDCAF /* ic_amex.png */,
+				295E6A9220C3DA8E00DEDCAF /* ic_unknown.png */,
+				295E6A9020C3DA6100DEDCAF /* ic_mastercard.png */,
 				2968F8AD2070CF23004B5960 /* contactusblur.jpg */,
 				295E073D206F783B00BC4ADB /* testImage.jpg */,
 				297D5EF520564FF300ED5428 /* ShowPassIcon.png */,
@@ -353,6 +409,8 @@
 		9525E4C091C28F81B770AB05 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				295E6A8320C3BB0300DEDCAF /* Stripe.bundle */,
+				295E6A8420C3BB0300DEDCAF /* Stripe.framework */,
 				5116686820C057B200986D39 /* MapKit.framework */,
 				5116686620C057AC00986D39 /* CoreLocation.framework */,
 				1AC61B705EFD9F887970D0E9 /* libPods-SaltPepper.a */,
@@ -452,6 +510,9 @@
 				2966E5A820BC525900DF0551 /* CartVW.m */,
 				2968F77720BE7DDB0019D4E4 /* CheckOutAddressVW.h */,
 				2968F77820BE7DDB0019D4E4 /* CheckOutAddressVW.m */,
+				295E6A8720C3BCB100DEDCAF /* Constant.h */,
+				51F66EC920C2BDF7004DB1DD /* PaymentMethodVC.h */,
+				51F66ECA20C2BDF7004DB1DD /* PaymentMethodVC.m */,
 				295E072C206F720F00BC4ADB /* ReservationVW.h */,
 				295E072D206F720F00BC4ADB /* ReservationVW.m */,
 				295E072E206F720F00BC4ADB /* ReservationSubVW.h */,
@@ -464,6 +525,8 @@
 				51048E7120C2F54600AFD5B8 /* OrderHistoryVC.m */,
 				51048E7320C2F63F00AFD5B8 /* OrderHistoryCell.h */,
 				51048E7420C2F63F00AFD5B8 /* OrderHistoryCell.m */,
+				510AED1F20C3F2AE00078105 /* TrackOrderVC.h */,
+				510AED2020C3F2AE00078105 /* TrackOrderVC.m */,
 				2966E5A420BC1E6600DF0551 /* FavouriteVW.h */,
 				2966E5A520BC1E6600DF0551 /* FavouriteVW.m */,
 				295CD5A9206A2725002129FD /* GalleryVW.h */,
@@ -482,8 +545,6 @@
 				51061D4D20BDC54E0019FA10 /* SendFeedbackVC.m */,
 				5116686320C0568000986D39 /* OurLocationVC.h */,
 				5116686420C0568000986D39 /* OurLocationVC.m */,
-				51F66EC920C2BDF7004DB1DD /* PaymentMethodVC.h */,
-				51F66ECA20C2BDF7004DB1DD /* PaymentMethodVC.m */,
 				51F66ECC20C2C5EF004DB1DD /* OrderCompleteVC.h */,
 				51F66ECD20C2C5EF004DB1DD /* OrderCompleteVC.m */,
 				B138A0C320B72D1900835899 /* OptionView.h */,
@@ -564,6 +625,9 @@
 				B18E77F22055143D00C50320 /* Frameworks */,
 				B18E77F32055143D00C50320 /* Resources */,
 				A43F32F6E9ADA9BAC120A6E1 /* [CP] Copy Pods Resources */,
+				295E6A8820C3BE0800DEDCAF /* ShellScript */,
+				295E6A8C20C3BE1B00DEDCAF /* Embed PlugIns */,
+				295E6A8D20C3BE1B00DEDCAF /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -615,12 +679,15 @@
 			files = (
 				B18E78082055143E00C50320 /* LaunchScreen.storyboard in Resources */,
 				B141AB7920BDD9A5009C06B4 /* AlertViewAddAddress.xib in Resources */,
+				295E6A9720C3DB9F00DEDCAF /* ic_card_error.png in Resources */,
 				297D5EF620564FF300ED5428 /* ShowPassIcon.png in Resources */,
+				295E6A8520C3BB0300DEDCAF /* Stripe.bundle in Resources */,
 				2968F8AE2070CF23004B5960 /* contactusblur.jpg in Resources */,
 				295E0745206F951C00BC4ADB /* VideoCell.xib in Resources */,
 				51093A8220BA9034008A05C7 /* MainiPad.storyboard in Resources */,
 				B14ECF9520B8883200286D46 /* ASJTag.xib in Resources */,
 				B18E78052055143E00C50320 /* Assets.xcassets in Resources */,
+				295E6A9920C3DC3E00DEDCAF /* ic_maestro.png in Resources */,
 				295CD5B0206A27D1002129FD /* CVCell.xib in Resources */,
 				29360C9120B8613100283D87 /* client_628114390774-ps3bah0jagd4pnm3aflmfije8rlr3r56.apps.googleusercontent.com.plist in Resources */,
 				B13EE80220BB31EE006E4471 /* FavoriteCell.xib in Resources */,
@@ -633,15 +700,32 @@
 				51094AA420B71A0000A60634 /* EHHorizontalViewCell.xib in Resources */,
 				294B5C46205A964D00794D47 /* bannerImage.jpg in Resources */,
 				294B5C4C205A9D2B00794D47 /* MenuListCollectCELL.xib in Resources */,
+				295E6A9120C3DA6100DEDCAF /* ic_mastercard.png in Resources */,
 				295E073E206F783B00BC4ADB /* testImage.jpg in Resources */,
 				B138A0CA20B72F5600835899 /* OptionWithCell.xib in Resources */,
 				B141AB7420BDC7FC009C06B4 /* AlertViewPromoCode.xib in Resources */,
+				295E6A8F20C3DA2400DEDCAF /* ic_visa.png in Resources */,
+				295E6A9520C3DB5B00DEDCAF /* ic_amex.png in Resources */,
+				295E6A9320C3DA8E00DEDCAF /* ic_unknown.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		295E6A8820C3BE0800DEDCAF /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "APP_PATH=\"${TARGET_BUILD_DIR}/${WRAPPER_NAME}\"\n\n# This script loops through the frameworks embedded in the application and\n# removes unused architectures.\nfind \"$APP_PATH\" -name '*.framework' -type d | while read -r FRAMEWORK\ndo\nFRAMEWORK_EXECUTABLE_NAME=$(defaults read \"$FRAMEWORK/Info.plist\" CFBundleExecutable)\nFRAMEWORK_EXECUTABLE_PATH=\"$FRAMEWORK/$FRAMEWORK_EXECUTABLE_NAME\"\necho \"Executable is $FRAMEWORK_EXECUTABLE_PATH\"\n\nEXTRACTED_ARCHS=()\n\nfor ARCH in $ARCHS\ndo\necho \"Extracting $ARCH from $FRAMEWORK_EXECUTABLE_NAME\"\nlipo -extract \"$ARCH\" \"$FRAMEWORK_EXECUTABLE_PATH\" -o \"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\"\nEXTRACTED_ARCHS+=(\"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\")\ndone\n\necho \"Merging extracted architectures: ${ARCHS}\"\nlipo -o \"$FRAMEWORK_EXECUTABLE_PATH-merged\" -create \"${EXTRACTED_ARCHS[@]}\"\nrm \"${EXTRACTED_ARCHS[@]}\"\n\necho \"Replacing original executable with thinned version\"\nrm \"$FRAMEWORK_EXECUTABLE_PATH\"\nmv \"$FRAMEWORK_EXECUTABLE_PATH-merged\" \"$FRAMEWORK_EXECUTABLE_PATH\"\n\ndone";
+		};
 		A43F32F6E9ADA9BAC120A6E1 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -722,6 +806,7 @@
 				295E0730206F720F00BC4ADB /* ReservationVW.m in Sources */,
 				297D5F0620565F3A00ED5428 /* RESideMenu.m in Sources */,
 				B1B9F1D520BA7E7A008D2FAD /* ASPopUpView.m in Sources */,
+				510AED2120C3F2AE00078105 /* TrackOrderVC.m in Sources */,
 				51001DAE20BF19AC003887DC /* ReservationHistoryVC.m in Sources */,
 				5126749A20B9DBCC002321F7 /* CategoryItemCell.m in Sources */,
 				295E0731206F720F00BC4ADB /* ReservationSubVW.m in Sources */,
@@ -860,6 +945,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 7PFD68G63X;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/saltPepper.pch";
 				INFOPLIST_FILE = SaltPepper/Info.plist;
@@ -903,6 +992,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 7PFD68G63X;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/saltPepper.pch";
 				INFOPLIST_FILE = SaltPepper/Info.plist;

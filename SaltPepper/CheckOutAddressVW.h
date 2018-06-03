@@ -22,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *PayBtn;
 @property (strong, nonatomic) NSString *GrandTotal;
 @property (strong, nonatomic) NSString *Discount;
+@property (weak, nonatomic) IBOutlet UITextView *CommentTXT;
 
 
 @property (weak, nonatomic) IBOutlet UILabel *UserName_LBL;

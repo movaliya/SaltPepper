@@ -7,6 +7,7 @@
 //
 
 #import "CheckOutAddressVW.h"
+#import "PaymentMethodVC.h"
 @interface CheckOutAddressVW ()
 
 @end
@@ -334,15 +335,34 @@
 {
     if ([UserOrderType isEqualToString:@"Collection"])
     {
-        
+        if (![_CollectionTime_LBL.text isEqualToString:@"Choose Collection Time"]) {
+            PaymentMethodVC *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"PaymentMethodVC"];
+            vcr.FinalTotal=self.GrandTotal_LBL.text;
+            vcr.OrderType=UserOrderType;
+            vcr.CommentTxt=self.CommentTXT.text;
+             vcr.OrderDiscount=self.Discount_LBL.text;
+            [self.navigationController pushViewController:vcr animated:YES];
+        }
+        else
+        {
+            [AppDelegate showErrorMessageWithTitle:@"" message:@"Select Collection Date and Time" delegate:nil];
+        }
+       
     }
     else
     {
-        BOOL internet=[AppDelegate connectedToNetwork];
-        if (internet)
-            [self checkDeliveryAddress];
+        if (![_DeliveryTime_LBL.text isEqualToString:@"Prefere Delivery Time"]) {
+            BOOL internet=[AppDelegate connectedToNetwork];
+            if (internet)
+                [self checkDeliveryAddress];
+            else
+                [AppDelegate showErrorMessageWithTitle:@"" message:@"Please check your internet connection or try again later." delegate:nil];
+        }
         else
-            [AppDelegate showErrorMessageWithTitle:@"" message:@"Please check your internet connection or try again later." delegate:nil];
+        {
+            [AppDelegate showErrorMessageWithTitle:@"" message:@"Select Delivery Date and Time" delegate:nil];
+        }
+       
     }
    
 }
@@ -402,7 +422,12 @@
         if ([SUCCESS boolValue] ==YES)
         {
             
-            
+            PaymentMethodVC *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"PaymentMethodVC"];
+             vcr.FinalTotal=self.GrandTotal_LBL.text;
+            vcr.OrderType=UserOrderType;
+            vcr.CommentTxt=self.CommentTXT.text;
+            vcr.OrderDiscount=self.Discount_LBL.text;
+            [self.navigationController pushViewController:vcr animated:YES];
         }
         else
         {

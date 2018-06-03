@@ -77,7 +77,7 @@
         
         NSMutableDictionary *dictSub = [[NSMutableDictionary alloc] init];
         
-        [dictSub setObject:@"postitem" forKey:@"MODULE"];
+        [dictSub setObject:@"getitem" forKey:@"MODULE"];
         
         [dictSub setObject:@"reservationHistory" forKey:@"METHOD"];
         
