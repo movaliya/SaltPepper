@@ -15,6 +15,7 @@
 {
     NSMutableArray *withoutIntegrate,*WithIntegrate;
     NSMutableArray *WithSelected,*WithoutSelected;
+    NSMutableArray *WithBedgeArr,*WithoutBedgeArr;
     
 }
 @end
@@ -59,8 +60,14 @@
     WithSelected=[[NSMutableArray alloc] init];
     WithoutSelected=[[NSMutableArray alloc] init];
     
+    WithBedgeArr=[[NSMutableArray alloc] init];
+    WithoutBedgeArr=[[NSMutableArray alloc] init];
+    
     for (NSMutableArray *dic1 in [ModifyDic valueForKey:@"ingredients"])
     {
+        [WithBedgeArr addObject:@"0"];
+        [WithoutBedgeArr addObject:@"0"];
+        
         if ([[dic1 valueForKey:@"is_with"] boolValue]==0)
         {
             [withoutIntegrate addObject:dic1];
@@ -103,6 +110,8 @@
          ASJTagsView *conController = (ASJTagsView *)weakSelf.WithTagView;
          weakSelf.WithHight.constant=conController.contentSize.height;
          [weakSelf.view updateConstraints];
+         
+         
      }];
    
 }
@@ -121,6 +130,12 @@
          NSString *message = [NSString stringWithFormat:@"You deleted: %@", tagText];
          NSLog(@"Click==%@",message);
          [weakSelf.WithoutTagsView deleteTagAtIndex:idx];
+         
+         ASJTagsView *conController = (ASJTagsView *)weakSelf.WithoutTagsView;
+         weakSelf.WithoutHight.constant=conController.contentSize.height;
+         [weakSelf.view updateConstraints];
+         
+         
      }];
     
 }
@@ -163,6 +178,7 @@
         cell.Price_LBL.text=[NSString stringWithFormat:@"%@",[[WithIntegrate objectAtIndex:indexPath.row] valueForKey:@"price"]];
         
         NSString *ImgURL = [NSString stringWithFormat:@"%@%@" ,BASE_PROFILE_IMAGE_URL,[[WithIntegrate objectAtIndex:indexPath.row] valueForKey:@"image_path"]];
+       
         [cell.IMG sd_setShowActivityIndicatorView:YES];
         [cell.IMG sd_setIndicatorStyle:UIActivityIndicatorViewStyleGray];
         
@@ -170,9 +186,19 @@
                         placeholderImage:[UIImage imageNamed:@"bannerImage.jpg"]
                                completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
                                    
-                                   [cell.IMG sd_setShowActivityIndicatorView:NO];
+        [cell.IMG sd_setShowActivityIndicatorView:NO];
                                }];
-        cell.Bedge_LBL.hidden=YES;
+        
+        if ([[WithBedgeArr objectAtIndex:indexPath.row] isEqualToString:@"0"])
+        {
+            cell.Bedge_LBL.hidden=YES;
+        }
+        else
+        {
+            cell.Bedge_LBL.hidden=NO;
+            cell.Bedge_LBL.text=[WithBedgeArr objectAtIndex:indexPath.row];
+        }
+        
         return cell;
     }
     else{
@@ -194,7 +220,15 @@
                                [cell.IMG sd_setShowActivityIndicatorView:NO];
                            }];
         
-        cell.Bedge_LBL.hidden=YES;
+        if ([[WithoutBedgeArr objectAtIndex:indexPath.row] isEqualToString:@"0"])
+        {
+            cell.Bedge_LBL.hidden=YES;
+        }
+        else
+        {
+            cell.Bedge_LBL.hidden=NO;
+            cell.Bedge_LBL.text=[WithoutBedgeArr objectAtIndex:indexPath.row];
+        }
         
         return cell;
     }
@@ -209,20 +243,23 @@
         {
             ASJTagsView *conController = (ASJTagsView *)self.WithTagView;
             
-            
-            
-            [self.WithTagView addTag:[[WithIntegrate objectAtIndex:indexPath.row]valueForKey:@"ingredient_name"]];
-            self.WithHight.constant=conController.contentSize.height;
-            [self.view updateConstraints];
-            NSLog(@"==%@",[WithIntegrate objectAtIndex:indexPath.row]);
+
+//            [self.WithTagView addTag:[[WithIntegrate objectAtIndex:indexPath.row]valueForKey:@"ingredient_name"]];
+//            self.WithHight.constant=conController.contentSize.height;
+//            [self.view updateConstraints];
           
             if (WithSelected.count==0)
             {
                 NSMutableDictionary *intdic=[[NSMutableDictionary alloc]init];
                 intdic=[[withoutIntegrate objectAtIndex:indexPath.row] mutableCopy];
                 [intdic setObject:[NSNumber numberWithInt:1] forKey:@"Quantity"];
-                
                 [WithSelected addObject:intdic];
+                
+                [self.WithTagView addTag:[[WithIntegrate objectAtIndex:indexPath.row]valueForKey:@"ingredient_name"]];
+                self.WithHight.constant=conController.contentSize.height;
+                [self.view updateConstraints];
+                [WithBedgeArr replaceObjectAtIndex:indexPath.row withObject:@"1"];
+                
             }
             else
             {
@@ -234,9 +271,10 @@
                     NSMutableDictionary *intdic=[[NSMutableDictionary alloc]init];
                     intdic=[[WithSelected objectAtIndex:idx] mutableCopy];
                    
+                    int qnt=0;
                     if([intdic valueForKey:@"Quantity"] != nil)
                     {
-                        int qnt=[[intdic valueForKey:@"Quantity"] intValue];
+                        qnt=[[intdic valueForKey:@"Quantity"] intValue];
                         qnt=qnt + 1;
                         [intdic setObject:[NSNumber numberWithInt:qnt] forKey:@"Quantity"];
                     }
@@ -244,8 +282,9 @@
                     {
                         [intdic setObject:[NSNumber numberWithInt:1] forKey:@"Quantity"];
                     }
-                    
                     [WithSelected replaceObjectAtIndex:idx withObject:intdic];
+                    
+                    [WithBedgeArr replaceObjectAtIndex:indexPath.row withObject:[NSString stringWithFormat:@"%d",qnt]];
                 }
                 else
                 {
@@ -254,10 +293,16 @@
                     [intdic setObject:[NSNumber numberWithInt:1] forKey:@"Quantity"];
                     
                     [WithSelected addObject:intdic];
+                    
+                    [self.WithTagView addTag:[[WithIntegrate objectAtIndex:indexPath.row]valueForKey:@"ingredient_name"]];
+                    self.WithHight.constant=conController.contentSize.height;
+                    [self.view updateConstraints];
+                    
+                    [WithBedgeArr replaceObjectAtIndex:indexPath.row withObject:@"1"];
                 }
             }
-            
         }
+        [WithCollection reloadData];
     }
     else if (collectionView==self.WithoutCollection)
     {        
@@ -276,6 +321,7 @@
             [intdic setObject:[NSNumber numberWithInt:1] forKey:@"Quantity"];
             
             [WithoutSelected addObject:intdic];
+            [WithoutBedgeArr replaceObjectAtIndex:indexPath.row withObject:@"1"];
         }
         else
         {
@@ -287,9 +333,10 @@
                 NSMutableDictionary *intdic=[[NSMutableDictionary alloc]init];
                 intdic=[[WithoutSelected objectAtIndex:idx] mutableCopy];
                 
+                int qnt=0;
                 if([intdic valueForKey:@"Quantity"] != nil)
                 {
-                    int qnt=[[intdic valueForKey:@"Quantity"] intValue];
+                    qnt=[[intdic valueForKey:@"Quantity"] intValue];
                     qnt=qnt + 1;
                     [intdic setObject:[NSNumber numberWithInt:qnt] forKey:@"Quantity"];
                 }
@@ -299,6 +346,8 @@
                 }
                 
                 [WithoutSelected replaceObjectAtIndex:idx withObject:intdic];
+                [WithoutBedgeArr replaceObjectAtIndex:indexPath.row withObject:[NSString stringWithFormat:@"%d",qnt]];
+
             }
             else
             {
@@ -307,9 +356,11 @@
                 [intdic setObject:[NSNumber numberWithInt:1] forKey:@"Quantity"];
                 
                 [WithoutSelected addObject:intdic];
+                [WithoutBedgeArr replaceObjectAtIndex:indexPath.row withObject:@"1"];
             }
         }
     }
+    [WithoutCollection reloadData];
 }
 
 #pragma mark Collection view layout things
@@ -352,4 +403,5 @@
 {
     
 }
+
 @end
