@@ -8,6 +8,7 @@
 
 #import "OrderCompleteVC.h"
 #import "DEMORootViewController.h"
+#import "OrderHistoryVC.h"
 @interface OrderCompleteVC ()
 
 @end
@@ -36,7 +37,8 @@
 
 - (IBAction)btnOrderHistory:(id)sender
 {
-    
+    OrderHistoryVC *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"OrderHistoryVC"];
+    [self.navigationController pushViewController:vcr animated:YES];
 }
 - (IBAction)btnContinue:(id)sender
 {
