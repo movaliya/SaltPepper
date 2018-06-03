@@ -107,11 +107,22 @@
          NSLog(@"Click==%@",message);
          [weakSelf.WithTagView deleteTagAtIndex:idx];
          
+         
          ASJTagsView *conController = (ASJTagsView *)weakSelf.WithTagView;
          weakSelf.WithHight.constant=conController.contentSize.height;
          [weakSelf.view updateConstraints];
+        
+         if (conController.tags.count==0)
+         {
+             weakSelf.WithHight.constant=1;
+             [weakSelf.view updateConstraints];
+         }
          
-         
+         NSInteger index=[[WithIntegrate valueForKey:@"ingredient_name"] indexOfObject:tagText];
+         NSInteger indexSelected=[[WithSelected valueForKey:@"ingredient_name"] indexOfObject:tagText];
+         [WithSelected removeObjectAtIndex:indexSelected];
+         [WithBedgeArr replaceObjectAtIndex:index withObject:@"0"];
+         [WithCollection reloadData];
      }];
    
 }
@@ -135,6 +146,19 @@
          weakSelf.WithoutHight.constant=conController.contentSize.height;
          [weakSelf.view updateConstraints];
          
+         
+         if (conController.tags.count==0)
+         {
+             weakSelf.WithoutHight.constant=1;
+             [weakSelf.view updateConstraints];
+         }
+         
+         
+         NSInteger index=[[withoutIntegrate valueForKey:@"ingredient_name"] indexOfObject:tagText];
+         NSInteger indexSelected=[[WithoutSelected valueForKey:@"ingredient_name"] indexOfObject:tagText];
+         [WithoutSelected removeObjectAtIndex:indexSelected];
+         [WithoutBedgeArr replaceObjectAtIndex:index withObject:@"0"];
+         [WithoutCollection reloadData];
          
      }];
     
@@ -309,18 +333,21 @@
         ASJTagsView *conController = (ASJTagsView *)self.WithoutTagsView;
         
         
-        [self.WithoutTagsView addTag:[[withoutIntegrate objectAtIndex:indexPath.row]valueForKey:@"ingredient_name"]];
-        self.WithoutHight.constant=conController.contentSize.height;
-        [self.view updateConstraints];
-        NSLog(@"==%@",[withoutIntegrate objectAtIndex:indexPath.row]);
+//        [self.WithoutTagsView addTag:[[withoutIntegrate objectAtIndex:indexPath.row]valueForKey:@"ingredient_name"]];
+//        self.WithoutHight.constant=conController.contentSize.height;
+//        [self.view updateConstraints];
+//        NSLog(@"==%@",[withoutIntegrate objectAtIndex:indexPath.row]);
         
         if (WithoutSelected.count==0)
         {
             NSMutableDictionary *intdic=[[NSMutableDictionary alloc]init];
             intdic=[[withoutIntegrate objectAtIndex:indexPath.row] mutableCopy];
             [intdic setObject:[NSNumber numberWithInt:1] forKey:@"Quantity"];
-            
             [WithoutSelected addObject:intdic];
+            
+            [self.WithoutTagsView addTag:[[withoutIntegrate objectAtIndex:indexPath.row]valueForKey:@"ingredient_name"]];
+            self.WithoutHight.constant=conController.contentSize.height;
+            [self.view updateConstraints];
             [WithoutBedgeArr replaceObjectAtIndex:indexPath.row withObject:@"1"];
         }
         else
@@ -357,6 +384,10 @@
                 
                 [WithoutSelected addObject:intdic];
                 [WithoutBedgeArr replaceObjectAtIndex:indexPath.row withObject:@"1"];
+                
+                [self.WithoutTagsView addTag:[[withoutIntegrate objectAtIndex:indexPath.row]valueForKey:@"ingredient_name"]];
+                self.WithoutHight.constant=conController.contentSize.height;
+                [self.view updateConstraints];
             }
         }
     }
@@ -401,7 +432,68 @@
 
 - (IBAction)Applay_Click:(id)sender
 {
+    NSLog(@"With==%@",WithSelected);
+    NSLog(@"Without==%@",WithoutSelected);
     
+    NSLog(@"Main==%@",ModifyDic);
+    
+    NSMutableArray *arr=[[NSMutableArray alloc]init];
+    for (int i=0; i<WithSelected.count; i++)
+    {
+        [arr addObject:[WithSelected objectAtIndex:i]];
+    }
+    
+    for (int i=0; i<WithoutSelected.count; i++)
+    {
+        [arr addObject:[WithoutSelected objectAtIndex:i]];
+    }
+    
+    if (arr.count!=0)
+    {
+        [ModifyDic setObject:arr forKey:@"ingredients"];
+        
+        if (KmyappDelegate.MainCartArr==nil)
+        {
+            KmyappDelegate.MainCartArr=[[NSMutableArray alloc]init];
+            [ModifyDic setObject:arr forKey:@"ingredients"];
+            [KmyappDelegate.MainCartArr addObject:ModifyDic];
+        }
+        else
+        {
+            if ([[KmyappDelegate.MainCartArr valueForKey:@"id"] containsObject:[ModifyDic valueForKey:@"id"]])
+            {
+                NSMutableArray *IdArr=[KmyappDelegate.MainCartArr valueForKey:@"id"];
+                NSInteger idx=[IdArr indexOfObject:[ModifyDic valueForKey:@"id"]];
+                
+                
+                NSMutableDictionary *intdic=[[NSMutableDictionary alloc]init];
+                intdic=[[KmyappDelegate.MainCartArr objectAtIndex:idx] mutableCopy];
+                int qnt=[[intdic valueForKey:@"Quantity"] intValue];
+                qnt=qnt + 1;
+                [intdic setObject:[NSNumber numberWithInt:qnt] forKey:@"Quantity"];
+                [intdic setObject:arr forKey:@"ingredients"];
+                
+                [KmyappDelegate.MainCartArr replaceObjectAtIndex:idx withObject:intdic];
+            }
+            else
+            {
+                KmyappDelegate.MainCartArr=[[NSMutableArray alloc]init];
+                [ModifyDic setObject:arr forKey:@"ingredients"];
+                [KmyappDelegate.MainCartArr addObject:ModifyDic];
+            }
+        }
+        NSLog(@"==%@",KmyappDelegate.MainCartArr);
+    }
+    [AppDelegate WriteData:@"CartDIC" RootObject:KmyappDelegate.MainCartArr];
+    
+    
+    FCAlertView *alert = [KmyappDelegate ShowAlertWithOneBtnWithAttribute:nil andStrTitle:@"Item added to cart successfully"  andbtnTitle:@"OK"];
+    [self.navigationController popViewControllerAnimated:YES];
+       
+//    FCAlertView *alert = [KmyappDelegate ShowAlertWithBtnAction:@"Item added to cart successfully" andStrTile:nil andbtnTitle:@"OK" andButtonArray:@[]];
+//    [alert addButton:@"OK" withActionBlock:^{
+//        [self.navigationController popViewControllerAnimated:YES];
+//    }];
 }
 
 @end

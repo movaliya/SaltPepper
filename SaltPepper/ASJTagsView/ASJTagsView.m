@@ -88,7 +88,6 @@
 @interface ASJTagsView ()
 
 @property (weak, nonatomic) ASJTag *tagView;
-@property (copy, nonatomic) NSArray *tags;
 @property (readonly, copy, nonatomic) NSArray *colors;
 @property (readonly, weak, nonatomic) NSBundle *tagsBundle;
 @property (readonly, weak, nonatomic) NSNotificationCenter *notificationCenter;

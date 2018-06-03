@@ -48,6 +48,8 @@ typedef NS_ENUM(NSInteger, TagColorTheme)
 /**
  *  Background color of tags.
  */
+@property (copy, nonatomic) NSArray *tags;
+
 @property (nullable, strong, nonatomic) IBInspectable UIColor *tagColor;
 
 /**
