@@ -104,7 +104,9 @@
 #define MAPADDRESS @"mapAddress.php"
 #define TELEPHONE @"restaurantTelephone.php"
 #define DELIVERYADDRESS @"deliveryAddress.php"
-
+#define WEBORDER @"webOrder.php"
+#define GETPUBLISHKEY @"GetPublishableKey.php"
+#define CHARGECARD @"chargeCard.php"
 
 
 

@@ -7,7 +7,7 @@
 //
 
 #import "OrderCompleteVC.h"
-
+#import "DEMORootViewController.h"
 @interface OrderCompleteVC ()
 
 @end
@@ -15,8 +15,16 @@
 @implementation OrderCompleteVC
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.navigationController.navigationBar.hidden=YES;
+
+    self.btnOrderHistory.layer.cornerRadius = 22;
+    self.btnOrderHistory.clipsToBounds = YES;
+    
+    self.btnContinue.layer.cornerRadius = 22;
+    self.btnContinue.clipsToBounds = YES;
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -26,9 +34,14 @@
 
 #pragma mark - Button Click Action
 
-- (IBAction)btnOrderHistory:(id)sender {
+- (IBAction)btnOrderHistory:(id)sender
+{
+    
 }
-- (IBAction)btnContinue:(id)sender {
+- (IBAction)btnContinue:(id)sender
+{
+    DEMORootViewController *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"rootController"];
+    [self.navigationController pushViewController:vcr animated:YES];
 }
 /*
 #pragma mark - Navigation
