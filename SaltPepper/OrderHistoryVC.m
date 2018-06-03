@@ -8,6 +8,7 @@
 
 #import "OrderHistoryVC.h"
 #import "OrderHistoryCell.h"
+#import "TrackOrderVC.h"
 
 @interface OrderHistoryVC ()
 {
@@ -229,6 +230,8 @@
     cell.btnOnTheWay.layer.borderWidth = 1.0;
     cell.btnTrack.layer.cornerRadius = 2.0;
     cell.btnOnTheWay.layer.cornerRadius = 2.0;
+    cell.btnTrack.tag = indexPath.row;
+    [cell.btnTrack addTarget:self action:@selector(btnTrackClicked:) forControlEvents:UIControlEventTouchUpInside];
     if(isFiltered)
     {
         cell.lblOrderNo.text = [[filteredResHistory valueForKey:@"order_id"] objectAtIndex:indexPath.row];
@@ -250,6 +253,12 @@
 }
 
 #pragma mark - Button Click Action
+
+- (void)btnTrackClicked:(id)sender
+{
+    TrackOrderVC *mainVC = [self.storyboard instantiateViewControllerWithIdentifier:@"TrackOrderVC"];
+    [self.navigationController pushViewController:mainVC animated:YES];
+}
 
 - (IBAction)btnBack:(id)sender
 {

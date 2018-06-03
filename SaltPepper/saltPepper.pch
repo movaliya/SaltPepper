@@ -104,15 +104,13 @@
 #define MAPADDRESS @"mapAddress.php"
 #define TELEPHONE @"restaurantTelephone.php"
 #define DELIVERYADDRESS @"deliveryAddress.php"
-<<<<<<< HEAD
 #define WEBORDER @"webOrder.php"
 #define GETPUBLISHKEY @"GetPublishableKey.php"
 #define CHARGECARD @"chargeCard.php"
-=======
 #define ORDERHISTORY @"orderHistory.php"
 #define BUTTONSTATE @"buttonState.php"
 #define APPBUTTON @"appButtons.php"
->>>>>>> b902c12a0fdf11ea9319a7a0d20cc5248ec981bd
+
 
 
 

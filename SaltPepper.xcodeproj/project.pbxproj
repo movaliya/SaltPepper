@@ -70,6 +70,7 @@
 		51094AA720B71ADF00A60634 /* SlideMenuVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 51094AA620B71ADF00A60634 /* SlideMenuVC.m */; };
 		51094AAA20B7224800A60634 /* ItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 51094AA920B7224800A60634 /* ItemCell.m */; };
 		51094AAD20B72D7900A60634 /* ForgotPasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 51094AAC20B72D7900A60634 /* ForgotPasswordVC.m */; };
+		510AED2120C3F2AE00078105 /* TrackOrderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 510AED2020C3F2AE00078105 /* TrackOrderVC.m */; };
 		5116686520C0568000986D39 /* OurLocationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5116686420C0568000986D39 /* OurLocationVC.m */; };
 		5116686720C057AC00986D39 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5116686620C057AC00986D39 /* CoreLocation.framework */; };
 		5116686920C057B200986D39 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5116686820C057B200986D39 /* MapKit.framework */; };
@@ -231,6 +232,8 @@
 		51094AA920B7224800A60634 /* ItemCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ItemCell.m; sourceTree = "<group>"; };
 		51094AAB20B72D7900A60634 /* ForgotPasswordVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ForgotPasswordVC.h; sourceTree = "<group>"; };
 		51094AAC20B72D7900A60634 /* ForgotPasswordVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ForgotPasswordVC.m; sourceTree = "<group>"; };
+		510AED1F20C3F2AE00078105 /* TrackOrderVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrackOrderVC.h; sourceTree = "<group>"; };
+		510AED2020C3F2AE00078105 /* TrackOrderVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TrackOrderVC.m; sourceTree = "<group>"; };
 		5116686320C0568000986D39 /* OurLocationVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OurLocationVC.h; sourceTree = "<group>"; };
 		5116686420C0568000986D39 /* OurLocationVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OurLocationVC.m; sourceTree = "<group>"; };
 		5116686620C057AC00986D39 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -522,6 +525,8 @@
 				51048E7120C2F54600AFD5B8 /* OrderHistoryVC.m */,
 				51048E7320C2F63F00AFD5B8 /* OrderHistoryCell.h */,
 				51048E7420C2F63F00AFD5B8 /* OrderHistoryCell.m */,
+				510AED1F20C3F2AE00078105 /* TrackOrderVC.h */,
+				510AED2020C3F2AE00078105 /* TrackOrderVC.m */,
 				2966E5A420BC1E6600DF0551 /* FavouriteVW.h */,
 				2966E5A520BC1E6600DF0551 /* FavouriteVW.m */,
 				295CD5A9206A2725002129FD /* GalleryVW.h */,
@@ -801,6 +806,7 @@
 				295E0730206F720F00BC4ADB /* ReservationVW.m in Sources */,
 				297D5F0620565F3A00ED5428 /* RESideMenu.m in Sources */,
 				B1B9F1D520BA7E7A008D2FAD /* ASPopUpView.m in Sources */,
+				510AED2120C3F2AE00078105 /* TrackOrderVC.m in Sources */,
 				51001DAE20BF19AC003887DC /* ReservationHistoryVC.m in Sources */,
 				5126749A20B9DBCC002321F7 /* CategoryItemCell.m in Sources */,
 				295E0731206F720F00BC4ADB /* ReservationSubVW.m in Sources */,
