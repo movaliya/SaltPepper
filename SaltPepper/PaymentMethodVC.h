@@ -9,12 +9,36 @@
 #import <UIKit/UIKit.h>
 
 @interface PaymentMethodVC : UIViewController
+{
+    NSString *payType;
+    NSMutableArray *Userdata;
+    NSString *PAIDAMOUNT,*PAYMENTTYPE;
+    NSString *checkCardName;
+    
+    NSString *previousTextFieldContent;
+    UITextRange *previousSelection;
+    NSString *cyear;
+    NSMutableArray *years;
+    NSMutableArray *months;
+    NSString *year;
+    NSString *monthNo;
+    NSMutableArray *CardTypeRegx;
+    
+}
+@property (nonatomic) NSDecimalNumber *amount;
+
+@property (strong, nonatomic) NSString *FinalTotal;
+@property (strong, nonatomic) NSString *OrderType;
+@property (strong, nonatomic) NSString *CommentTxt;
+@property (strong, nonatomic) NSString *OrderDiscount;
+@property (weak, nonatomic) IBOutlet UIImageView *CardImage;
 
 @property (weak, nonatomic) IBOutlet UIView *viewDetail;
 @property (weak, nonatomic) IBOutlet UILabel *lblName;
 @property (weak, nonatomic) IBOutlet UILabel *lblEmail;
 @property (weak, nonatomic) IBOutlet UILabel *lblPhone;
 @property (weak, nonatomic) IBOutlet UILabel *lblAmount;
+@property (weak, nonatomic) IBOutlet UILabel *lblOrderType;
 @property (weak, nonatomic) IBOutlet UIButton *btnCredit;
 @property (weak, nonatomic) IBOutlet UIButton *btnPayOnCollection;
 @property (weak, nonatomic) IBOutlet UIButton *btnConfirmPayment;

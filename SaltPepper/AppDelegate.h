@@ -38,6 +38,7 @@
                          delegate:(id)delegate;
 
 +(void)showInternetErrorMessageWithTitle:(NSString *)title delegate:(id)delegate;
+-(void)GetPublishableKey;
 
 -(NSMutableDictionary*)replaceNULL:(id)dictData;
 
