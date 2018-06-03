@@ -16,4 +16,5 @@
 @property (strong, nonatomic) IBOutlet UILabel *Title_LBL;
 @property (strong, nonatomic) IBOutlet UILabel *Price_LBL;
 
+@property (strong, nonatomic) IBOutlet UILabel *Bedge_LBL;
 @end

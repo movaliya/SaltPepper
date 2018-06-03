@@ -12,7 +12,8 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+    self.Bedge_LBL.layer.cornerRadius=15.0f;
+    self.Bedge_LBL.layer.masksToBounds=YES;
 }
 
 @end

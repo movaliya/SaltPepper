@@ -1,31 +1,31 @@
 //
-//  ReservationHistoryVC.m
+//  OrderHistoryVC.m
 //  SaltPepper
 //
-//  Created by Dharmraj Vora on 30/05/18.
+//  Created by Dharmraj Vora on 02/06/18.
 //  Copyright © 2018 kaushik. All rights reserved.
 //
 
-#import "ReservationHistoryVC.h"
-#import "ResHistoryCell.h"
+#import "OrderHistoryVC.h"
+#import "OrderHistoryCell.h"
 
-@interface ReservationHistoryVC ()
+@interface OrderHistoryVC ()
 {
     NSMutableDictionary *UserSaveData;
-    NSMutableArray *arrResHistory;
+    NSMutableArray *arrOrderHistory;
 }
 @end
 
-@implementation ReservationHistoryVC
+@implementation OrderHistoryVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationController.navigationBar.hidden=YES;
-    arrResHistory = [[NSMutableArray alloc]init];
+    arrOrderHistory = [[NSMutableArray alloc]init];
     filteredResHistory = [[NSMutableArray alloc]init];
     _searchBar.hidden = YES;
     UserSaveData = [AppDelegate GetData:@"LoginUserDic"];
-    [self CallReservationHistory];
+    [self CallOrderHistory];
     
     for (UIView *subview in [[self.searchBar.subviews lastObject] subviews]) {
         if ([subview isKindOfClass:NSClassFromString(@"UISearchBarBackground")]) {
@@ -48,7 +48,6 @@
     UILabel *placeholderLabel = [searchField valueForKey:@"placeholderLabel"];
     placeholderLabel.textColor = [UIColor grayColor];
     placeholderLabel.text = @"Search by order id";
-    
     // Do any additional setup after loading the view.
 }
 
@@ -57,8 +56,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-
-- (void)CallReservationHistory
+- (void)CallOrderHistory
 {
     if (_ro(@"LoginUserDic") != nil)
     {
@@ -79,7 +77,7 @@
         
         [dictSub setObject:@"getitem" forKey:@"MODULE"];
         
-        [dictSub setObject:@"reservationHistory" forKey:@"METHOD"];
+        [dictSub setObject:@"orderHistory" forKey:@"METHOD"];
         
         [dictSub setObject:dictInner forKey:@"PARAMS"];
         
@@ -99,18 +97,18 @@
                                                              options:NSJSONReadingMutableContainers
                                                                error:&error];
         
-        NSString *makeURL=[NSString stringWithFormat:@"%@%@",kBaseURL,RESERVATIONHISTORY];
+        NSString *makeURL=[NSString stringWithFormat:@"%@%@",kBaseURL,ORDERHISTORY];
         
         [Utility postRequest:json url:makeURL success:^(id responseObject) {
             
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             
             NSLog(@"responseObject==%@",responseObject);
-            NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"reservationHistory"] objectForKey:@"SUCCESS"];
+            NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"orderHistory"] objectForKey:@"SUCCESS"];
             if ([SUCCESS boolValue] ==YES)
             {
-                arrResHistory = [[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"reservationHistory"] objectForKey:@"result"]objectForKey:@"reservationHistory"];
-                [_tblResHistory reloadData];
+                arrOrderHistory = [[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"orderHistory"] objectForKey:@"result"]objectForKey:@"orderHistory"];
+                [_tblHistory reloadData];
             }
             else
             {
@@ -133,6 +131,7 @@
     }
 }
 
+
 #pragma mark - SearchBar Delegate Methods
 
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
@@ -144,13 +143,13 @@
         isFiltered = YES;
         //NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF contains [search] %@", self.searchBar.text];
         
-        for(int i = 0; i < arrResHistory.count; i++)
+        for(int i = 0; i < arrOrderHistory.count; i++)
         {
-            NSString *id = [[arrResHistory valueForKey:@"order_id"]objectAtIndex:i];
+            NSString *id = [[arrOrderHistory valueForKey:@"order_id"]objectAtIndex:i];
             
             if([id containsString:self.searchBar.text])
             {
-                [filteredResHistory addObject:arrResHistory[i]];
+                [filteredResHistory addObject:arrOrderHistory[i]];
             }
         }
     }
@@ -160,7 +159,7 @@
         [filteredResHistory removeAllObjects];
         [self.searchBar resignFirstResponder];
     }
-    [_tblResHistory reloadData];
+    [_tblHistory reloadData];
 }
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)SearchBar
@@ -185,7 +184,7 @@
         _btnCart.hidden = NO;
         _btnSearch.hidden = NO;
         _searchBar.hidden = YES;
-        [_tblResHistory reloadData];
+        [_tblHistory reloadData];
     }
     @catch (NSException *exception) {
     }
@@ -205,18 +204,18 @@
     }
     else
     {
-        return arrResHistory.count;
+        return arrOrderHistory.count;
     }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 240;
+    return 230;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    ResHistoryCell *cell = (ResHistoryCell*)[tableView dequeueReusableCellWithIdentifier:@"ResHistoryCell"];
+    OrderHistoryCell *cell = (OrderHistoryCell*)[tableView dequeueReusableCellWithIdentifier:@"OrderHistoryCell"];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.viewBack.layer.borderColor = [UIColor lightGrayColor].CGColor;
     cell.viewBack.layer.borderWidth = 0.5;
@@ -224,28 +223,31 @@
     [cell.viewBack.layer setShadowOpacity:0.8];
     [cell.viewBack.layer setShadowRadius:3.0];
     [cell.viewBack.layer setShadowOffset:CGSizeMake(2.0, 2.0)];
+    cell.btnTrack.layer.borderColor = [UIColor blackColor].CGColor;
+    cell.btnTrack.layer.borderWidth = 1.0;
+    cell.btnOnTheWay.layer.borderColor = [UIColor blackColor].CGColor;
+    cell.btnOnTheWay.layer.borderWidth = 1.0;
+    cell.btnTrack.layer.cornerRadius = 2.0;
+    cell.btnOnTheWay.layer.cornerRadius = 2.0;
     if(isFiltered)
     {
-        cell.lblCusName.text = [[filteredResHistory valueForKey:@"customer_name"] objectAtIndex:indexPath.row];
-        cell.lblResNo.text = [[filteredResHistory valueForKey:@"order_id"] objectAtIndex:indexPath.row];
-        cell.lblStatus.text = [[filteredResHistory valueForKey:@"reservationStatus"] objectAtIndex:indexPath.row];
-        cell.lblNoOfGuest.text = [[filteredResHistory valueForKey:@"no_of_guests"] objectAtIndex:indexPath.row];
-        cell.lblResDate.text = [[filteredResHistory valueForKey:@"reservation_date"] objectAtIndex:indexPath.row];
-        cell.lblSpecialInstruction.text = [[filteredResHistory valueForKey:@"special_instruction"] objectAtIndex:indexPath.row];
+        cell.lblOrderNo.text = [[filteredResHistory valueForKey:@"order_id"] objectAtIndex:indexPath.row];
+        cell.lblOrderStatus.text = [[filteredResHistory valueForKey:@"status"] objectAtIndex:indexPath.row];
+        cell.lblOrderAmount.text = [[filteredResHistory valueForKey:@"total"] objectAtIndex:indexPath.row];
+        cell.lblOrderDate.text = [[filteredResHistory valueForKey:@"order_date"] objectAtIndex:indexPath.row];
+        cell.lblComments.text = [[filteredResHistory valueForKey:@"comments"] objectAtIndex:indexPath.row];
     }
     else
     {
-        cell.lblCusName.text = [[arrResHistory valueForKey:@"customer_name"] objectAtIndex:indexPath.row];
-        cell.lblResNo.text = [[arrResHistory valueForKey:@"order_id"] objectAtIndex:indexPath.row];
-        cell.lblStatus.text = [[arrResHistory valueForKey:@"reservationStatus"] objectAtIndex:indexPath.row];
-        cell.lblNoOfGuest.text = [[arrResHistory valueForKey:@"no_of_guests"] objectAtIndex:indexPath.row];
-        cell.lblResDate.text = [[arrResHistory valueForKey:@"reservation_date"] objectAtIndex:indexPath.row];
-        cell.lblSpecialInstruction.text = [[arrResHistory valueForKey:@"special_instruction"] objectAtIndex:indexPath.row];
+        cell.lblOrderNo.text = [[arrOrderHistory valueForKey:@"order_id"] objectAtIndex:indexPath.row];
+        cell.lblOrderStatus.text = [[arrOrderHistory valueForKey:@"status"] objectAtIndex:indexPath.row];
+        cell.lblOrderAmount.text = [[arrOrderHistory valueForKey:@"total"] objectAtIndex:indexPath.row];
+        cell.lblOrderDate.text = [[arrOrderHistory valueForKey:@"order_date"] objectAtIndex:indexPath.row];
+        cell.lblComments.text = [[arrOrderHistory valueForKey:@"comments"] objectAtIndex:indexPath.row];
     }
     return cell;
     
 }
-
 
 #pragma mark - Button Click Action
 

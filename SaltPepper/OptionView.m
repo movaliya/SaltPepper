@@ -9,11 +9,12 @@
 #import "OptionView.h"
 #import "OptionWithCell.h"
 #import "saltPepper.pch"
-
+#import "ASJTagsView.h"
 
 @interface OptionView ()
 {
     NSMutableArray *withoutIntegrate,*WithIntegrate;
+    NSMutableArray *WithSelected,*WithoutSelected;
     
 }
 @end
@@ -55,6 +56,8 @@
     int count=0;
     withoutIntegrate=[[NSMutableArray alloc] init];
     WithIntegrate=[[NSMutableArray alloc] init];
+    WithSelected=[[NSMutableArray alloc] init];
+    WithoutSelected=[[NSMutableArray alloc] init];
     
     for (NSMutableArray *dic1 in [ModifyDic valueForKey:@"ingredients"])
     {
@@ -68,8 +71,14 @@
         }
         count++;
     }
-    NSLog(@"withoutIntegrate=%@",withoutIntegrate);
     
+    self.HeaderTitle.text=[ModifyDic valueForKey:@"productName"];
+    self.Title_LBL.text=[ModifyDic valueForKey:@"productName"];
+    
+    self.Plush_BTN.layer.cornerRadius=12.5f;
+    self.Minush_BTN.layer.cornerRadius=12.5f;
+    self.Applay_BTN.layer.cornerRadius=22.0f;
+    self.Clear_BTN.layer.cornerRadius=22.0f;    
 
 }
 
@@ -82,6 +91,7 @@
      {
          NSString *message = [NSString stringWithFormat:@"You tapped: %@", tagText];
          NSLog(@"Click==%@",message);
+         
      }];
     
     [self.WithTagView setDeleteBlock:^(NSString *tagText, NSInteger idx)
@@ -89,7 +99,12 @@
          NSString *message = [NSString stringWithFormat:@"You deleted: %@", tagText];
          NSLog(@"Click==%@",message);
          [weakSelf.WithTagView deleteTagAtIndex:idx];
+         
+         ASJTagsView *conController = (ASJTagsView *)weakSelf.WithTagView;
+         weakSelf.WithHight.constant=conController.contentSize.height;
+         [weakSelf.view updateConstraints];
      }];
+   
 }
 
 - (void)handleWithoutTagBlocks
@@ -107,6 +122,7 @@
          NSLog(@"Click==%@",message);
          [weakSelf.WithoutTagsView deleteTagAtIndex:idx];
      }];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -156,7 +172,7 @@
                                    
                                    [cell.IMG sd_setShowActivityIndicatorView:NO];
                                }];
-        
+        cell.Bedge_LBL.hidden=YES;
         return cell;
     }
     else{
@@ -178,6 +194,8 @@
                                [cell.IMG sd_setShowActivityIndicatorView:NO];
                            }];
         
+        cell.Bedge_LBL.hidden=YES;
+        
         return cell;
     }
     return nil;
@@ -187,11 +205,110 @@
 {
     if (collectionView==self.WithCollection)
     {
-        [self.WithTagView addTag:@"Kaushik"];
+        if ([self.WithTagView isKindOfClass:[ASJTagsView class]])
+        {
+            ASJTagsView *conController = (ASJTagsView *)self.WithTagView;
+            
+            
+            
+            [self.WithTagView addTag:[[WithIntegrate objectAtIndex:indexPath.row]valueForKey:@"ingredient_name"]];
+            self.WithHight.constant=conController.contentSize.height;
+            [self.view updateConstraints];
+            NSLog(@"==%@",[WithIntegrate objectAtIndex:indexPath.row]);
+          
+            if (WithSelected.count==0)
+            {
+                NSMutableDictionary *intdic=[[NSMutableDictionary alloc]init];
+                intdic=[[withoutIntegrate objectAtIndex:indexPath.row] mutableCopy];
+                [intdic setObject:[NSNumber numberWithInt:1] forKey:@"Quantity"];
+                
+                [WithSelected addObject:intdic];
+            }
+            else
+            {
+                if ([[WithSelected valueForKey:@"ingredient_id"] containsObject:[[WithIntegrate objectAtIndex:indexPath.row]valueForKey:@"ingredient_id"]])
+                {
+                    NSArray *Idarr=[WithSelected valueForKey:@"ingredient_id"];
+                    NSInteger idx=[Idarr indexOfObject:[[WithIntegrate objectAtIndex:indexPath.row]valueForKey:@"ingredient_id"]];
+
+                    NSMutableDictionary *intdic=[[NSMutableDictionary alloc]init];
+                    intdic=[[WithSelected objectAtIndex:idx] mutableCopy];
+                   
+                    if([intdic valueForKey:@"Quantity"] != nil)
+                    {
+                        int qnt=[[intdic valueForKey:@"Quantity"] intValue];
+                        qnt=qnt + 1;
+                        [intdic setObject:[NSNumber numberWithInt:qnt] forKey:@"Quantity"];
+                    }
+                    else
+                    {
+                        [intdic setObject:[NSNumber numberWithInt:1] forKey:@"Quantity"];
+                    }
+                    
+                    [WithSelected replaceObjectAtIndex:idx withObject:intdic];
+                }
+                else
+                {
+                    NSMutableDictionary *intdic=[[NSMutableDictionary alloc]init];
+                    intdic=[[withoutIntegrate objectAtIndex:indexPath.row] mutableCopy];
+                    [intdic setObject:[NSNumber numberWithInt:1] forKey:@"Quantity"];
+                    
+                    [WithSelected addObject:intdic];
+                }
+            }
+            
+        }
     }
     else if (collectionView==self.WithoutCollection)
-    {
-        [self.WithoutTagsView addTag:@"Kaushik"];
+    {        
+        ASJTagsView *conController = (ASJTagsView *)self.WithoutTagsView;
+        
+        
+        [self.WithoutTagsView addTag:[[withoutIntegrate objectAtIndex:indexPath.row]valueForKey:@"ingredient_name"]];
+        self.WithoutHight.constant=conController.contentSize.height;
+        [self.view updateConstraints];
+        NSLog(@"==%@",[withoutIntegrate objectAtIndex:indexPath.row]);
+        
+        if (WithoutSelected.count==0)
+        {
+            NSMutableDictionary *intdic=[[NSMutableDictionary alloc]init];
+            intdic=[[withoutIntegrate objectAtIndex:indexPath.row] mutableCopy];
+            [intdic setObject:[NSNumber numberWithInt:1] forKey:@"Quantity"];
+            
+            [WithoutSelected addObject:intdic];
+        }
+        else
+        {
+            if ([[WithoutSelected valueForKey:@"ingredient_id"] containsObject:[[withoutIntegrate objectAtIndex:indexPath.row]valueForKey:@"ingredient_id"]])
+            {
+                NSArray *Idarr=[WithoutSelected valueForKey:@"ingredient_id"];
+                NSInteger idx=[Idarr indexOfObject:[[withoutIntegrate objectAtIndex:indexPath.row]valueForKey:@"ingredient_id"]];
+                
+                NSMutableDictionary *intdic=[[NSMutableDictionary alloc]init];
+                intdic=[[WithoutSelected objectAtIndex:idx] mutableCopy];
+                
+                if([intdic valueForKey:@"Quantity"] != nil)
+                {
+                    int qnt=[[intdic valueForKey:@"Quantity"] intValue];
+                    qnt=qnt + 1;
+                    [intdic setObject:[NSNumber numberWithInt:qnt] forKey:@"Quantity"];
+                }
+                else
+                {
+                    [intdic setObject:[NSNumber numberWithInt:1] forKey:@"Quantity"];
+                }
+                
+                [WithoutSelected replaceObjectAtIndex:idx withObject:intdic];
+            }
+            else
+            {
+                NSMutableDictionary *intdic=[[NSMutableDictionary alloc]init];
+                intdic=[[withoutIntegrate objectAtIndex:indexPath.row] mutableCopy];
+                [intdic setObject:[NSNumber numberWithInt:1] forKey:@"Quantity"];
+                
+                [WithoutSelected addObject:intdic];
+            }
+        }
     }
 }
 
@@ -215,4 +332,24 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (IBAction)Plush_Click:(id)sender
+{
+    
+}
+
+- (IBAction)Minush_Click:(id)sender
+{
+    
+}
+
+- (IBAction)Clear_Click:(id)sender
+{
+    WithSelected=[[NSMutableArray alloc]init];
+    WithoutSelected=[[NSMutableArray alloc]init];
+}
+
+- (IBAction)Applay_Click:(id)sender
+{
+    
+}
 @end
