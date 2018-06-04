@@ -231,7 +231,7 @@
         
         cell.Title_LBL.text=[NSString stringWithFormat:@"%@",[[withoutIntegrate objectAtIndex:indexPath.row] valueForKey:@"ingredient_name"]];
         
-        cell.Price_LBL.text=[NSString stringWithFormat:@"%@",[[withoutIntegrate objectAtIndex:indexPath.row] valueForKey:@"price"]];
+        cell.Price_LBL.text=[NSString stringWithFormat:@"%@",[[withoutIntegrate objectAtIndex:indexPath.row] valueForKey:@"price_without"]];
         
         NSString *ImgURL = [NSString stringWithFormat:@"%@%@" ,BASE_PROFILE_IMAGE_URL,[[withoutIntegrate objectAtIndex:indexPath.row] valueForKey:@"image_path"]];
         [cell.IMG sd_setShowActivityIndicatorView:YES];
@@ -275,7 +275,7 @@
             if (WithSelected.count==0)
             {
                 NSMutableDictionary *intdic=[[NSMutableDictionary alloc]init];
-                intdic=[[withoutIntegrate objectAtIndex:indexPath.row] mutableCopy];
+                intdic=[[WithIntegrate objectAtIndex:indexPath.row] mutableCopy];
                 [intdic setObject:[NSNumber numberWithInt:1] forKey:@"Quantity"];
                 [WithSelected addObject:intdic];
                 
@@ -313,7 +313,7 @@
                 else
                 {
                     NSMutableDictionary *intdic=[[NSMutableDictionary alloc]init];
-                    intdic=[[withoutIntegrate objectAtIndex:indexPath.row] mutableCopy];
+                    intdic=[[WithIntegrate objectAtIndex:indexPath.row] mutableCopy];
                     [intdic setObject:[NSNumber numberWithInt:1] forKey:@"Quantity"];
                     
                     [WithSelected addObject:intdic];
@@ -428,14 +428,31 @@
 {
     WithSelected=[[NSMutableArray alloc]init];
     WithoutSelected=[[NSMutableArray alloc]init];
+    
+    [self.WithTagView deleteAllTags];
+    [self.WithoutTagsView deleteAllTags];
+    
+    self.WithHight.constant=1;
+    self.WithoutHight.constant=1;
+    [self.view updateConstraints];
+    
+    for (int i=0; i<WithBedgeArr.count; i++)
+    {
+        [WithBedgeArr replaceObjectAtIndex:i withObject:@"0"];
+    }
+    
+    for (int i=0; i<WithoutBedgeArr.count; i++)
+    {
+        [WithoutBedgeArr replaceObjectAtIndex:i withObject:@"0"];
+    }
+    
+    [WithoutCollection reloadData];
+    [WithCollection reloadData];
+    
 }
 
 - (IBAction)Applay_Click:(id)sender
 {
-    NSLog(@"With==%@",WithSelected);
-    NSLog(@"Without==%@",WithoutSelected);
-    
-    NSLog(@"Main==%@",ModifyDic);
     
     NSMutableArray *arr=[[NSMutableArray alloc]init];
     for (int i=0; i<WithSelected.count; i++)
@@ -487,7 +504,7 @@
     [AppDelegate WriteData:@"CartDIC" RootObject:KmyappDelegate.MainCartArr];
     
     
-    FCAlertView *alert = [KmyappDelegate ShowAlertWithOneBtnWithAttribute:nil andStrTitle:@"Item added to cart successfully"  andbtnTitle:@"OK"];
+    FCAlertView *alert = [KmyappDelegate ShowAlertWithBtnAction:@"Item added to cart successfully" andStrTile:nil andbtnTitle:@"OK" andButtonArray:@[]];
     [self.navigationController popViewControllerAnimated:YES];
        
 //    FCAlertView *alert = [KmyappDelegate ShowAlertWithBtnAction:@"Item added to cart successfully" andStrTile:nil andbtnTitle:@"OK" andButtonArray:@[]];
