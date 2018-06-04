@@ -419,17 +419,19 @@
     int val = [_Qnt_LBL.text intValue];
     int newValue = val + 1;
     _Qnt_LBL.text = [NSString stringWithFormat:@"%ld",(long)newValue];
-    
+    [ModifyDic setObject:[NSNumber numberWithInt:newValue] forKey:@"Quantity"];
 }
 
 - (IBAction)Minush_Click:(id)sender
 {
     int val = [_Qnt_LBL.text intValue];
+    int newValue;
     if(val > 1)
     {
-        int newValue = val - 1;
+         newValue = val - 1;
         _Qnt_LBL.text = [NSString stringWithFormat:@"%ld",(long)newValue];
     }
+    [ModifyDic setObject:[NSNumber numberWithInt:newValue] forKey:@"Quantity"];
 }
 
 - (IBAction)Clear_Click:(id)sender
