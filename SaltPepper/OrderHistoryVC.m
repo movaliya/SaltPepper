@@ -9,6 +9,7 @@
 #import "OrderHistoryVC.h"
 #import "OrderHistoryCell.h"
 #import "TrackOrderVC.h"
+#import "OrderHistoryDetailVC.h"
 
 @interface OrderHistoryVC ()
 {
@@ -236,7 +237,7 @@
     {
         cell.lblOrderNo.text = [[filteredResHistory valueForKey:@"order_id"] objectAtIndex:indexPath.row];
         cell.lblOrderStatus.text = [[filteredResHistory valueForKey:@"status"] objectAtIndex:indexPath.row];
-        cell.lblOrderAmount.text = [[filteredResHistory valueForKey:@"total"] objectAtIndex:indexPath.row];
+        cell.lblOrderAmount.text = [NSString stringWithFormat:@"£%@",[[filteredResHistory valueForKey:@"total"] objectAtIndex:indexPath.row]];
         cell.lblOrderDate.text = [[filteredResHistory valueForKey:@"order_date"] objectAtIndex:indexPath.row];
         cell.lblComments.text = [[filteredResHistory valueForKey:@"comments"] objectAtIndex:indexPath.row];
     }
@@ -244,12 +245,20 @@
     {
         cell.lblOrderNo.text = [[arrOrderHistory valueForKey:@"order_id"] objectAtIndex:indexPath.row];
         cell.lblOrderStatus.text = [[arrOrderHistory valueForKey:@"status"] objectAtIndex:indexPath.row];
-        cell.lblOrderAmount.text = [[arrOrderHistory valueForKey:@"total"] objectAtIndex:indexPath.row];
+        cell.lblOrderAmount.text = [NSString stringWithFormat:@"£%@",[[arrOrderHistory valueForKey:@"total"] objectAtIndex:indexPath.row]];
         cell.lblOrderDate.text = [[arrOrderHistory valueForKey:@"order_date"] objectAtIndex:indexPath.row];
         cell.lblComments.text = [[arrOrderHistory valueForKey:@"comments"] objectAtIndex:indexPath.row];
     }
     return cell;
     
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    OrderHistoryDetailVC *mainVC = [self.storyboard instantiateViewControllerWithIdentifier:@"OrderHistoryDetailVC"];
+    mainVC.orderDetail = [[NSMutableDictionary alloc]init];
+    mainVC.orderDetail = [arrOrderHistory objectAtIndex:indexPath.row];
+    [self.navigationController pushViewController:mainVC animated:YES];
 }
 
 #pragma mark - Button Click Action

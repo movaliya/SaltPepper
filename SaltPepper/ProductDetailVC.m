@@ -7,6 +7,7 @@
 //
 
 #import "ProductDetailVC.h"
+#import "OptionView.h"
 
 @interface ProductDetailVC ()
 
@@ -74,6 +75,9 @@
 }
 - (IBAction)btnModifyClicked:(id)sender
 {
+    OptionView *mainVC = [self.storyboard instantiateViewControllerWithIdentifier:@"OptionView"];
+    mainVC.ModifyDic=[[NSMutableDictionary alloc]initWithDictionary:_productDetail];
+    [self.navigationController pushViewController:mainVC animated:YES];
 }
 - (IBAction)btnPlusClicked:(id)sender
 {

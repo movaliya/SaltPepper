@@ -416,12 +416,20 @@
 
 - (IBAction)Plush_Click:(id)sender
 {
+    int val = [_Qnt_LBL.text intValue];
+    int newValue = val + 1;
+    _Qnt_LBL.text = [NSString stringWithFormat:@"%ld",(long)newValue];
     
 }
 
 - (IBAction)Minush_Click:(id)sender
 {
-    
+    int val = [_Qnt_LBL.text intValue];
+    if(val > 1)
+    {
+        int newValue = val - 1;
+        _Qnt_LBL.text = [NSString stringWithFormat:@"%ld",(long)newValue];
+    }
 }
 
 - (IBAction)Clear_Click:(id)sender
