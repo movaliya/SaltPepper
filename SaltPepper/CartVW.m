@@ -48,8 +48,7 @@
     UINib *nib = [UINib nibWithNibName:@"CartCell" bundle:nil];
     [TableVW registerNib:nib forCellReuseIdentifier:CellIdentifier];
     TableVW.backgroundColor=[UIColor clearColor];
-    // News_TBL.estimatedRowHeight = 220;
-    TableVW.rowHeight = UITableViewAutomaticDimension;
+   // TableVW.rowHeight = UITableViewAutomaticDimension;
     
     KmyappDelegate.MainCartArr = [AppDelegate GetData:@"CartDIC"];
     
@@ -74,7 +73,15 @@
    
 }
 
+-(CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return UITableViewAutomaticDimension;
+}
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return UITableViewAutomaticDimension;
+}
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return 4.0f;
@@ -129,6 +136,48 @@
     cell.ProductTitle_LBL.text=[NSString stringWithFormat:@"%@",[[KmyappDelegate.MainCartArr valueForKey:@"productName"] objectAtIndex:indexPath.section]];
     cell.ProductPrice_LBL.text=[NSString stringWithFormat:@"£%@*",[[KmyappDelegate.MainCartArr valueForKey:@"price"] objectAtIndex:indexPath.section]];
     
+    
+    NSMutableArray *Array=[[[KmyappDelegate.MainCartArr objectAtIndex:indexPath.section] valueForKey:@"ingredients"] mutableCopy];
+    NSMutableArray *withINTG=[[NSMutableArray alloc]init];
+    NSMutableArray *withoutINTG=[[NSMutableArray alloc]init];
+    for (int i=0; i<Array.count; i++)
+    {
+        if ([[[Array objectAtIndex:i] valueForKey:@"is_with"] boolValue]==0)
+        {
+            [withoutINTG addObject:[[Array objectAtIndex:i] valueForKey:@"ingredient_name"]];
+            
+        }
+        else
+        {
+            [withINTG addObject:[[Array objectAtIndex:i] valueForKey:@"ingredient_name"]];
+        }
+    }
+    NSString *WithjoinedComponents = [withINTG componentsJoinedByString:@","];
+    NSString *WithoutjoinedComponents = [withoutINTG componentsJoinedByString:@","];
+    if (WithjoinedComponents == nil || [WithjoinedComponents isKindOfClass:[NSNull class]]) {
+        //do something
+    }
+    if (withINTG.count>0)
+    {
+        cell.With_LBL.text=[NSString stringWithFormat:@"With: %@",WithjoinedComponents];
+    }
+    else
+    {
+        cell.With_LBL.text=@" ";
+
+    }
+    
+    if (withoutINTG.count>0)
+    {
+        cell.Without_LBL.text=[NSString stringWithFormat:@"Without: %@",WithoutjoinedComponents];
+    }
+    else
+    {
+        cell.Without_LBL.text=@" ";
+        
+    }
+
+
     [cell setNeedsUpdateConstraints];
     [cell updateConstraintsIfNeeded];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -139,11 +188,11 @@
 {
     
 }
-
+/*
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
     return 85.0f;
-}
+}*/
 
 - (void)Plush_Clcik:(UIButton *)sender
 {
@@ -218,6 +267,9 @@
 {
     subTotalINT=0;
     QTYINT=0;
+    withoutIntegrate=[[NSMutableArray alloc] init];
+    WithIntegrate=[[NSMutableArray alloc] init];
+    
      float integratPRICE=0.00;
     for (int rr=0; rr<KmyappDelegate.MainCartArr.count; rr++)
     {
@@ -230,15 +282,21 @@
             if ([[[Array objectAtIndex:i] valueForKey:@"is_with"] boolValue]==0)
             {
                 integratPRICE=integratPRICE+[[[Array objectAtIndex:i] valueForKey:@"price_without"] floatValue];
+                [withoutIntegrate addObject:[[Array objectAtIndex:i] valueForKey:@"ingredient_name"]];
+            
             }
             else
             {
                 integratPRICE=integratPRICE+[[[Array objectAtIndex:i] valueForKey:@"price"] floatValue];
+                [WithIntegrate addObject:[[Array objectAtIndex:i] valueForKey:@"ingredient_name"]];
             }
         }
        
     }
     
+    NSLog(@"with=%@",WithIntegrate);
+    NSLog(@"withOut=%@",withoutIntegrate);
+
     subTotalINT=subTotalINT+integratPRICE;
     self.Quantity_LBL.text=[NSString stringWithFormat:@"%ld",(long)QTYINT];
     self.SubTotal.text=[NSString stringWithFormat:@"£%.2f",subTotalINT];

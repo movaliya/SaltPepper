@@ -19,7 +19,12 @@
 @end
 
 @implementation SlideMenuVC
-
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+      [self CalculationTotal];
+    
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     cartArr = [[NSMutableArray alloc]init];
@@ -64,7 +69,7 @@
     _collectionViewItem.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
     _tblItem.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
     
-    [self CalculationTotal];
+  
     // Do any additional setup after loading the view.
 }
 
@@ -1203,11 +1208,26 @@
 
     float subTotalINT=0;
    NSInteger QTYINT=0;
+    float integratPRICE=0.00;
     for (int rr=0; rr<KmyappDelegate.MainCartArr.count; rr++)
     {
         subTotalINT=subTotalINT+[[[KmyappDelegate.MainCartArr valueForKey:@"price"] objectAtIndex:rr] floatValue]*[[[KmyappDelegate.MainCartArr valueForKey:@"Quantity"] objectAtIndex:rr] integerValue];
         QTYINT=QTYINT+[[[KmyappDelegate.MainCartArr valueForKey:@"Quantity"] objectAtIndex:rr] integerValue];
+      
+        NSMutableArray *Array=[[[KmyappDelegate.MainCartArr objectAtIndex:rr] valueForKey:@"ingredients"] mutableCopy];
+        for (int i=0; i<Array.count; i++)
+        {
+            if ([[[Array objectAtIndex:i] valueForKey:@"is_with"] boolValue]==0)
+            {
+                integratPRICE=integratPRICE+[[[Array objectAtIndex:i] valueForKey:@"price_without"] floatValue];
+            }
+            else
+            {
+                integratPRICE=integratPRICE+[[[Array objectAtIndex:i] valueForKey:@"price"] floatValue];
+            }
+        }
     }
+    subTotalINT=subTotalINT+integratPRICE;
     if (subTotalINT>0)
     {
           _lblTotal.text=[NSString stringWithFormat:@"TOTAL :£%.2f",subTotalINT];

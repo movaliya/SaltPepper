@@ -504,7 +504,7 @@
             }
             else
             {
-                KmyappDelegate.MainCartArr=[[NSMutableArray alloc]init];
+               // KmyappDelegate.MainCartArr=[[NSMutableArray alloc]init];
                 [ModifyDic setObject:arr forKey:@"ingredients"];
                 [KmyappDelegate.MainCartArr addObject:ModifyDic];
             }

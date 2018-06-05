@@ -640,7 +640,7 @@ typedef void (^STPSourceSubmissionHandler)(STPBackendChargeResult status, NSErro
     
     for (int k=0; k<KmyappDelegate.MainCartArr.count; k++)
     {
-        NSMutableArray *Array=[[[KmyappDelegate.MainCartArr objectAtIndex:k] valueForKey:@"ingredient"] mutableCopy];
+        NSMutableArray *Array=[[[KmyappDelegate.MainCartArr objectAtIndex:k] valueForKey:@"ingredients"] mutableCopy];
         NSMutableArray *Withindgarr=[[NSMutableArray alloc]init];
         NSMutableArray *Withoutindgarr=[[NSMutableArray alloc]init];
         NSMutableDictionary *inddic=[[NSMutableDictionary alloc]init];
