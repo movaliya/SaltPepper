@@ -218,16 +218,33 @@
 {
     subTotalINT=0;
     QTYINT=0;
+     float integratPRICE=0.00;
     for (int rr=0; rr<KmyappDelegate.MainCartArr.count; rr++)
     {
         subTotalINT=subTotalINT+[[[KmyappDelegate.MainCartArr valueForKey:@"price"] objectAtIndex:rr] floatValue]*[[[KmyappDelegate.MainCartArr valueForKey:@"Quantity"] objectAtIndex:rr] integerValue];
         QTYINT=QTYINT+[[[KmyappDelegate.MainCartArr valueForKey:@"Quantity"] objectAtIndex:rr] integerValue];
         
-        self.Quantity_LBL.text=[NSString stringWithFormat:@"%ld",(long)QTYINT];
-        self.SubTotal.text=[NSString stringWithFormat:@"£%.2f",subTotalINT];
-        self.SubTotalUpperLBL.text=[NSString stringWithFormat:@"£%.2f",subTotalINT];
-        self.GrandTotal_LBL.text=[NSString stringWithFormat:@"£%.2f",subTotalINT];
+         NSMutableArray *Array=[[[KmyappDelegate.MainCartArr objectAtIndex:rr] valueForKey:@"ingredients"] mutableCopy];
+        for (int i=0; i<Array.count; i++)
+        {
+            if ([[[Array objectAtIndex:i] valueForKey:@"is_with"] boolValue]==0)
+            {
+                integratPRICE=integratPRICE+[[[Array objectAtIndex:i] valueForKey:@"price_without"] floatValue];
+            }
+            else
+            {
+                integratPRICE=integratPRICE+[[[Array objectAtIndex:i] valueForKey:@"price"] floatValue];
+            }
+        }
+       
     }
+    
+    subTotalINT=subTotalINT+integratPRICE;
+    self.Quantity_LBL.text=[NSString stringWithFormat:@"%ld",(long)QTYINT];
+    self.SubTotal.text=[NSString stringWithFormat:@"£%.2f",subTotalINT];
+    self.SubTotalUpperLBL.text=[NSString stringWithFormat:@"£%.2f",subTotalINT];
+    self.GrandTotal_LBL.text=[NSString stringWithFormat:@"£%.2f",subTotalINT];
+    
      NSString *GToal = [ self.GrandTotal_LBL.text stringByReplacingOccurrencesOfString:@"£"  withString:@""];
     
     BOOL internet=[AppDelegate connectedToNetwork];

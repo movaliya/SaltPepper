@@ -64,6 +64,7 @@
     _collectionViewItem.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
     _tblItem.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
     
+    [self CalculationTotal];
     // Do any additional setup after loading the view.
 }
 
@@ -913,7 +914,7 @@
         NSLog(@"==%@",KmyappDelegate.MainCartArr);
     }
     [AppDelegate WriteData:@"CartDIC" RootObject:KmyappDelegate.MainCartArr];
-  
+    [self CalculationTotal];
 
     FCAlertView *alert = [KmyappDelegate ShowAlertWithBtnAction:@"Item added to cart successfully" andStrTile:nil andbtnTitle:@"OK" andButtonArray:@[]];
     
@@ -1054,7 +1055,7 @@
         NSLog(@"==%@",KmyappDelegate.MainCartArr);
     }
      [AppDelegate WriteData:@"CartDIC" RootObject:KmyappDelegate.MainCartArr];
-   
+     [self CalculationTotal];
     
     FCAlertView *alert = [KmyappDelegate ShowAlertWithBtnAction:@"Item added to cart successfully" andStrTile:nil andbtnTitle:@"OK" andButtonArray:@[]];
 }
@@ -1196,10 +1197,49 @@
     //[[NSUserDefaults standardUserDefaults] setObject:tempArry forKey:@"FavDIC"];
     //_wo(@"FavDIC",KmyappDelegate.MainFavArr);
 }
+-(void)CalculationTotal
+{
+    KmyappDelegate.MainCartArr = [AppDelegate GetData:@"CartDIC"];
+
+    float subTotalINT=0;
+   NSInteger QTYINT=0;
+    for (int rr=0; rr<KmyappDelegate.MainCartArr.count; rr++)
+    {
+        subTotalINT=subTotalINT+[[[KmyappDelegate.MainCartArr valueForKey:@"price"] objectAtIndex:rr] floatValue]*[[[KmyappDelegate.MainCartArr valueForKey:@"Quantity"] objectAtIndex:rr] integerValue];
+        QTYINT=QTYINT+[[[KmyappDelegate.MainCartArr valueForKey:@"Quantity"] objectAtIndex:rr] integerValue];
+    }
+    if (subTotalINT>0)
+    {
+          _lblTotal.text=[NSString stringWithFormat:@"TOTAL :£%.2f",subTotalINT];
+    }
+    else
+    {
+          _lblTotal.text=@"TOTAL :£0.00";
+    }
+  
+   
+}
 
 - (IBAction)btnViewCartClicked:(id)sender
 {
-    
+    if (_ro(@"LoginUserDic") != nil)
+    {
+        [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"CartVW"]]
+                                                     animated:YES];
+        [self.sideMenuViewController hideMenuViewController];
+    }
+    else
+    {
+        FCAlertView *alert = [KmyappDelegate ShowAlertWithBtnAction:@"Please First Login" andStrTile:nil andbtnTitle:@"Cancel" andButtonArray:@[]];
+        
+        [alert addButton:@"Login" withActionBlock:^{
+            
+            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"LoginVW"]]
+                                                         animated:YES];
+            [self.sideMenuViewController hideMenuViewController];
+            
+        }];
+    }
 }
 
 - (IBAction)btnCheckoutClicked:(id)sender
