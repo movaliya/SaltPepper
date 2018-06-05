@@ -76,6 +76,8 @@
 		5116686920C057B200986D39 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5116686820C057B200986D39 /* MapKit.framework */; };
 		5126749A20B9DBCC002321F7 /* CategoryItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5126749820B9DBCC002321F7 /* CategoryItemCell.m */; };
 		5126749B20B9DBCC002321F7 /* CategoryItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5126749920B9DBCC002321F7 /* CategoryItemCell.xib */; };
+		514DE89E20C59DE2002BE333 /* OrderHistoryDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 514DE89D20C59DE2002BE333 /* OrderHistoryDetailVC.m */; };
+		514DE8A120C59E03002BE333 /* OrderHistoryDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 514DE8A020C59E02002BE333 /* OrderHistoryDetailCell.m */; };
 		519427BD20C2FC46000AE928 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 519427BC20C2FC46000AE928 /* Main.storyboard */; };
 		51F66ECB20C2BDF7004DB1DD /* PaymentMethodVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 51F66ECA20C2BDF7004DB1DD /* PaymentMethodVC.m */; };
 		51F66ECE20C2C5EF004DB1DD /* OrderCompleteVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 51F66ECD20C2C5EF004DB1DD /* OrderCompleteVC.m */; };
@@ -241,6 +243,10 @@
 		5126749720B9DBCC002321F7 /* CategoryItemCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CategoryItemCell.h; sourceTree = "<group>"; };
 		5126749820B9DBCC002321F7 /* CategoryItemCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CategoryItemCell.m; sourceTree = "<group>"; };
 		5126749920B9DBCC002321F7 /* CategoryItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryItemCell.xib; sourceTree = "<group>"; };
+		514DE89C20C59DE2002BE333 /* OrderHistoryDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderHistoryDetailVC.h; sourceTree = "<group>"; };
+		514DE89D20C59DE2002BE333 /* OrderHistoryDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderHistoryDetailVC.m; sourceTree = "<group>"; };
+		514DE89F20C59E02002BE333 /* OrderHistoryDetailCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderHistoryDetailCell.h; sourceTree = "<group>"; };
+		514DE8A020C59E02002BE333 /* OrderHistoryDetailCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderHistoryDetailCell.m; sourceTree = "<group>"; };
 		519427BC20C2FC46000AE928 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		51F66EC920C2BDF7004DB1DD /* PaymentMethodVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PaymentMethodVC.h; sourceTree = "<group>"; };
 		51F66ECA20C2BDF7004DB1DD /* PaymentMethodVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PaymentMethodVC.m; sourceTree = "<group>"; };
@@ -527,6 +533,10 @@
 				51048E7120C2F54600AFD5B8 /* OrderHistoryVC.m */,
 				51048E7320C2F63F00AFD5B8 /* OrderHistoryCell.h */,
 				51048E7420C2F63F00AFD5B8 /* OrderHistoryCell.m */,
+				514DE89C20C59DE2002BE333 /* OrderHistoryDetailVC.h */,
+				514DE89D20C59DE2002BE333 /* OrderHistoryDetailVC.m */,
+				514DE89F20C59E02002BE333 /* OrderHistoryDetailCell.h */,
+				514DE8A020C59E02002BE333 /* OrderHistoryDetailCell.m */,
 				510AED1F20C3F2AE00078105 /* TrackOrderVC.h */,
 				510AED2020C3F2AE00078105 /* TrackOrderVC.m */,
 				2966E5A420BC1E6600DF0551 /* FavouriteVW.h */,
@@ -816,6 +826,7 @@
 				297D5EBF2056493400ED5428 /* LoginVW.m in Sources */,
 				51094AA120B71A0000A60634 /* EHHorizontalSelectionView.m in Sources */,
 				B1B9F1DA20BACB3F008D2FAD /* FCAlertView.m in Sources */,
+				514DE89E20C59DE2002BE333 /* OrderHistoryDetailVC.m in Sources */,
 				51094AA020B71A0000A60634 /* EHHorizontalLineViewCell.m in Sources */,
 				B1B744662069502A00A2FE9C /* Reachability.m in Sources */,
 				295E0734206F771800BC4ADB /* NewsVW.m in Sources */,
@@ -830,6 +841,7 @@
 				51F66ECB20C2BDF7004DB1DD /* PaymentMethodVC.m in Sources */,
 				2968F8AC2070CDF2004B5960 /* ContactUSVW.m in Sources */,
 				B1B7446120694F9400A2FE9C /* Utility.m in Sources */,
+				514DE8A120C59E03002BE333 /* OrderHistoryDetailCell.m in Sources */,
 				295CD5B3206A27F6002129FD /* GalleryFullView.m in Sources */,
 				295CD5AB206A2725002129FD /* GalleryVW.m in Sources */,
 			);

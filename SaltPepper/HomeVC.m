@@ -71,7 +71,7 @@
        UIImageView *Headerimg=[[UIImageView alloc]initWithFrame:CGRectMake(x, 0, SCREEN_WIDTH, 260)];
         //Headerimg.image = [UIImage imageNamed:@"bannerImage.jpg"];
         NSString *Urlstr = [[BannerImageDataArr valueForKey:@"image_path"] objectAtIndex:i];
-        [Headerimg sd_setImageWithURL:[NSURL URLWithString:Urlstr] placeholderImage:[UIImage imageNamed:@"placeholder_img"]];
+        [Headerimg sd_setImageWithURL:[NSURL URLWithString:Urlstr] placeholderImage:[UIImage imageNamed:@"bannerImage.jpg"]];
         [Headerimg sd_setShowActivityIndicatorView:YES];
         
         //Headerimg.image=[UIImage imageNamed:@"HomeLogo"];
@@ -186,6 +186,7 @@
     [bannerscroll setContentSize:CGSizeMake(x, 130)];
     pagesControl.numberOfPages = 3;
     pagesControl.currentPage = 0;
+    [bannerscroll setPagingEnabled:YES];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)sender

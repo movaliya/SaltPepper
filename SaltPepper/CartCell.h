@@ -16,4 +16,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *PlusBtn;
 @property (weak, nonatomic) IBOutlet UIButton *DeleteBtn;
 
+@property (strong, nonatomic) IBOutlet UILabel *With_LBL;
+@property (strong, nonatomic) IBOutlet UILabel *Without_LBL;
 @end
