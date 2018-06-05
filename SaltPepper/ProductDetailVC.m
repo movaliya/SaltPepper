@@ -27,6 +27,15 @@
     [_viewDetail.layer setShadowOpacity:0.8];
     [_viewDetail.layer setShadowOffset:CGSizeMake(0.0, 0.0)];
     
+    if([[_productDetail valueForKey:@"ingredients"] count] == 0)
+    {
+        _btnModify.hidden = YES;
+    }
+    else
+    {
+        _btnModify.hidden = NO;
+    }
+    
     _lblProductName.text = [_productDetail valueForKey:@"productName"];
     _lblPrice.text = [NSString stringWithFormat:@"£%@",[_productDetail valueForKey:@"price"]];
     _txtDetail.text = [_productDetail valueForKey:@"description"];
@@ -50,28 +59,43 @@
 }
 - (IBAction)btnAddToCartClicked:(id)sender
 {
-    NSLog(@"%@",KmyappDelegate.MainCartArr);
-    if (KmyappDelegate.MainCartArr==nil)
+    if (_ro(@"LoginUserDic") != nil)
     {
-        KmyappDelegate.MainCartArr=[[NSMutableArray alloc]init];
-        [KmyappDelegate.MainCartArr addObject:_productDetail];
-    }
-    else
-    {
-        if ([[KmyappDelegate.MainCartArr valueForKey:@"id"] containsObject:[_productDetail valueForKey:@"id"]])
+        NSLog(@"%@",KmyappDelegate.MainCartArr);
+        if (KmyappDelegate.MainCartArr==nil)
         {
-            NSLog(@"Already Added");
+            KmyappDelegate.MainCartArr=[[NSMutableArray alloc]init];
+            [KmyappDelegate.MainCartArr addObject:_productDetail];
         }
         else
         {
-            [KmyappDelegate.MainCartArr addObject:_productDetail];
-            NSLog(@"%@",KmyappDelegate.MainCartArr);
+            if ([[KmyappDelegate.MainCartArr valueForKey:@"id"] containsObject:[_productDetail valueForKey:@"id"]])
+            {
+                NSLog(@"Already Added");
+            }
+            else
+            {
+                [KmyappDelegate.MainCartArr addObject:_productDetail];
+                NSLog(@"%@",KmyappDelegate.MainCartArr);
+            }
         }
+        NSData *dataSave = [NSKeyedArchiver archivedDataWithRootObject:KmyappDelegate.MainCartArr];
+        [[NSUserDefaults standardUserDefaults] setObject:dataSave forKey:@"CartDIC"];
+        
+        [[NSUserDefaults standardUserDefaults] synchronize];
     }
-    NSData *dataSave = [NSKeyedArchiver archivedDataWithRootObject:KmyappDelegate.MainCartArr];
-    [[NSUserDefaults standardUserDefaults] setObject:dataSave forKey:@"CartDIC"];
-    
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    else
+    {
+        FCAlertView *alert = [KmyappDelegate ShowAlertWithBtnAction:@"Please First Login" andStrTile:nil andbtnTitle:@"Cancel" andButtonArray:@[]];
+        
+        [alert addButton:@"Login" withActionBlock:^{
+            
+            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"LoginVW"]]
+                                                         animated:YES];
+            [self.sideMenuViewController hideMenuViewController];
+            
+        }];
+    }
 }
 - (IBAction)btnModifyClicked:(id)sender
 {

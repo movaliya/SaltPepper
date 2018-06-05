@@ -41,6 +41,7 @@
     [_collectionViewItem registerClass:[CategoryItemCell class] forCellWithReuseIdentifier:@"CategoryItemCell"];
     
     _HSSelView.delegate = self;
+    [_HSSelView selectIndex:_index];
     //_collectionViewItem.hidden = YES;
     [self CallCategoryProduct];
     
@@ -261,6 +262,15 @@
     if(isFiltered)
     {
         NSString *urlToDownload = [NSString stringWithFormat:@"%@%@" ,BASE_PROFILE_IMAGE_URL,[[filteredProducts objectAtIndex:indexPath.row] valueForKey:@"allergy_image_path"]];
+        if([[[filteredProducts valueForKey:@"ingredients"] objectAtIndex:indexPath.row] count] == 0)
+        {
+            cell.btnModify.hidden = YES;
+        }
+        else
+        {
+            cell.btnModify.hidden = NO;
+        }
+        
         if ([urlToDownload isEqualToString:@""])
         {
             cell.imgVegNonVeg.image = [UIImage imageNamed:@""];
@@ -282,6 +292,16 @@
     else
     {
         NSString *urlToDownload = [NSString stringWithFormat:@"%@%@" ,BASE_PROFILE_IMAGE_URL,[[arrProductsItems objectAtIndex:indexPath.row] valueForKey:@"allergy_image_path"]];
+        
+        if([[[arrProductsItems valueForKey:@"ingredients"] objectAtIndex:indexPath.row] count] == 0)
+        {
+            cell.btnModify.hidden = YES;
+        }
+        else
+        {
+            cell.btnModify.hidden = NO;
+        }
+        
         if ([urlToDownload isEqualToString:@""])
         {
             cell.imgVegNonVeg.image = [UIImage imageNamed:@""];
@@ -387,6 +407,7 @@
     
     //ItemCell *cell = (ItemCell*)[tableView dequeueReusableCellWithIdentifier:@"ItemCell"];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
     
     cell.btnPlus.tag = indexPath.row;
     cell.btnMinus.tag = indexPath.row;
@@ -418,6 +439,16 @@
     if(isFiltered)
     {
         NSString *urlToDownload = [NSString stringWithFormat:@"%@%@" ,BASE_PROFILE_IMAGE_URL,[[filteredProducts objectAtIndex:indexPath.row] valueForKey:@"allergy_image_path"]];
+        
+        if([[[filteredProducts valueForKey:@"ingredients"] objectAtIndex:indexPath.row] count] == 0)
+        {
+            cell.btnModify.hidden = YES;
+        }
+        else
+        {
+            cell.btnModify.hidden = NO;
+        }
+        
         if ([urlToDownload isEqualToString:@""])
         {
             cell.imgIcon.image = [UIImage imageNamed:@""];
@@ -439,6 +470,17 @@
     else
     {
         NSString *urlToDownload = [NSString stringWithFormat:@"%@%@" ,BASE_PROFILE_IMAGE_URL,[[arrProductsItems objectAtIndex:indexPath.row] valueForKey:@"allergy_image_path"]];
+        NSLog(@"%@",[[arrProductsItems valueForKey:@"ingredients"] objectAtIndex:indexPath.row]);
+        
+        if([[[arrProductsItems valueForKey:@"ingredients"] objectAtIndex:indexPath.row] count] == 0)
+        {
+            cell.btnModify.hidden = YES;
+        }
+        else
+        {
+            cell.btnModify.hidden = NO;
+        }
+        
         if ([urlToDownload isEqualToString:@""])
         {
             cell.imgIcon.image = [UIImage imageNamed:@""];
@@ -789,52 +831,15 @@
 
 - (void)addToCartClickedTableView:(UIButton *)sender
 {
-    NSIndexPath *changedRow = [NSIndexPath indexPathForRow:sender.tag inSection:0];
-    if(isFiltered)
+    if (_ro(@"LoginUserDic") != nil)
     {
-        if (KmyappDelegate.MainCartArr==nil)
+        NSIndexPath *changedRow = [NSIndexPath indexPathForRow:sender.tag inSection:0];
+        if(isFiltered)
         {
-            KmyappDelegate.MainCartArr=[[NSMutableArray alloc]init];
-            
-            if([[filteredProducts objectAtIndex:changedRow.row] valueForKey:@"ingredients"] != nil)
+            if (KmyappDelegate.MainCartArr==nil)
             {
-                NSMutableDictionary *intdic=[[NSMutableDictionary alloc]init];
-                intdic=[[filteredProducts objectAtIndex:changedRow.row] mutableCopy];
-                [intdic removeObjectForKey:@"ingredients"];
+                KmyappDelegate.MainCartArr=[[NSMutableArray alloc]init];
                 
-                [KmyappDelegate.MainCartArr addObject:intdic];
-            }
-            else
-            {
-                [KmyappDelegate.MainCartArr addObject:[filteredProducts objectAtIndex:changedRow.row]];
-            }
-        }
-        else
-        {
-            if ([[KmyappDelegate.MainCartArr valueForKey:@"id"] containsObject:[[filteredProducts valueForKey:@"id"]objectAtIndex:changedRow.row]])
-            {
-                NSLog(@"Already Added");
-                NSMutableArray *IdArr=[KmyappDelegate.MainCartArr valueForKey:@"id"];
-                NSInteger idx=[IdArr indexOfObject:[[filteredProducts valueForKey:@"id"]objectAtIndex:changedRow.row]];
-                
-                NSMutableDictionary *intdic=[[NSMutableDictionary alloc]init];
-                intdic=[[KmyappDelegate.MainCartArr objectAtIndex:idx] mutableCopy];
-                int qnt=[[intdic valueForKey:@"Quantity"] intValue];
-                qnt=qnt + 1;
-                [intdic setObject:[NSNumber numberWithInt:qnt] forKey:@"Quantity"];
-                
-                if([intdic valueForKey:@"ingredients"] != nil)
-                {
-                    [intdic removeObjectForKey:@"ingredients"];
-                    [KmyappDelegate.MainCartArr replaceObjectAtIndex:idx withObject:intdic];
-                }
-                else
-                {
-                    [KmyappDelegate.MainCartArr replaceObjectAtIndex:idx withObject:intdic];
-                }
-            }
-            else
-            {
                 if([[filteredProducts objectAtIndex:changedRow.row] valueForKey:@"ingredients"] != nil)
                 {
                     NSMutableDictionary *intdic=[[NSMutableDictionary alloc]init];
@@ -847,59 +852,56 @@
                 {
                     [KmyappDelegate.MainCartArr addObject:[filteredProducts objectAtIndex:changedRow.row]];
                 }
-                
-                //[KmyappDelegate.MainCartArr addObject:[filteredProducts objectAtIndex:changedRow.row]];
-            }
-        }
-        NSLog(@"==%@",KmyappDelegate.MainCartArr);
-    }
-    else
-    {
-        if (KmyappDelegate.MainCartArr==nil)
-        {
-            KmyappDelegate.MainCartArr=[[NSMutableArray alloc]init];
-            if([[arrProductsItems objectAtIndex:changedRow.row] valueForKey:@"ingredients"] != nil)
-            {
-                NSMutableDictionary *intdic=[[NSMutableDictionary alloc]init];
-                intdic=[[arrProductsItems objectAtIndex:changedRow.row] mutableCopy];
-                [intdic removeObjectForKey:@"ingredients"];
-                
-                [KmyappDelegate.MainCartArr addObject:intdic];
             }
             else
             {
-                [KmyappDelegate.MainCartArr addObject:[arrProductsItems objectAtIndex:changedRow.row]];
-            }
-            //[KmyappDelegate.MainCartArr addObject:[arrProductsItems objectAtIndex:changedRow.row]];
-        }
-        else
-        {
-            if ([[KmyappDelegate.MainCartArr valueForKey:@"id"] containsObject:[[arrProductsItems valueForKey:@"id"]objectAtIndex:changedRow.row]])
-            {
-                NSLog(@"Already Added");
-                NSMutableArray *IdArr=[KmyappDelegate.MainCartArr valueForKey:@"id"];
-                NSInteger idx=[IdArr indexOfObject:[[arrProductsItems valueForKey:@"id"]objectAtIndex:changedRow.row]];
-                
-                NSMutableDictionary *intdic=[[NSMutableDictionary alloc]init];
-                intdic=[[KmyappDelegate.MainCartArr objectAtIndex:idx] mutableCopy];
-                int qnt=[[intdic valueForKey:@"Quantity"] intValue];
-                qnt=qnt + 1;
-                [intdic setObject:[NSNumber numberWithInt:qnt] forKey:@"Quantity"];
-                
-                if([intdic valueForKey:@"ingredients"] != nil)
+                if ([[KmyappDelegate.MainCartArr valueForKey:@"id"] containsObject:[[filteredProducts valueForKey:@"id"]objectAtIndex:changedRow.row]])
                 {
-                    [intdic removeObjectForKey:@"ingredients"];
-                    [KmyappDelegate.MainCartArr replaceObjectAtIndex:idx withObject:intdic];
+                    NSLog(@"Already Added");
+                    NSMutableArray *IdArr=[KmyappDelegate.MainCartArr valueForKey:@"id"];
+                    NSInteger idx=[IdArr indexOfObject:[[filteredProducts valueForKey:@"id"]objectAtIndex:changedRow.row]];
+                    
+                    NSMutableDictionary *intdic=[[NSMutableDictionary alloc]init];
+                    intdic=[[KmyappDelegate.MainCartArr objectAtIndex:idx] mutableCopy];
+                    int qnt=[[intdic valueForKey:@"Quantity"] intValue];
+                    qnt=qnt + 1;
+                    [intdic setObject:[NSNumber numberWithInt:qnt] forKey:@"Quantity"];
+                    
+                    if([intdic valueForKey:@"ingredients"] != nil)
+                    {
+                        [intdic removeObjectForKey:@"ingredients"];
+                        [KmyappDelegate.MainCartArr replaceObjectAtIndex:idx withObject:intdic];
+                    }
+                    else
+                    {
+                        [KmyappDelegate.MainCartArr replaceObjectAtIndex:idx withObject:intdic];
+                    }
                 }
                 else
                 {
-                    [KmyappDelegate.MainCartArr replaceObjectAtIndex:idx withObject:intdic];
+                    if([[filteredProducts objectAtIndex:changedRow.row] valueForKey:@"ingredients"] != nil)
+                    {
+                        NSMutableDictionary *intdic=[[NSMutableDictionary alloc]init];
+                        intdic=[[filteredProducts objectAtIndex:changedRow.row] mutableCopy];
+                        [intdic removeObjectForKey:@"ingredients"];
+                        
+                        [KmyappDelegate.MainCartArr addObject:intdic];
+                    }
+                    else
+                    {
+                        [KmyappDelegate.MainCartArr addObject:[filteredProducts objectAtIndex:changedRow.row]];
+                    }
+                    
+                    //[KmyappDelegate.MainCartArr addObject:[filteredProducts objectAtIndex:changedRow.row]];
                 }
-                
-                //[KmyappDelegate.MainCartArr replaceObjectAtIndex:idx withObject:intdic];
             }
-            else
+            NSLog(@"==%@",KmyappDelegate.MainCartArr);
+        }
+        else
+        {
+            if (KmyappDelegate.MainCartArr==nil)
             {
+                KmyappDelegate.MainCartArr=[[NSMutableArray alloc]init];
                 if([[arrProductsItems objectAtIndex:changedRow.row] valueForKey:@"ingredients"] != nil)
                 {
                     NSMutableDictionary *intdic=[[NSMutableDictionary alloc]init];
@@ -912,72 +914,86 @@
                 {
                     [KmyappDelegate.MainCartArr addObject:[arrProductsItems objectAtIndex:changedRow.row]];
                 }
-                
                 //[KmyappDelegate.MainCartArr addObject:[arrProductsItems objectAtIndex:changedRow.row]];
             }
+            else
+            {
+                if ([[KmyappDelegate.MainCartArr valueForKey:@"id"] containsObject:[[arrProductsItems valueForKey:@"id"]objectAtIndex:changedRow.row]])
+                {
+                    NSLog(@"Already Added");
+                    NSMutableArray *IdArr=[KmyappDelegate.MainCartArr valueForKey:@"id"];
+                    NSInteger idx=[IdArr indexOfObject:[[arrProductsItems valueForKey:@"id"]objectAtIndex:changedRow.row]];
+                    
+                    NSMutableDictionary *intdic=[[NSMutableDictionary alloc]init];
+                    intdic=[[KmyappDelegate.MainCartArr objectAtIndex:idx] mutableCopy];
+                    int qnt=[[intdic valueForKey:@"Quantity"] intValue];
+                    qnt=qnt + 1;
+                    [intdic setObject:[NSNumber numberWithInt:qnt] forKey:@"Quantity"];
+                    
+                    if([intdic valueForKey:@"ingredients"] != nil)
+                    {
+                        [intdic removeObjectForKey:@"ingredients"];
+                        [KmyappDelegate.MainCartArr replaceObjectAtIndex:idx withObject:intdic];
+                    }
+                    else
+                    {
+                        [KmyappDelegate.MainCartArr replaceObjectAtIndex:idx withObject:intdic];
+                    }
+                    
+                    //[KmyappDelegate.MainCartArr replaceObjectAtIndex:idx withObject:intdic];
+                }
+                else
+                {
+                    if([[arrProductsItems objectAtIndex:changedRow.row] valueForKey:@"ingredients"] != nil)
+                    {
+                        NSMutableDictionary *intdic=[[NSMutableDictionary alloc]init];
+                        intdic=[[arrProductsItems objectAtIndex:changedRow.row] mutableCopy];
+                        [intdic removeObjectForKey:@"ingredients"];
+                        
+                        [KmyappDelegate.MainCartArr addObject:intdic];
+                    }
+                    else
+                    {
+                        [KmyappDelegate.MainCartArr addObject:[arrProductsItems objectAtIndex:changedRow.row]];
+                    }
+                    
+                    //[KmyappDelegate.MainCartArr addObject:[arrProductsItems objectAtIndex:changedRow.row]];
+                }
+            }
+            NSLog(@"==%@",KmyappDelegate.MainCartArr);
         }
-        NSLog(@"==%@",KmyappDelegate.MainCartArr);
+        [AppDelegate WriteData:@"CartDIC" RootObject:KmyappDelegate.MainCartArr];
+        [self CalculationTotal];
+        
+        FCAlertView *alert = [KmyappDelegate ShowAlertWithBtnAction:@"Item added to cart successfully" andStrTile:nil andbtnTitle:@"OK" andButtonArray:@[]];
     }
-    [AppDelegate WriteData:@"CartDIC" RootObject:KmyappDelegate.MainCartArr];
-    [self CalculationTotal];
-
-    FCAlertView *alert = [KmyappDelegate ShowAlertWithBtnAction:@"Item added to cart successfully" andStrTile:nil andbtnTitle:@"OK" andButtonArray:@[]];
+    else
+    {
+        FCAlertView *alert = [KmyappDelegate ShowAlertWithBtnAction:@"Please First Login" andStrTile:nil andbtnTitle:@"Cancel" andButtonArray:@[]];
+        
+        [alert addButton:@"Login" withActionBlock:^{
+            
+            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"LoginVW"]]
+                                                         animated:YES];
+            [self.sideMenuViewController hideMenuViewController];
+            
+        }];
+    }
     
 }
 
 - (void)addToCartClickedCollectionView:(UIButton *)sender
 {
-    
-    NSIndexPath *changedRow = [NSIndexPath indexPathForRow:sender.tag inSection:0];
-    
-    if(isFiltered)
+    if (_ro(@"LoginUserDic") != nil)
     {
-        if (KmyappDelegate.MainCartArr==nil)
+        NSIndexPath *changedRow = [NSIndexPath indexPathForRow:sender.tag inSection:0];
+        
+        if(isFiltered)
         {
-            KmyappDelegate.MainCartArr=[[NSMutableArray alloc]init];
-           
-            if([[filteredProducts objectAtIndex:changedRow.row] valueForKey:@"ingredients"] != nil)
+            if (KmyappDelegate.MainCartArr==nil)
             {
-                NSMutableDictionary *intdic=[[NSMutableDictionary alloc]init];
-                intdic=[[filteredProducts objectAtIndex:changedRow.row] mutableCopy];
-                [intdic removeObjectForKey:@"ingredients"];
+                KmyappDelegate.MainCartArr=[[NSMutableArray alloc]init];
                 
-                [KmyappDelegate.MainCartArr addObject:intdic];
-            }
-            else
-            {
-                [KmyappDelegate.MainCartArr addObject:[filteredProducts objectAtIndex:changedRow.row]];
-            }
-            
-            //[KmyappDelegate.MainCartArr addObject:[filteredProducts objectAtIndex:changedRow.row]];
-        }
-        else
-        {
-            if ([[KmyappDelegate.MainCartArr valueForKey:@"id"] containsObject:[[filteredProducts valueForKey:@"id"]objectAtIndex:changedRow.row]])
-            {
-                NSLog(@"Already Added");
-                NSMutableArray *IdArr=[KmyappDelegate.MainCartArr valueForKey:@"id"];
-                NSInteger idx=[IdArr indexOfObject:[[filteredProducts valueForKey:@"id"]objectAtIndex:changedRow.row]];
-                
-                NSMutableDictionary *intdic=[[NSMutableDictionary alloc]init];
-                intdic=[[KmyappDelegate.MainCartArr objectAtIndex:idx] mutableCopy];
-                int qnt=[[intdic valueForKey:@"Quantity"] intValue];
-                qnt=qnt + 1;
-                [intdic setObject:[NSNumber numberWithInt:qnt] forKey:@"Quantity"];
-                
-                if([intdic valueForKey:@"ingredients"] != nil)
-                {
-                    [intdic removeObjectForKey:@"ingredients"];
-                    [KmyappDelegate.MainCartArr replaceObjectAtIndex:idx withObject:intdic];
-                }
-                else
-                {
-                    [KmyappDelegate.MainCartArr replaceObjectAtIndex:idx withObject:intdic];
-                }
-//                [KmyappDelegate.MainCartArr replaceObjectAtIndex:idx withObject:intdic];
-            }
-            else
-            {
                 if([[filteredProducts objectAtIndex:changedRow.row] valueForKey:@"ingredients"] != nil)
                 {
                     NSMutableDictionary *intdic=[[NSMutableDictionary alloc]init];
@@ -990,58 +1006,58 @@
                 {
                     [KmyappDelegate.MainCartArr addObject:[filteredProducts objectAtIndex:changedRow.row]];
                 }
-                //[KmyappDelegate.MainCartArr addObject:[filteredProducts objectAtIndex:changedRow.row]];
-            }
-        }
-        NSLog(@"==%@",KmyappDelegate.MainCartArr);
-    }
-    else
-    {
-        if (KmyappDelegate.MainCartArr==nil)
-        {
-            KmyappDelegate.MainCartArr=[[NSMutableArray alloc]init];
-            if([[arrProductsItems objectAtIndex:changedRow.row] valueForKey:@"ingredients"] != nil)
-            {
-                NSMutableDictionary *intdic=[[NSMutableDictionary alloc]init];
-                intdic=[[arrProductsItems objectAtIndex:changedRow.row] mutableCopy];
-                [intdic removeObjectForKey:@"ingredients"];
                 
-                [KmyappDelegate.MainCartArr addObject:intdic];
+                //[KmyappDelegate.MainCartArr addObject:[filteredProducts objectAtIndex:changedRow.row]];
             }
             else
             {
-                [KmyappDelegate.MainCartArr addObject:[arrProductsItems objectAtIndex:changedRow.row]];
-            }
-            //[KmyappDelegate.MainCartArr addObject:[arrProductsItems objectAtIndex:changedRow.row]];
-        }
-        else
-        {
-            if ([[KmyappDelegate.MainCartArr valueForKey:@"id"] containsObject:[[arrProductsItems valueForKey:@"id"]objectAtIndex:changedRow.row]])
-            {
-                NSLog(@"Already Added");
-                NSMutableArray *IdArr=[KmyappDelegate.MainCartArr valueForKey:@"id"];
-                NSInteger idx=[IdArr indexOfObject:[[arrProductsItems valueForKey:@"id"]objectAtIndex:changedRow.row]];
-                
-                NSMutableDictionary *intdic=[[NSMutableDictionary alloc]init];
-                intdic=[[KmyappDelegate.MainCartArr objectAtIndex:idx] mutableCopy];
-                int qnt=[[intdic valueForKey:@"Quantity"] intValue];
-                qnt=qnt + 1;
-                [intdic setObject:[NSNumber numberWithInt:qnt] forKey:@"Quantity"];
-                
-                if([intdic valueForKey:@"ingredients"] != nil)
+                if ([[KmyappDelegate.MainCartArr valueForKey:@"id"] containsObject:[[filteredProducts valueForKey:@"id"]objectAtIndex:changedRow.row]])
                 {
-                    [intdic removeObjectForKey:@"ingredients"];
-                    [KmyappDelegate.MainCartArr replaceObjectAtIndex:idx withObject:intdic];
+                    NSLog(@"Already Added");
+                    NSMutableArray *IdArr=[KmyappDelegate.MainCartArr valueForKey:@"id"];
+                    NSInteger idx=[IdArr indexOfObject:[[filteredProducts valueForKey:@"id"]objectAtIndex:changedRow.row]];
+                    
+                    NSMutableDictionary *intdic=[[NSMutableDictionary alloc]init];
+                    intdic=[[KmyappDelegate.MainCartArr objectAtIndex:idx] mutableCopy];
+                    int qnt=[[intdic valueForKey:@"Quantity"] intValue];
+                    qnt=qnt + 1;
+                    [intdic setObject:[NSNumber numberWithInt:qnt] forKey:@"Quantity"];
+                    
+                    if([intdic valueForKey:@"ingredients"] != nil)
+                    {
+                        [intdic removeObjectForKey:@"ingredients"];
+                        [KmyappDelegate.MainCartArr replaceObjectAtIndex:idx withObject:intdic];
+                    }
+                    else
+                    {
+                        [KmyappDelegate.MainCartArr replaceObjectAtIndex:idx withObject:intdic];
+                    }
+                    //                [KmyappDelegate.MainCartArr replaceObjectAtIndex:idx withObject:intdic];
                 }
                 else
                 {
-                    [KmyappDelegate.MainCartArr replaceObjectAtIndex:idx withObject:intdic];
+                    if([[filteredProducts objectAtIndex:changedRow.row] valueForKey:@"ingredients"] != nil)
+                    {
+                        NSMutableDictionary *intdic=[[NSMutableDictionary alloc]init];
+                        intdic=[[filteredProducts objectAtIndex:changedRow.row] mutableCopy];
+                        [intdic removeObjectForKey:@"ingredients"];
+                        
+                        [KmyappDelegate.MainCartArr addObject:intdic];
+                    }
+                    else
+                    {
+                        [KmyappDelegate.MainCartArr addObject:[filteredProducts objectAtIndex:changedRow.row]];
+                    }
+                    //[KmyappDelegate.MainCartArr addObject:[filteredProducts objectAtIndex:changedRow.row]];
                 }
-                
-                //[KmyappDelegate.MainCartArr replaceObjectAtIndex:idx withObject:intdic];
             }
-            else
+            NSLog(@"==%@",KmyappDelegate.MainCartArr);
+        }
+        else
+        {
+            if (KmyappDelegate.MainCartArr==nil)
             {
+                KmyappDelegate.MainCartArr=[[NSMutableArray alloc]init];
                 if([[arrProductsItems objectAtIndex:changedRow.row] valueForKey:@"ingredients"] != nil)
                 {
                     NSMutableDictionary *intdic=[[NSMutableDictionary alloc]init];
@@ -1056,148 +1072,232 @@
                 }
                 //[KmyappDelegate.MainCartArr addObject:[arrProductsItems objectAtIndex:changedRow.row]];
             }
+            else
+            {
+                if ([[KmyappDelegate.MainCartArr valueForKey:@"id"] containsObject:[[arrProductsItems valueForKey:@"id"]objectAtIndex:changedRow.row]])
+                {
+                    NSLog(@"Already Added");
+                    NSMutableArray *IdArr=[KmyappDelegate.MainCartArr valueForKey:@"id"];
+                    NSInteger idx=[IdArr indexOfObject:[[arrProductsItems valueForKey:@"id"]objectAtIndex:changedRow.row]];
+                    
+                    NSMutableDictionary *intdic=[[NSMutableDictionary alloc]init];
+                    intdic=[[KmyappDelegate.MainCartArr objectAtIndex:idx] mutableCopy];
+                    int qnt=[[intdic valueForKey:@"Quantity"] intValue];
+                    qnt=qnt + 1;
+                    [intdic setObject:[NSNumber numberWithInt:qnt] forKey:@"Quantity"];
+                    
+                    if([intdic valueForKey:@"ingredients"] != nil)
+                    {
+                        [intdic removeObjectForKey:@"ingredients"];
+                        [KmyappDelegate.MainCartArr replaceObjectAtIndex:idx withObject:intdic];
+                    }
+                    else
+                    {
+                        [KmyappDelegate.MainCartArr replaceObjectAtIndex:idx withObject:intdic];
+                    }
+                    
+                    //[KmyappDelegate.MainCartArr replaceObjectAtIndex:idx withObject:intdic];
+                }
+                else
+                {
+                    if([[arrProductsItems objectAtIndex:changedRow.row] valueForKey:@"ingredients"] != nil)
+                    {
+                        NSMutableDictionary *intdic=[[NSMutableDictionary alloc]init];
+                        intdic=[[arrProductsItems objectAtIndex:changedRow.row] mutableCopy];
+                        [intdic removeObjectForKey:@"ingredients"];
+                        
+                        [KmyappDelegate.MainCartArr addObject:intdic];
+                    }
+                    else
+                    {
+                        [KmyappDelegate.MainCartArr addObject:[arrProductsItems objectAtIndex:changedRow.row]];
+                    }
+                    //[KmyappDelegate.MainCartArr addObject:[arrProductsItems objectAtIndex:changedRow.row]];
+                }
+            }
+            NSLog(@"==%@",KmyappDelegate.MainCartArr);
         }
-        NSLog(@"==%@",KmyappDelegate.MainCartArr);
+        [AppDelegate WriteData:@"CartDIC" RootObject:KmyappDelegate.MainCartArr];
+        [self CalculationTotal];
+        
+        FCAlertView *alert = [KmyappDelegate ShowAlertWithBtnAction:@"Item added to cart successfully" andStrTile:nil andbtnTitle:@"OK" andButtonArray:@[]];
     }
-     [AppDelegate WriteData:@"CartDIC" RootObject:KmyappDelegate.MainCartArr];
-     [self CalculationTotal];
+    else
+    {
+        FCAlertView *alert = [KmyappDelegate ShowAlertWithBtnAction:@"Please First Login" andStrTile:nil andbtnTitle:@"Cancel" andButtonArray:@[]];
+        
+        [alert addButton:@"Login" withActionBlock:^{
+            
+            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"LoginVW"]]
+                                                         animated:YES];
+            [self.sideMenuViewController hideMenuViewController];
+            
+        }];
+    }
     
-    FCAlertView *alert = [KmyappDelegate ShowAlertWithBtnAction:@"Item added to cart successfully" andStrTile:nil andbtnTitle:@"OK" andButtonArray:@[]];
 }
 
 #pragma mark - ADD TO FAVORITE Click Action
 
 - (void)addToFavClickedTableView:(UIButton *)sender
 {
-    NSIndexPath *changedRow = [NSIndexPath indexPathForRow:sender.tag inSection:0];
-    ItemCell *cell = (ItemCell *)[_tblItem cellForRowAtIndexPath:changedRow];
-    [cell.btnFav setImage:[UIImage imageNamed:@"RedHeart"] forState:UIControlStateNormal];
-    
-    if(isFiltered)
+    if (_ro(@"LoginUserDic") != nil)
     {
-        if (KmyappDelegate.MainFavArr==nil)
+        NSIndexPath *changedRow = [NSIndexPath indexPathForRow:sender.tag inSection:0];
+        ItemCell *cell = (ItemCell *)[_tblItem cellForRowAtIndexPath:changedRow];
+        [cell.btnFav setImage:[UIImage imageNamed:@"RedHeart"] forState:UIControlStateNormal];
+        
+        if(isFiltered)
         {
-            KmyappDelegate.MainFavArr=[[NSMutableArray alloc]init];
-            [KmyappDelegate.MainFavArr addObject:[filteredProducts objectAtIndex:changedRow.row]];
-        }
-        else
-        {
-            if ([[KmyappDelegate.MainFavArr valueForKey:@"id"] containsObject:[[filteredProducts valueForKey:@"id"]objectAtIndex:changedRow.row]])
+            if (KmyappDelegate.MainFavArr==nil)
             {
-                NSLog(@"Already Added");
+                KmyappDelegate.MainFavArr=[[NSMutableArray alloc]init];
+                [KmyappDelegate.MainFavArr addObject:[filteredProducts objectAtIndex:changedRow.row]];
             }
             else
             {
-                [KmyappDelegate.MainFavArr addObject:[filteredProducts objectAtIndex:changedRow.row]];
+                if ([[KmyappDelegate.MainFavArr valueForKey:@"id"] containsObject:[[filteredProducts valueForKey:@"id"]objectAtIndex:changedRow.row]])
+                {
+                    NSLog(@"Already Added");
+                }
+                else
+                {
+                    [KmyappDelegate.MainFavArr addObject:[filteredProducts objectAtIndex:changedRow.row]];
+                }
             }
+            NSLog(@"==%@",KmyappDelegate.MainFavArr);
+            //_wo(@"FavDIC", KmyappDelegate.MainFavArr);
+        }
+        else
+        {
+            if (KmyappDelegate.MainFavArr==nil)
+            {
+                KmyappDelegate.MainFavArr=[[NSMutableArray alloc]init];
+                [KmyappDelegate.MainFavArr addObject:[arrProductsItems objectAtIndex:changedRow.row]];
+            }
+            else
+            {
+                if ([[KmyappDelegate.MainFavArr valueForKey:@"id"] containsObject:[[arrProductsItems valueForKey:@"id"]objectAtIndex:changedRow.row]])
+                {
+                    NSLog(@"Already Added");
+                }
+                else
+                {
+                    [KmyappDelegate.MainFavArr addObject:[arrProductsItems objectAtIndex:changedRow.row]];
+                }
+            }
+            NSLog(@"==%@",KmyappDelegate.MainFavArr);
+            //_wo(@"FavDIC", KmyappDelegate.MainFavArr);
         }
         NSLog(@"==%@",KmyappDelegate.MainFavArr);
-        //_wo(@"FavDIC", KmyappDelegate.MainFavArr);
+        [AppDelegate WriteData:@"FavDIC" RootObject:KmyappDelegate.MainFavArr];
+        // _wo(@"FavDIC", dataSave);
+        
+        NSMutableDictionary *intdic=[[NSMutableDictionary alloc]init];
+        intdic=[[arrProductsItems objectAtIndex:changedRow.row] mutableCopy];
+        if (KmyappDelegate.MainFavArr!=nil)
+        {
+            NSLog(@"%@",[[KmyappDelegate.MainFavArr objectAtIndex:KmyappDelegate.MainFavArr.count-1] valueForKey:@"id"]);
+            if ([[[KmyappDelegate.MainFavArr objectAtIndex:KmyappDelegate.MainFavArr.count-1] valueForKey:@"id"] integerValue]==[[intdic valueForKey:@"id"]integerValue])
+            {
+                [intdic setObject:@"YES" forKey:@"Favorite"];
+                [arrProductsItems replaceObjectAtIndex:changedRow.row withObject:intdic];
+            }
+            
+        }
+        [_tblItem reloadData];
     }
     else
     {
-        if (KmyappDelegate.MainFavArr==nil)
-        {
-            KmyappDelegate.MainFavArr=[[NSMutableArray alloc]init];
-            [KmyappDelegate.MainFavArr addObject:[arrProductsItems objectAtIndex:changedRow.row]];
-        }
-        else
-        {
-            if ([[KmyappDelegate.MainFavArr valueForKey:@"id"] containsObject:[[arrProductsItems valueForKey:@"id"]objectAtIndex:changedRow.row]])
-            {
-                NSLog(@"Already Added");
-            }
-            else
-            {
-                [KmyappDelegate.MainFavArr addObject:[arrProductsItems objectAtIndex:changedRow.row]];
-            }
-        }
-        NSLog(@"==%@",KmyappDelegate.MainFavArr);
-        //_wo(@"FavDIC", KmyappDelegate.MainFavArr);
+        FCAlertView *alert = [KmyappDelegate ShowAlertWithBtnAction:@"Please First Login" andStrTile:nil andbtnTitle:@"Cancel" andButtonArray:@[]];
+        
+        [alert addButton:@"Login" withActionBlock:^{
+            
+            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"LoginVW"]]
+                                                         animated:YES];
+            [self.sideMenuViewController hideMenuViewController];
+            
+        }];
     }
-    NSLog(@"==%@",KmyappDelegate.MainFavArr);
-     [AppDelegate WriteData:@"FavDIC" RootObject:KmyappDelegate.MainFavArr];
-   // _wo(@"FavDIC", dataSave);
     
-    NSMutableDictionary *intdic=[[NSMutableDictionary alloc]init];
-    intdic=[[arrProductsItems objectAtIndex:changedRow.row] mutableCopy];
-    if (KmyappDelegate.MainFavArr!=nil)
-    {
-        NSLog(@"%@",[[KmyappDelegate.MainFavArr objectAtIndex:KmyappDelegate.MainFavArr.count-1] valueForKey:@"id"]);
-        if ([[[KmyappDelegate.MainFavArr objectAtIndex:KmyappDelegate.MainFavArr.count-1] valueForKey:@"id"] integerValue]==[[intdic valueForKey:@"id"]integerValue])
-        {
-            [intdic setObject:@"YES" forKey:@"Favorite"];
-            [arrProductsItems replaceObjectAtIndex:changedRow.row withObject:intdic];
-        }
-       
-    }
-    [_tblItem reloadData];
-
 }
 
 - (void)addToFavClickedCollectionView:(UIButton *)sender
 {
-    NSIndexPath *changedRow = [NSIndexPath indexPathForRow:sender.tag inSection:0];
-    CategoryItemCell *cell = (CategoryItemCell *)[_collectionViewItem cellForItemAtIndexPath:changedRow];
-    [cell.btnFav setImage:[UIImage imageNamed:@"RedHeart"] forState:UIControlStateNormal];
-    
-    if(isFiltered)
+    if (_ro(@"LoginUserDic") != nil)
     {
-        if (KmyappDelegate.MainFavArr==nil)
+        NSIndexPath *changedRow = [NSIndexPath indexPathForRow:sender.tag inSection:0];
+        CategoryItemCell *cell = (CategoryItemCell *)[_collectionViewItem cellForItemAtIndexPath:changedRow];
+        [cell.btnFav setImage:[UIImage imageNamed:@"RedHeart"] forState:UIControlStateNormal];
+        
+        if(isFiltered)
         {
-            KmyappDelegate.MainFavArr=[[NSMutableArray alloc]init];
-            [KmyappDelegate.MainFavArr addObject:[filteredProducts objectAtIndex:changedRow.row]];
-        }
-        else
-        {
-            if ([[KmyappDelegate.MainFavArr valueForKey:@"id"] containsObject:[[filteredProducts valueForKey:@"id"]objectAtIndex:changedRow.row]])
+            if (KmyappDelegate.MainFavArr==nil)
             {
-                NSLog(@"Already Added");
+                KmyappDelegate.MainFavArr=[[NSMutableArray alloc]init];
+                [KmyappDelegate.MainFavArr addObject:[filteredProducts objectAtIndex:changedRow.row]];
             }
             else
             {
-                [KmyappDelegate.MainFavArr addObject:[filteredProducts objectAtIndex:changedRow.row]];
+                if ([[KmyappDelegate.MainFavArr valueForKey:@"id"] containsObject:[[filteredProducts valueForKey:@"id"]objectAtIndex:changedRow.row]])
+                {
+                    NSLog(@"Already Added");
+                }
+                else
+                {
+                    [KmyappDelegate.MainFavArr addObject:[filteredProducts objectAtIndex:changedRow.row]];
+                }
             }
+            NSLog(@"MainFavArr==%@",KmyappDelegate.MainFavArr);
         }
-        NSLog(@"MainFavArr==%@",KmyappDelegate.MainFavArr);
+        else
+        {
+            if (KmyappDelegate.MainFavArr==nil)
+            {
+                KmyappDelegate.MainFavArr=[[NSMutableArray alloc]init];
+                [KmyappDelegate.MainFavArr addObject:[arrProductsItems objectAtIndex:changedRow.row]];
+            }
+            else
+            {
+                if ([[KmyappDelegate.MainFavArr valueForKey:@"id"] containsObject:[[arrProductsItems valueForKey:@"id"]objectAtIndex:changedRow.row]])
+                {
+                    NSLog(@"Already Added");
+                }
+                else
+                {
+                    [KmyappDelegate.MainFavArr addObject:[arrProductsItems objectAtIndex:changedRow.row]];
+                }
+            }
+            NSLog(@"MainFavArr==%@",KmyappDelegate.MainFavArr);
+        }
+        [AppDelegate WriteData:@"FavDIC" RootObject:KmyappDelegate.MainFavArr];
+        
+        NSMutableDictionary *intdic=[[NSMutableDictionary alloc]init];
+        intdic=[[arrProductsItems objectAtIndex:changedRow.row] mutableCopy];
+        if (KmyappDelegate.MainFavArr!=nil)
+        {
+            NSLog(@"%@",[[KmyappDelegate.MainFavArr objectAtIndex:KmyappDelegate.MainFavArr.count-1] valueForKey:@"id"]);
+            if ([[[KmyappDelegate.MainFavArr objectAtIndex:KmyappDelegate.MainFavArr.count-1] valueForKey:@"id"] integerValue]==[[intdic valueForKey:@"id"]integerValue])
+            {
+                [intdic setObject:@"YES" forKey:@"Favorite"];
+                [arrProductsItems replaceObjectAtIndex:changedRow.row withObject:intdic];
+            }
+            
+        }
+        [_collectionViewItem reloadData];
     }
     else
     {
-        if (KmyappDelegate.MainFavArr==nil)
-        {
-            KmyappDelegate.MainFavArr=[[NSMutableArray alloc]init];
-            [KmyappDelegate.MainFavArr addObject:[arrProductsItems objectAtIndex:changedRow.row]];
-        }
-        else
-        {
-            if ([[KmyappDelegate.MainFavArr valueForKey:@"id"] containsObject:[[arrProductsItems valueForKey:@"id"]objectAtIndex:changedRow.row]])
-            {
-                NSLog(@"Already Added");
-            }
-            else
-            {
-                [KmyappDelegate.MainFavArr addObject:[arrProductsItems objectAtIndex:changedRow.row]];
-            }
-        }
-        NSLog(@"MainFavArr==%@",KmyappDelegate.MainFavArr);
-    }
-    [AppDelegate WriteData:@"FavDIC" RootObject:KmyappDelegate.MainFavArr];
-
-    NSMutableDictionary *intdic=[[NSMutableDictionary alloc]init];
-    intdic=[[arrProductsItems objectAtIndex:changedRow.row] mutableCopy];
-    if (KmyappDelegate.MainFavArr!=nil)
-    {
-        NSLog(@"%@",[[KmyappDelegate.MainFavArr objectAtIndex:KmyappDelegate.MainFavArr.count-1] valueForKey:@"id"]);
-        if ([[[KmyappDelegate.MainFavArr objectAtIndex:KmyappDelegate.MainFavArr.count-1] valueForKey:@"id"] integerValue]==[[intdic valueForKey:@"id"]integerValue])
-        {
-            [intdic setObject:@"YES" forKey:@"Favorite"];
-            [arrProductsItems replaceObjectAtIndex:changedRow.row withObject:intdic];
-        }
+        FCAlertView *alert = [KmyappDelegate ShowAlertWithBtnAction:@"Please First Login" andStrTile:nil andbtnTitle:@"Cancel" andButtonArray:@[]];
         
+        [alert addButton:@"Login" withActionBlock:^{
+            
+            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"LoginVW"]]
+                                                         animated:YES];
+            [self.sideMenuViewController hideMenuViewController];
+            
+        }];
     }
-    [_collectionViewItem reloadData];
-    
-   
     
     //[[NSUserDefaults standardUserDefaults] setObject:tempArry forKey:@"FavDIC"];
     //_wo(@"FavDIC",KmyappDelegate.MainFavArr);

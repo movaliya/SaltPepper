@@ -202,19 +202,61 @@
                 //Cart View CartVW
                 if (_ro(@"LoginUserDic") != nil)
                 {
-                    FCAlertView *alert = [KmyappDelegate ShowAlertWithBtnAction:@"You are not Login" andStrTile:nil andbtnTitle:@"OK" andButtonArray:@[]];
-                    [alert addButton:@"OK" withActionBlock:^{
+                }
+                else
+                {
+                    FCAlertView *alert = [KmyappDelegate ShowAlertWithBtnAction:@"Please First Login" andStrTile:nil andbtnTitle:@"Cancel" andButtonArray:@[]];
+                    
+                    [alert addButton:@"Login" withActionBlock:^{
                         
+                        [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"LoginVW"]]
+                                                                     animated:YES];
                         [self.sideMenuViewController hideMenuViewController];
+                        
+                    }];
+                }
+//                if (_ro(@"LoginUserDic") != nil)
+//                {
+//                    FCAlertView *alert = [KmyappDelegate ShowAlertWithBtnAction:@"You are not Login" andStrTile:nil andbtnTitle:@"OK" andButtonArray:@[]];
+//                    [alert addButton:@"OK" withActionBlock:^{
+//
+//                        [self.sideMenuViewController hideMenuViewController];
+//                    }];
+//                }
+                break;
+            case 2:
+                if (_ro(@"LoginUserDic") != nil)
+                {
+                }
+                else
+                {
+                    FCAlertView *alert = [KmyappDelegate ShowAlertWithBtnAction:@"Please First Login" andStrTile:nil andbtnTitle:@"Cancel" andButtonArray:@[]];
+                    
+                    [alert addButton:@"Login" withActionBlock:^{
+                        
+                        [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"LoginVW"]]
+                                                                     animated:YES];
+                        [self.sideMenuViewController hideMenuViewController];
+                        
                     }];
                 }
                 break;
-            case 2:
-                [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"ReservationSubVW"]]
-                                                             animated:YES];
-                [self.sideMenuViewController hideMenuViewController];
-                break;
             case 3:
+                if (_ro(@"LoginUserDic") != nil)
+                {
+                }
+                else
+                {
+                    FCAlertView *alert = [KmyappDelegate ShowAlertWithBtnAction:@"Please First Login" andStrTile:nil andbtnTitle:@"Cancel" andButtonArray:@[]];
+                    
+                    [alert addButton:@"Login" withActionBlock:^{
+                        
+                        [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"LoginVW"]]
+                                                                     animated:YES];
+                        [self.sideMenuViewController hideMenuViewController];
+                        
+                    }];
+                }
                 // Reservation Histry
                 break;
             case 4:

@@ -132,7 +132,7 @@
     cell.Title_Hight.constant=0;
     
     NSString *Urlstr=[[GalleryDataArr valueForKey:@"image_path"] objectAtIndex:indexPath.row];
-    [cell.IconImageview sd_setImageWithURL:[NSURL URLWithString:Urlstr] placeholderImage:[UIImage imageNamed:@"placeholder_img"]];
+    [cell.IconImageview sd_setImageWithURL:[NSURL URLWithString:Urlstr] placeholderImage:[UIImage imageNamed:@"bannerImage.jpg"]];
     [cell.IconImageview sd_setShowActivityIndicatorView:YES];
     return cell;
     

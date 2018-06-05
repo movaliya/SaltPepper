@@ -210,11 +210,13 @@
    NSString *ExtLink_Str=[NSString stringWithFormat:@"https://www.youtube.com/watch?v=%@",[VideoIdArr objectAtIndex:indexPath.section]];
     
     ShowWebView.hidden=NO;
+    [self.view bringSubviewToFront:ShowWebView];
     [self PlayYoutubeVideo:ExtLink_Str frame:CGRectMake(0,0, SCREEN_WIDTH, SCREEN_HEIGHT-65)];
 }
 
 - (IBAction)WebView_Back:(id)sender
 {
+    [self.view sendSubviewToBack:ShowWebView];
     ShowWebView.hidden=YES;
 }
 

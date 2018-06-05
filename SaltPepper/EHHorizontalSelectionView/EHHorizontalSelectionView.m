@@ -126,8 +126,11 @@ typedef NS_ENUM(NSUInteger, EHHorizontalSelectionViewType) {
 - (void)selectIndex:(NSUInteger)index
 {
     NSIndexPath * indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+    [UIView animateWithDuration:0.3 animations:^{
+        [_collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
+    }];
     [_collectionView selectItemAtIndexPath:indexPath animated:NO scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
-    [self collectionView:_collectionView didSelectItemAtIndexPath:indexPath];
+    //[self collectionView:_collectionView didSelectItemAtIndexPath:indexPath];
 }
 
 - (void)reloadData
