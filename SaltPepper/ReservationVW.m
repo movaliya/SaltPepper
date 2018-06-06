@@ -216,7 +216,7 @@
             if ([SUCCESS boolValue] ==YES)
             {
                  NSString *MESSAGE=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"postitem"] objectForKey:@"reservation"] objectForKey:@"RESULT"]objectForKey:@"reservation"];
-                DEMORootViewController *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"rootController"];
+                DEMORootViewController *vcr = [[UIStoryboard storyboardWithName:[SharedClass sharedSingleton].storyBaordName  bundle:nil] instantiateViewControllerWithIdentifier:@"rootController"];
                 [self.navigationController pushViewController:vcr animated:YES];
                 [AppDelegate showErrorMessageWithTitle:@"" message:MESSAGE delegate:nil];
             }

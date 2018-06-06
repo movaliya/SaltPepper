@@ -132,7 +132,7 @@
             _wb(@"isSkip", YES);
             Email_TXT.text=@"";
             Password_TXT.text=@"";
-            DEMORootViewController *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"rootController"];
+            DEMORootViewController *vcr = [[UIStoryboard storyboardWithName:[SharedClass sharedSingleton].storyBaordName  bundle:nil] instantiateViewControllerWithIdentifier:@"rootController"];
             [self.navigationController pushViewController:vcr animated:YES];
             
             [AppDelegate showErrorMessageWithTitle:@"" message:@"Login successful" delegate:nil];
@@ -212,7 +212,7 @@
 {
     if(_rb(@"isSkip"))
     {
-        DEMORootViewController *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"rootController"];
+        DEMORootViewController *vcr = [[UIStoryboard storyboardWithName:[SharedClass sharedSingleton].storyBaordName  bundle:nil] instantiateViewControllerWithIdentifier:@"rootController"];
         [self.navigationController pushViewController:vcr animated:YES];
     }
     else
@@ -321,7 +321,7 @@
             [AppDelegate WriteData:@"LoginUserDic" RootObject:responseObject];
               _wb(@"isSkip", YES);
             [AppDelegate showErrorMessageWithTitle:@"" message:@"Login successful" delegate:nil];
-            DEMORootViewController *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"rootController"];
+            DEMORootViewController *vcr = [[UIStoryboard storyboardWithName:[SharedClass sharedSingleton].storyBaordName  bundle:nil] instantiateViewControllerWithIdentifier:@"rootController"];
             [self.navigationController pushViewController:vcr animated:YES];
             
         }

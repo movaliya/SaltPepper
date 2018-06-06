@@ -337,7 +337,7 @@
     if ([UserOrderType isEqualToString:@"Collection"])
     {
         if (![_CollectionTime_LBL.text isEqualToString:@"Choose Collection Time"]) {
-            PaymentMethodVC *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"PaymentMethodVC"];
+            PaymentMethodVC *vcr = [[UIStoryboard storyboardWithName:[SharedClass sharedSingleton].storyBaordName  bundle:nil] instantiateViewControllerWithIdentifier:@"PaymentMethodVC"];
             vcr.FinalTotal=self.GrandTotal_LBL.text;
             vcr.OrderType=UserOrderType;
             
@@ -430,7 +430,7 @@
         if ([SUCCESS boolValue] ==YES)
         {
             
-            PaymentMethodVC *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"PaymentMethodVC"];
+            PaymentMethodVC *vcr = [[UIStoryboard storyboardWithName:[SharedClass sharedSingleton].storyBaordName  bundle:nil] instantiateViewControllerWithIdentifier:@"PaymentMethodVC"];
              vcr.FinalTotal=self.GrandTotal_LBL.text;
             vcr.OrderType=UserOrderType;
             vcr.CommentTxt=self.CommentTXT.text;

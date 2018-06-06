@@ -14,6 +14,6 @@
 
 @property (nonatomic ) NSInteger index;
 @property (nonatomic ,retain) NSMutableArray *arrCategories;
-
+@property (weak, nonatomic) NSString *storyBaordName;
 @end
 

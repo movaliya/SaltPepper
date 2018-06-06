@@ -996,6 +996,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "7541fb1e-70fd-44ca-9de7-7c9138f1bb52";
 				PROVISIONING_PROFILE_SPECIFIER = Indiacottage_Dev;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -1044,6 +1045,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "7541fb1e-70fd-44ca-9de7-7c9138f1bb52";
 				PROVISIONING_PROFILE_SPECIFIER = Indiacottage_Dev;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

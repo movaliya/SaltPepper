@@ -364,7 +364,7 @@
     }
     else
     {
-        ReservationVW *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ReservationVW"];
+        ReservationVW *vcr = [[UIStoryboard storyboardWithName:[SharedClass sharedSingleton].storyBaordName  bundle:nil] instantiateViewControllerWithIdentifier:@"ReservationVW"];
         vcr.Res_date=ReservationDate;
         vcr.Res_Time=ReservationTime;
         vcr.aultNo=Ault14_TXT.text;

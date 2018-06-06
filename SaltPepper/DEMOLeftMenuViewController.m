@@ -324,7 +324,14 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 54;
+    if([[SharedClass sharedSingleton].storyBaordName isEqualToString:@"Main"])
+    {
+        return 54;
+    }
+    else
+    {
+        return 80;
+    }
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -347,9 +354,18 @@
     {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         cell.backgroundColor = [UIColor clearColor];
-        cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:18];
-        cell.textLabel.textColor = [UIColor colorWithRed:254.0/255.0f green:238.0/255.0f
-                                                    blue:207.0/255.0f alpha:1.0];
+        if([[SharedClass sharedSingleton].storyBaordName isEqualToString:@"Main"])
+        {
+            cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:18];
+            cell.textLabel.textColor = [UIColor colorWithRed:254.0/255.0f green:238.0/255.0f
+                                                        blue:207.0/255.0f alpha:1.0];
+        }
+        else
+        {
+            cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:25];
+            cell.textLabel.textColor = [UIColor colorWithRed:254.0/255.0f green:238.0/255.0f
+                                                        blue:207.0/255.0f alpha:1.0];
+        }
         //cell.textLabel.highlightedTextColor = [UIColor lightGrayColor];
         cell.selectedBackgroundView = [[UIView alloc] init];
     }

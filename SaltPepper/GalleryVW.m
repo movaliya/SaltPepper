@@ -139,7 +139,7 @@
 }
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    GalleryFullView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"GalleryFullView"];
+    GalleryFullView *vcr = [[UIStoryboard storyboardWithName:[SharedClass sharedSingleton].storyBaordName  bundle:nil] instantiateViewControllerWithIdentifier:@"GalleryFullView"];
     vcr.ImagArr=GalleryDataArr;
     vcr.SelectedImage=[NSString stringWithFormat:@"%d",indexPath.row];
     [self.navigationController pushViewController:vcr animated:YES];

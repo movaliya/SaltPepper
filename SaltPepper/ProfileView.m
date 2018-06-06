@@ -460,7 +460,7 @@
         _Rm(@"LoginUserDic")
         [[GIDSignIn sharedInstance] signOut];
         [self.sideMenuViewController hideMenuViewController];
-        DEMORootViewController *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"rootController"];
+        DEMORootViewController *vcr = [[UIStoryboard storyboardWithName:[SharedClass sharedSingleton].storyBaordName  bundle:nil] instantiateViewControllerWithIdentifier:@"rootController"];
         [self.navigationController pushViewController:vcr animated:YES];
         
     }];

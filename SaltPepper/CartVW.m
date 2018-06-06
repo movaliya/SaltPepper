@@ -460,7 +460,7 @@
 }
 - (IBAction)ProceedToPay_Click:(id)sender
 {
-    CheckOutAddressVW *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"CheckOutAddressVW"];
+    CheckOutAddressVW *vcr = [[UIStoryboard storyboardWithName:[SharedClass sharedSingleton].storyBaordName  bundle:nil] instantiateViewControllerWithIdentifier:@"CheckOutAddressVW"];
     vcr.GrandTotal=self.GrandTotal_LBL.text;
     vcr.Discount=self.Discount_LBL.text;
     [self.navigationController pushViewController:vcr animated:YES];

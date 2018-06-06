@@ -118,7 +118,7 @@
             [AppDelegate WriteData:@"LoginUserDic" RootObject:responseObject];
               _wb(@"isSkip", YES);
             [AppDelegate showErrorMessageWithTitle:@"" message:@"Registration successful" delegate:nil];
-            DEMORootViewController *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"rootController"];
+            DEMORootViewController *vcr = [[UIStoryboard storyboardWithName:[SharedClass sharedSingleton].storyBaordName  bundle:nil] instantiateViewControllerWithIdentifier:@"rootController"];
             [self.navigationController pushViewController:vcr animated:YES];
             
         }
@@ -186,7 +186,7 @@
 }
 - (IBAction)AlreadyLoginBtn_Click:(id)sender
 {
-    LoginVW *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LoginVW"];
+    LoginVW *vcr = [[UIStoryboard storyboardWithName:[SharedClass sharedSingleton].storyBaordName  bundle:nil] instantiateViewControllerWithIdentifier:@"LoginVW"];
     [self.navigationController pushViewController:vcr animated:YES];
 }
 - (IBAction)ShowConfirmPawwsor_Click:(id)sender

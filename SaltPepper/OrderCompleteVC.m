@@ -37,12 +37,12 @@
 
 - (IBAction)btnOrderHistory:(id)sender
 {
-    OrderHistoryVC *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"OrderHistoryVC"];
+    OrderHistoryVC *vcr = [[UIStoryboard storyboardWithName:[SharedClass sharedSingleton].storyBaordName  bundle:nil] instantiateViewControllerWithIdentifier:@"OrderHistoryVC"];
     [self.navigationController pushViewController:vcr animated:YES];
 }
 - (IBAction)btnContinue:(id)sender
 {
-    DEMORootViewController *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"rootController"];
+    DEMORootViewController *vcr = [[UIStoryboard storyboardWithName:[SharedClass sharedSingleton].storyBaordName  bundle:nil] instantiateViewControllerWithIdentifier:@"rootController"];
     [self.navigationController pushViewController:vcr animated:YES];
 }
 /*

@@ -23,10 +23,20 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    if([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
+    {
+        [SharedClass sharedSingleton].storyBaordName = @"MainiPad";
+        // The device is an iPad running iPhone 3.2 or later.
+    }
+    else
+    {
+        [SharedClass sharedSingleton].storyBaordName = @"Main";
+        // The device is an iPhone or iPod touch.
+    }
     
     if(_rb(@"isSkip"))
     {
-        DEMORootViewController *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"rootController"];
+        DEMORootViewController *vcr = [[UIStoryboard storyboardWithName:[SharedClass sharedSingleton].storyBaordName  bundle:nil] instantiateViewControllerWithIdentifier:@"rootController"];
         self.window.rootViewController = vcr;
         //[self.window.rootViewController.navigationController pushViewController:vcr animated:YES];
     }

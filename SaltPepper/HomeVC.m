@@ -421,6 +421,10 @@
     {
         mElementSize = CGSizeMake(150, 150);
     }
+    else if ([[SharedClass sharedSingleton].storyBaordName isEqualToString:@"MainiPad"])
+    {
+        mElementSize = CGSizeMake(collectionView.frame.size.width / 3 - 20, collectionView.frame.size.width / 3  - 20);
+    }
     else
     {
         mElementSize = CGSizeMake(120, 150);

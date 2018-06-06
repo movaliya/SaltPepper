@@ -74,19 +74,19 @@
 
 - (IBAction)RegiterBtn_Click:(id)sender
 {
-    RegisterVW *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"RegisterVW"];
+    RegisterVW *vcr = [[UIStoryboard storyboardWithName:[SharedClass sharedSingleton].storyBaordName  bundle:nil] instantiateViewControllerWithIdentifier:@"RegisterVW"];
     [self.navigationController pushViewController:vcr animated:YES];
     
 }
 - (IBAction)LoginBtn_Click:(id)sender
 {
-    LoginVW *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LoginVW"];
+    LoginVW *vcr = [[UIStoryboard storyboardWithName:[SharedClass sharedSingleton].storyBaordName  bundle:nil] instantiateViewControllerWithIdentifier:@"LoginVW"];
     [self.navigationController pushViewController:vcr animated:YES];
 }
 - (IBAction)SkipBtn_click:(id)sender
 {
     _wb(@"isSkip", YES);
-    DEMORootViewController *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"rootController"];
+    DEMORootViewController *vcr = [[UIStoryboard storyboardWithName:[SharedClass sharedSingleton].storyBaordName  bundle:nil] instantiateViewControllerWithIdentifier:@"rootController"];
     [self.navigationController pushViewController:vcr animated:YES];
 }
 

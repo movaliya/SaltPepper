@@ -751,7 +751,7 @@ typedef void (^STPSourceSubmissionHandler)(STPBackendChargeResult status, NSErro
              KmyappDelegate.MainCartArr=[[NSMutableArray alloc]init];
              [AppDelegate WriteData:@"CartDIC" RootObject:KmyappDelegate.MainCartArr];
              
-             OrderCompleteVC *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"OrderCompleteVC"];
+             OrderCompleteVC *vcr = [[UIStoryboard storyboardWithName:[SharedClass sharedSingleton].storyBaordName  bundle:nil] instantiateViewControllerWithIdentifier:@"OrderCompleteVC"];
              [self.navigationController pushViewController:vcr animated:YES];
              //[self.navigationController popToRootViewControllerAnimated:YES];
          }

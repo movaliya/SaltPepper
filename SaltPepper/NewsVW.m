@@ -155,7 +155,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NewsFullView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"NewsFullView"];
+    NewsFullView *vcr = [[UIStoryboard storyboardWithName:[SharedClass sharedSingleton].storyBaordName  bundle:nil] instantiateViewControllerWithIdentifier:@"NewsFullView"];
     vcr.NewsSelectArr=[NewsDataArr objectAtIndex:indexPath.row];
     [self.navigationController pushViewController:vcr animated:YES];
 }
