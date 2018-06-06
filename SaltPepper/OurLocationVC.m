@@ -14,7 +14,9 @@
 
 @implementation OurLocationVC
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
+    
     [super viewDidLoad];
     _locationManager = [[CLLocationManager alloc] init];
     [_locationManager requestWhenInUseAuthorization];
@@ -37,6 +39,7 @@
 //    Longitude = "-2.1307233";
 //    mapAddress = "106 High St, Brierley Hill, DY5 4DP";
     // Do any additional setup after loading the view.
+    
 }
 
 - (void)didReceiveMemoryWarning {
