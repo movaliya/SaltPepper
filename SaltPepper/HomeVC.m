@@ -464,6 +464,11 @@
     {
         return UIEdgeInsetsMake(15,15,15,15);  // top, left, bottom, right
     }
+    else if ([[SharedClass sharedSingleton].storyBaordName isEqualToString:@"MainiPad"])
+    {
+        return UIEdgeInsetsMake(20,40,20,0);
+    }
+    
     else if (IS_IPHONE_6P)
     {
         return UIEdgeInsetsMake(15,15,15,15);  // top, left, bottom, right
