@@ -20,11 +20,22 @@
     [super viewDidLoad];
     self.navigationController.navigationBar.hidden=YES;
 
-    self.btnOrderHistory.layer.cornerRadius = 22;
-    self.btnOrderHistory.clipsToBounds = YES;
-    
-    self.btnContinue.layer.cornerRadius = 22;
-    self.btnContinue.clipsToBounds = YES;
+    if([[SharedClass sharedSingleton].storyBaordName isEqualToString:@"Main"])
+    {
+        self.btnOrderHistory.layer.cornerRadius = 22;
+        self.btnOrderHistory.clipsToBounds = YES;
+        
+        self.btnContinue.layer.cornerRadius = 22;
+        self.btnContinue.clipsToBounds = YES;
+    }
+    else
+    {
+        self.btnOrderHistory.layer.cornerRadius = 30;
+        self.btnOrderHistory.clipsToBounds = YES;
+        
+        self.btnContinue.layer.cornerRadius = 30;
+        self.btnContinue.clipsToBounds = YES;
+    }
 
 }
 

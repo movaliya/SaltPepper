@@ -350,7 +350,14 @@
 {
     CGFloat width  = self.collectionViewItem.frame.size.width;
     // in case you you want the cell to be 40% of your controllers view
-    return CGSizeMake((width/2) - 8,250);
+    if([[SharedClass sharedSingleton].storyBaordName isEqualToString:@"Main"])
+    {
+        return CGSizeMake((width/2) - 8,250);
+    }
+    else
+    {
+        return CGSizeMake(collectionView.frame.size.width / 3 - 20,250);
+    }
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
@@ -392,7 +399,15 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 90;
+    if([[SharedClass sharedSingleton].storyBaordName isEqualToString:@"Main"])
+    {
+        return 90;
+    }
+    else
+    {
+        return 110;
+    }
+    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{

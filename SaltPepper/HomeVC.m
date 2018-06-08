@@ -68,122 +68,252 @@
     
     for (int i=0; i<BannerImageDataArr.count; i++)
     {
-       UIImageView *Headerimg=[[UIImageView alloc]initWithFrame:CGRectMake(x, 0, SCREEN_WIDTH, 260)];
-        //Headerimg.image = [UIImage imageNamed:@"bannerImage.jpg"];
-        NSString *Urlstr = [[BannerImageDataArr valueForKey:@"image_path"] objectAtIndex:i];
-        [Headerimg sd_setImageWithURL:[NSURL URLWithString:Urlstr] placeholderImage:[UIImage imageNamed:@"bannerImage.jpg"]];
-        [Headerimg sd_setShowActivityIndicatorView:YES];
-        
-        //Headerimg.image=[UIImage imageNamed:@"HomeLogo"];
-        [bannerscroll addSubview:Headerimg];
-        [bannerscroll bringSubviewToFront:Headerimg];
-        
-        if (OfferTextArr.count>i)
+        if([[SharedClass sharedSingleton].storyBaordName isEqualToString:@"Main"])
         {
-            if (i==0)
+            UIImageView *Headerimg=[[UIImageView alloc]initWithFrame:CGRectMake(x, 0, SCREEN_WIDTH, 260)];
+            //Headerimg.image = [UIImage imageNamed:@"bannerImage.jpg"];
+            NSString *Urlstr = [[BannerImageDataArr valueForKey:@"image_path"] objectAtIndex:i];
+            [Headerimg sd_setImageWithURL:[NSURL URLWithString:Urlstr] placeholderImage:[UIImage imageNamed:@"bannerImage.jpg"]];
+            [Headerimg sd_setShowActivityIndicatorView:YES];
+            
+            //Headerimg.image=[UIImage imageNamed:@"HomeLogo"];
+            [bannerscroll addSubview:Headerimg];
+            [bannerscroll bringSubviewToFront:Headerimg];
+            
+            if (OfferTextArr.count>i)
             {
-                for (int i =0 ; i<OfferTextArr.count; i++)
+                if (i==0)
                 {
-                    if (i==0)
+                    for (int i =0 ; i<OfferTextArr.count; i++)
                     {
-                        UILabel *First_LBL=[[UILabel alloc]initWithFrame:CGRectMake(x, 260-190, SCREEN_WIDTH, 40)];
-                        First_LBL.text=[OfferTextArr objectAtIndex:i];
-                        First_LBL.font=[UIFont boldSystemFontOfSize:30];
-                        First_LBL.textAlignment=NSTextAlignmentCenter;
-                        First_LBL.textColor=[UIColor whiteColor];
-                        [bannerscroll addSubview:First_LBL];
+                        if (i==0)
+                        {
+                            UILabel *First_LBL=[[UILabel alloc]initWithFrame:CGRectMake(x, 260-190, SCREEN_WIDTH, 40)];
+                            First_LBL.text=[OfferTextArr objectAtIndex:i];
+                            First_LBL.font=[UIFont boldSystemFontOfSize:30];
+                            First_LBL.textAlignment=NSTextAlignmentCenter;
+                            First_LBL.textColor=[UIColor whiteColor];
+                            [bannerscroll addSubview:First_LBL];
+                        }
+                        else if (i==1)
+                        {
+                            UILabel *Second_LBL=[[UILabel alloc]initWithFrame:CGRectMake(x, 260-145, SCREEN_WIDTH, 30)];
+                            Second_LBL.text=[OfferTextArr objectAtIndex:i];
+                            Second_LBL.font=[UIFont boldSystemFontOfSize:20];
+                            Second_LBL.textAlignment=NSTextAlignmentCenter;
+                            Second_LBL.textColor=[UIColor whiteColor];
+                            [bannerscroll addSubview:Second_LBL];
+                        }
+                        else if (i==2)
+                        {
+                            UILabel *thert_LBL=[[UILabel alloc]initWithFrame:CGRectMake(x, 260-115, SCREEN_WIDTH, 30)];
+                            thert_LBL.text=[OfferTextArr objectAtIndex:i];
+                            thert_LBL.font=[UIFont boldSystemFontOfSize:12];
+                            thert_LBL.textAlignment=NSTextAlignmentCenter;
+                            thert_LBL.textColor=[UIColor whiteColor];
+                            [bannerscroll addSubview:thert_LBL];
+                        }
                     }
-                    else if (i==1)
+                }
+                else if (i==1)
+                {
+                    for (int i =0 ; i<OfferTextArr.count; i++)
                     {
-                        UILabel *Second_LBL=[[UILabel alloc]initWithFrame:CGRectMake(x, 260-145, SCREEN_WIDTH, 30)];
-                        Second_LBL.text=[OfferTextArr objectAtIndex:i];
-                        Second_LBL.font=[UIFont boldSystemFontOfSize:20];
-                        Second_LBL.textAlignment=NSTextAlignmentCenter;
-                        Second_LBL.textColor=[UIColor whiteColor];
-                        [bannerscroll addSubview:Second_LBL];
+                        if (i==0)
+                        {
+                            UILabel *First_LBL=[[UILabel alloc]initWithFrame:CGRectMake(x, 260-190, SCREEN_WIDTH, 40)];
+                            First_LBL.text=[OfferTextArr  objectAtIndex:i];
+                            First_LBL.font=[UIFont boldSystemFontOfSize:30];
+                            First_LBL.textAlignment=NSTextAlignmentCenter;
+                            First_LBL.textColor=[UIColor whiteColor];
+                            [bannerscroll addSubview:First_LBL];
+                        }
+                        else if (i==1)
+                        {
+                            UILabel *Second_LBL=[[UILabel alloc]initWithFrame:CGRectMake(x, 260-145, SCREEN_WIDTH, 30)];
+                            Second_LBL.text=[OfferTextArr objectAtIndex:i];
+                            Second_LBL.font=[UIFont boldSystemFontOfSize:20];
+                            Second_LBL.textAlignment=NSTextAlignmentCenter;
+                            Second_LBL.textColor=[UIColor whiteColor];
+                            [bannerscroll addSubview:Second_LBL];
+                        }
+                        else if (i==2)
+                        {
+                            UILabel *thert_LBL=[[UILabel alloc]initWithFrame:CGRectMake(x, 260-115, SCREEN_WIDTH, 30)];
+                            thert_LBL.text=[OfferTextArr objectAtIndex:i];
+                            thert_LBL.font=[UIFont boldSystemFontOfSize:12];
+                            thert_LBL.textAlignment=NSTextAlignmentCenter;
+                            thert_LBL.textColor=[UIColor whiteColor];
+                            [bannerscroll addSubview:thert_LBL];
+                        }
                     }
-                    else if (i==2)
+                }
+                else if (i==2)
+                {
+                    for (int i =0 ; i<OfferTextArr.count; i++)
                     {
-                        UILabel *thert_LBL=[[UILabel alloc]initWithFrame:CGRectMake(x, 260-115, SCREEN_WIDTH, 30)];
-                        thert_LBL.text=[OfferTextArr objectAtIndex:i];
-                        thert_LBL.font=[UIFont boldSystemFontOfSize:12];
-                        thert_LBL.textAlignment=NSTextAlignmentCenter;
-                        thert_LBL.textColor=[UIColor whiteColor];
-                        [bannerscroll addSubview:thert_LBL];
+                        if (i==0)
+                        {
+                            UILabel *First_LBL=[[UILabel alloc]initWithFrame:CGRectMake(x, 260-190, SCREEN_WIDTH, 40)];
+                            First_LBL.text=[OfferTextArr  objectAtIndex:i];
+                            First_LBL.font=[UIFont boldSystemFontOfSize:30];
+                            First_LBL.textAlignment=NSTextAlignmentCenter;
+                            First_LBL.textColor=[UIColor whiteColor];
+                            [bannerscroll addSubview:First_LBL];
+                        }
+                        else if (i==1)
+                        {
+                            UILabel *Second_LBL=[[UILabel alloc]initWithFrame:CGRectMake(x, 260-145, SCREEN_WIDTH, 30)];
+                            Second_LBL.text=[OfferTextArr objectAtIndex:i];
+                            Second_LBL.font=[UIFont boldSystemFontOfSize:20];
+                            Second_LBL.textAlignment=NSTextAlignmentCenter;
+                            Second_LBL.textColor=[UIColor whiteColor];
+                            [bannerscroll addSubview:Second_LBL];
+                        }
+                        else if (i==2)
+                        {
+                            UILabel *thert_LBL=[[UILabel alloc]initWithFrame:CGRectMake(x, 260-115, SCREEN_WIDTH, 30)];
+                            thert_LBL.text=[OfferTextArr objectAtIndex:i];
+                            thert_LBL.font=[UIFont boldSystemFontOfSize:12];
+                            thert_LBL.textAlignment=NSTextAlignmentCenter;
+                            thert_LBL.textColor=[UIColor whiteColor];
+                            [bannerscroll addSubview:thert_LBL];
+                        }
                     }
                 }
             }
-            else if (i==1)
-            {
-                for (int i =0 ; i<OfferTextArr.count; i++)
-                {
-                    if (i==0)
-                    {
-                        UILabel *First_LBL=[[UILabel alloc]initWithFrame:CGRectMake(x, 260-190, SCREEN_WIDTH, 40)];
-                        First_LBL.text=[OfferTextArr  objectAtIndex:i];
-                        First_LBL.font=[UIFont boldSystemFontOfSize:30];
-                        First_LBL.textAlignment=NSTextAlignmentCenter;
-                        First_LBL.textColor=[UIColor whiteColor];
-                        [bannerscroll addSubview:First_LBL];
-                    }
-                    else if (i==1)
-                    {
-                        UILabel *Second_LBL=[[UILabel alloc]initWithFrame:CGRectMake(x, 260-145, SCREEN_WIDTH, 30)];
-                        Second_LBL.text=[OfferTextArr objectAtIndex:i];
-                        Second_LBL.font=[UIFont boldSystemFontOfSize:20];
-                        Second_LBL.textAlignment=NSTextAlignmentCenter;
-                        Second_LBL.textColor=[UIColor whiteColor];
-                        [bannerscroll addSubview:Second_LBL];
-                    }
-                    else if (i==2)
-                    {
-                        UILabel *thert_LBL=[[UILabel alloc]initWithFrame:CGRectMake(x, 260-115, SCREEN_WIDTH, 30)];
-                        thert_LBL.text=[OfferTextArr objectAtIndex:i];
-                        thert_LBL.font=[UIFont boldSystemFontOfSize:12];
-                        thert_LBL.textAlignment=NSTextAlignmentCenter;
-                        thert_LBL.textColor=[UIColor whiteColor];
-                        [bannerscroll addSubview:thert_LBL];
-                    }
-                }
-            }
-            else if (i==2)
-            {
-                for (int i =0 ; i<OfferTextArr.count; i++)
-                {
-                    if (i==0)
-                    {
-                        UILabel *First_LBL=[[UILabel alloc]initWithFrame:CGRectMake(x, 260-190, SCREEN_WIDTH, 40)];
-                        First_LBL.text=[OfferTextArr  objectAtIndex:i];
-                        First_LBL.font=[UIFont boldSystemFontOfSize:30];
-                        First_LBL.textAlignment=NSTextAlignmentCenter;
-                        First_LBL.textColor=[UIColor whiteColor];
-                        [bannerscroll addSubview:First_LBL];
-                    }
-                    else if (i==1)
-                    {
-                        UILabel *Second_LBL=[[UILabel alloc]initWithFrame:CGRectMake(x, 260-145, SCREEN_WIDTH, 30)];
-                        Second_LBL.text=[OfferTextArr objectAtIndex:i];
-                        Second_LBL.font=[UIFont boldSystemFontOfSize:20];
-                        Second_LBL.textAlignment=NSTextAlignmentCenter;
-                        Second_LBL.textColor=[UIColor whiteColor];
-                        [bannerscroll addSubview:Second_LBL];
-                    }
-                    else if (i==2)
-                    {
-                        UILabel *thert_LBL=[[UILabel alloc]initWithFrame:CGRectMake(x, 260-115, SCREEN_WIDTH, 30)];
-                        thert_LBL.text=[OfferTextArr objectAtIndex:i];
-                        thert_LBL.font=[UIFont boldSystemFontOfSize:12];
-                        thert_LBL.textAlignment=NSTextAlignmentCenter;
-                        thert_LBL.textColor=[UIColor whiteColor];
-                        [bannerscroll addSubview:thert_LBL];
-                    }
-                }
-            }
+            
+            x=x+SCREEN_WIDTH;
         }
-        
-        x=x+SCREEN_WIDTH;
+        else
+        {
+            UIImageView *Headerimg=[[UIImageView alloc]initWithFrame:CGRectMake(x, 0, SCREEN_WIDTH, 400)];
+            //Headerimg.image = [UIImage imageNamed:@"bannerImage.jpg"];
+            NSString *Urlstr = [[BannerImageDataArr valueForKey:@"image_path"] objectAtIndex:i];
+            [Headerimg sd_setImageWithURL:[NSURL URLWithString:Urlstr] placeholderImage:[UIImage imageNamed:@"bannerImage.jpg"]];
+            [Headerimg sd_setShowActivityIndicatorView:YES];
+            
+            //Headerimg.image=[UIImage imageNamed:@"HomeLogo"];
+            [bannerscroll addSubview:Headerimg];
+            [bannerscroll bringSubviewToFront:Headerimg];
+            
+            if (OfferTextArr.count>i)
+            {
+                if (i==0)
+                {
+                    for (int i =0 ; i<OfferTextArr.count; i++)
+                    {
+                        if (i==0)
+                        {
+                            UILabel *First_LBL=[[UILabel alloc]initWithFrame:CGRectMake(x, 400-330, SCREEN_WIDTH, 60)];
+                            First_LBL.text=[OfferTextArr objectAtIndex:i];
+                            First_LBL.font=[UIFont boldSystemFontOfSize:35];
+                            First_LBL.textAlignment=NSTextAlignmentCenter;
+                            First_LBL.textColor=[UIColor whiteColor];
+                            [bannerscroll addSubview:First_LBL];
+                        }
+                        else if (i==1)
+                        {
+                            UILabel *Second_LBL=[[UILabel alloc]initWithFrame:CGRectMake(x, 400-285, SCREEN_WIDTH, 50)];
+                            Second_LBL.text=[OfferTextArr objectAtIndex:i];
+                            Second_LBL.font=[UIFont boldSystemFontOfSize:25];
+                            Second_LBL.textAlignment=NSTextAlignmentCenter;
+                            Second_LBL.textColor=[UIColor whiteColor];
+                            [bannerscroll addSubview:Second_LBL];
+                        }
+                        else if (i==2)
+                        {
+                            UILabel *thert_LBL=[[UILabel alloc]initWithFrame:CGRectMake(x, 400-255, SCREEN_WIDTH, 50)];
+                            thert_LBL.text=[OfferTextArr objectAtIndex:i];
+                            thert_LBL.font=[UIFont boldSystemFontOfSize:17];
+                            thert_LBL.textAlignment=NSTextAlignmentCenter;
+                            thert_LBL.textColor=[UIColor whiteColor];
+                            [bannerscroll addSubview:thert_LBL];
+                        }
+                    }
+                }
+                else if (i==1)
+                {
+                    for (int i =0 ; i<OfferTextArr.count; i++)
+                    {
+                        if (i==0)
+                        {
+                            UILabel *First_LBL=[[UILabel alloc]initWithFrame:CGRectMake(x, 400-330, SCREEN_WIDTH, 60)];
+                            First_LBL.text=[OfferTextArr objectAtIndex:i];
+                            First_LBL.font=[UIFont boldSystemFontOfSize:35];
+                            First_LBL.textAlignment=NSTextAlignmentCenter;
+                            First_LBL.textColor=[UIColor whiteColor];
+                            [bannerscroll addSubview:First_LBL];
+                        }
+                        else if (i==1)
+                        {
+                            UILabel *Second_LBL=[[UILabel alloc]initWithFrame:CGRectMake(x, 400-285, SCREEN_WIDTH, 50)];
+                            Second_LBL.text=[OfferTextArr objectAtIndex:i];
+                            Second_LBL.font=[UIFont boldSystemFontOfSize:25];
+                            Second_LBL.textAlignment=NSTextAlignmentCenter;
+                            Second_LBL.textColor=[UIColor whiteColor];
+                            [bannerscroll addSubview:Second_LBL];
+                        }
+                        else if (i==2)
+                        {
+                            UILabel *thert_LBL=[[UILabel alloc]initWithFrame:CGRectMake(x, 400-255, SCREEN_WIDTH, 50)];
+                            thert_LBL.text=[OfferTextArr objectAtIndex:i];
+                            thert_LBL.font=[UIFont boldSystemFontOfSize:17];
+                            thert_LBL.textAlignment=NSTextAlignmentCenter;
+                            thert_LBL.textColor=[UIColor whiteColor];
+                            [bannerscroll addSubview:thert_LBL];
+                        }
+                    }
+                }
+                else if (i==2)
+                {
+                    for (int i =0 ; i<OfferTextArr.count; i++)
+                    {
+                        if (i==0)
+                        {
+                            UILabel *First_LBL=[[UILabel alloc]initWithFrame:CGRectMake(x, 400-330, SCREEN_WIDTH, 60)];
+                            First_LBL.text=[OfferTextArr objectAtIndex:i];
+                            First_LBL.font=[UIFont boldSystemFontOfSize:35];
+                            First_LBL.textAlignment=NSTextAlignmentCenter;
+                            First_LBL.textColor=[UIColor whiteColor];
+                            [bannerscroll addSubview:First_LBL];
+                        }
+                        else if (i==1)
+                        {
+                            UILabel *Second_LBL=[[UILabel alloc]initWithFrame:CGRectMake(x, 400-285, SCREEN_WIDTH, 50)];
+                            Second_LBL.text=[OfferTextArr objectAtIndex:i];
+                            Second_LBL.font=[UIFont boldSystemFontOfSize:25];
+                            Second_LBL.textAlignment=NSTextAlignmentCenter;
+                            Second_LBL.textColor=[UIColor whiteColor];
+                            [bannerscroll addSubview:Second_LBL];
+                        }
+                        else if (i==2)
+                        {
+                            UILabel *thert_LBL=[[UILabel alloc]initWithFrame:CGRectMake(x, 400-255, SCREEN_WIDTH, 50)];
+                            thert_LBL.text=[OfferTextArr objectAtIndex:i];
+                            thert_LBL.font=[UIFont boldSystemFontOfSize:17];
+                            thert_LBL.textAlignment=NSTextAlignmentCenter;
+                            thert_LBL.textColor=[UIColor whiteColor];
+                            [bannerscroll addSubview:thert_LBL];
+                        }
+                    }
+                }
+            }
+            
+            x=x+SCREEN_WIDTH;
+        }
+       
     }
-    [bannerscroll setContentSize:CGSizeMake(x, 130)];
+    
+    if([[SharedClass sharedSingleton].storyBaordName isEqualToString:@"Main"])
+    {
+        [bannerscroll setContentSize:CGSizeMake(x, 130)];
+    }
+    else
+    {
+        [bannerscroll setContentSize:CGSizeMake(x, 200)];
+    }
+    
     pagesControl.numberOfPages = 3;
     pagesControl.currentPage = 0;
     [bannerscroll setPagingEnabled:YES];

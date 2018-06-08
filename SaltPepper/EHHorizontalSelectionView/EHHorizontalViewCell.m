@@ -117,13 +117,27 @@ static NSMutableDictionary * _Nullable _EHHorisontalSelectionStyles = nil;
 
 + (NSMutableDictionary *)styles
 {
-    return [@{ @"tintColor" : [UIColor colorWithRed:0 green:122/255.0 blue:1 alpha:1],
-               @"textColor" : [UIColor colorWithWhite:1 alpha:1],
-              @"font" : [UIFont fontWithName:@"HelveticaNeue" size:13.0],
-              @"fontMedium" : [UIFont fontWithName:@"HelveticaNeue-Medium" size:13.0],
-              @"cellGap" : @(_EHDefaultGap * 4),
-              @"needCentered" : @(YES)
-              } mutableCopy];
+    if([[SharedClass sharedSingleton].storyBaordName isEqualToString:@"Main"])
+    {
+        return [@{ @"tintColor" : [UIColor colorWithRed:0 green:122/255.0 blue:1 alpha:1],
+                   @"textColor" : [UIColor colorWithWhite:1 alpha:1],
+                   @"font" : [UIFont fontWithName:@"HelveticaNeue" size:13.0],
+                   @"fontMedium" : [UIFont fontWithName:@"HelveticaNeue-Medium" size:13.0],
+                   @"cellGap" : @(_EHDefaultGap * 4),
+                   @"needCentered" : @(YES)
+                   } mutableCopy];
+    }
+    else
+    {
+        return [@{ @"tintColor" : [UIColor colorWithRed:0 green:122/255.0 blue:1 alpha:1],
+                   @"textColor" : [UIColor colorWithWhite:1 alpha:1],
+                   @"font" : [UIFont fontWithName:@"HelveticaNeue" size:20.0],
+                   @"fontMedium" : [UIFont fontWithName:@"HelveticaNeue-Medium" size:20.0],
+                   @"cellGap" : @(_EHDefaultGap * 4),
+                   @"needCentered" : @(YES)
+                   } mutableCopy];
+    }
+    
 }
 
 + (void)checkStyles

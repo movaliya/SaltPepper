@@ -17,20 +17,42 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    _viewEmail.layer.cornerRadius = 25.0;
-    _viewEmail.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    _viewEmail.layer.borderWidth = 1.0;
-    _viewFName.layer.cornerRadius = 25.0;
-    _viewFName.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    _viewFName.layer.borderWidth = 1.0;
-    _viewMessage.layer.cornerRadius = 25.0;
-    _viewMessage.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    _viewMessage.layer.borderWidth = 1.0;
-    _viewContact.layer.cornerRadius = 25.0;
-    _viewContact.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    _viewContact.layer.borderWidth = 1.0;
+    if([[SharedClass sharedSingleton].storyBaordName isEqualToString:@"Main"])
+    {
+        _viewEmail.layer.cornerRadius = 25.0;
+        _viewEmail.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        _viewEmail.layer.borderWidth = 1.0;
+        _viewFName.layer.cornerRadius = 25.0;
+        _viewFName.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        _viewFName.layer.borderWidth = 1.0;
+        _viewMessage.layer.cornerRadius = 25.0;
+        _viewMessage.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        _viewMessage.layer.borderWidth = 1.0;
+        _viewContact.layer.cornerRadius = 25.0;
+        _viewContact.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        _viewContact.layer.borderWidth = 1.0;
+        
+        _btnSubmit.layer.cornerRadius = 20;
+    }
+    else
+    {
+        _viewEmail.layer.cornerRadius = 30.0;
+        _viewEmail.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        _viewEmail.layer.borderWidth = 1.0;
+        _viewFName.layer.cornerRadius = 30.0;
+        _viewFName.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        _viewFName.layer.borderWidth = 1.0;
+        _viewMessage.layer.cornerRadius = 30.0;
+        _viewMessage.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        _viewMessage.layer.borderWidth = 1.0;
+        _viewContact.layer.cornerRadius = 30.0;
+        _viewContact.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        _viewContact.layer.borderWidth = 1.0;
+        
+        _btnSubmit.layer.cornerRadius = 30.0;
+    }
     
-    _btnSubmit.layer.cornerRadius = 20;
+    
     
     NSMutableArray *Userdata=[AppDelegate GetData:@"LoginUserDic"];
     if (Userdata)

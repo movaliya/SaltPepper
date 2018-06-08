@@ -17,9 +17,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _btnModify.layer.cornerRadius = 5.0;
-    _btnAddToCart.layer.cornerRadius = 25;
-    _btnCheckOut.layer.cornerRadius = 25;
+    
+    if([[SharedClass sharedSingleton].storyBaordName isEqualToString:@"Main"])
+    {
+        _btnModify.layer.cornerRadius = 5.0;
+        _btnAddToCart.layer.cornerRadius = 25;
+        _btnCheckOut.layer.cornerRadius = 25;
+    }
+    else
+    {
+        _btnModify.layer.cornerRadius = 8.0;
+        _btnAddToCart.layer.cornerRadius = 30;
+        _btnCheckOut.layer.cornerRadius = 30;
+    }
+    
     _btnPlus.layer.cornerRadius = _btnPlus.frame.size.height / 2.0;
     _btnMinus.layer.cornerRadius = _btnMinus.frame.size.height / 2.0;
     
