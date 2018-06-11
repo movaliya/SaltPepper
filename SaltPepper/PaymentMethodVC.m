@@ -53,19 +53,38 @@ typedef void (^STPSourceSubmissionHandler)(STPBackendChargeResult status, NSErro
     [_viewDetail.layer setShadowOpacity:0.8];
     [_viewDetail.layer setShadowRadius:3.0];
     [_viewDetail.layer setShadowOffset:CGSizeMake(2.0, 2.0)];
-    _viewName.layer.cornerRadius = 20;
-    _viewName.layer.borderWidth = 1.0;
-    _viewName.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    _viewNumber.layer.cornerRadius = 20;
-    _viewNumber.layer.borderWidth = 1.0;
-    _viewNumber.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    _viewExpireDate.layer.cornerRadius = 20;
-    _viewExpireDate.layer.borderWidth = 1.0;
-    _viewExpireDate.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    _viewCVV.layer.cornerRadius = 20;
-    _viewCVV.layer.borderWidth = 1.0;
-    _viewCVV.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    _btnConfirmPayment.layer.cornerRadius = 20;
+    if([[SharedClass sharedSingleton].storyBaordName isEqualToString:@"Main"])
+    {
+        _viewName.layer.cornerRadius = 20;
+        _viewName.layer.borderWidth = 1.0;
+        _viewName.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        _viewNumber.layer.cornerRadius = 20;
+        _viewNumber.layer.borderWidth = 1.0;
+        _viewNumber.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        _viewExpireDate.layer.cornerRadius = 20;
+        _viewExpireDate.layer.borderWidth = 1.0;
+        _viewExpireDate.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        _viewCVV.layer.cornerRadius = 20;
+        _viewCVV.layer.borderWidth = 1.0;
+        _viewCVV.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        _btnConfirmPayment.layer.cornerRadius = 20;
+    }
+    else
+    {
+        _viewName.layer.cornerRadius = 25;
+        _viewName.layer.borderWidth = 1.0;
+        _viewName.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        _viewNumber.layer.cornerRadius = 25;
+        _viewNumber.layer.borderWidth = 1.0;
+        _viewNumber.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        _viewExpireDate.layer.cornerRadius = 25;
+        _viewExpireDate.layer.borderWidth = 1.0;
+        _viewExpireDate.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        _viewCVV.layer.cornerRadius = 25;
+        _viewCVV.layer.borderWidth = 1.0;
+        _viewCVV.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        _btnConfirmPayment.layer.cornerRadius = 25;
+    }
     
     _viewPayOn.hidden = YES;
     _viewCredit.hidden = NO;

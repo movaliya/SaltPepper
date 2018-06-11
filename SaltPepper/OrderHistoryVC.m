@@ -229,8 +229,8 @@
     cell.btnTrack.layer.borderWidth = 1.0;
     cell.btnOnTheWay.layer.borderColor = [UIColor blackColor].CGColor;
     cell.btnOnTheWay.layer.borderWidth = 1.0;
-    cell.btnTrack.layer.cornerRadius = 2.0;
-    cell.btnOnTheWay.layer.cornerRadius = 2.0;
+    cell.btnTrack.layer.cornerRadius = 4.0;
+    cell.btnOnTheWay.layer.cornerRadius = 4.0;
     cell.btnTrack.tag = indexPath.row;
     [cell.btnTrack addTarget:self action:@selector(btnTrackClicked:) forControlEvents:UIControlEventTouchUpInside];
     if(isFiltered)

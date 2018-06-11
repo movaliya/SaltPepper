@@ -211,7 +211,14 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 240;
+    if([[SharedClass sharedSingleton].storyBaordName isEqualToString:@"Main"])
+    {
+        return 240;
+    }
+    else
+    {
+        return 260;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
