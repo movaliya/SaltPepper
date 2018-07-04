@@ -94,10 +94,21 @@ typedef void (^STPSourceSubmissionHandler)(STPBackendChargeResult status, NSErro
   Userdata=[AppDelegate GetData:@"LoginUserDic"];
     NSString *customer_name = [[[[[[[Userdata valueForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"myProfile"] objectForKey:@"customer_name"];
     NSString *customer_email = [[[[[[[Userdata valueForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"myProfile"] objectForKey:@"email"];
-    NSString *customer_Mobile = [[[[[[[Userdata valueForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"myProfile"] objectForKey:@"mobile"];
+    NSString *customer_Mobile;
+    if([[[[[[[Userdata valueForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"myProfile"] objectForKey:@"mobile"] != [NSNull null])
+    {
+         customer_Mobile = [[[[[[[Userdata valueForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"myProfile"] objectForKey:@"mobile"];
+    }
+    else
+    {
+        customer_Mobile = @"";
+    }
+    
     self.lblName.text=customer_name;
     self.lblEmail.text=customer_email;
-     self.lblPhone.text=customer_Mobile;
+    self.lblPhone.text=customer_Mobile;
+
+    
     self.lblAmount.text=self.FinalTotal;
     self.lblOrderType.text=self.OrderType;
     
