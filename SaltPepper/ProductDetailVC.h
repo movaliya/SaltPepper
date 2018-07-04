@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface ProductDetailVC : UIViewController
+@property (weak, nonatomic) IBOutlet UILabel *lblCartCount;
 
 @property (weak, nonatomic) IBOutlet UIImageView *imgProduct;
 @property (weak, nonatomic) IBOutlet UIView *viewDetail;

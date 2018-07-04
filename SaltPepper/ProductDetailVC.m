@@ -53,6 +53,16 @@
     // Do any additional setup after loading the view.
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    _lblCartCount.text = [NSString stringWithFormat:@"%lu",(unsigned long)KmyappDelegate.MainCartArr.count];
+    _lblCartCount.layer.cornerRadius = 10;
+    _lblCartCount.layer.masksToBounds = YES;
+    _lblCartCount.layer.borderColor = [UIColor whiteColor].CGColor;
+    _lblCartCount.layer.borderWidth = 1;
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
