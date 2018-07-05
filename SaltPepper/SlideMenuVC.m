@@ -22,6 +22,14 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    if (KmyappDelegate.MainCartArr.count == 0)
+    {
+        _lblCartCount.hidden = YES;
+    }
+    else
+    {
+        _lblCartCount.hidden = NO;
+    }
     _lblCartCount.text = [NSString stringWithFormat:@"%lu",(unsigned long)KmyappDelegate.MainCartArr.count];
     _lblCartCount.layer.cornerRadius = 10;
     _lblCartCount.layer.masksToBounds = YES;
@@ -999,7 +1007,15 @@
             
         }];
     }
-    
+    if (KmyappDelegate.MainCartArr.count == 0)
+    {
+        _lblCartCount.hidden = YES;
+    }
+    else
+    {
+        _lblCartCount.hidden = NO;
+    }
+    _lblCartCount.text = [NSString stringWithFormat:@"%lu",(unsigned long)KmyappDelegate.MainCartArr.count];
 }
 
 - (void)addToCartClickedCollectionView:(UIButton *)sender
@@ -1154,6 +1170,15 @@
             
         }];
     }
+    if (KmyappDelegate.MainCartArr.count == 0)
+    {
+        _lblCartCount.hidden = YES;
+    }
+    else
+    {
+        _lblCartCount.hidden = NO;
+    }
+    _lblCartCount.text = [NSString stringWithFormat:@"%lu",(unsigned long)KmyappDelegate.MainCartArr.count];
     
 }
 
