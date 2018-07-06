@@ -458,6 +458,8 @@
     [alert addButton:@"YES" withActionBlock:^{
         
         _Rm(@"LoginUserDic")
+        _Rm(@"CartDIC")
+        _Rm(@"FavDIC")
         [[GIDSignIn sharedInstance] signOut];
         [self.sideMenuViewController hideMenuViewController];
         DEMORootViewController *vcr = [[UIStoryboard storyboardWithName:[SharedClass sharedSingleton].storyBaordName  bundle:nil] instantiateViewControllerWithIdentifier:@"rootController"];
