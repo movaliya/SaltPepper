@@ -43,6 +43,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
+     KmyappDelegate.MainCartArr = [AppDelegate GetData:@"CartDIC"];
     if (KmyappDelegate.MainCartArr.count == 0)
     {
         _lblCartCount.hidden = YES;

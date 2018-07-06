@@ -415,7 +415,118 @@
 
 -(void)ApplayPromo_Click:(id)sender
 {
-    NSLog(@"PROMOCODE==%@",POPView.Promo_TXT.text);
+    //NSLog(@"PROMOCODE==%@",POPView.Promo_TXT.text);
+    
+    if ([POPView.Promo_TXT.text isEqualToString:@""])
+    {
+        //[self ShowPOPUP];
+        
+        [AppDelegate showErrorMessageWithTitle:@"Error!" message:@"Please enter Promocode." delegate:nil];
+    }
+    else
+    {
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        KmyappDelegate.MainCartArr = [AppDelegate GetData:@"CartDIC"];
+        NSMutableArray *ProdArr=[[NSMutableArray alloc]init];
+        NSLog(@"===%@",KmyappDelegate.MainCartArr);
+        NSMutableArray *Userdata=[AppDelegate GetData:@"LoginUserDic"];
+        NSString *CutomerID = [[[[[[Userdata valueForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"customerid"];
+        
+        for (int k=0; k<KmyappDelegate.MainCartArr.count; k++)
+        {
+            NSMutableArray *Array=[[[KmyappDelegate.MainCartArr objectAtIndex:k] valueForKey:@"ingredients"] mutableCopy];
+            NSMutableArray *Withindgarr=[[NSMutableArray alloc]init];
+            NSMutableArray *Withoutindgarr=[[NSMutableArray alloc]init];
+            NSMutableDictionary *inddic=[[NSMutableDictionary alloc]init];
+            
+            
+            // ProdArr=[[NSMutableArray alloc]init];
+            NSString *ProdidSr=[[NSString alloc]init];
+            if ([Array isKindOfClass:[NSArray class]])
+            {
+                //NSLog(@"Array===%@",Array);
+                for (int i=0; i<Array.count; i++)
+                {
+                    if ([[[Array objectAtIndex:i] valueForKey:@"is_with"] isEqualToString:@"1"])
+                    {
+                        [Withindgarr addObject:[[Array objectAtIndex:i] valueForKey:@"ingredient_id"]];
+                    }
+                    else
+                    {
+                        [Withoutindgarr addObject:[[Array objectAtIndex:i] valueForKey:@"ingredient_id"]];
+                    }
+                    ProdidSr=[[Array objectAtIndex:i] valueForKey:@"product_id"];
+                }
+                if (Withindgarr.count>0)
+                {
+                    [inddic setObject:Withindgarr forKey:@"WITHINGREDIENTID"];
+                }
+                if (Withoutindgarr.count>0)
+                {
+                    [inddic setObject:Withoutindgarr forKey:@"WITHOUTINGREDIENTID"];
+                }
+            }
+            
+            [inddic setObject:[[KmyappDelegate.MainCartArr objectAtIndex:k] valueForKey:@"id"] forKey:@"ID"];
+            [inddic setObject:[[KmyappDelegate.MainCartArr objectAtIndex:k] valueForKey:@"Quantity"] forKey:@"QUANTITY"];
+            [ProdArr addObject:inddic];
+        }
+        
+        
+        NSMutableDictionary *dict1 = [[NSMutableDictionary alloc] init];
+        [dict1 setValue:KAPIKEY forKey:@"APIKEY"];
+        NSString *Total=[NSString stringWithFormat:@"%.2f",subTotalINT];
+        NSMutableDictionary *dictInner = [[NSMutableDictionary alloc] init];
+        [dictInner setObject:CutomerID forKey:@"CUSTOMERID"];
+        [dictInner setObject:POPView.Promo_TXT.text forKey:@"PROMOCODE"];
+        [dictInner setObject:Total forKey:@"TOTALSUM"];
+        [dictInner setObject:ProdArr forKey:@"PRODUCTID"];
+        
+        NSMutableDictionary *dictSub = [[NSMutableDictionary alloc] init];
+        [dictSub setObject:@"getitem" forKey:@"MODULE"];
+        [dictSub setObject:@"promoDiscount" forKey:@"METHOD"];
+        [dictSub setObject:dictInner forKey:@"PARAMS"];
+        
+        
+        NSMutableArray *arrs = [[NSMutableArray alloc] initWithObjects:dictSub, nil];
+        NSMutableDictionary *dictREQUESTPARAM = [[NSMutableDictionary alloc] init];
+        [dictREQUESTPARAM setObject:arrs forKey:@"REQUESTPARAM"];
+        [dictREQUESTPARAM setObject:dict1 forKey:@"RESTAURANT"];
+        
+        NSLog(@"dictREQUESTPARAM===%@",dictREQUESTPARAM);
+        
+        
+        NSError* error = nil;
+        
+        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictREQUESTPARAM options:NSJSONWritingPrettyPrinted error:&error];
+        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers  error:&error];
+        
+        NSString *makeURL=[NSString stringWithFormat:@"%@%@",kBaseURL,PROMOCODE];
+        [Utility postRequest:json url:makeURL success:^(id responseObject)
+         {
+             [MBProgressHUD hideHUDForView:self.view animated:YES];
+             NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"promoDiscount"] objectForKey:@"SUCCESS"];
+             if ([SUCCESS boolValue] ==YES)
+             {
+                [self HidePopUpAnimation];
+                 NSString *result=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"promoDiscount"] objectForKey:@"result"] objectForKey:@"promoDiscount"];
+                 NSLog(@"place order result=%@",result);
+                 
+             }
+             else
+             {
+                [self HidePopUpAnimation];
+                 NSString *ERRORMSG=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"promoDiscount"] objectForKey:@"ERROR"] objectForKey:@"DESCRIPTION"];
+                 [AppDelegate showErrorMessageWithTitle:@"Error!" message:ERRORMSG delegate:nil];
+             }
+         }
+        failure:^(NSError *error) {
+                         
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            NSLog(@"Fail");
+        }];
+    }
+    
 }
 
 -(void)CancelPromo_Click:(id)sender
