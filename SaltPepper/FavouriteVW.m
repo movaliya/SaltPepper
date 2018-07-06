@@ -29,7 +29,7 @@
     
       //NSDictionary *FavrtDic = _ro(@"FavDIC");
      // NSLog(@"MainFavArr==%@",FavrtDic);
-    
+    KmyappDelegate.MainCartArr = [AppDelegate GetData:@"CartDIC"];
     KmyappDelegate.MainFavArr=[AppDelegate GetData:@"FavDIC"];
    // NSData *data = _ro(@"FavDIC");
     //NSArray *savedArray = [NSKeyedUnarchiver unarchiveObjectWithData:data];
@@ -52,7 +52,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return KmyappDelegate.MainFavArr.count;;
+    return KmyappDelegate.MainFavArr.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -68,6 +68,15 @@
     if (cell == nil)
     {
         cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    }
+    
+    if ([[KmyappDelegate.MainCartArr valueForKey:@"id"] containsObject:[[KmyappDelegate.MainFavArr valueForKey:@"id"]objectAtIndex:indexPath.row]])
+    {
+        cell.AddToCartBTN.hidden = YES;
+    }
+    else
+    {
+        
     }
     
     cell.AddToCartBTN.tag=indexPath.section;
@@ -117,7 +126,31 @@
 
 - (void)AddToCartBTN_Clcik:(UIButton *)sender
 {
+    if (KmyappDelegate.MainCartArr==nil)
+    {
+        KmyappDelegate.MainCartArr=[[NSMutableArray alloc]init];
+    }
+    else
+    {
+        
+    }
     
+    if([[KmyappDelegate.MainFavArr objectAtIndex:[sender tag]] valueForKey:@"ingredients"] != nil)
+    {
+        NSMutableDictionary *intdic=[[NSMutableDictionary alloc]init];
+        intdic=[[KmyappDelegate.MainFavArr objectAtIndex:[sender tag]] mutableCopy];
+        [intdic removeObjectForKey:@"ingredients"];
+        
+        [KmyappDelegate.MainCartArr addObject:intdic];
+    }
+    else
+    {
+        [KmyappDelegate.MainCartArr addObject:[KmyappDelegate.MainFavArr objectAtIndex:[sender tag]]];
+    }
+    [AppDelegate WriteData:@"CartDIC" RootObject:KmyappDelegate.MainCartArr];
+    [TableVW reloadData];
+    FCAlertView *alert = [KmyappDelegate ShowAlertWithBtnAction:@"Item added to cart successfully" andStrTile:nil andbtnTitle:@"OK" andButtonArray:@[]];
+    //[KmyappDelegate.MainCartArr addObject:[KmyappDelegate.MainFavArr objectAtIndex:[sender tag]];
 }
 
 - (void)Delete_Clcik:(UIButton *)sender

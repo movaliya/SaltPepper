@@ -40,6 +40,24 @@
     
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    if (KmyappDelegate.MainCartArr.count == 0)
+    {
+        _lblCartCount.hidden = YES;
+    }
+    else
+    {
+        _lblCartCount.hidden = NO;
+    }
+    _lblCartCount.text = [NSString stringWithFormat:@"%lu",(unsigned long)KmyappDelegate.MainCartArr.count];
+    _lblCartCount.layer.cornerRadius = 10;
+    _lblCartCount.layer.masksToBounds = YES;
+    _lblCartCount.layer.borderColor = [UIColor whiteColor].CGColor;
+    _lblCartCount.layer.borderWidth = 1;
+}
+
 -(void)SetheaderScroll
 {
     NSArray* subviews = [[NSArray alloc] initWithArray: bannerscroll.subviews];

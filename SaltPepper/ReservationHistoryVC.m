@@ -52,6 +52,24 @@
     // Do any additional setup after loading the view.
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    if (KmyappDelegate.MainCartArr.count == 0)
+    {
+        _lblCartCount.hidden = YES;
+    }
+    else
+    {
+        _lblCartCount.hidden = NO;
+    }
+    _lblCartCount.text = [NSString stringWithFormat:@"%lu",(unsigned long)KmyappDelegate.MainCartArr.count];
+    _lblCartCount.layer.cornerRadius = 10;
+    _lblCartCount.layer.masksToBounds = YES;
+    _lblCartCount.layer.borderColor = [UIColor whiteColor].CGColor;
+    _lblCartCount.layer.borderWidth = 1;
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -184,6 +202,7 @@
         _lblHeader.hidden = NO;
         _btnCart.hidden = NO;
         _btnSearch.hidden = NO;
+        _lblCartCount.hidden = NO;
         _searchBar.hidden = YES;
         [_tblResHistory reloadData];
     }
@@ -268,6 +287,7 @@
     _lblHeader.hidden = YES;
     _btnCart.hidden = YES;
     _btnSearch.hidden = YES;
+    _lblCartCount.hidden = YES;
     _searchBar.hidden = NO;
 }
 

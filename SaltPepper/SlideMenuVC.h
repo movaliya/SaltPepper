@@ -17,6 +17,8 @@
     CGFloat lastContentOffset;
     BOOL isFiltered;
 }
+@property (weak, nonatomic) IBOutlet UILabel *lblCartCount;
+
 @property (nonatomic ) NSInteger index;
 @property (weak, nonatomic) IBOutlet EHHorizontalSelectionView *HSSelView;
 @property (weak, nonatomic) IBOutlet UITableView *tblItem;

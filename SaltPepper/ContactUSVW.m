@@ -77,8 +77,8 @@
         }
         else
         {
-            NSString *DESCRIPTION=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"postitem"] objectForKey:@"reservation"] objectForKey:@"ERROR"] objectForKey:@"DESCRIPTION"];
-            [AppDelegate showErrorMessageWithTitle:@"" message:DESCRIPTION delegate:nil];
+//            NSString *DESCRIPTION=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"postitem"] objectForKey:@"reservation"] objectForKey:@"ERROR"] objectForKey:@"DESCRIPTION"];
+//            [AppDelegate showErrorMessageWithTitle:@"" message:DESCRIPTION delegate:nil];
         }
         
     } failure:^(NSError *error) {

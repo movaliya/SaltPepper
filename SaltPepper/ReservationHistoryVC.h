@@ -13,6 +13,7 @@
     NSMutableArray* filteredResHistory;
     BOOL isFiltered;
 }
+@property (weak, nonatomic) IBOutlet UILabel *lblCartCount;
 @property (weak, nonatomic) IBOutlet UITableView *tblResHistory;
 @property (weak, nonatomic) IBOutlet UILabel *lblHeader;
 @property (weak, nonatomic) IBOutlet UIButton *btnCart;
