@@ -19,7 +19,7 @@
 {
     [super viewDidLoad];
     
-    
+    _lblHeader.text = [self.NewsSelectArr valueForKey:@"title"];
     NewsTitle_LBL.text=[self.NewsSelectArr valueForKey:@"title"];
     NewsDate_LBL.text=[self.NewsSelectArr valueForKey:@"news_date"];
     NewsDes_LBL.text=[self.NewsSelectArr valueForKey:@"content"];
@@ -28,6 +28,12 @@
     [NewsImg sd_setImageWithURL:[NSURL URLWithString:Urlstr] placeholderImage:[UIImage imageNamed:@"placeholder_img"]];
     //[NewsImg setShowActivityIndicatorView:YES];
  
+    NewsImg.layer.masksToBounds = NO;
+    NewsImg.layer.shadowOffset = CGSizeMake(0, 1);
+    NewsImg.layer.shadowRadius = 1.0;
+    NewsImg.layer.shadowColor = [UIColor colorWithRed:115.0f/255.0f green:115.0f/255.0f blue:115.0f/255.0f alpha:1.0f].CGColor;
+    NewsImg.layer.shadowOpacity = 0.7;
+    
     //NewsImg.image=[UIImage imageNamed:@"testImage.jpg"];
     BackView.layer.masksToBounds = NO;
     BackView.layer.shadowOffset = CGSizeMake(0, 1);

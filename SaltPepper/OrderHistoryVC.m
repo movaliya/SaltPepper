@@ -259,6 +259,7 @@
         cell.lblOrderAmount.text = [NSString stringWithFormat:@"£%@",[[filteredResHistory valueForKey:@"total"] objectAtIndex:indexPath.row]];
         cell.lblOrderDate.text = [[filteredResHistory valueForKey:@"order_date"] objectAtIndex:indexPath.row];
         cell.lblComments.text = [[filteredResHistory valueForKey:@"comments"] objectAtIndex:indexPath.row];
+        [cell.btnOnTheWay setTitle:[[filteredResHistory valueForKey:@"status"] objectAtIndex:indexPath.row] forState:UIControlStateNormal];
     }
     else
     {
@@ -267,6 +268,7 @@
         cell.lblOrderAmount.text = [NSString stringWithFormat:@"£%@",[[arrOrderHistory valueForKey:@"total"] objectAtIndex:indexPath.row]];
         cell.lblOrderDate.text = [[arrOrderHistory valueForKey:@"order_date"] objectAtIndex:indexPath.row];
         cell.lblComments.text = [[arrOrderHistory valueForKey:@"comments"] objectAtIndex:indexPath.row];
+        [cell.btnOnTheWay setTitle:[[arrOrderHistory valueForKey:@"status"] objectAtIndex:indexPath.row] forState:UIControlStateNormal];
     }
     return cell;
     
