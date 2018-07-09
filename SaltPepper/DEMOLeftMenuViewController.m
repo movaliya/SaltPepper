@@ -166,6 +166,8 @@
                         images = @[@"ic_home", @"ic_cart",@"ic_reservation",@"ic_reservation", @"ic_gallery", @"ic_news", @"ic_info", @"ic_videogallery", @"ic_message", @"ic_contactus", @"ic_logout"];
                         
                         _Rm(@"LoginUserDic")
+                        _Rm(@"CartDIC")
+                        _Rm(@"FavDIC")
                         KmyappDelegate.MainCartArr.removeAllObjects;
                         [[GIDSignIn sharedInstance] signOut];
                         [self.MenuTBL reloadData];

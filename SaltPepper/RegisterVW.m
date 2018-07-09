@@ -115,11 +115,13 @@
         NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"postitem"] objectForKey:@"registration"] objectForKey:@"SUCCESS"];
         if ([SUCCESS boolValue] ==YES)
         {
-            [AppDelegate WriteData:@"LoginUserDic" RootObject:responseObject];
-              _wb(@"isSkip", YES);
-            [AppDelegate showErrorMessageWithTitle:@"" message:@"Registration successful" delegate:nil];
-            DEMORootViewController *vcr = [[UIStoryboard storyboardWithName:[SharedClass sharedSingleton].storyBaordName  bundle:nil] instantiateViewControllerWithIdentifier:@"rootController"];
-            [self.navigationController pushViewController:vcr animated:YES];
+            //[AppDelegate WriteData:@"LoginUserDic" RootObject:responseObject];
+            //  _wb(@"isSkip", YES);
+            //[AppDelegate showErrorMessageWithTitle:@"" message:@"Registration successful" delegate:nil];
+            //DEMORootViewController *vcr = [[UIStoryboard storyboardWithName:[SharedClass sharedSingleton].storyBaordName  bundle:nil] instantiateViewControllerWithIdentifier:@"rootController"];
+           // [self.navigationController pushViewController:vcr animated:YES];
+            
+            [self CallForloging:EmailStr Password:PasswordStr];
             
         }
         else
@@ -136,42 +138,76 @@
         
     }];
     
-    /*AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer.acceptableContentTypes=[NSSet setWithObjects:@"text/html",@"application/json", nil];
-    AFJSONRequestSerializer *serializer = [AFJSONRequestSerializer serializer];
-    [serializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [serializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-    manager.requestSerializer = serializer;
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+}
+// Login After Regiter Complete
+-(void)CallForloging :(NSString *)EmailStr Password:(NSString *)PasswordStr
+{
     
-    [manager POST:makeURL parameters:json success:^(NSURLSessionDataTask *operation, NSDictionary *responseObject)
-     {
-         [MBProgressHUD hideHUDForView:self.view animated:YES];
-         
-         NSLog(@"responseObject==%@",responseObject);
-         NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"postitem"] objectForKey:@"registration"] objectForKey:@"SUCCESS"];
-         if ([SUCCESS boolValue] ==YES)
-         {
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    NSMutableDictionary *dict1 = [[NSMutableDictionary alloc] init];
+    
+    [dict1 setValue:KAPIKEY forKey:@"APIKEY"];
+    
+    NSMutableDictionary *dictInner = [[NSMutableDictionary alloc] init];
+    
+    [dictInner setObject:EmailStr forKey:@"EMAIL"];
+    [dictInner setObject:PasswordStr forKey:@"PASSWORD"];
+    [dictInner setObject:@"firebase" forKey:@"REGID"];
+    
+    NSMutableDictionary *dictSub = [[NSMutableDictionary alloc] init];
+    
+    [dictSub setObject:@"action" forKey:@"MODULE"];
+    
+    [dictSub setObject:@"authenticate" forKey:@"METHOD"];
+    
+    [dictSub setObject:dictInner forKey:@"PARAMS"];
+    
+    NSMutableArray *arr = [[NSMutableArray alloc] initWithObjects:dictSub, nil];
+    NSMutableDictionary *dictREQUESTPARAM = [[NSMutableDictionary alloc] init];
+    
+    [dictREQUESTPARAM setObject:arr forKey:@"REQUESTPARAM"];
+    [dictREQUESTPARAM setObject:dict1 forKey:@"RESTAURANT"];
+    
+    NSError* error = nil;
+    
+    NSString *makeURL=[NSString stringWithFormat:@"%@%@",kBaseURL,LOGINKEY];
+    
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictREQUESTPARAM options:NSJSONWritingPrettyPrinted error:&error];
+    // NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                         options:NSJSONReadingMutableContainers
+                                                           error:&error];
+    
+    [Utility postRequest:json url:makeURL success:^(id responseObject) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        NSLog(@"responseObject==%@",responseObject);
+        NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"SUCCESS"];
+        if ([SUCCESS boolValue] ==YES)
+        {
+            [AppDelegate WriteData:@"LoginUserDic" RootObject:responseObject];
+            _wb(@"isSkip", YES);
+            Email_TXT.text=@"";
+            Password_TXT.text=@"";
+            DEMORootViewController *vcr = [[UIStoryboard storyboardWithName:[SharedClass sharedSingleton].storyBaordName  bundle:nil] instantiateViewControllerWithIdentifier:@"rootController"];
+            [self.navigationController pushViewController:vcr animated:YES];
              [AppDelegate showErrorMessageWithTitle:@"" message:@"Registration successful" delegate:nil];
-             DEMORootViewController *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"rootController"];
-             [self.navigationController pushViewController:vcr animated:YES];
-
-         }
-         else
-         {
-             NSString *DESCRIPTION=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"postitem"] objectForKey:@"registration"] objectForKey:@"ERROR"] objectForKey:@"DESCRIPTION"];
-             [AppDelegate showErrorMessageWithTitle:@"" message:DESCRIPTION delegate:nil];
-         }
-     }
-     
-          failure:^(NSURLSessionDataTask *operation, NSError *error)
-     {
-         [MBProgressHUD hideHUDForView:self.view animated:YES];
-         
-         NSLog(@"Fail");
-     }];*/
+            //[AppDelegate showErrorMessageWithTitle:@"" message:@"Login successful" delegate:nil];
+        }
+        else
+        {
+            [AppDelegate showErrorMessageWithTitle:@"" message:@"Email and/or Password did not matched." delegate:nil];
+        }
+        
+    } failure:^(NSError *error) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        NSLog(@"Fail");
+    }];
     
-    
+   
 }
 - (IBAction)ShowPasswordBtn_Click:(id)sender
 {

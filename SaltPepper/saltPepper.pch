@@ -110,6 +110,7 @@
 #define ORDERHISTORY @"orderHistory.php"
 #define BUTTONSTATE @"buttonState.php"
 #define APPBUTTON @"appButtons.php"
+#define PROMOCODE @"promocode.php"
 
 
 
