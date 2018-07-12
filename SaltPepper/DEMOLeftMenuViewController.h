@@ -13,6 +13,7 @@
 {
     NSArray *titles;
     NSArray *images;
+    NSString *CheckReservationState;
 }
 @property (weak, nonatomic) IBOutlet UIImageView *profilePictIMVW;
 @property (weak, nonatomic) IBOutlet UILabel *Username_LBL;

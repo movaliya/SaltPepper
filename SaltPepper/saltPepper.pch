@@ -111,6 +111,7 @@
 #define BUTTONSTATE @"buttonState.php"
 #define APPBUTTON @"appButtons.php"
 #define PROMOCODE @"promocode.php"
+#define RESERVATIONSTATE @"ReservationState.php"
 
 
 
