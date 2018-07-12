@@ -272,13 +272,18 @@
                                       if (!error) {
                                           NSLog(@"result=%@",result);
                                           
-                                          FBSignIndictParams = [[NSMutableDictionary alloc] init];
-                                          [FBSignIndictParams setObject:[result objectForKey:@"id"]  forKey:@"facebook_id"];
+                                          NSString *fullName=[NSString stringWithFormat:@"%@ %@",[result objectForKey:@"first_name"],[result objectForKey:@"last_name"]];
                                           
-                                          //[self CallFBLogin];
+                                          FBSignIndictParams = [[NSMutableDictionary alloc] init];
+                                          [FBSignIndictParams setObject:[result objectForKey:@"id"]  forKey:@"FBID"];
+                                          [FBSignIndictParams setObject:[result objectForKey:@"email"]  forKey:@"EMAIL"];
+                                          [FBSignIndictParams setObject:fullName  forKey:@"NAME"];
+                                          [FBSignIndictParams setObject:@"aewewqewfddsfsd" forKey:@"REGID"];
+                                          
+                                          [self FBPostData];
                                           
                                           // Get the user's profile picture.
-                                          NSURL *pictureURL = [NSURL URLWithString:[[[result objectForKey:@"picture"] objectForKey:@"data"] objectForKey:@"url"]];
+                                         // NSURL *pictureURL = [NSURL URLWithString:[[[result objectForKey:@"picture"] objectForKey:@"data"] objectForKey:@"url"]];
                                       }
                                       else
                                       {
@@ -287,14 +292,74 @@
                                   }];
             
         }
-        else if (sessionState == FBSessionStateClosed || sessionState == FBSessionStateClosedLoginFailed){
+        else if (sessionState == FBSessionStateClosed || sessionState == FBSessionStateClosedLoginFailed)
+        {
+             NSLog(@"permissions deniet");
+            
             // A session was closed or the login was failed. Update the UI accordingly.
         }
     }
     else{
+        [AppDelegate showErrorMessageWithTitle:@"Error..!" message:@"Privacy set in facebook account while getting user info." delegate:nil];
         // In case an error has occurred, then just log the error and update the UI accordingly.
         NSLog(@"Error: %@", [error localizedDescription]);
     }
+}
+-(void)FBPostData
+{
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    NSMutableDictionary *dict1 = [[NSMutableDictionary alloc] init];
+    [dict1 setValue:KAPIKEY forKey:@"APIKEY"];
+    NSMutableDictionary *dictSub = [[NSMutableDictionary alloc] init];
+    [dictSub setObject:@"getitem" forKey:@"MODULE"];
+    [dictSub setObject:@"socialLogin" forKey:@"METHOD"];
+    [dictSub setObject:FBSignIndictParams forKey:@"PARAMS"];
+    
+    
+    NSMutableArray *arr = [[NSMutableArray alloc] initWithObjects:dictSub, nil];
+    NSMutableDictionary *dictREQUESTPARAM = [[NSMutableDictionary alloc] init];
+    
+    [dictREQUESTPARAM setObject:arr forKey:@"REQUESTPARAM"];
+    [dictREQUESTPARAM setObject:dict1 forKey:@"RESTAURANT"];
+    
+    
+    NSError* error = nil;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictREQUESTPARAM options:NSJSONWritingPrettyPrinted error:&error];
+    // NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                         options:NSJSONReadingMutableContainers
+                                                           error:&error];
+    NSString *makeURL=[NSString stringWithFormat:@"%@%@",kBaseURL,SOCIALLOGIN];
+    
+    [Utility postRequest:json url:makeURL success:^(id responseObject)
+     {
+         [MBProgressHUD hideHUDForView:self.view animated:YES];
+         
+         NSLog(@"responseObject==%@",responseObject);
+         NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"socialLogin"] objectForKey:@"SUCCESS"];
+         if ([SUCCESS boolValue] ==YES)
+         {
+             [AppDelegate WriteData:@"LoginUserDic" RootObject:responseObject];
+             _wb(@"isSkip", YES);
+             [AppDelegate showErrorMessageWithTitle:@"" message:@"Login successful" delegate:nil];
+             DEMORootViewController *vcr = [[UIStoryboard storyboardWithName:[SharedClass sharedSingleton].storyBaordName  bundle:nil] instantiateViewControllerWithIdentifier:@"rootController"];
+             [self.navigationController pushViewController:vcr animated:YES];
+             
+         }
+         else
+         {
+             NSString *DESCRIPTION=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"socialLogin"] objectForKey:@"ERROR"] objectForKey:@"DESCRIPTION"];
+             [AppDelegate showErrorMessageWithTitle:@"" message:DESCRIPTION delegate:nil];
+         }
+         
+     } failure:^(NSError *error) {
+         
+         [MBProgressHUD hideHUDForView:self.view animated:YES];
+         
+         NSLog(@"Fail");
+         
+     }];
 }
 - (IBAction)btnLoginGoogle:(id)sender
 {
@@ -356,6 +421,7 @@
     [dictInner setObject:emailStr forKey:@"EMAIL"];
     [dictInner setObject:NameStr forKey:@"NAME"];
     [dictInner setObject:GID forKey:@"FBID"];
+    [dictInner setObject:@"aewewqewfddsfsd" forKey:@"REGID"];
     
     
     NSMutableDictionary *dictSub = [[NSMutableDictionary alloc] init];

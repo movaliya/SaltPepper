@@ -55,6 +55,7 @@
     [FBProfilePictureView class];
     return YES;
 }
+
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options
 {
     if([[url scheme] isEqualToString:GOOGLE_SCHEME])
@@ -63,16 +64,34 @@
                                    sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
                                           annotation:options[UIApplicationOpenURLOptionsAnnotationKey]];
     }
+    else
+    {
+        return [FBAppCall handleOpenURL:url
+                      sourceApplication:options [UIApplicationOpenURLOptionsSourceApplicationKey]];
+    }
     
     return NO;
 }
+/*
 -(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
     
-    return [FBAppCall handleOpenURL:url
-                  sourceApplication:sourceApplication];
+    if([[url scheme] isEqualToString:GOOGLE_SCHEME])
+    {
+        //return [GIDSignIn handleOpenURL:url  sourceApplication:sourceApplication]];
+        return [GIDSignIn handleOpenURL:url
+                      sourceApplication:sourceApplication];
+    }
+    else
+    {
+        return [FBAppCall handleOpenURL:url
+                      sourceApplication:sourceApplication];
+    }
+    
+    return NO;
+    
     
 }
-
+*/
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
@@ -104,6 +123,7 @@
                                       
                                   }];
 }
+
 + (BOOL)connectedToNetwork{
     Reachability* reachability = [Reachability reachabilityWithHostName:@"www.google.com"];
     NetworkStatus remoteHostStatus = [reachability currentReachabilityStatus];

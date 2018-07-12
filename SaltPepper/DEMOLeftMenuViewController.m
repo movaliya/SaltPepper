@@ -142,8 +142,7 @@
             
             if ([checkRevState boolValue] ==YES)
             {
-               // NSString *valueToSave = @"YES";
-                NSString *valueToSave = @"NO";
+                NSString *valueToSave = @"YES";
                 [[NSUserDefaults standardUserDefaults] setObject:valueToSave forKey:@"reservationState"];
                 [[NSUserDefaults standardUserDefaults] synchronize];
             }
