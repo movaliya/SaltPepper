@@ -44,6 +44,7 @@
 		2968F8AC2070CDF2004B5960 /* ContactUSVW.m in Sources */ = {isa = PBXBuildFile; fileRef = 2968F8AB2070CDF2004B5960 /* ContactUSVW.m */; };
 		2968F8AE2070CF23004B5960 /* contactusblur.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2968F8AD2070CF23004B5960 /* contactusblur.jpg */; };
 		29708EBD20C6D1B300533AA1 /* CartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29708EBC20C6D1B300533AA1 /* CartCell.xib */; };
+		2972158A20F7274B0019C3DC /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2972158920F7274B0019C3DC /* FacebookSDK.framework */; };
 		297D5EBC2056455400ED5428 /* StartUpVW.m in Sources */ = {isa = PBXBuildFile; fileRef = 297D5EBB2056455400ED5428 /* StartUpVW.m */; };
 		297D5EBF2056493400ED5428 /* LoginVW.m in Sources */ = {isa = PBXBuildFile; fileRef = 297D5EBE2056493400ED5428 /* LoginVW.m */; };
 		297D5EF620564FF300ED5428 /* ShowPassIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 297D5EF520564FF300ED5428 /* ShowPassIcon.png */; };
@@ -186,6 +187,7 @@
 		2968F8AB2070CDF2004B5960 /* ContactUSVW.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactUSVW.m; sourceTree = "<group>"; };
 		2968F8AD2070CF23004B5960 /* contactusblur.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = contactusblur.jpg; sourceTree = "<group>"; };
 		29708EBC20C6D1B300533AA1 /* CartCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CartCell.xib; sourceTree = "<group>"; };
+		2972158920F7274B0019C3DC /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		297D5EBA2056455400ED5428 /* StartUpVW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartUpVW.h; sourceTree = "<group>"; };
 		297D5EBB2056455400ED5428 /* StartUpVW.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartUpVW.m; sourceTree = "<group>"; };
 		297D5EBD2056493400ED5428 /* LoginVW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginVW.h; sourceTree = "<group>"; };
@@ -306,6 +308,7 @@
 				298CD2B742089A26D28B12F9 /* libPods-SaltPepper.a in Frameworks */,
 				295E6A8A20C3BE1B00DEDCAF /* Stripe.framework in Frameworks */,
 				295E6A8620C3BB0300DEDCAF /* Stripe.framework in Frameworks */,
+				2972158A20F7274B0019C3DC /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -466,6 +469,7 @@
 		B18E77EC2055143D00C50320 = {
 			isa = PBXGroup;
 			children = (
+				2972158920F7274B0019C3DC /* FacebookSDK.framework */,
 				B18E77F72055143E00C50320 /* SaltPepper */,
 				B18E77F62055143E00C50320 /* Products */,
 				4A5E96385DC84022D081D36C /* Pods */,

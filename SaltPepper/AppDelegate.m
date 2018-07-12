@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "DEMORootViewController.h"
 #import "Constant.h"
+#import <FacebookSDK/FacebookSDK.h>
 
 @import Stripe;
 
@@ -50,7 +51,8 @@
         [self performSelector:@selector(GetPublishableKey) withObject:nil afterDelay:6.5f];
     });
     [[STPPaymentConfiguration sharedConfiguration] setSmsAutofillDisabled:NO];
-    
+    [FBLoginView class];
+    [FBProfilePictureView class];
     return YES;
 }
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options
@@ -63,6 +65,44 @@
     }
     
     return NO;
+}
+-(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
+    
+    return [FBAppCall handleOpenURL:url
+                  sourceApplication:sourceApplication];
+    
+}
+
+- (void)applicationDidBecomeActive:(UIApplication *)application
+{
+    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    
+    if ([FBSession activeSession].state == FBSessionStateCreatedTokenLoaded) {
+        [self openActiveSessionWithPermissions:nil allowLoginUI:NO];
+    }
+    
+    [FBAppCall handleDidBecomeActive];
+}
+#pragma mark - Public method implementation
+
+-(void)openActiveSessionWithPermissions:(NSArray *)permissions allowLoginUI:(BOOL)allowLoginUI{
+    [FBSession openActiveSessionWithReadPermissions:permissions
+                                       allowLoginUI:allowLoginUI
+                                  completionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
+                                      // Create a NSDictionary object and set the parameter values.
+                                      NSDictionary *sessionStateInfo = [[NSDictionary alloc] initWithObjectsAndKeys:
+                                                                        session, @"session",
+                                                                        [NSNumber numberWithInteger:status], @"state",
+                                                                        error, @"error",
+                                                                        nil];
+                                      
+                                      // Create a new notification, add the sessionStateInfo dictionary to it and post it.
+                                      NSLog(@"sessionStateInfo=%@",sessionStateInfo);
+                                      [[NSNotificationCenter defaultCenter] postNotificationName:@"SessionStateChangeNotification"
+                                                                                          object:nil
+                                                                                        userInfo:sessionStateInfo];
+                                      
+                                  }];
 }
 + (BOOL)connectedToNetwork{
     Reachability* reachability = [Reachability reachabilityWithHostName:@"www.google.com"];
@@ -232,9 +272,6 @@
 }
 
 
-- (void)applicationDidBecomeActive:(UIApplication *)application {
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-}
 
 
 - (void)applicationWillTerminate:(UIApplication *)application {

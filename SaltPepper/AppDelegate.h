@@ -27,6 +27,7 @@
 @property (strong,nonatomic) AFHTTPSessionManager *manager;
 +(BOOL)connectedToNetwork;
 + (AppDelegate *)sharedInstance;
+-(void)openActiveSessionWithPermissions:(NSArray *)permissions allowLoginUI:(BOOL)allowLoginUI;
 +(void)WriteData:(NSString *)DictName RootObject:(id)rootObject;
 +(NSMutableArray*)GetData:(NSString *)DictName;
 

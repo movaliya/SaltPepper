@@ -11,8 +11,10 @@
 #import "ForgotPasswordVC.h"
 #import "RegisterVW.h"
 #import "DEMORootViewController.h"
+#import <FacebookSDK/FacebookSDK.h>
 @interface LoginVW ()
 -(void)handleFBSessionStateChangeWithNotification:(NSNotification *)notification;
+@property AppDelegate *appDelegate;
 
 @end
 
@@ -22,6 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+      self.appDelegate = [AppDelegate sharedInstance];
     LoginBtn.layer.cornerRadius = 22;
     LoginBtn.clipsToBounds = YES;
     
@@ -37,7 +40,10 @@
     signin.delegate = self;
     signin.uiDelegate = self;
     
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(handleFBSessionStateChangeWithNotification:)
+                                                 name:@"SessionStateChangeNotification"
+                                               object:nil];
     
     
     // Do any additional setup after loading the view.
@@ -224,9 +230,72 @@
 
 - (IBAction)btnLoginFB:(id)sender
 {
-    
+    BOOL internet=[AppDelegate connectedToNetwork];
+    if (internet)
+    {
+        
+        if ([FBSession activeSession].state != FBSessionStateOpen &&
+            [FBSession activeSession].state != FBSessionStateOpenTokenExtended)
+        {
+            [self.appDelegate openActiveSessionWithPermissions:@[@"public_profile", @"email"] allowLoginUI:YES];
+        }
+        else{
+            // Close an existing session.
+            [[FBSession activeSession] closeAndClearTokenInformation];
+            // Update the UI.
+        }
+    }
+    else
+        [AppDelegate showErrorMessageWithTitle:@"" message:@"Please check your internet connection or try again later." delegate:nil];
 }
+#pragma mark - Private method implementation
 
+-(void)handleFBSessionStateChangeWithNotification:(NSNotification *)notification
+{
+    NSLog(@"result");
+    // Get the session, state and error values from the notification's userInfo dictionary.
+    NSDictionary *userInfo = [notification userInfo];
+    
+    FBSessionState sessionState = [[userInfo objectForKey:@"state"] integerValue];
+    NSError *error = [userInfo objectForKey:@"error"];
+    
+    // Handle the session state.
+    // Usually, the only interesting states are the opened session, the closed session and the failed login.
+    if (!error) {
+        // In case that there's not any error, then check if the session opened or closed.
+        if (sessionState == FBSessionStateOpen)
+        {
+            [FBRequestConnection startWithGraphPath:@"me"
+                                         parameters:@{@"fields": @"first_name, last_name, picture.type(normal), email"}
+                                         HTTPMethod:@"GET"
+                                  completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+                                      if (!error) {
+                                          NSLog(@"result=%@",result);
+                                          
+                                          FBSignIndictParams = [[NSMutableDictionary alloc] init];
+                                          [FBSignIndictParams setObject:[result objectForKey:@"id"]  forKey:@"facebook_id"];
+                                          
+                                          //[self CallFBLogin];
+                                          
+                                          // Get the user's profile picture.
+                                          NSURL *pictureURL = [NSURL URLWithString:[[[result objectForKey:@"picture"] objectForKey:@"data"] objectForKey:@"url"]];
+                                      }
+                                      else
+                                      {
+                                          NSLog(@"%@", [error localizedDescription]);
+                                      }
+                                  }];
+            
+        }
+        else if (sessionState == FBSessionStateClosed || sessionState == FBSessionStateClosedLoginFailed){
+            // A session was closed or the login was failed. Update the UI accordingly.
+        }
+    }
+    else{
+        // In case an error has occurred, then just log the error and update the UI accordingly.
+        NSLog(@"Error: %@", [error localizedDescription]);
+    }
+}
 - (IBAction)btnLoginGoogle:(id)sender
 {
     GIDSignIn *signin = [GIDSignIn sharedInstance];

@@ -11,7 +11,7 @@
 
 @interface LoginVW : UIViewController<GIDSignInUIDelegate,GIDSignInDelegate>
 {
-    
+    NSMutableDictionary *FBSignIndictParams;
 }
 
 

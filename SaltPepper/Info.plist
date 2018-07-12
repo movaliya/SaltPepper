@@ -4,8 +4,6 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Allow location to show current location</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -30,9 +28,30 @@
 				<string>com.googleusercontent.apps.628114390774-ps3bah0jagd4pnm3aflmfije8rlr3r56</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>Facebook</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb249482478932146</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
+	<key>FacebookAppID</key>
+	<string>249482478932146</string>
+	<key>FacebookDisplayName</key>
+	<string>India Cottage</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fbapi</string>
+		<string>fb-messenger-share-api</string>
+		<string>fbauth2</string>
+		<string>fbshareextension</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -40,12 +59,14 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
-	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Please allow camera</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Allow location to show current location</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Access Library</string>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>
