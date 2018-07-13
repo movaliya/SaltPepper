@@ -80,6 +80,8 @@
 		514DE89E20C59DE2002BE333 /* OrderHistoryDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 514DE89D20C59DE2002BE333 /* OrderHistoryDetailVC.m */; };
 		514DE8A120C59E03002BE333 /* OrderHistoryDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 514DE8A020C59E02002BE333 /* OrderHistoryDetailCell.m */; };
 		519427BD20C2FC46000AE928 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 519427BC20C2FC46000AE928 /* Main.storyboard */; };
+		51A41CA920F90A770015A7DF /* InfoVW.m in Sources */ = {isa = PBXBuildFile; fileRef = 51A41CA820F90A770015A7DF /* InfoVW.m */; };
+		51A41CAC20F90E620015A7DF /* InfoFullView.m in Sources */ = {isa = PBXBuildFile; fileRef = 51A41CAB20F90E620015A7DF /* InfoFullView.m */; };
 		51F66ECB20C2BDF7004DB1DD /* PaymentMethodVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 51F66ECA20C2BDF7004DB1DD /* PaymentMethodVC.m */; };
 		51F66ECE20C2C5EF004DB1DD /* OrderCompleteVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 51F66ECD20C2C5EF004DB1DD /* OrderCompleteVC.m */; };
 		51F8ABE620BC63C6007BFB3F /* ProductDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 51F8ABE520BC63C6007BFB3F /* ProductDetailVC.m */; };
@@ -250,6 +252,10 @@
 		514DE89F20C59E02002BE333 /* OrderHistoryDetailCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderHistoryDetailCell.h; sourceTree = "<group>"; };
 		514DE8A020C59E02002BE333 /* OrderHistoryDetailCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderHistoryDetailCell.m; sourceTree = "<group>"; };
 		519427BC20C2FC46000AE928 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		51A41CA720F90A770015A7DF /* InfoVW.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InfoVW.h; sourceTree = "<group>"; };
+		51A41CA820F90A770015A7DF /* InfoVW.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InfoVW.m; sourceTree = "<group>"; };
+		51A41CAA20F90E620015A7DF /* InfoFullView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InfoFullView.h; sourceTree = "<group>"; };
+		51A41CAB20F90E620015A7DF /* InfoFullView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InfoFullView.m; sourceTree = "<group>"; };
 		51F66EC920C2BDF7004DB1DD /* PaymentMethodVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PaymentMethodVC.h; sourceTree = "<group>"; };
 		51F66ECA20C2BDF7004DB1DD /* PaymentMethodVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PaymentMethodVC.m; sourceTree = "<group>"; };
 		51F66ECC20C2C5EF004DB1DD /* OrderCompleteVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderCompleteVC.h; sourceTree = "<group>"; };
@@ -551,6 +557,10 @@
 				295CD5B2206A27F6002129FD /* GalleryFullView.m */,
 				295E0732206F771800BC4ADB /* NewsVW.h */,
 				295E0733206F771800BC4ADB /* NewsVW.m */,
+				51A41CA720F90A770015A7DF /* InfoVW.h */,
+				51A41CA820F90A770015A7DF /* InfoVW.m */,
+				51A41CAA20F90E620015A7DF /* InfoFullView.h */,
+				51A41CAB20F90E620015A7DF /* InfoFullView.m */,
 				295E0735206F772100BC4ADB /* NewsFullView.h */,
 				295E0736206F772100BC4ADB /* NewsFullView.m */,
 				295E073F206F943800BC4ADB /* VideoGallaryView.h */,
@@ -788,6 +798,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				295E0741206F943800BC4ADB /* VideoGallaryView.m in Sources */,
+				51A41CAC20F90E620015A7DF /* InfoFullView.m in Sources */,
 				B138A0C920B72F5600835899 /* OptionWithCell.m in Sources */,
 				51F66ECE20C2C5EF004DB1DD /* OrderCompleteVC.m in Sources */,
 				B16C72AE20B97FFA0041C6B9 /* ProfileView.m in Sources */,
@@ -821,6 +832,7 @@
 				297D5F0620565F3A00ED5428 /* RESideMenu.m in Sources */,
 				B1B9F1D520BA7E7A008D2FAD /* ASPopUpView.m in Sources */,
 				510AED2120C3F2AE00078105 /* TrackOrderVC.m in Sources */,
+				51A41CA920F90A770015A7DF /* InfoVW.m in Sources */,
 				51001DAE20BF19AC003887DC /* ReservationHistoryVC.m in Sources */,
 				5126749A20B9DBCC002321F7 /* CategoryItemCell.m in Sources */,
 				295E0731206F720F00BC4ADB /* ReservationSubVW.m in Sources */,

@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <GoogleSignIn/GoogleSignIn.h>
 
-@interface RegisterVW : UIViewController
-
+@interface RegisterVW : UIViewController<GIDSignInUIDelegate,GIDSignInDelegate>
+{
+    NSMutableDictionary *FBSignIndictParams;
+}
 @property (weak, nonatomic) IBOutlet UITextField *Name_TXT;
 
 @property (weak, nonatomic) IBOutlet UITextField *Email_TXT;

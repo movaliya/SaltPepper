@@ -235,6 +235,9 @@
                     [self.sideMenuViewController hideMenuViewController];
                     break;
                 case 9:
+                    [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"InfoVW"]]
+                                                                 animated:YES];
+                    [self.sideMenuViewController hideMenuViewController];
                     //Information
                     break;
                 case 10:
@@ -337,6 +340,9 @@
                     [self.sideMenuViewController hideMenuViewController];
                     break;
                 case 8:
+                    [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"InfoVW"]]
+                                                                 animated:YES];
+                    [self.sideMenuViewController hideMenuViewController];
                     //Information
                     break;
                 case 9:
@@ -473,6 +479,9 @@
                     [self.sideMenuViewController hideMenuViewController];
                     break;
                 case 6:
+                    [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"InfoVW"]]
+                                                                 animated:YES];
+                    [self.sideMenuViewController hideMenuViewController];
                     //Information VW
                     break;
                 case 7:
@@ -563,6 +572,9 @@
                     [self.sideMenuViewController hideMenuViewController];
                     break;
                 case 4:
+                    [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"InfoVW"]]
+                                                                 animated:YES];
+                    [self.sideMenuViewController hideMenuViewController];
                     //Information VW
                     break;
                 case 5:
