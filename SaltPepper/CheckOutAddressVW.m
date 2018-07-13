@@ -18,12 +18,8 @@
     self.navigationController.navigationBar.hidden=YES;
 
     [super viewDidLoad];
-    Userdata=[AppDelegate GetData:@"LoginUserDic"];
-    NSString *customer_name = [[[[[[[Userdata valueForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"myProfile"] objectForKey:@"customer_name"];
-    NSString *customer_email = [[[[[[[Userdata valueForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"myProfile"] objectForKey:@"email"];
-    self.UserName_LBL.text=customer_name;
-    self.UserEmail_LBL.text=customer_email;
-   
+    //Userdata=[AppDelegate GetData:@"LoginUserDic"];
+    
      CommentTXT.textColor=[UIColor grayColor];
 
     NSString *fulladd=[NSString stringWithFormat:@"%@ %@ %@ %@ %@ %@ %@",POPView.HouseNoNameTXT.text,POPView.StreetTXT.text,POPView.TownTXT.text,POPView.StateTXT.text,POPView.PostCodeTXT.text ,POPView.ContactNumberTXT.text,POPView.CountryTXT.text];
@@ -340,6 +336,7 @@
             PaymentMethodVC *vcr = [[UIStoryboard storyboardWithName:[SharedClass sharedSingleton].storyBaordName  bundle:nil] instantiateViewControllerWithIdentifier:@"PaymentMethodVC"];
             vcr.FinalTotal=self.GrandTotal_LBL.text;
             vcr.OrderType=UserOrderType;
+            vcr.UserProfileData=[ProfileData mutableCopy];
             
             if ([self.CommentTXT.text isEqualToString:@"Enter Text"]) {
                 vcr.CommentTxt = @"";
@@ -377,9 +374,9 @@
 -(void)checkDeliveryAddress
 {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    Userdata=[AppDelegate GetData:@"LoginUserDic"];
-    NSString *CutomerID = [[[[[[Userdata valueForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"customerid"];
-    
+   // Userdata=[AppDelegate GetData:@"LoginUserDic"];
+  //  NSString *CutomerID = [[[[[[Userdata valueForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"customerid"];
+    NSString *CutomerID=_ro(@"LoginUserDic");
     NSMutableDictionary *dict1 = [[NSMutableDictionary alloc] init];
     [dict1 setValue:KAPIKEY forKey:@"APIKEY"];
     NSMutableDictionary *dictInner = [[NSMutableDictionary alloc] init];
@@ -435,6 +432,7 @@
             vcr.OrderType=UserOrderType;
             vcr.CommentTxt=self.CommentTXT.text;
             vcr.OrderDiscount=self.Discount_LBL.text;
+            vcr.UserProfileData=[ProfileData mutableCopy];
             [self.navigationController pushViewController:vcr animated:YES];
         }
         else
@@ -464,8 +462,10 @@
 -(void)GetProfileDetail
 {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-   Userdata=[AppDelegate GetData:@"LoginUserDic"];
-    NSString *CutomerID = [[[[[[Userdata valueForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"customerid"];
+   //Userdata=[AppDelegate GetData:@"LoginUserDic"];
+   // NSString *CutomerID = [[[[[[Userdata valueForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"customerid"];
+    NSString *CutomerID=_ro(@"LoginUserDic");
+
     
     NSMutableDictionary *dict1 = [[NSMutableDictionary alloc] init];
     [dict1 setValue:KAPIKEY forKey:@"APIKEY"];
@@ -503,7 +503,10 @@
         NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"myProfile"] objectForKey:@"SUCCESS"];
         if ([SUCCESS boolValue] ==YES)
         {
-            ProfileData=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"myProfile"] objectForKey:@"result"]objectForKey:@"myProfile"];
+            ProfileData=[[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"myProfile"] objectForKey:@"result"]objectForKey:@"myProfile"]mutableCopy];
+           
+            self.UserName_LBL.text=[ProfileData valueForKey:@"customerName"];
+            self.UserEmail_LBL.text=[ProfileData valueForKey:@"email"];
             
             if ([ProfileData valueForKey:@"mobile"] != (id)[NSNull null])
             {
@@ -554,9 +557,10 @@
 -(void)UpdateAddress
 {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    Userdata=[AppDelegate GetData:@"LoginUserDic"];
-    NSString *CutomerID = [[[[[[Userdata valueForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"customerid"];
-    
+  //  Userdata=[AppDelegate GetData:@"LoginUserDic"];
+   // NSString *CutomerID = [[[[[[Userdata valueForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"customerid"];
+    NSString *CutomerID=_ro(@"LoginUserDic");
+
     NSMutableDictionary *dict1 = [[NSMutableDictionary alloc] init];
     [dict1 setValue:KAPIKEY forKey:@"APIKEY"];
     NSMutableDictionary *dictInner = [[NSMutableDictionary alloc] init];

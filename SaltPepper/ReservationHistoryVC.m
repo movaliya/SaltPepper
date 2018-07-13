@@ -24,7 +24,7 @@
     arrResHistory = [[NSMutableArray alloc]init];
     filteredResHistory = [[NSMutableArray alloc]init];
     _searchBar.hidden = YES;
-    UserSaveData = [AppDelegate GetData:@"LoginUserDic"];
+    //UserSaveData = [AppDelegate GetData:@"LoginUserDic"];
     [self CallReservationHistory];
     
     for (UIView *subview in [[self.searchBar.subviews lastObject] subviews]) {
@@ -81,8 +81,8 @@
     if (_ro(@"LoginUserDic") != nil)
     {
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        NSString *CoustmerID=[[[[[[UserSaveData objectForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"customerid"];
-        
+        //NSString *CoustmerID=[[[[[[UserSaveData objectForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"customerid"];
+        NSString *CoustmerID=_ro(@"LoginUserDic");
         
         NSMutableDictionary *dict1 = [[NSMutableDictionary alloc] init];
         
@@ -132,7 +132,7 @@
             }
             else
             {
-                NSString *DESCRIPTION=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"postitem"] objectForKey:@"reservation"] objectForKey:@"ERROR"] objectForKey:@"DESCRIPTION"];
+                NSString *DESCRIPTION=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"reservationHistory"] objectForKey:@"ERROR"] objectForKey:@"DESCRIPTION"];
                 [AppDelegate showErrorMessageWithTitle:@"" message:DESCRIPTION delegate:nil];
             }
             

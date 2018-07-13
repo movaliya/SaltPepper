@@ -97,9 +97,9 @@
     [dict1 setValue:KAPIKEY forKey:@"APIKEY"];
     
     NSMutableDictionary *dictInner = [[NSMutableDictionary alloc] init];
-    
     [dictInner setObject:EmailStr forKey:@"EMAIL"];
-    [dictInner setObject:PasswordStr forKey:@"PASSWORD"];
+   [dictInner setObject:PasswordStr forKey:@"PASSWORD"];
+    
     [dictInner setObject:@"firebase" forKey:@"REGID"];
     
     NSMutableDictionary *dictSub = [[NSMutableDictionary alloc] init];
@@ -134,7 +134,10 @@
         NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"SUCCESS"];
         if ([SUCCESS boolValue] ==YES)
         {
-            [AppDelegate WriteData:@"LoginUserDic" RootObject:responseObject];
+            NSString *cutomerID=[[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]objectForKey:@"customerid" ];
+            _wo(@"LoginUserDic", cutomerID);
+            
+            //[AppDelegate WriteData:@"LoginUserDic" RootObject:responseObject];
             _wb(@"isSkip", YES);
             Email_TXT.text=@"";
             Password_TXT.text=@"";
@@ -340,7 +343,10 @@
          NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"socialLogin"] objectForKey:@"SUCCESS"];
          if ([SUCCESS boolValue] ==YES)
          {
-             [AppDelegate WriteData:@"LoginUserDic" RootObject:responseObject];
+             NSString *cutomerID=[[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"socialLogin"] objectForKey:@"RESULT"] objectForKey:@"socialLogin"]objectForKey:@"id" ];
+             
+            // [AppDelegate WriteData:@"LoginUserDic" RootObject:responseObject];
+             _wo(@"LoginUserDic", cutomerID);
              _wb(@"isSkip", YES);
              [AppDelegate showErrorMessageWithTitle:@"" message:@"Login successful" delegate:nil];
              DEMORootViewController *vcr = [[UIStoryboard storyboardWithName:[SharedClass sharedSingleton].storyBaordName  bundle:nil] instantiateViewControllerWithIdentifier:@"rootController"];
@@ -453,7 +459,10 @@
         NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"socialLogin"] objectForKey:@"SUCCESS"];
         if ([SUCCESS boolValue] ==YES)
         {
-            [AppDelegate WriteData:@"LoginUserDic" RootObject:responseObject];
+            NSString *cutomerID=[[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"socialLogin"] objectForKey:@"RESULT"] objectForKey:@"socialLogin"]objectForKey:@"id" ];
+            _wo(@"LoginUserDic", cutomerID);
+            
+           // [AppDelegate WriteData:@"LoginUserDic" RootObject:responseObject];
               _wb(@"isSkip", YES);
             [AppDelegate showErrorMessageWithTitle:@"" message:@"Login successful" delegate:nil];
             DEMORootViewController *vcr = [[UIStoryboard storyboardWithName:[SharedClass sharedSingleton].storyBaordName  bundle:nil] instantiateViewControllerWithIdentifier:@"rootController"];

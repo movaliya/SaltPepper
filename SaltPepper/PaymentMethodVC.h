@@ -31,6 +31,7 @@
 @property (strong, nonatomic) NSString *OrderType;
 @property (strong, nonatomic) NSString *CommentTxt;
 @property (strong, nonatomic) NSString *OrderDiscount;
+@property (strong, nonatomic) NSMutableDictionary *UserProfileData;
 @property (weak, nonatomic) IBOutlet UIImageView *CardImage;
 
 @property (weak, nonatomic) IBOutlet UIView *viewDetail;

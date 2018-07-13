@@ -115,13 +115,14 @@
         NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"postitem"] objectForKey:@"registration"] objectForKey:@"SUCCESS"];
         if ([SUCCESS boolValue] ==YES)
         {
-            //[AppDelegate WriteData:@"LoginUserDic" RootObject:responseObject];
-            //  _wb(@"isSkip", YES);
-            //[AppDelegate showErrorMessageWithTitle:@"" message:@"Registration successful" delegate:nil];
-            //DEMORootViewController *vcr = [[UIStoryboard storyboardWithName:[SharedClass sharedSingleton].storyBaordName  bundle:nil] instantiateViewControllerWithIdentifier:@"rootController"];
-           // [self.navigationController pushViewController:vcr animated:YES];
+            NSString *cutomerID=[[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"postitem"] objectForKey:@"registration"] objectForKey:@"result"] objectForKey:@"registration"]objectForKey:@"customerid" ];
+            _wo(@"LoginUserDic", cutomerID);
             
-            [self CallForloging:EmailStr Password:PasswordStr];
+            DEMORootViewController *vcr = [[UIStoryboard storyboardWithName:[SharedClass sharedSingleton].storyBaordName  bundle:nil] instantiateViewControllerWithIdentifier:@"rootController"];
+            [self.navigationController pushViewController:vcr animated:YES];
+            [AppDelegate showErrorMessageWithTitle:@"" message:@"Registration successful" delegate:nil];
+            
+            //[self CallForloging:EmailStr Password:PasswordStr];
             
         }
         else

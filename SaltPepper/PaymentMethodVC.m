@@ -91,13 +91,14 @@ typedef void (^STPSourceSubmissionHandler)(STPBackendChargeResult status, NSErro
     payType=@"Online Pay";
     PAYMENTTYPE=@"stripe";
     
-  Userdata=[AppDelegate GetData:@"LoginUserDic"];
-    NSString *customer_name = [[[[[[[Userdata valueForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"myProfile"] objectForKey:@"customer_name"];
-    NSString *customer_email = [[[[[[[Userdata valueForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"myProfile"] objectForKey:@"email"];
+    //Userdata=[AppDelegate GetData:@"LoginUserDic"];
+    NSString *customer_name = [self.UserProfileData objectForKey:@"customerName"];
+    NSString *customer_email = [self.UserProfileData objectForKey:@"email"];
     NSString *customer_Mobile;
-    if([[[[[[[Userdata valueForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"myProfile"] objectForKey:@"mobile"] != [NSNull null])
+    
+    if([self.UserProfileData valueForKey:@"mobile"] != [NSNull null])
     {
-         customer_Mobile = [[[[[[[Userdata valueForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"myProfile"] objectForKey:@"mobile"];
+         customer_Mobile = [self.UserProfileData objectForKey:@"mobile"];
     }
     else
     {
@@ -289,7 +290,7 @@ typedef void (^STPSourceSubmissionHandler)(STPBackendChargeResult status, NSErro
 {
     //[MBProgressHUD showHUDAddedTo:self.view animated:YES];
 
-     NSString *customer_email = [[[[[[[Userdata valueForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"myProfile"] objectForKey:@"email"];
+     NSString *customer_email = [self.UserProfileData objectForKey:@"email"];
     NSMutableDictionary *dict1 = [[NSMutableDictionary alloc] init];
     
     [dict1 setValue:KAPIKEY forKey:@"APIKEY"];
@@ -666,8 +667,8 @@ typedef void (^STPSourceSubmissionHandler)(STPBackendChargeResult status, NSErro
     NSMutableArray *ProdArr=[[NSMutableArray alloc]init];
     NSLog(@"===%@",KmyappDelegate.MainCartArr);
     
-     NSString *CutomerID = [[[[[[Userdata valueForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"customerid"];
-    
+    // NSString *CutomerID = [[[[[[Userdata valueForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"customerid"];
+    NSString *CutomerID=_ro(@"LoginUserDic");
     for (int k=0; k<KmyappDelegate.MainCartArr.count; k++)
     {
         NSMutableArray *Array=[[[KmyappDelegate.MainCartArr objectAtIndex:k] valueForKey:@"ingredients"] mutableCopy];

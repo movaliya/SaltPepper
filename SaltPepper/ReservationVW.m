@@ -38,12 +38,13 @@
 -(void)GetUserProfileData
 {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    UserSaveData = [AppDelegate GetData:@"LoginUserDic"];
+   // UserSaveData = [AppDelegate GetData:@"LoginUserDic"];
     //NSMutableDictionary *UserSaveData = [[[NSUserDefaults standardUserDefaults] objectForKey:@"LoginUserDic"] mutableCopy];
-    if (UserSaveData)
+     NSString *CoustmerID=_ro(@"LoginUserDic");
+    if (CoustmerID)
     {
-        NSString *CoustmerID=[[[[[[UserSaveData valueForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"customerid"];
-        
+        //NSString *CoustmerID=[[[[[[UserSaveData valueForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"customerid"];
+       
         NSMutableDictionary *dict1 = [[NSMutableDictionary alloc] init];
         
         [dict1 setValue:KAPIKEY forKey:@"APIKEY"];
@@ -160,8 +161,8 @@
     if (_ro(@"LoginUserDic") != nil)
     {
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        NSString *CoustmerID=[[[[[[UserSaveData valueForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"customerid"];
-        
+       // NSString *CoustmerID=[[[[[[UserSaveData valueForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"customerid"];
+         NSString *CoustmerID=_ro(@"LoginUserDic");
 
         NSMutableDictionary *dict1 = [[NSMutableDictionary alloc] init];
         

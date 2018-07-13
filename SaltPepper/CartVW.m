@@ -429,8 +429,9 @@
         KmyappDelegate.MainCartArr = [AppDelegate GetData:@"CartDIC"];
         NSMutableArray *ProdArr=[[NSMutableArray alloc]init];
         NSLog(@"===%@",KmyappDelegate.MainCartArr);
-        NSMutableArray *Userdata=[AppDelegate GetData:@"LoginUserDic"];
-        NSString *CutomerID = [[[[[[Userdata valueForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"customerid"];
+        //NSMutableArray *Userdata=[AppDelegate GetData:@"LoginUserDic"];
+       // NSString *CutomerID = [[[[[[Userdata valueForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"customerid"];
+        NSString *CutomerID=_ro(@"LoginUserDic");
         
         for (int k=0; k<KmyappDelegate.MainCartArr.count; k++)
         {

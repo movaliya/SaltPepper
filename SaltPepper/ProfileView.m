@@ -8,6 +8,8 @@
 
 #import "ProfileView.h"
 #import "saltPepper.pch"
+#import <FacebookSDK/FacebookSDK.h>
+
 
 @interface ProfileView ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate,ASProgressPopUpViewDataSource>
 {
@@ -23,7 +25,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self UpdateDataInDictnory];
+    
     self.navigationController.navigationBar.hidden=YES;
     
     UserIMG.layer.cornerRadius=60.0f;
@@ -120,9 +122,10 @@
 -(void)GetProfileDetail
 {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    NSMutableArray *Userdata=[AppDelegate GetData:@"LoginUserDic"];
-    NSString *CutomerID = [[[[[[Userdata valueForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"customerid"];
-    
+   // NSMutableArray *Userdata=[AppDelegate GetData:@"LoginUserDic"];
+   // NSString *CutomerID = [[[[[[Userdata valueForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"customerid"];
+    NSString *CutomerID=_ro(@"LoginUserDic");
+
     NSMutableDictionary *dict1 = [[NSMutableDictionary alloc] init];
     [dict1 setValue:KAPIKEY forKey:@"APIKEY"];
     
@@ -349,8 +352,9 @@
 -(void)UpdateUserProfileData
 {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-     NSMutableArray *Userdata=[AppDelegate GetData:@"LoginUserDic"];
-     NSString *CutomerID = [[[[[[Userdata valueForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"customerid"];
+   //  NSMutableArray *Userdata=[AppDelegate GetData:@"LoginUserDic"];
+    // NSString *CutomerID = [[[[[[Userdata valueForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"customerid"];
+     NSString *CutomerID=_ro(@"LoginUserDic");
     if (CutomerID)
     {
         NSMutableDictionary *dict1 = [[NSMutableDictionary alloc] init];
@@ -439,18 +443,7 @@
     }
     
 }
--(void)UpdateDataInDictnory
-{
-    NSMutableDictionary *Userdata=[[AppDelegate GetData:@"LoginUserDic"] mutableCopy];
-    NSString *CutomerID = [[[[[[Userdata valueForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"customerid"];
-    NSMutableDictionary *myProfile=[[[[[[[Userdata valueForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"myProfile"] mutableCopy];
-    
-    
-    [myProfile setValue:@"123" forKey:@"mobile"];
-    [Userdata setValue:myProfile forKey:@"myProfile"];
-    NSLog(@"userdata=%@",Userdata);
-    //[UserData setValue:Address2_TXT.text forKey:@"u_address2"];
-}
+
 - (IBAction)LogOut_Click:(id)sender
 {
     FCAlertView *alert = [KmyappDelegate ShowAlertWithBtnAction:@"Are you sure want to Logout?" andStrTile:nil andbtnTitle:@"NO" andButtonArray:@[]];
@@ -460,7 +453,14 @@
         _Rm(@"LoginUserDic")
         _Rm(@"CartDIC")
         _Rm(@"FavDIC")
+        KmyappDelegate.MainCartArr.removeAllObjects;
         [[GIDSignIn sharedInstance] signOut];
+        FBSession* session = [FBSession activeSession];
+        [session closeAndClearTokenInformation];
+        [session close];
+        [FBSession setActiveSession:nil];
+        
+        
         [self.sideMenuViewController hideMenuViewController];
         DEMORootViewController *vcr = [[UIStoryboard storyboardWithName:[SharedClass sharedSingleton].storyBaordName  bundle:nil] instantiateViewControllerWithIdentifier:@"rootController"];
         [self.navigationController pushViewController:vcr animated:YES];
