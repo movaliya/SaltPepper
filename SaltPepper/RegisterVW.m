@@ -23,7 +23,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+     self.appDelegate = [AppDelegate sharedInstance];
     RegisterBtn.layer.cornerRadius = 22;
     RegisterBtn.clipsToBounds = YES;
     
@@ -388,7 +388,7 @@
              // [AppDelegate WriteData:@"LoginUserDic" RootObject:responseObject];
              _wo(@"LoginUserDic", cutomerID);
              _wb(@"isSkip", YES);
-             [AppDelegate showErrorMessageWithTitle:@"" message:@"Login successful" delegate:nil];
+             [AppDelegate showErrorMessageWithTitle:@"" message:@"Registration successful" delegate:nil];
              DEMORootViewController *vcr = [[UIStoryboard storyboardWithName:[SharedClass sharedSingleton].storyBaordName  bundle:nil] instantiateViewControllerWithIdentifier:@"rootController"];
              [self.navigationController pushViewController:vcr animated:YES];
              
@@ -504,7 +504,7 @@
              
              // [AppDelegate WriteData:@"LoginUserDic" RootObject:responseObject];
              _wb(@"isSkip", YES);
-             [AppDelegate showErrorMessageWithTitle:@"" message:@"Login successful" delegate:nil];
+             [AppDelegate showErrorMessageWithTitle:@"" message:@"Registration successful" delegate:nil];
              DEMORootViewController *vcr = [[UIStoryboard storyboardWithName:[SharedClass sharedSingleton].storyBaordName  bundle:nil] instantiateViewControllerWithIdentifier:@"rootController"];
              [self.navigationController pushViewController:vcr animated:YES];
              

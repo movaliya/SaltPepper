@@ -12,6 +12,7 @@
 #import "RegisterVW.h"
 #import "DEMORootViewController.h"
 #import <FacebookSDK/FacebookSDK.h>
+
 @interface LoginVW ()
 -(void)handleFBSessionStateChangeWithNotification:(NSNotification *)notification;
 @property AppDelegate *appDelegate;
