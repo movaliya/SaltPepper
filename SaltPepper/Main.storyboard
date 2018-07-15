@@ -4908,8 +4908,8 @@
                                             <action selector="Menu_action:" destination="unY-lo-bI1" eventType="touchUpInside" id="ylX-3B-MD1"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Silsila" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bJL-A3-e8y">
-                                        <rect key="frame" x="70" y="30" width="54" height="24"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Favourite" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bJL-A3-e8y">
+                                        <rect key="frame" x="70" y="30" width="85.5" height="24"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -6610,12 +6610,20 @@
                                             <action selector="Back_Click:" destination="WzK-3z-SpW" eventType="touchUpInside" id="E3o-hA-0hd"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3BE-1D-rJ0">
+                                        <rect key="frame" x="50" y="29.5" width="49.5" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.4823529412" green="0.043137254899999998" blue="0.047058823530000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="FFx-4a-ji0" secondAttribute="bottom" constant="7" id="L1F-I5-bSl"/>
                                     <constraint firstAttribute="height" constant="70" id="Xah-Lc-E5i"/>
                                     <constraint firstItem="FFx-4a-ji0" firstAttribute="leading" secondItem="etG-tg-Xcz" secondAttribute="leading" id="b7Q-dX-Y2Z"/>
+                                    <constraint firstItem="3BE-1D-rJ0" firstAttribute="leading" secondItem="FFx-4a-ji0" secondAttribute="trailing" id="bDL-dW-Ntq"/>
+                                    <constraint firstItem="3BE-1D-rJ0" firstAttribute="centerY" secondItem="FFx-4a-ji0" secondAttribute="centerY" id="xtc-Yl-tPE"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -6638,6 +6646,7 @@
                         <outlet property="InfoDes_LBL" destination="fjy-lP-cPj" id="g27-yZ-PPs"/>
                         <outlet property="InfoImg" destination="7hW-6M-F1Z" id="tx9-vU-deq"/>
                         <outlet property="InfoTitle_LBL" destination="krP-Li-by4" id="dlI-9K-x9F"/>
+                        <outlet property="lblHeader" destination="3BE-1D-rJ0" id="trW-M8-P5d"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uew-El-i4b" userLabel="First Responder" sceneMemberID="firstResponder"/>

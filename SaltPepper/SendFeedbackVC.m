@@ -9,7 +9,9 @@
 #import "SendFeedbackVC.h"
 
 @interface SendFeedbackVC ()
-
+{
+    NSMutableDictionary *ProfileData;
+}
 @end
 
 @implementation SendFeedbackVC
@@ -17,6 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    [self GetProfileDetail];
     if([[SharedClass sharedSingleton].storyBaordName isEqualToString:@"Main"])
     {
         _viewEmail.layer.cornerRadius = 25.0;
@@ -54,18 +57,92 @@
     
     
     
-    NSMutableArray *Userdata=[AppDelegate GetData:@"LoginUserDic"];
-    if (Userdata)
-    {
-        NSString *customer_name = [[[[[[[Userdata valueForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"myProfile"] objectForKey:@"customer_name"];
-        NSString *customer_email = [[[[[[[Userdata valueForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"myProfile"] objectForKey:@"email"];
-        NSString *mobile = [[[[[[[Userdata valueForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"myProfile"] objectForKey:@"mobile"];
-        _txtFName.text=customer_name;
-        _txtEmail.text=customer_email;
-         _txtContact.text=mobile;
-    }
+//    NSMutableArray *Userdata=[AppDelegate GetData:@"LoginUserDic"];
+//    if (Userdata)
+//    {
+//        NSString *customer_name = [[[[[[[Userdata valueForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"myProfile"] objectForKey:@"customer_name"];
+//        NSString *customer_email = [[[[[[[Userdata valueForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"myProfile"] objectForKey:@"email"];
+//        NSString *mobile = [[[[[[[Userdata valueForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"myProfile"] objectForKey:@"mobile"];
+//        _txtFName.text=customer_name;
+//        _txtEmail.text=customer_email;
+//         _txtContact.text=mobile;
+//    }
    
     // Do any additional setup after loading the view.
+}
+
+-(void)GetProfileDetail
+{
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    // NSMutableArray *Userdata=[AppDelegate GetData:@"LoginUserDic"];
+    // NSString *CutomerID = [[[[[[Userdata valueForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"customerid"];
+    NSString *CutomerID=_ro(@"LoginUserDic");
+    
+    NSMutableDictionary *dict1 = [[NSMutableDictionary alloc] init];
+    [dict1 setValue:KAPIKEY forKey:@"APIKEY"];
+    
+    
+    NSMutableDictionary *dictInner = [[NSMutableDictionary alloc] init];
+    [dictInner setObject:CutomerID forKey:@"CUSTOMERID"];
+    
+    NSMutableDictionary *dictSub = [[NSMutableDictionary alloc] init];
+    [dictSub setObject:@"getitem" forKey:@"MODULE"];
+    [dictSub setObject:@"myProfile" forKey:@"METHOD"];
+    [dictSub setObject:dictInner forKey:@"PARAMS"];
+    
+    
+    NSMutableArray *arr = [[NSMutableArray alloc] initWithObjects:dictSub, nil];
+    NSMutableDictionary *dictREQUESTPARAM = [[NSMutableDictionary alloc] init];
+    
+    [dictREQUESTPARAM setObject:arr forKey:@"REQUESTPARAM"];
+    [dictREQUESTPARAM setObject:dict1 forKey:@"RESTAURANT"];
+    
+    
+    NSError* error = nil;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictREQUESTPARAM options:NSJSONWritingPrettyPrinted error:&error];
+    // NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                         options:NSJSONReadingMutableContainers
+                                                           error:&error];
+    NSString *makeURL=[NSString stringWithFormat:@"%@%@",kBaseURL,GETPROFILE];
+    
+    [Utility postRequest:json url:makeURL success:^(id responseObject) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        NSLog(@"responseObject==%@",responseObject);
+        NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"myProfile"] objectForKey:@"SUCCESS"];
+        if ([SUCCESS boolValue] ==YES)
+        {
+            ProfileData=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"myProfile"] objectForKey:@"result"]objectForKey:@"myProfile"];
+            
+            
+            NSString *customer_name = [ProfileData valueForKey:@"customerName"];
+            NSString *customer_email = [ProfileData valueForKey:@"email"];
+            if([ProfileData valueForKey:@"mobile"] != [NSNull null])
+            {
+                NSString *mobile = [ProfileData valueForKey:@"mobile"];
+                _txtContact.text=mobile;
+            }
+            _txtFName.text=customer_name;
+            _txtEmail.text=customer_email;
+        
+            NSLog(@"HElo");
+        }
+        else
+        {
+            NSString *DESCRIPTION=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"myProfile"] objectForKey:@"ERROR"] objectForKey:@"DESCRIPTION"];
+            [AppDelegate showErrorMessageWithTitle:@"" message:DESCRIPTION delegate:nil];
+        }
+        
+    } failure:^(NSError *error) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        NSLog(@"Fail");
+        
+    }];
+    
 }
 
 - (void)didReceiveMemoryWarning {

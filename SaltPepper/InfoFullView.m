@@ -19,6 +19,7 @@
 {
     [super viewDidLoad];
     
+    _lblHeader.text = [self.infoSelectArr valueForKey:@"title"];
     InfoTitle_LBL.text=[self.infoSelectArr valueForKey:@"title"];
     InfoDes_LBL.text=[self.infoSelectArr valueForKey:@"content"];
     

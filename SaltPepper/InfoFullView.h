@@ -15,6 +15,7 @@
 @property (strong, nonatomic) IBOutlet UIImageView *InfoImg;
 @property (strong, nonatomic) IBOutlet UILabel *InfoTitle_LBL;
 @property (strong, nonatomic) IBOutlet UILabel *InfoDes_LBL;
+@property (weak, nonatomic) IBOutlet UILabel *lblHeader;
 
 @property (strong, nonatomic) IBOutlet UIView *BackView;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *ViewHight;
