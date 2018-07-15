@@ -1012,6 +1012,7 @@
             
         }];
     }
+    
     if (KmyappDelegate.MainCartArr.count == 0)
     {
         _lblCartCount.hidden = YES;
