@@ -95,6 +95,7 @@
 
 - (IBAction)btnLoginFB:(id)sender
 {
+    
     BOOL internet=[AppDelegate connectedToNetwork];
     if (internet)
     {
@@ -102,7 +103,7 @@
         if ([FBSession activeSession].state != FBSessionStateOpen &&
             [FBSession activeSession].state != FBSessionStateOpenTokenExtended)
         {
-            [self.appDelegate openActiveSessionWithPermissions:@[@"public_profile", @"email"] allowLoginUI:YES];
+            [self openActiveSessionWithPermissions1:@[@"public_profile", @"email"] allowLoginUI:YES];
         }
         else{
             // Close an existing session.
@@ -231,12 +232,12 @@
 }
 
 #pragma mark - Private method implementation
-/*
--(void)handleFBSessionStateChangeWithNotification:(NSNotification *)notification
+
+-(void)handleFBSessionStateChangeWith
 {
     NSLog(@"result");
     // Get the session, state and error values from the notification's userInfo dictionary.
-    NSDictionary *userInfo = [notification userInfo];
+    NSDictionary *userInfo = sessionStateInfo;
     
     FBSessionState sessionState = [[userInfo objectForKey:@"state"] integerValue];
     NSError *error = [userInfo objectForKey:@"error"];
@@ -286,7 +287,26 @@
         // In case an error has occurred, then just log the error and update the UI accordingly.
         NSLog(@"Error: %@", [error localizedDescription]);
     }
-}*/
+}
+
+-(void)openActiveSessionWithPermissions1:(NSArray *)permissions allowLoginUI:(BOOL)allowLoginUI{
+    [FBSession openActiveSessionWithReadPermissions:permissions
+                                       allowLoginUI:allowLoginUI
+                                  completionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
+                                      // Create a NSDictionary object and set the parameter values.
+                                     sessionStateInfo = [[NSDictionary alloc] initWithObjectsAndKeys:
+                                                                        session, @"session",
+                                                                        [NSNumber numberWithInteger:status], @"state",
+                                                                        error, @"error",
+                                                                        nil];
+                                      
+                                      // Create a new notification, add the sessionStateInfo dictionary to it and post it.
+                                      NSLog(@"sessionStateInfo=%@",sessionStateInfo);
+                                      [self handleFBSessionStateChangeWith];
+                                      
+                                  }];
+}
+
 -(void)FBPostData
 {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];

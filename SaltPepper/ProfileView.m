@@ -29,6 +29,8 @@
     UserIMG.layer.masksToBounds=YES;
     
 }
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -110,6 +112,9 @@
     [ADdatePicker setDatePickerMode:UIDatePickerModeDate];
     [ADdatePicker addTarget:self action:@selector(updateADTextField:) forControlEvents:UIControlEventValueChanged];
     [Anniversary_TXT setInputView:ADdatePicker];
+    
+    
+    
     
 }
 -(void)updateDOBTextField:(id)sender
@@ -215,16 +220,19 @@
                 State_TXT.text=[ProfileData valueForKey:@"state"];
                 ProgressValue=ProgressValue+0.1;
             }
-            if ([ProfileData valueForKey:@"country"] != (id)[NSNull null])
-            {
-               
-                Country_TXT.text=[ProfileData valueForKey:@"country"];
-                 profileDetl=[NSString stringWithFormat:@"%@,%@",profileDetl,Country_TXT.text];
-                ProgressValue=ProgressValue+0.1;
-            }
             if ([ProfileData valueForKey:@"dateOfBirth"] != (id)[NSNull null])
             {
                 DOB_TXT.text=[ProfileData valueForKey:@"dateOfBirth"];
+                ProgressValue=ProgressValue+0.1;
+                NSString *DOBYEAR=[DOB_TXT.text substringToIndex:4];
+                if (![DOBYEAR isEqualToString:@"0000"]) {
+                      profileDetl=[NSString stringWithFormat:@"%@,%@",profileDetl,DOBYEAR];
+                }
+            }
+            if ([ProfileData valueForKey:@"country"] != (id)[NSNull null])
+            {
+                Country_TXT.text=[ProfileData valueForKey:@"country"];
+                profileDetl=[NSString stringWithFormat:@"%@,%@",profileDetl,Country_TXT.text];
                 ProgressValue=ProgressValue+0.1;
             }
             if ([ProfileData valueForKey:@"anniverseryDate"] != (id)[NSNull null])
@@ -232,6 +240,14 @@
                 Anniversary_TXT.text=[ProfileData valueForKey:@"anniverseryDate"];
                ProgressValue=ProgressValue+0.1;
             }
+            NSString *tempSTR=[NSString stringWithFormat:@"%@ point %@ order",[ProfileData valueForKey:@"membership_points"],[ProfileData valueForKey:@"nooforder"]];
+            
+            NSMutableAttributedString *string1 = [[NSMutableAttributedString alloc] initWithString:tempSTR];
+            
+            [string1 setColorForText:@"point" withColor:[UIColor grayColor]];
+            [string1 setColorForText:@"order" withColor:[UIColor grayColor]];
+            self.profilePoint_LBL.attributedText = string1;
+            
             self.ProfileDetail_LBL.text=profileDetl;
              [self performSelector:@selector(Updateslider:) withObject:nil afterDelay:1.0f];
         }

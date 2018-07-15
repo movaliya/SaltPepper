@@ -12,6 +12,7 @@
 @interface RegisterVW : UIViewController<GIDSignInUIDelegate,GIDSignInDelegate>
 {
     NSMutableDictionary *FBSignIndictParams;
+    NSDictionary *sessionStateInfo;
 }
 @property (weak, nonatomic) IBOutlet UIButton *ShowHidePassBTN1;
 @property (weak, nonatomic) IBOutlet UITextField *Name_TXT;
