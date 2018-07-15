@@ -112,6 +112,7 @@
 #define APPBUTTON @"appButtons.php"
 #define PROMOCODE @"promocode.php"
 #define RESERVATIONSTATE @"ReservationState.php"
+#define LOOKUP @"LookUp.php"
 
 
 

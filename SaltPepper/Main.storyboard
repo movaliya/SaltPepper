@@ -2591,7 +2591,7 @@
                                                 <color key="textColor" red="0.59607843140000005" green="0.59607843140000005" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="83A45D72-2D07-4A2E-9590-AC6CD3B287BA" translatesAutoresizingMaskIntoConstraints="NO" id="shK-wB-pe8">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FA2DFCF0-B841-41CA-AA21-24170C87216A" translatesAutoresizingMaskIntoConstraints="NO" id="shK-wB-pe8">
                                                 <rect key="frame" x="8" y="51" width="18" height="18"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="18" id="618-x6-CMf"/>
@@ -3516,7 +3516,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q0f-rL-CVQ">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="938"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uB2-6B-yBg">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bannerImage.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="uB2-6B-yBg">
                                                 <rect key="frame" x="100" y="20" width="120" height="120"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="120" id="5Sx-IM-LKb"/>
@@ -3599,7 +3599,7 @@
                                                         </constraints>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                                                     </textField>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Post Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Gfk-KN-NAs">
                                                         <rect key="frame" x="10" y="112" width="300" height="35"/>
@@ -3843,12 +3843,8 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="441-I3-iEz">
-                                                <rect key="frame" x="100" y="20" width="120" height="120"/>
+                                                <rect key="frame" x="100.5" y="20" width="120" height="120"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <state key="normal" image="bannerImage.jpg"/>
-                                                <connections>
-                                                    <action selector="ImageBTN_Click:" destination="ESC-Ss-Nuj" eventType="touchUpInside" id="ewO-Dj-rQG"/>
-                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -4642,7 +4638,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Tb-bH-FoA">
                                                         <rect key="frame" x="0.0" y="0.0" width="358" height="100"/>
                                                         <subviews>
-                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Enter Text" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="qqr-lg-DGQ">
+                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Enter comment" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="qqr-lg-DGQ">
                                                                 <rect key="frame" x="5" y="5" width="348" height="90"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -6670,7 +6666,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="83A45D72-2D07-4A2E-9590-AC6CD3B287BA" width="0.0" height="0.0">
+        <image name="BackBtn" width="17" height="17"/>
+        <image name="BlackHeart" width="32" height="32"/>
+        <image name="CartIconWhite" width="25" height="25"/>
+        <image name="FA2DFCF0-B841-41CA-AA21-24170C87216A" width="0.0" height="0.0">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGODlYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoKwHCBEW
 GxwiIyksMjVVJG51bGzUCQoLDA0ODxBWJGNsYXNzXE5TSW1hZ2VGbGFnc1ZOU1JlcHNXTlNDb2xvcoAL
@@ -6685,9 +6684,6 @@ AMYAyAE+AUMBTgFXAV0BYAFpAW4BdgF5AYABiAGVAZoBnAGeAaMBqwGuAbMBuwG+AdAB0wHYAAAAAAAA
 AgEAAAAAAAAAPAAAAAAAAAAAAAAAAAAAAdo
 </mutableData>
         </image>
-        <image name="BackBtn" width="17" height="17"/>
-        <image name="BlackHeart" width="32" height="32"/>
-        <image name="CartIconWhite" width="25" height="25"/>
         <image name="FB_ic" width="25" height="22"/>
         <image name="LoginLogo" width="126" height="80"/>
         <image name="MenuBtn" width="24" height="24"/>
