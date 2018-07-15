@@ -43,11 +43,12 @@
 		2968F77920BE7DDB0019D4E4 /* CheckOutAddressVW.m in Sources */ = {isa = PBXBuildFile; fileRef = 2968F77820BE7DDB0019D4E4 /* CheckOutAddressVW.m */; };
 		2968F8AC2070CDF2004B5960 /* ContactUSVW.m in Sources */ = {isa = PBXBuildFile; fileRef = 2968F8AB2070CDF2004B5960 /* ContactUSVW.m */; };
 		2968F8AE2070CF23004B5960 /* contactusblur.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2968F8AD2070CF23004B5960 /* contactusblur.jpg */; };
+		296C082C20FB262700BADED5 /* ShowPassIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 296C082B20FB262700BADED5 /* ShowPassIcon.png */; };
+		296C082E20FB263000BADED5 /* HidePassIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 296C082D20FB263000BADED5 /* HidePassIcon.png */; };
 		29708EBD20C6D1B300533AA1 /* CartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29708EBC20C6D1B300533AA1 /* CartCell.xib */; };
 		2972158A20F7274B0019C3DC /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2972158920F7274B0019C3DC /* FacebookSDK.framework */; };
 		297D5EBC2056455400ED5428 /* StartUpVW.m in Sources */ = {isa = PBXBuildFile; fileRef = 297D5EBB2056455400ED5428 /* StartUpVW.m */; };
 		297D5EBF2056493400ED5428 /* LoginVW.m in Sources */ = {isa = PBXBuildFile; fileRef = 297D5EBE2056493400ED5428 /* LoginVW.m */; };
-		297D5EF620564FF300ED5428 /* ShowPassIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 297D5EF520564FF300ED5428 /* ShowPassIcon.png */; };
 		297D5EF92056556000ED5428 /* RegisterVW.m in Sources */ = {isa = PBXBuildFile; fileRef = 297D5EF82056556000ED5428 /* RegisterVW.m */; };
 		297D5F0520565F3A00ED5428 /* RECommonFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 297D5EFC20565F3A00ED5428 /* RECommonFunctions.m */; };
 		297D5F0620565F3A00ED5428 /* RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 297D5EFE20565F3A00ED5428 /* RESideMenu.m */; };
@@ -188,13 +189,14 @@
 		2968F8AA2070CDF2004B5960 /* ContactUSVW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactUSVW.h; sourceTree = "<group>"; };
 		2968F8AB2070CDF2004B5960 /* ContactUSVW.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactUSVW.m; sourceTree = "<group>"; };
 		2968F8AD2070CF23004B5960 /* contactusblur.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = contactusblur.jpg; sourceTree = "<group>"; };
+		296C082B20FB262700BADED5 /* ShowPassIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ShowPassIcon.png; sourceTree = "<group>"; };
+		296C082D20FB263000BADED5 /* HidePassIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HidePassIcon.png; sourceTree = "<group>"; };
 		29708EBC20C6D1B300533AA1 /* CartCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CartCell.xib; sourceTree = "<group>"; };
 		2972158920F7274B0019C3DC /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		297D5EBA2056455400ED5428 /* StartUpVW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartUpVW.h; sourceTree = "<group>"; };
 		297D5EBB2056455400ED5428 /* StartUpVW.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartUpVW.m; sourceTree = "<group>"; };
 		297D5EBD2056493400ED5428 /* LoginVW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginVW.h; sourceTree = "<group>"; };
 		297D5EBE2056493400ED5428 /* LoginVW.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginVW.m; sourceTree = "<group>"; };
-		297D5EF520564FF300ED5428 /* ShowPassIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ShowPassIcon.png; sourceTree = "<group>"; };
 		297D5EF72056556000ED5428 /* RegisterVW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterVW.h; sourceTree = "<group>"; };
 		297D5EF82056556000ED5428 /* RegisterVW.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterVW.m; sourceTree = "<group>"; };
 		297D5EFB20565F3A00ED5428 /* RECommonFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RECommonFunctions.h; sourceTree = "<group>"; };
@@ -364,7 +366,8 @@
 				295E6A9020C3DA6100DEDCAF /* ic_mastercard.png */,
 				2968F8AD2070CF23004B5960 /* contactusblur.jpg */,
 				295E073D206F783B00BC4ADB /* testImage.jpg */,
-				297D5EF520564FF300ED5428 /* ShowPassIcon.png */,
+				296C082B20FB262700BADED5 /* ShowPassIcon.png */,
+				296C082D20FB263000BADED5 /* HidePassIcon.png */,
 				294B5C45205A964D00794D47 /* bannerImage.jpg */,
 				292090D72055731B0088821E /* 001_splash screen.jpg */,
 			);
@@ -701,10 +704,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				296C082C20FB262700BADED5 /* ShowPassIcon.png in Resources */,
 				B18E78082055143E00C50320 /* LaunchScreen.storyboard in Resources */,
 				B141AB7920BDD9A5009C06B4 /* AlertViewAddAddress.xib in Resources */,
 				295E6A9720C3DB9F00DEDCAF /* ic_card_error.png in Resources */,
-				297D5EF620564FF300ED5428 /* ShowPassIcon.png in Resources */,
+				296C082E20FB263000BADED5 /* HidePassIcon.png in Resources */,
 				295E6A8520C3BB0300DEDCAF /* Stripe.bundle in Resources */,
 				2968F8AE2070CF23004B5960 /* contactusblur.jpg in Resources */,
 				295E0745206F951C00BC4ADB /* VideoCell.xib in Resources */,

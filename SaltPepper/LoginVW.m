@@ -135,7 +135,7 @@
         NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"SUCCESS"];
         if ([SUCCESS boolValue] ==YES)
         {
-            NSString *cutomerID=[[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]objectForKey:@"customerid" ];
+            NSString *cutomerID=[[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]objectForKey:@"customerid"];
             _wo(@"LoginUserDic", cutomerID);
             
             //[AppDelegate WriteData:@"LoginUserDic" RootObject:responseObject];
@@ -212,10 +212,14 @@
     if (Password_TXT.secureTextEntry==YES)
     {
         Password_TXT.secureTextEntry=NO;
+        UIImage *HideImage = [UIImage imageNamed:@"HidePassIcon.png"];
+        [self.ShowHidePassBTN setImage:HideImage forState:UIControlStateNormal];
     }
     else
     {
         Password_TXT.secureTextEntry=YES;
+         UIImage *ShowImage = [UIImage imageNamed:@"ShowPassIcon.png"];
+        [self.ShowHidePassBTN setImage:ShowImage forState:UIControlStateNormal];
     }
 }
 - (IBAction)BackBtnClick:(id)sender

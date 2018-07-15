@@ -22,14 +22,20 @@
 @synthesize BasicDetail_BTN,BasicDetailHight,BasicArrowIMG,BasicCancel_BTN,BasicUpdate_BTN,Search_BTN,UserIMG;
 @synthesize MobileNO_TXT,Street_TXT,PostCode_TXT,HouseNO_TXT,Town_TXT,Country_TXT,DOB_TXT,Anniversary_TXT,State_TXT,Logout_BTN;
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    UserIMG.layer.cornerRadius=60.0f;
+    UserIMG.layer.masksToBounds=YES;
+    
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     self.navigationController.navigationBar.hidden=YES;
     
-    UserIMG.layer.cornerRadius=60.0f;
-    UserIMG.layer.masksToBounds=YES;
+   
 
     BasicDetailHight.constant=50.0f;
     [self ShowhideBasicDetailViewData:YES];
@@ -50,21 +56,29 @@
     
     //Set DOB DatePicker
     DOBdatePicker = [[UIDatePicker alloc]init];
-    [DOBdatePicker setDate:[NSDate date]]; //this returns today's date
+    NSDateComponents *comps = [[NSDateComponents alloc] init];
+    NSDate *currentDate = [NSDate date];
+    NSCalendar* calendar = [NSCalendar currentCalendar];
+    NSDateComponents *components = [calendar components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:[NSDate date]];
     
+    NSInteger year = components.year;
+    NSInteger month = components.month;
+    NSInteger day = components.day;
+    NSInteger minimumYear = year - 1900;//Given some year here for example
+    NSInteger minimumMonth = month - 1;
+    NSInteger minimumDay = day - 1;
+    [comps setYear:-minimumYear];
+    [comps setMonth:-minimumMonth];
+    [comps setDay:-minimumDay];
+    NSDate *minDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
     
-    NSString *maxDateString = @"01-Jan-2000";
-    NSString *minDateString = @"01-Jan-1950";
-    
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.dateFormat = @"yyyy-MM-dd";
-    NSDate *theMaximumDate = [dateFormatter dateFromString: maxDateString];
-    NSDate *theMinimumDate = [dateFormatter dateFromString: minDateString];
+    [DOBdatePicker setMinimumDate:minDate];
+    [DOBdatePicker setMaximumDate:[NSDate date]];
     
     // repeat the same logic for theMinimumDate if needed
     
-    [DOBdatePicker setMaximumDate:theMaximumDate]; //the min age restriction
-    [DOBdatePicker setMinimumDate:theMinimumDate]; //the max age restriction (if needed, or else dont use this line)
+   // [DOBdatePicker setMaximumDate:theMaximumDate]; //the min age restriction
+    //[DOBdatePicker setMinimumDate:theMinimumDate]; //the max age restriction (if needed, or else dont use this line)
     
     // set the mode
     [DOBdatePicker setDatePickerMode:UIDatePickerModeDate];
@@ -84,7 +98,7 @@
     
     //NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     // dateFormatter.dateFormat = @"dd-MMM-yyyy";
-    NSDate *theMaximumDateforad = [dateFormatter dateFromString: maxDateStringforad];
+    NSDate *theMaximumDateforad = [formatter dateFromString: maxDateStringforad];
     //NSDate *theMinimumDate = [dateFormatter dateFromString: minDateString];
     
     // repeat the same logic for theMinimumDate if needed
@@ -164,6 +178,7 @@
         {
             ProgressValue=0.0;
             ProfileData=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"myProfile"] objectForKey:@"result"]objectForKey:@"myProfile"];
+            NSString *profileDetl=@"Male";
             
             if ([ProfileData valueForKey:@"customerName"] != (id)[NSNull null])
             {
@@ -202,7 +217,9 @@
             }
             if ([ProfileData valueForKey:@"country"] != (id)[NSNull null])
             {
+               
                 Country_TXT.text=[ProfileData valueForKey:@"country"];
+                 profileDetl=[NSString stringWithFormat:@"%@,%@",profileDetl,Country_TXT.text];
                 ProgressValue=ProgressValue+0.1;
             }
             if ([ProfileData valueForKey:@"dateOfBirth"] != (id)[NSNull null])
@@ -215,6 +232,7 @@
                 Anniversary_TXT.text=[ProfileData valueForKey:@"anniverseryDate"];
                ProgressValue=ProgressValue+0.1;
             }
+            self.ProfileDetail_LBL.text=profileDetl;
              [self performSelector:@selector(Updateslider:) withObject:nil afterDelay:1.0f];
         }
         else
@@ -470,9 +488,73 @@
 
 - (IBAction)Search_Click:(id)sender
 {
-    
+    if ([PostCode_TXT.text isEqualToString:@""])
+    {
+        [AppDelegate showErrorMessageWithTitle:@"Error!" message:@"Please enter post code" delegate:nil];
+    }
+    else
+    {
+        BOOL internet=[AppDelegate connectedToNetwork];
+        if (internet)
+        {
+            [self SearchForPostcode];
+        }
+        else
+            [AppDelegate showErrorMessageWithTitle:@"" message:@"Please check your internet connection or try again later." delegate:nil];
+    }
 }
+-(void)SearchForPostcode
+{
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    NSMutableDictionary *dict1 = [[NSMutableDictionary alloc] init];
+    [dict1 setValue:KAPIKEY forKey:@"APIKEY"];
+    NSMutableDictionary *dictInner = [[NSMutableDictionary alloc] init];
+    [dictInner setObject:PostCode_TXT.text forKey:@"POSTCODE"];
+    
+    NSMutableDictionary *dictSub = [[NSMutableDictionary alloc] init];
+    [dictSub setObject:@"action" forKey:@"MODULE"];
+    [dictSub setObject:@"LookUp" forKey:@"METHOD"];
+    [dictSub setObject:dictInner forKey:@"PARAMS"];
 
+    NSMutableArray *arr = [[NSMutableArray alloc] initWithObjects:dictSub, nil];
+    NSMutableDictionary *dictREQUESTPARAM = [[NSMutableDictionary alloc] init];
+    
+    [dictREQUESTPARAM setObject:arr forKey:@"REQUESTPARAM"];
+    [dictREQUESTPARAM setObject:dict1 forKey:@"RESTAURANT"];
+    
+    NSError* error = nil;
+    
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictREQUESTPARAM options:NSJSONWritingPrettyPrinted error:&error];
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&error];
+    
+    NSString *makeURL=[NSString stringWithFormat:@"%@%@",kBaseURL,LOOKUP];
+    
+    [Utility postRequest:json url:makeURL success:^(id responseObject)
+    {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"putitem"] objectForKey:@"LookUp"] objectForKey:@"SUCCESS"];
+         if ([SUCCESS boolValue] ==YES)
+         {
+             NSMutableDictionary *PostcodeData=[[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"putitem"] objectForKey:@"LookUp"] objectForKey:@"result"] objectForKey:@"LookUp"] mutableCopy];
+             Street_TXT.text=[PostcodeData objectForKey:@"street"];
+             Town_TXT.text=[PostcodeData objectForKey:@"post_town"];
+             
+         }
+        else
+        {
+            NSString *ERROR=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"putitem"] objectForKey:@"LookUp"] objectForKey:@"ERROR"]objectForKey:@"DESCRIPTION"];
+            [AppDelegate showErrorMessageWithTitle:@"" message:ERROR delegate:nil];
+            
+        }
+    } failure:^(NSError *error) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        NSLog(@"Fail");
+        
+    }];
+}
 - (IBAction)ImageBTN_Click:(id)sender
 {
     [self OpenActionSheet];

@@ -433,6 +433,7 @@
                         <outlet property="Email_TXT" destination="3p0-en-gpQ" id="jNE-V6-cFe"/>
                         <outlet property="LoginBtn" destination="yp8-1c-qWl" id="h31-8I-Xe5"/>
                         <outlet property="Password_TXT" destination="cjH-q1-rjp" id="bad-ck-CWn"/>
+                        <outlet property="ShowHidePassBTN" destination="SG1-kK-H8E" id="ajV-61-EvB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qzX-1T-kcx" sceneMemberID="firstResponder"/>
@@ -804,6 +805,8 @@
                         <outlet property="Name_TXT" destination="1ZQ-gT-Ekk" id="Isc-fp-SLB"/>
                         <outlet property="Password_TXT" destination="u7D-sR-hLc" id="lHg-2S-7ry"/>
                         <outlet property="RegisterBtn" destination="Oca-QV-6q6" id="g6X-oc-htQ"/>
+                        <outlet property="ShowHidePassBTN1" destination="Seg-kl-UIK" id="Iu9-59-e5j"/>
+                        <outlet property="ShowHidePassBTN2" destination="tKK-Qe-ww9" id="dAn-2e-EsQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cSL-rI-cmC" sceneMemberID="firstResponder"/>
@@ -1932,7 +1935,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SilSila" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eiy-Ci-S0k">
-                                        <rect key="frame" x="70" y="30" width="55" height="24"/>
+                                        <rect key="frame" x="70" y="30" width="56" height="24"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -2588,7 +2591,7 @@
                                                 <color key="textColor" red="0.59607843140000005" green="0.59607843140000005" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imageView:shK-wB-pe8:image" translatesAutoresizingMaskIntoConstraints="NO" id="shK-wB-pe8">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FA2DFCF0-B841-41CA-AA21-24170C87216A" translatesAutoresizingMaskIntoConstraints="NO" id="shK-wB-pe8">
                                                 <rect key="frame" x="8" y="51" width="18" height="18"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="18" id="618-x6-CMf"/>
@@ -3609,7 +3612,7 @@
                                                         </constraints>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                                                     </textField>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Post Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Gfk-KN-NAs">
                                                         <rect key="frame" x="10" y="112" width="300" height="35"/>
@@ -3671,7 +3674,7 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
-                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Date of Birht" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LDs-3l-fT1">
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Date of Birth" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LDs-3l-fT1">
                                                         <rect key="frame" x="10" y="382" width="300" height="35"/>
                                                         <color key="backgroundColor" red="0.83921568629999999" green="0.84313725490000002" blue="0.84313725490000002" alpha="1" colorSpace="calibratedRGB"/>
                                                         <constraints>
@@ -3680,6 +3683,9 @@
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="ESC-Ss-Nuj" id="OxK-Ye-gHb"/>
+                                                        </connections>
                                                     </textField>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Anniversary Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YY4-gr-Xsw">
                                                         <rect key="frame" x="10" y="427" width="300" height="35"/>
@@ -3690,6 +3696,9 @@
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="ESC-Ss-Nuj" id="xma-7e-QQi"/>
+                                                        </connections>
                                                     </textField>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gbb-jk-Fb2">
                                                         <rect key="frame" x="166" y="484" width="144" height="40"/>
@@ -3847,10 +3856,8 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="441-I3-iEz">
-                                                <rect key="frame" x="100" y="20" width="120" height="120"/>
-                                                <connections>
-                                                    <action selector="ImageBTN_Click:" destination="ESC-Ss-Nuj" eventType="touchUpInside" id="ewO-Dj-rQG"/>
-                                                </connections>
+                                                <rect key="frame" x="100.5" y="20" width="120" height="120"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -3927,6 +3934,7 @@
                         <outlet property="MobileNO_TXT" destination="DHr-wR-mff" id="249-T9-wK8"/>
                         <outlet property="Name_LBL" destination="qk4-Bd-xzq" id="Q9B-VL-LUn"/>
                         <outlet property="PostCode_TXT" destination="Gfk-KN-NAs" id="Mfl-Lc-iSw"/>
+                        <outlet property="ProfileDetail_LBL" destination="z7B-gm-Ajq" id="2sw-lB-VxN"/>
                         <outlet property="Search_BTN" destination="Ptk-Ro-MTN" id="25V-bm-S1C"/>
                         <outlet property="State_TXT" destination="bef-Wm-YAB" id="aVg-Ep-TJT"/>
                         <outlet property="Street_TXT" destination="43t-su-0II" id="S6J-lC-GWo"/>
@@ -4649,7 +4657,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Tb-bH-FoA">
                                                         <rect key="frame" x="0.0" y="0.0" width="358" height="100"/>
                                                         <subviews>
-                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Enter Text" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="qqr-lg-DGQ">
+                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Enter comment" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="qqr-lg-DGQ">
                                                                 <rect key="frame" x="5" y="5" width="348" height="90"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -6680,6 +6688,7 @@
         <image name="BackBtn" width="17" height="17"/>
         <image name="BlackHeart" width="32" height="32"/>
         <image name="CartIconWhite" width="25" height="25"/>
+        <image name="FA2DFCF0-B841-41CA-AA21-24170C87216A" width="16" height="16"/>
         <image name="FB_ic" width="25" height="22"/>
         <image name="LoginLogo" width="126" height="80"/>
         <image name="MenuBtn" width="24" height="24"/>
@@ -6694,21 +6703,6 @@
         <image name="favIcon" width="25" height="25"/>
         <image name="ic_Fav" width="25" height="22"/>
         <image name="ic_contact" width="25" height="25"/>
-        <image name="imageView:shK-wB-pe8:image" width="16" height="16">
-            <mutableData key="keyedArchiveRepresentation">
-YnBsaXN0MDDUAQIDBAUGODlYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoKwHCBEW
-GxwiIyksMjVVJG51bGzUCQoLDA0ODxBWJGNsYXNzXE5TSW1hZ2VGbGFnc1ZOU1JlcHNXTlNDb2xvcoAL
-EgTAAACAAoAJ0hIJExVaTlMub2JqZWN0c6EUgAOACNISCRcVohgZgASABYAIEAXTHQkeHyAhV05TLmJh
-c2VbTlMucmVsYXRpdmWAAIAHgAZfEHNmaWxlOi8vL0FwcGxpY2F0aW9ucy9YY29kZS5hcHAvQ29udGVu
-dHMvUGx1Z0lucy9JREVJbnRlcmZhY2VCdWlsZGVyS2l0LmZyYW1ld29yay9SZXNvdXJjZXMvSUJNaXNz
-aW5nSW1hZ2VHbHlwaC50aWZm0iQlJidaJGNsYXNzbmFtZVgkY2xhc3Nlc1VOU1VSTKImKFhOU09iamVj
-dNIkJSorV05TQXJyYXmiKijTLS4JLzAxV05TV2hpdGVcTlNDb2xvclNwYWNlRDAgMAAQA4AK0iQlMzRX
-TlNDb2xvcqIzKNIkJTY3V05TSW1hZ2WiNihfEA9OU0tleWVkQXJjaGl2ZXLROjtUcm9vdIABAAgAEQAa
-ACMALQAyADcARABKAFMAWgBnAG4AdgB4AH0AfwCBAIYAkQCTAJUAlwCcAJ8AoQCjAKUApwCuALYAwgDE
-AMYAyAE+AUMBTgFXAV0BYAFpAW4BdgF5AYABiAGVAZoBnAGeAaMBqwGuAbMBuwG+AdAB0wHYAAAAAAAA
-AgEAAAAAAAAAPAAAAAAAAAAAAAAAAAAAAdo
-</mutableData>
-        </image>
         <image name="linkinedin_ic" width="25" height="25"/>
         <image name="location_icon" width="25" height="25"/>
         <image name="loginfb" width="500" height="92"/>

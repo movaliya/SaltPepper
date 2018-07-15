@@ -338,7 +338,7 @@
             vcr.OrderType=UserOrderType;
             vcr.UserProfileData=[ProfileData mutableCopy];
             
-            if ([self.CommentTXT.text isEqualToString:@"Enter Text"]) {
+            if ([self.CommentTXT.text isEqualToString:@"Enter comment"]) {
                 vcr.CommentTxt = @"";
             }
             else
@@ -640,7 +640,7 @@
     //Message_Icon.image=[UIImage imageNamed:@"MessageIconEnable"];
     
     
-    if ([textView.text isEqualToString:@"Enter Text"]) {
+    if ([textView.text isEqualToString:@"Enter comment"]) {
         textView.text = @"";
         textView.textColor = [UIColor blackColor]; //optional
     }
@@ -654,7 +654,7 @@
     CommentTXT.textColor=[UIColor blackColor];
     
     if ([textView.text isEqualToString:@""]) {
-        textView.text = @"Enter Text";
+        textView.text = @"Enter comment";
         textView.textColor = [UIColor grayColor]; //optional
     }
     [textView resignFirstResponder];
