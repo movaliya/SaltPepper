@@ -13,7 +13,7 @@
 #import "saltPepper.pch"
 
 @interface RegisterVW ()
--(void)handleFBSessionStateChangeWithNotification:(NSNotification *)notification;
+//-(void)handleFBSessionStateChangeWithNotification:(NSNotification *)notification;
 @property AppDelegate *appDelegate;
 @end
 
@@ -39,10 +39,10 @@
     signin.delegate = self;
     signin.uiDelegate = self;
     
-    [[NSNotificationCenter defaultCenter] addObserver:self
+    /*[[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(handleFBSessionStateChangeWithNotification:)
                                                  name:@"SessionStateChangeNotification"
-                                               object:nil];
+                                               object:nil];*/
     
     
 }
@@ -95,6 +95,7 @@
 
 - (IBAction)btnLoginFB:(id)sender
 {
+    
     BOOL internet=[AppDelegate connectedToNetwork];
     if (internet)
     {
@@ -102,7 +103,7 @@
         if ([FBSession activeSession].state != FBSessionStateOpen &&
             [FBSession activeSession].state != FBSessionStateOpenTokenExtended)
         {
-            [self.appDelegate openActiveSessionWithPermissions:@[@"public_profile", @"email"] allowLoginUI:YES];
+            [self openActiveSessionWithPermissions1:@[@"public_profile", @"email"] allowLoginUI:YES];
         }
         else{
             // Close an existing session.
@@ -184,76 +185,7 @@
     }];
     
 }
-// Login After Regiter Complete
--(void)CallForloging :(NSString *)EmailStr Password:(NSString *)PasswordStr
-{
-    
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    NSMutableDictionary *dict1 = [[NSMutableDictionary alloc] init];
-    
-    [dict1 setValue:KAPIKEY forKey:@"APIKEY"];
-    
-    NSMutableDictionary *dictInner = [[NSMutableDictionary alloc] init];
-    
-    [dictInner setObject:EmailStr forKey:@"EMAIL"];
-    [dictInner setObject:PasswordStr forKey:@"PASSWORD"];
-    [dictInner setObject:@"firebase" forKey:@"REGID"];
-    
-    NSMutableDictionary *dictSub = [[NSMutableDictionary alloc] init];
-    
-    [dictSub setObject:@"action" forKey:@"MODULE"];
-    
-    [dictSub setObject:@"authenticate" forKey:@"METHOD"];
-    
-    [dictSub setObject:dictInner forKey:@"PARAMS"];
-    
-    NSMutableArray *arr = [[NSMutableArray alloc] initWithObjects:dictSub, nil];
-    NSMutableDictionary *dictREQUESTPARAM = [[NSMutableDictionary alloc] init];
-    
-    [dictREQUESTPARAM setObject:arr forKey:@"REQUESTPARAM"];
-    [dictREQUESTPARAM setObject:dict1 forKey:@"RESTAURANT"];
-    
-    NSError* error = nil;
-    
-    NSString *makeURL=[NSString stringWithFormat:@"%@%@",kBaseURL,LOGINKEY];
-    
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictREQUESTPARAM options:NSJSONWritingPrettyPrinted error:&error];
-    // NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData
-                                                         options:NSJSONReadingMutableContainers
-                                                           error:&error];
-    
-    [Utility postRequest:json url:makeURL success:^(id responseObject) {
-        
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-        
-        NSLog(@"responseObject==%@",responseObject);
-        NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"SUCCESS"];
-        if ([SUCCESS boolValue] ==YES)
-        {
-            [AppDelegate WriteData:@"LoginUserDic" RootObject:responseObject];
-            _wb(@"isSkip", YES);
-            Email_TXT.text=@"";
-            Password_TXT.text=@"";
-            DEMORootViewController *vcr = [[UIStoryboard storyboardWithName:[SharedClass sharedSingleton].storyBaordName  bundle:nil] instantiateViewControllerWithIdentifier:@"rootController"];
-            [self.navigationController pushViewController:vcr animated:YES];
-             [AppDelegate showErrorMessageWithTitle:@"" message:@"Registration successful" delegate:nil];
-            //[AppDelegate showErrorMessageWithTitle:@"" message:@"Login successful" delegate:nil];
-        }
-        else
-        {
-            [AppDelegate showErrorMessageWithTitle:@"" message:@"Email and/or Password did not matched." delegate:nil];
-        }
-        
-    } failure:^(NSError *error) {
-        
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-        
-        NSLog(@"Fail");
-    }];
-    
-   
-}
+
 - (IBAction)ShowPasswordBtn_Click:(id)sender
 {
     if (Password_TXT.secureTextEntry==YES)
@@ -301,11 +233,11 @@
 
 #pragma mark - Private method implementation
 
--(void)handleFBSessionStateChangeWithNotification:(NSNotification *)notification
+-(void)handleFBSessionStateChangeWith
 {
     NSLog(@"result");
     // Get the session, state and error values from the notification's userInfo dictionary.
-    NSDictionary *userInfo = [notification userInfo];
+    NSDictionary *userInfo = sessionStateInfo;
     
     FBSessionState sessionState = [[userInfo objectForKey:@"state"] integerValue];
     NSError *error = [userInfo objectForKey:@"error"];
@@ -356,6 +288,25 @@
         NSLog(@"Error: %@", [error localizedDescription]);
     }
 }
+
+-(void)openActiveSessionWithPermissions1:(NSArray *)permissions allowLoginUI:(BOOL)allowLoginUI{
+    [FBSession openActiveSessionWithReadPermissions:permissions
+                                       allowLoginUI:allowLoginUI
+                                  completionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
+                                      // Create a NSDictionary object and set the parameter values.
+                                     sessionStateInfo = [[NSDictionary alloc] initWithObjectsAndKeys:
+                                                                        session, @"session",
+                                                                        [NSNumber numberWithInteger:status], @"state",
+                                                                        error, @"error",
+                                                                        nil];
+                                      
+                                      // Create a new notification, add the sessionStateInfo dictionary to it and post it.
+                                      NSLog(@"sessionStateInfo=%@",sessionStateInfo);
+                                      [self handleFBSessionStateChangeWith];
+                                      
+                                  }];
+}
+
 -(void)FBPostData
 {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
