@@ -199,15 +199,20 @@
 }
 - (IBAction)btnCall:(id)sender
 {
-    NSString *contact = [ContactInfo valueForKey:@"restaurantTelephone"];
-    NSString *telephone = [NSString stringWithFormat:@"telprompt://%@",contact];
-    NSURL *url = [NSURL URLWithString:telephone];
-    UIApplication *application = [UIApplication sharedApplication];
-    [application openURL:url options:@{} completionHandler:^(BOOL success) {
-        if (success) {
-            NSLog(@"Opened url");
-        }
+    FCAlertView *alert = [KmyappDelegate ShowAlertWithBtnAction:@"Are you want to Call?" andStrTile:nil andbtnTitle:@"NO" andButtonArray:@[]];
+    
+    [alert addButton:@"YES" withActionBlock:^{
+        NSString *contact = [ContactInfo valueForKey:@"restaurantTelephone"];
+        NSString *telephone = [NSString stringWithFormat:@"telprompt://%@",contact];
+        NSURL *url = [NSURL URLWithString:telephone];
+        UIApplication *application = [UIApplication sharedApplication];
+        [application openURL:url options:@{} completionHandler:^(BOOL success) {
+            if (success) {
+                NSLog(@"Opened url");
+            }
+        }];
     }];
+    
     //[[UIApplication  sharedApplication] openURL:url];
 }
 - (IBAction)btnFeedback:(id)sender

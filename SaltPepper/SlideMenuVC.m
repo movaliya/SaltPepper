@@ -132,10 +132,15 @@
         if([responseObject count] == 0)
         {
             _tblItem.hidden = YES;
+            _searchBar.hidden = YES;
+            _viewSearch.hidden = YES;
             _collectionViewItem.hidden = YES;
+            [AppDelegate showErrorMessageWithTitle:@"" message:@"No product in this categories" delegate:nil];
         }
         else
         {
+            _searchBar.hidden = NO;
+            _viewSearch.hidden = NO;
             NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"products"] objectForKey:@"SUCCESS"];
             if ([SUCCESS boolValue] ==YES)
             {
@@ -1007,6 +1012,7 @@
             
         }];
     }
+    
     if (KmyappDelegate.MainCartArr.count == 0)
     {
         _lblCartCount.hidden = YES;
