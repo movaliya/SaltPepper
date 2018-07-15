@@ -254,6 +254,9 @@
     cell.btnOnTheWay.layer.cornerRadius = 4.0;
     cell.btnTrack.tag = indexPath.row;
     [cell.btnTrack addTarget:self action:@selector(btnTrackClicked:) forControlEvents:UIControlEventTouchUpInside];
+    
+    // Track Btn Hidden Tempory
+    cell.btnTrack.hidden=YES;
     if(isFiltered)
     {
         cell.lblOrderNo.text = [[filteredResHistory valueForKey:@"order_id"] objectAtIndex:indexPath.row];

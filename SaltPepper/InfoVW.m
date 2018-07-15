@@ -26,13 +26,15 @@
     [_Info_TBL registerNib:nib forCellReuseIdentifier:CellIdentifier];
     // News_TBL.estimatedRowHeight = 220;
     _Info_TBL.rowHeight = UITableViewAutomaticDimension;
+    
+    /*
     BOOL internet=[AppDelegate connectedToNetwork];
     if (internet)
     {
         [self CallNewsService];
     }
     else
-        [AppDelegate showErrorMessageWithTitle:@"" message:@"Please check your internet connection or try again later." delegate:nil];
+        [AppDelegate showErrorMessageWithTitle:@"" message:@"Please check your internet connection or try again later." delegate:nil];*/
     
     // Do any additional setup after loading the view.
 }

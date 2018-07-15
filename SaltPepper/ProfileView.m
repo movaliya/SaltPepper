@@ -28,6 +28,12 @@
     UserIMG.layer.cornerRadius=60.0f;
     UserIMG.layer.masksToBounds=YES;
     
+    [ self.navbarView.layer setShadowColor:[UIColor grayColor].CGColor];
+    [ self.navbarView.layer setShadowOpacity:0.8];
+    [ self.navbarView.layer setShadowRadius:3.0];
+    [ self.navbarView.layer setShadowOffset:CGSizeMake(2.0, 2.0)];
+    
+    
 }
 
 
