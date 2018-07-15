@@ -14,6 +14,7 @@
     NSMutableDictionary *FBSignIndictParams;
 }
 
+@property (weak, nonatomic) IBOutlet UIButton *ShowHidePassBTN;
 
 @property (weak, nonatomic) IBOutlet UIButton *LoginBtn;
 @property (weak, nonatomic) IBOutlet UITextField *Email_TXT;

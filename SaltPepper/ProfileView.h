@@ -16,6 +16,7 @@
     NSMutableDictionary *ProfileData;
     float ProgressValue;
 }
+@property (weak, nonatomic) IBOutlet UILabel *ProfileDetail_LBL;
 
 - (IBAction)Back_Click:(id)sender;
 @property (strong, nonatomic) IBOutlet UIImageView *UserIMG;

@@ -259,10 +259,14 @@
     if (Password_TXT.secureTextEntry==YES)
     {
         Password_TXT.secureTextEntry=NO;
+        UIImage *HideImage = [UIImage imageNamed:@"HidePassIcon.png"];
+        [self.ShowHidePassBTN1 setImage:HideImage forState:UIControlStateNormal];
     }
     else
     {
         Password_TXT.secureTextEntry=YES;
+        UIImage *ShowImage = [UIImage imageNamed:@"ShowPassIcon.png"];
+        [self.ShowHidePassBTN1 setImage:ShowImage forState:UIControlStateNormal];
     }
 }
 - (IBAction)AlreadyLoginBtn_Click:(id)sender
@@ -275,10 +279,14 @@
     if (ConfirmPasswd_TXT.secureTextEntry==YES)
     {
         ConfirmPasswd_TXT.secureTextEntry=NO;
+        UIImage *HideImage = [UIImage imageNamed:@"HidePassIcon.png"];
+        [self.ShowHidePassBTN2 setImage:HideImage forState:UIControlStateNormal];
     }
     else
     {
         ConfirmPasswd_TXT.secureTextEntry=YES;
+        UIImage *ShowImage = [UIImage imageNamed:@"ShowPassIcon.png"];
+        [self.ShowHidePassBTN2 setImage:ShowImage forState:UIControlStateNormal];
     }
 }
 - (IBAction)BackBtnClick:(id)sender
