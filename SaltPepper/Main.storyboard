@@ -384,7 +384,8 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="ZIm-jQ-vkX"/>
                                 </constraints>
-                                <state key="normal" image="loginfb">
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                <state key="normal" title="Login with Facebook" backgroundImage="loginfb">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -393,10 +394,14 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VPa-r5-1MS">
                                 <rect key="frame" x="15" y="579" width="345" height="45"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="c4H-uR-VMA"/>
                                 </constraints>
-                                <state key="normal" image="logingoogle"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                <state key="normal" title="Sign in" backgroundImage="logingoogle">
+                                    <color key="titleColor" red="0.45098039220000002" green="0.45098039220000002" blue="0.45098039220000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="btnLoginGoogle:" destination="UKi-Qf-StW" eventType="touchUpInside" id="5Yl-aD-Jr0"/>
                                 </connections>
@@ -435,6 +440,7 @@
                     </view>
                     <connections>
                         <outlet property="Email_TXT" destination="3p0-en-gpQ" id="jNE-V6-cFe"/>
+                        <outlet property="GoogleBTN" destination="VPa-r5-1MS" id="bnR-aY-8ZD"/>
                         <outlet property="LoginBtn" destination="yp8-1c-qWl" id="h31-8I-Xe5"/>
                         <outlet property="Password_TXT" destination="cjH-q1-rjp" id="bad-ck-CWn"/>
                         <outlet property="ShowHidePassBTN" destination="SG1-kK-H8E" id="ajV-61-EvB"/>
@@ -698,11 +704,12 @@
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L6q-wS-H6z">
                                                 <rect key="frame" x="10" y="618" width="300" height="45"/>
-                                                <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="45" id="RGf-bn-0jw"/>
                                                 </constraints>
-                                                <state key="normal" image="loginfb">
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                                <state key="normal" title="Signup with Facebook" backgroundImage="loginfb">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
@@ -714,7 +721,10 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="45" id="HP1-pS-PTp"/>
                                                 </constraints>
-                                                <state key="normal" image="logingoogle"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                                <state key="normal" title="Signup" backgroundImage="logingoogle">
+                                                    <color key="titleColor" red="0.45098039220000002" green="0.45098039220000002" blue="0.45098039220000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
                                                 <connections>
                                                     <action selector="btnLoginGoogle:" destination="4jn-6k-3XZ" eventType="touchUpInside" id="Rjr-wh-vkA"/>
                                                 </connections>
@@ -805,6 +815,7 @@
                     <connections>
                         <outlet property="ConfirmPasswd_TXT" destination="WgW-nO-v3Z" id="SmR-SD-X9U"/>
                         <outlet property="Email_TXT" destination="2K1-vX-RW2" id="gtU-wV-lVQ"/>
+                        <outlet property="GoogleBTN" destination="MNo-U7-Njs" id="ZTg-Ph-Id9"/>
                         <outlet property="LastName_TXT" destination="V6i-38-AvD" id="RE7-QX-8Qk"/>
                         <outlet property="Name_TXT" destination="1ZQ-gT-Ekk" id="Isc-fp-SLB"/>
                         <outlet property="Password_TXT" destination="u7D-sR-hLc" id="lHg-2S-7ry"/>
@@ -3518,13 +3529,13 @@
                                 <rect key="frame" x="0.0" y="70" width="320" height="940"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q0f-rL-CVQ">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="958.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="959"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CR9-yp-wgT">
-                                                <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="85"/>
                                                 <color key="backgroundColor" red="0.4823529412" green="0.043137254899999998" blue="0.047058823530000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="80" id="rBC-I2-ZyO"/>
+                                                    <constraint firstAttribute="height" constant="85" id="rBC-I2-ZyO"/>
                                                 </constraints>
                                             </view>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bannerImage.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="uB2-6B-yBg">
@@ -3547,7 +3558,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vhv-Jl-ahI">
-                                                <rect key="frame" x="20" y="190" width="280" height="18.5"/>
+                                                <rect key="frame" x="20" y="190" width="280" height="19"/>
                                                 <attributedString key="attributedText">
                                                     <fragment content="0.00 point 0 order">
                                                         <attributes>
@@ -3559,20 +3570,20 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Profile Status" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2g4-y4-TwX">
-                                                <rect key="frame" x="8" y="216.5" width="92" height="18"/>
+                                                <rect key="frame" x="8" y="217" width="92" height="18"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jMJ-eU-2eU" customClass="ASProgressPopUpView">
-                                                <rect key="frame" x="20" y="259.5" width="280" height="5"/>
+                                                <rect key="frame" x="20" y="260" width="280" height="5"/>
                                                 <color key="backgroundColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="5" id="JPk-pY-fH6"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k1B-Hb-Bo3">
-                                                <rect key="frame" x="0.0" y="281.5" width="320" height="542"/>
+                                                <rect key="frame" x="0.0" y="282" width="320" height="542"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6nB-Kq-DSs">
                                                         <rect key="frame" x="0.0" y="0.0" width="320" height="1"/>
@@ -3797,7 +3808,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RoF-ON-is1">
-                                                <rect key="frame" x="0.0" y="823.5" width="320" height="57"/>
+                                                <rect key="frame" x="0.0" y="824" width="320" height="57"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hRl-pr-X0s">
                                                         <rect key="frame" x="0.0" y="0.0" width="320" height="1"/>
@@ -3854,7 +3865,7 @@
                                                 </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vMR-on-I5I">
-                                                <rect key="frame" x="10" y="900.5" width="300" height="40"/>
+                                                <rect key="frame" x="10" y="901" width="300" height="40"/>
                                                 <color key="backgroundColor" red="0.4823529411764706" green="0.043137254901960784" blue="0.047058823529411764" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="G92-b0-y9C"/>
@@ -3951,6 +3962,7 @@
                         <outlet property="Town_TXT" destination="Ape-uq-bjE" id="mR0-z7-PUr"/>
                         <outlet property="UpdateSlider" destination="jMJ-eU-2eU" id="Eq4-Ui-59P"/>
                         <outlet property="UserIMG" destination="uB2-6B-yBg" id="ow4-3j-KCO"/>
+                        <outlet property="navDownView" destination="CR9-yp-wgT" id="2Pk-H5-3Fy"/>
                         <outlet property="navbarView" destination="ofT-73-Ylk" id="7Ie-LP-Qwq"/>
                         <outlet property="profilePoint_LBL" destination="Vhv-Jl-ahI" id="e5Z-mT-BpZ"/>
                     </connections>

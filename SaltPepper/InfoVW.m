@@ -27,14 +27,14 @@
     // News_TBL.estimatedRowHeight = 220;
     _Info_TBL.rowHeight = UITableViewAutomaticDimension;
     
-    /*
+   
     BOOL internet=[AppDelegate connectedToNetwork];
     if (internet)
     {
-        [self CallNewsService];
+        [self CallInfoService];
     }
     else
-        [AppDelegate showErrorMessageWithTitle:@"" message:@"Please check your internet connection or try again later." delegate:nil];*/
+        [AppDelegate showErrorMessageWithTitle:@"" message:@"Please check your internet connection or try again later." delegate:nil];
     
     // Do any additional setup after loading the view.
 }
@@ -44,17 +44,15 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)CallNewsService
+-(void)CallInfoService
 {
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     NSMutableDictionary *dict1 = [[NSMutableDictionary alloc] init];
-    
     [dict1 setValue:KAPIKEY forKey:@"APIKEY"];
-    
-    
     
     NSMutableDictionary *dictSub = [[NSMutableDictionary alloc] init];
     [dictSub setObject:@"getitem" forKey:@"MODULE"];
-    [dictSub setObject:@"news" forKey:@"METHOD"];
+    [dictSub setObject:@"appButtons" forKey:@"METHOD"];
     
     NSMutableArray *arr = [[NSMutableArray alloc] initWithObjects:dictSub, nil];
     NSMutableDictionary *dictREQUESTPARAM = [[NSMutableDictionary alloc] init];
@@ -63,34 +61,38 @@
     [dictREQUESTPARAM setObject:dict1 forKey:@"RESTAURANT"];
     
     NSError* error = nil;
-    NSString *makeURL=[NSString stringWithFormat:@"%@%@",kBaseURL,NEWS];
     
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictREQUESTPARAM options:NSJSONWritingPrettyPrinted error:&error];
-    // NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData
-                                                         options:NSJSONReadingMutableContainers
-                                                           error:&error];
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer.acceptableContentTypes=[NSSet setWithObjects:@"text/html",@"application/json", nil];
-    AFJSONRequestSerializer *serializer = [AFJSONRequestSerializer serializer];
-    [serializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [serializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-    manager.requestSerializer = serializer;
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&error];
     
-    [manager POST:makeURL parameters:json success:^(NSURLSessionDataTask *operation, NSDictionary *responseObject)
+    NSString *makeURL=[NSString stringWithFormat:@"%@%@",kBaseURL,APPBUTTON];
+    
+    [Utility postRequest:json url:makeURL success:^(id responseObject)
      {
-         NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"news"] objectForKey:@"SUCCESS"];
+         [MBProgressHUD hideHUDForView:self.view animated:YES];
+         NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"appButtons"] objectForKey:@"SUCCESS"];
          if ([SUCCESS boolValue] ==YES)
          {
-             NewsDataArr=[[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"news"] objectForKey:@"RESULT"] objectForKey:@"news"] mutableCopy];
+             NSMutableArray *TempSocialDataArr=[[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"appButtons"] objectForKey:@"result"] objectForKey:@"appButtons"] mutableCopy];
+             
+             for (int ii=0; ii<TempSocialDataArr.count; ii++)
+             {
+                 NSString *CheckButtontype=[[TempSocialDataArr valueForKey:@"button_type"] objectAtIndex:ii];
+                 if ([CheckButtontype isEqualToString:@"Link"]||[CheckButtontype isEqualToString:@"Text"])
+                 {
+                     [InfoDataArr addObject:[TempSocialDataArr objectAtIndex:ii]];
+                 }
+             }
              [_Info_TBL reloadData];
          }
-     }
-          failure:^(NSURLSessionDataTask *operation, NSError *error)
-     {
+     } failure:^(NSError *error) {
+         
+         [MBProgressHUD hideHUDForView:self.view animated:YES];
+         
          NSLog(@"Fail");
+         
      }];
+
 }
 
 - (IBAction)backBtn_action:(id)sender
@@ -117,7 +119,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return NewsDataArr.count;
+    return InfoDataArr.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -140,12 +142,12 @@
     //cell.NewsIMG.image=[UIImage imageNamed:@"testImage.jpg"];
     
     
-    NSString *Urlstr=[[NewsDataArr valueForKey:@"image_path"] objectAtIndex:indexPath.row];
+    NSString *Urlstr=[[InfoDataArr valueForKey:@"image_path"] objectAtIndex:indexPath.row];
     [cell.NewsIMG sd_setImageWithURL:[NSURL URLWithString:Urlstr] placeholderImage:[UIImage imageNamed:@"placeholder_img"]];
     // [cell.NewsIMG setShowActivityIndicatorView:YES];
     
-    cell.NewsTitle_LBL.text=[[NewsDataArr valueForKey:@"title"] objectAtIndex:indexPath.row];
-    cell.Date_LBL.text=[[NewsDataArr valueForKey:@"news_date"] objectAtIndex:indexPath.row];
+    cell.NewsTitle_LBL.text=[[InfoDataArr valueForKey:@"title"] objectAtIndex:indexPath.row];
+    //cell.Date_LBL.text=[[InfoDataArr valueForKey:@"news_date"] objectAtIndex:indexPath.row];
     [cell setNeedsUpdateConstraints];
     [cell updateConstraintsIfNeeded];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -155,7 +157,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     InfoFullView *vcr = [[UIStoryboard storyboardWithName:[SharedClass sharedSingleton].storyBaordName  bundle:nil] instantiateViewControllerWithIdentifier:@"InfoFullView"];
-    vcr.infoSelectArr=[NewsDataArr objectAtIndex:indexPath.row];
+    vcr.infoSelectArr=[InfoDataArr objectAtIndex:indexPath.row];
     [self.navigationController pushViewController:vcr animated:YES];
 }
 

@@ -10,7 +10,7 @@
 
 @interface InfoVW : UIViewController
 {
-    NSMutableArray *NewsDataArr;
+    NSMutableArray *InfoDataArr;
 }
 @property (strong, nonatomic) IBOutlet UITableView *Info_TBL;
 @end

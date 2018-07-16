@@ -23,5 +23,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *LastName_TXT;
 @property (weak, nonatomic) IBOutlet UITextField *ConfirmPasswd_TXT;
 @property (weak, nonatomic) IBOutlet UIButton *RegisterBtn;
+@property (weak, nonatomic) IBOutlet UIButton *GoogleBTN;
 
 @end

@@ -28,12 +28,12 @@
     UserIMG.layer.cornerRadius=60.0f;
     UserIMG.layer.masksToBounds=YES;
     
-    [ self.navbarView.layer setShadowColor:[UIColor grayColor].CGColor];
-    [ self.navbarView.layer setShadowOpacity:0.8];
-    [ self.navbarView.layer setShadowRadius:3.0];
-    [ self.navbarView.layer setShadowOffset:CGSizeMake(2.0, 2.0)];
+    [ self.navDownView.layer setShadowColor:[UIColor grayColor].CGColor];
+    [ self.navDownView.layer setShadowOpacity:0.8];
+    [ self.navDownView.layer setShadowRadius:3.0];
+    [ self.navDownView.layer setShadowOffset:CGSizeMake(2.0, 2.0)];
     
-    
+   
 }
 
 
@@ -410,6 +410,7 @@
         [dictInner setObject:Country_TXT.text forKey:@"COUNTRY"];
         [dictInner setObject:MobileNO_TXT.text forKey:@"MOBILE"];
         
+        NSString *profileDetl=@"Male";
         if (![HouseNO_TXT.text isEqualToString:@""]) {
             [dictInner setObject:HouseNO_TXT.text forKey:@"HOUSENO"];
         }
@@ -420,14 +421,19 @@
         if (![State_TXT.text isEqualToString:@""]) {
             [dictInner setObject:State_TXT.text forKey:@"STATE"];
         }
-        if (![DOB_TXT.text isEqualToString:@""]) {
+        if (![DOB_TXT.text isEqualToString:@""])
+        {
+            NSString *DOBYEAR=[DOB_TXT.text substringToIndex:4];
+            if (![DOBYEAR isEqualToString:@"0000"]) {
+                profileDetl=[NSString stringWithFormat:@"%@,%@",profileDetl,DOBYEAR];
+            }
             [dictInner setObject:DOB_TXT.text forKey:@"DATEOFBIRTH"];
         }
         if (![Anniversary_TXT.text isEqualToString:@""]) {
             [dictInner setObject:Anniversary_TXT.text forKey:@"ANNIVERSARYDATE"];
             NSLog(@"anniveryDate=%@",Anniversary_TXT.text);
         }
-        
+         profileDetl=[NSString stringWithFormat:@"%@,%@",profileDetl,Country_TXT.text];
         NSMutableDictionary *dictSub = [[NSMutableDictionary alloc] init];
         
         [dictSub setObject:@"putitem" forKey:@"MODULE"];
@@ -459,6 +465,7 @@
             NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"putitem"] objectForKey:@"myProfile"] objectForKey:@"SUCCESS"];
             if ([SUCCESS boolValue] ==YES)
             {
+                self.ProfileDetail_LBL.text=profileDetl;
                 NSString *DESCRIPTION=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"putitem"] objectForKey:@"myProfile"] objectForKey:@"result"] objectForKey:@"myProfile"];
                 [AppDelegate showErrorMessageWithTitle:@"" message:DESCRIPTION delegate:nil];
             }

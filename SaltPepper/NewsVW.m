@@ -43,11 +43,10 @@
 }
 -(void)CallNewsService
 {
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+
     NSMutableDictionary *dict1 = [[NSMutableDictionary alloc] init];
-    
     [dict1 setValue:KAPIKEY forKey:@"APIKEY"];
-    
-   
     
     NSMutableDictionary *dictSub = [[NSMutableDictionary alloc] init];
     [dictSub setObject:@"getitem" forKey:@"MODULE"];
@@ -60,33 +59,27 @@
     [dictREQUESTPARAM setObject:dict1 forKey:@"RESTAURANT"];
     
     NSError* error = nil;
-    NSString *makeURL=[NSString stringWithFormat:@"%@%@",kBaseURL,NEWS];
     
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictREQUESTPARAM options:NSJSONWritingPrettyPrinted error:&error];
-    // NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData
-                                                         options:NSJSONReadingMutableContainers
-                                                           error:&error];
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer.acceptableContentTypes=[NSSet setWithObjects:@"text/html",@"application/json", nil];
-    AFJSONRequestSerializer *serializer = [AFJSONRequestSerializer serializer];
-    [serializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [serializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-    manager.requestSerializer = serializer;
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&error];
     
-    [manager POST:makeURL parameters:json success:^(NSURLSessionDataTask *operation, NSDictionary *responseObject)
+    NSString *makeURL=[NSString stringWithFormat:@"%@%@",kBaseURL,NEWS];
+    
+    [Utility postRequest:json url:makeURL success:^(id responseObject)
      {
+         [MBProgressHUD hideHUDForView:self.view animated:YES];
          NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"news"] objectForKey:@"SUCCESS"];
          if ([SUCCESS boolValue] ==YES)
          {
              NewsDataArr=[[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"news"] objectForKey:@"RESULT"] objectForKey:@"news"] mutableCopy];
              [News_TBL reloadData];
          }
-     }
-          failure:^(NSURLSessionDataTask *operation, NSError *error)
-     {
+     } failure:^(NSError *error) {
+         
+         [MBProgressHUD hideHUDForView:self.view animated:YES];
+         
          NSLog(@"Fail");
+         
      }];
 }
 - (void)didReceiveMemoryWarning

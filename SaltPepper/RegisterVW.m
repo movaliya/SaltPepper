@@ -27,6 +27,11 @@
     RegisterBtn.layer.cornerRadius = 22;
     RegisterBtn.clipsToBounds = YES;
     
+    [ self.GoogleBTN.layer setShadowColor:[UIColor grayColor].CGColor];
+    [ self.GoogleBTN.layer setShadowOpacity:0.8];
+    [ self.GoogleBTN.layer setShadowRadius:3.0];
+    [ self.GoogleBTN.layer setShadowOffset:CGSizeMake(2.0, 2.0)];
+
     //Google SignIn
     NSString *userScope = @"https://www.googleapis.com/auth/plus.me";
     NSString *loginScope = @"https://www.googleapis.com/auth/plus.login";
