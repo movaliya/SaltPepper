@@ -174,7 +174,7 @@
              NSString *SUCCESS=[[[[result objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"restaurantTelephone"] objectForKey:@"SUCCESS"];
              if ([SUCCESS boolValue] ==YES)
              {
-                ContactInfo = [[[[result objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"restaurantTelephone"] objectForKey:@"result"];
+                ContactInfo = [[[[[result objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"restaurantTelephone"] objectForKey:@"result"] objectForKey:@"restaurantTelephone"];
                  
              }
          }
@@ -202,7 +202,7 @@
     FCAlertView *alert = [KmyappDelegate ShowAlertWithBtnAction:@"Are you want to Call?" andStrTile:nil andbtnTitle:@"NO" andButtonArray:@[]];
     
     [alert addButton:@"YES" withActionBlock:^{
-        NSString *contact = [ContactInfo valueForKey:@"restaurantTelephone"];
+        NSString *contact = [ContactInfo valueForKey:@"value"];
         NSString *telephone = [NSString stringWithFormat:@"telprompt://%@",contact];
         NSURL *url = [NSURL URLWithString:telephone];
         UIApplication *application = [UIApplication sharedApplication];
