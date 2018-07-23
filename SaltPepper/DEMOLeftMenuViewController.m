@@ -301,54 +301,54 @@
                     [self.sideMenuViewController hideMenuViewController];
                     break;
                
-                case 3:
+                case 2:
                     [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"GalleryVW"]]
                                                                  animated:YES];
                     [self.sideMenuViewController hideMenuViewController];
                     break;
-                case 4:
+                case 3:
                     [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"NewsVW"]]
                                                                  animated:YES];
                     [self.sideMenuViewController hideMenuViewController];
                     break;
-                case 5:
+                case 4:
                     [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"ProfileView"]]//  OptionView // ProfileView
                                                                  animated:YES];
                     [self.sideMenuViewController hideMenuViewController];
                     break;
-                case 6:
+                case 5:
                     [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"OrderHistoryVC"]]//  OptionView // ProfileView
                                                                  animated:YES];
                     [self.sideMenuViewController hideMenuViewController];
                     //Order Histry
                     break;
-                case 7:
+                case 6:
                     //Favourite
                     [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"FavouriteVW"]]//  Favourite //
                                                                  animated:YES];
                     [self.sideMenuViewController hideMenuViewController];
                     break;
-                case 8:
+                case 7:
                     [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"InfoVW"]]
                                                                  animated:YES];
                     [self.sideMenuViewController hideMenuViewController];
                     //Information
                     break;
-                case 9:
+                case 8:
                     [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"VideoGallaryView"]]
                                                                  animated:YES];
                     [self.sideMenuViewController hideMenuViewController];
                     break;
-                case 10:
+                case 9:
                     //Message
                     break;
-                case 11:
+                case 10:
                     //ContactUs
                     [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"ContactUSVW"]]
                                                                  animated:YES];
                     [self.sideMenuViewController hideMenuViewController];
                     break;
-                case 12:
+                case 11:
                     if (_ro(@"LoginUserDic") != nil)
                     {
                         FCAlertView *alert = [KmyappDelegate ShowAlertWithBtnAction:@"Are you sure want to Logout?" andStrTile:nil andbtnTitle:@"NO" andButtonArray:@[]];
