@@ -12,6 +12,7 @@
 {
     NSString *Hour,*Mint,*ReservationDate,*ReservationTime;
 }
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerHeight;
 @property (weak, nonatomic) IBOutlet UILabel *lblCartCount;
 @property (weak, nonatomic) IBOutlet UIView *backView;
 @property (weak, nonatomic) IBOutlet UITextField *SelectDate_TXT;

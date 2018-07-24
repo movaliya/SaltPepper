@@ -13,4 +13,5 @@
     NSMutableArray *InfoDataArr;
 }
 @property (strong, nonatomic) IBOutlet UITableView *Info_TBL;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerHeight;
 @end

@@ -31,6 +31,14 @@ typedef void (^STPSourceSubmissionHandler)(STPBackendChargeResult status, NSErro
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    if(IS_IPHONE_X)
+    {
+        _headerHeight.constant = 90;
+    }
+    else
+    {
+        _headerHeight.constant = 70;
+    }
     
     // TextField Set
     CardTypeRegx = [[NSMutableArray alloc]initWithObjects:@"^4[0-9]$" , @"^5[1-5]" , @"^3[47]" , nil];

@@ -15,5 +15,6 @@
 @property (weak, nonatomic) IBOutlet MKMapView *mapVIew;
 @property(nonatomic, retain) CLLocationManager *locationManager;
 @property (nonatomic ,retain) NSMutableDictionary *locationDetail;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerHeight;
 
 @end

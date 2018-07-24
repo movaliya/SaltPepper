@@ -19,5 +19,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnCart;
 @property (weak, nonatomic) IBOutlet UIButton *btnSearch;
 @property (weak, nonatomic) IBOutlet UITableView *tblHistory;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerHeight;
 
 @end

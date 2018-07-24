@@ -18,5 +18,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *txtMsg;
 @property (weak, nonatomic) IBOutlet UITextField *txtContact;
 @property (weak, nonatomic) IBOutlet UIButton *btnSubmit;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topSpace;
 
 @end

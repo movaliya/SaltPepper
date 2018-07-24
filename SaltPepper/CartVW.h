@@ -15,6 +15,7 @@
     NSString *dayName;
     NSMutableArray *withoutIntegrate,*WithIntegrate;
 }
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerHeight;
 @property (weak, nonatomic) IBOutlet UILabel *Quantity_LBL;
 @property (weak, nonatomic) IBOutlet UILabel *SubTotalUpperLBL;
 @property (weak, nonatomic) IBOutlet UILabel *SubTotal;

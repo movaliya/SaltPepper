@@ -12,4 +12,5 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *btnOrderHistory;
 @property (weak, nonatomic) IBOutlet UIButton *btnContinue;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerHeight;
 @end

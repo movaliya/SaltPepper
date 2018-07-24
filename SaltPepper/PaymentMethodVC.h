@@ -26,6 +26,7 @@
     
 }
 @property (nonatomic) NSDecimalNumber *amount;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerHeight;
 
 @property (strong, nonatomic) NSString *FinalTotal;
 @property (strong, nonatomic) NSString *OrderType;

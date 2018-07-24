@@ -19,5 +19,6 @@
 @property (weak, nonatomic) IBOutlet UIView *viewDelevered;
 @property (weak, nonatomic) IBOutlet UILabel *lblDelevered;
 @property (weak, nonatomic) IBOutlet UIView *mainView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerHeight;
 
 @end

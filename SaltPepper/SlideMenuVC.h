@@ -18,6 +18,7 @@
     BOOL isFiltered;
 }
 @property (weak, nonatomic) IBOutlet UILabel *lblCartCount;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerHeight;
 
 @property (nonatomic ) NSInteger index;
 @property (weak, nonatomic) IBOutlet EHHorizontalSelectionView *HSSelView;

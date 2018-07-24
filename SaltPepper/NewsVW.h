@@ -13,4 +13,5 @@
     NSMutableArray *NewsDataArr;
 }
 @property (strong, nonatomic) IBOutlet UITableView *News_TBL;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerHeight;
 @end

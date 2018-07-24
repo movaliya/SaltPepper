@@ -20,6 +20,15 @@
     [super viewDidLoad];
     //Userdata=[AppDelegate GetData:@"LoginUserDic"];
     
+    if(IS_IPHONE_X)
+    {
+        _headerHeight.constant = 90;
+    }
+    else
+    {
+        _headerHeight.constant = 70;
+    }
+    
      CommentTXT.textColor=[UIColor grayColor];
 
     NSString *fulladd=[NSString stringWithFormat:@"%@ %@ %@ %@ %@ %@ %@",POPView.HouseNoNameTXT.text,POPView.StreetTXT.text,POPView.TownTXT.text,POPView.StateTXT.text,POPView.PostCodeTXT.text ,POPView.ContactNumberTXT.text,POPView.CountryTXT.text];

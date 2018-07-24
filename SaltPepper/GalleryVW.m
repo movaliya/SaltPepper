@@ -21,6 +21,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    if(IS_IPHONE_X)
+    {
+        _headerHeight.constant = 90;
+    }
+    else
+    {
+        _headerHeight.constant = 70;
+    }
+    
     self.navigationController.navigationBar.hidden=YES;
 
     GalleryDataArr=[[NSMutableArray alloc]init];
@@ -39,7 +49,7 @@
     
     
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    [flowLayout setItemSize:CGSizeMake(100, 150)];
+    //[flowLayout setItemSize:CGSizeMake(100, 150)];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
     [IMGCollection setCollectionViewLayout:flowLayout];
     
@@ -156,6 +166,10 @@
         mElementSize = CGSizeMake(139, 139);
     }
     else if (IS_IPHONE_6)
+    {
+        mElementSize = CGSizeMake(166, 166);
+    }
+    else if (IS_IPHONE_X)
     {
         mElementSize = CGSizeMake(166, 166);
     }

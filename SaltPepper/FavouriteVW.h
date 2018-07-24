@@ -14,5 +14,6 @@
    
 }
 @property (weak, nonatomic) IBOutlet UITableView *TableVW;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerHeight;
 
 @end

@@ -10,4 +10,5 @@
 
 @interface ContactUSVW : UIViewController
 @property (weak, nonatomic) IBOutlet UILabel *lblAddress;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerHeight;
 @end

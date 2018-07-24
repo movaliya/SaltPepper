@@ -27,7 +27,7 @@
     // Configure layout collectionView
     
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    [flowLayout setItemSize:CGSizeMake(50, 50)];
+//    [flowLayout setItemSize:CGSizeMake(50, 50)];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
     [MenuCollectionVW setCollectionViewLayout:flowLayout];
 
@@ -43,6 +43,16 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
+    
+    if(IS_IPHONE_X)
+    {
+        _headerHeight.constant = 90;
+    }
+    else
+    {
+        _headerHeight.constant = 70;
+    }
+    
      KmyappDelegate.MainCartArr = [AppDelegate GetData:@"CartDIC"];
     if (KmyappDelegate.MainCartArr.count == 0)
     {
@@ -574,9 +584,13 @@
     {
         mElementSize = CGSizeMake(collectionView.frame.size.width / 3 - 20, collectionView.frame.size.width / 3  - 20);
     }
+    else if (IS_IPHONE_6P)
+    {
+        mElementSize = CGSizeMake(180, 180);
+    }
     else
     {
-        mElementSize = CGSizeMake(120, 150);
+        mElementSize = CGSizeMake(150, 150);
     }
     return mElementSize;
 }

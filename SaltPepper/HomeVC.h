@@ -19,5 +19,6 @@
 @property (weak, nonatomic) IBOutlet UIPageControl *pagesControl;
 @property (weak, nonatomic) IBOutlet UIScrollView *bannerscroll;
 @property (weak, nonatomic) IBOutlet UIImageView *bannerImgVW;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerHeight;
 
 @end

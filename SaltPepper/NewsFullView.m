@@ -19,6 +19,15 @@
 {
     [super viewDidLoad];
     
+    if(IS_IPHONE_X)
+    {
+        _headerHeight.constant = 90;
+    }
+    else
+    {
+        _headerHeight.constant = 70;
+    }
+    
     _lblHeader.text = [self.NewsSelectArr valueForKey:@"title"];
     NewsTitle_LBL.text=[self.NewsSelectArr valueForKey:@"title"];
     NewsDate_LBL.text=[self.NewsSelectArr valueForKey:@"news_date"];

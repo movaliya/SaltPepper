@@ -13,6 +13,7 @@
 {
     NSMutableArray *GalleryDataArr;
 }
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerHeight;
 
 @property (strong, nonatomic) IBOutlet UICollectionView *IMGCollection;
 @end

@@ -27,6 +27,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    if(IS_IPHONE_X)
+    {
+        _headerHeight.constant = 90;
+    }
+    else
+    {
+        _headerHeight.constant = 70;
+    }
+    
     self.navigationController.navigationBar.hidden=YES;
 
     ShowWebView.hidden=YES;

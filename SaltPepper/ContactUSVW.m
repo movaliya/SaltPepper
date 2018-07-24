@@ -21,6 +21,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    if(IS_IPHONE_X)
+    {
+        _headerHeight.constant = 90;
+    }
+    else
+    {
+        _headerHeight.constant = 70;
+    }
+    
     locationInfo = [[NSMutableDictionary alloc]init];
     ContactInfo = [[NSMutableDictionary alloc]init];
     [self CallReservationHistory];

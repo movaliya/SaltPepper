@@ -24,6 +24,7 @@
 @property (strong, nonatomic) NSString *Discount;
 @property (weak, nonatomic) IBOutlet UITextView *CommentTXT;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerHeight;
 
 @property (weak, nonatomic) IBOutlet UILabel *UserName_LBL;
 @property (weak, nonatomic) IBOutlet UILabel *UserEmail_LBL;

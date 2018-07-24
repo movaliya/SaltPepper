@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblOrderAmount;
 @property (weak, nonatomic) IBOutlet UILabel *lblOrderDate;
 @property (weak, nonatomic) IBOutlet UILabel *lblOrderComments;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerHeight;
 
 @property (weak, nonatomic) IBOutlet UITableView *tblOrderDetail;
 @end

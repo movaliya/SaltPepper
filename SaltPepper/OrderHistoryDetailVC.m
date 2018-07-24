@@ -18,6 +18,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    if(IS_IPHONE_X)
+    {
+        _headerHeight.constant = 90;
+    }
+    else
+    {
+        _headerHeight.constant = 70;
+    }
+    
     [_viewOrderDetail.layer setShadowColor:[UIColor grayColor].CGColor];
     [_viewOrderDetail.layer setShadowOpacity:0.8];
     [_viewOrderDetail.layer setShadowRadius:3.0];

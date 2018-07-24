@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *PhoneNumberTXT;
 @property (weak, nonatomic) IBOutlet UITextField *EmailTXT;
 @property (weak, nonatomic) IBOutlet UITextField *MessageTXT;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerHeight;
 
 @property (strong, nonatomic) NSString *aultNo;
 @property (strong, nonatomic) NSString *childerNo;

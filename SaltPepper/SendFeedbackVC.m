@@ -19,6 +19,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    if(IS_IPHONE_X)
+    {
+        _topSpace.constant = 40;
+    }
+    else
+    {
+        _topSpace.constant = 10;
+    }
+    
     [self GetProfileDetail];
     if([[SharedClass sharedSingleton].storyBaordName isEqualToString:@"Main"])
     {

@@ -20,5 +20,6 @@
 @property (strong, nonatomic) IBOutlet UIView *BackView;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *ViewHight;
 - (IBAction)Back_Click:(id)sender;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerHeight;
 
 @end

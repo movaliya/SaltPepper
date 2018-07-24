@@ -24,6 +24,7 @@
 
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *WithHight;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *WithoutHight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerHeight;
 
 @property (strong, nonatomic) IBOutlet UILabel *HeaderTitle;
 @property (strong, nonatomic) IBOutlet UILabel *Title_LBL;

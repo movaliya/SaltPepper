@@ -18,6 +18,16 @@
 {
     
     [super viewDidLoad];
+    
+    if(IS_IPHONE_X)
+    {
+        _headerHeight.constant = 90;
+    }
+    else
+    {
+        _headerHeight.constant = 70;
+    }
+    
     _locationManager = [[CLLocationManager alloc] init];
     [_locationManager requestWhenInUseAuthorization];
     [_locationManager startUpdatingLocation];

@@ -19,6 +19,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    if(IS_IPHONE_X)
+    {
+        _headerHeight.constant = 90;
+    }
+    else
+    {
+        _headerHeight.constant = 70;
+    }
+    
     self.BackView.layer.masksToBounds = NO;
     self.BackView.layer.shadowOffset = CGSizeMake(0, 1);
     self.BackView.layer.shadowRadius = 1.0;

@@ -22,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnAddToCart;
 @property (weak, nonatomic) IBOutlet UIButton *btnCheckOut;
 @property (weak, nonatomic) IBOutlet UILabel *lblQty;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerHeight;
 
 @property (nonatomic ,retain) NSMutableDictionary *productDetail;
 

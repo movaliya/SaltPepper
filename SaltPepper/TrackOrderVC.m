@@ -16,6 +16,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    if(IS_IPHONE_X)
+    {
+        _headerHeight.constant = 90;
+    }
+    else
+    {
+        _headerHeight.constant = 70;
+    }
+    
     _viewOrdPlaced.layer.cornerRadius = 35;
     _viewProcessing.layer.cornerRadius = 35;
     _viewDispatched.layer.cornerRadius = 35;

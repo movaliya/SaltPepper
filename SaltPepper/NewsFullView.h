@@ -13,6 +13,7 @@
     
 }
 @property (strong, nonatomic) NSMutableArray *NewsSelectArr;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerHeight;
 
 @property (weak, nonatomic) IBOutlet UILabel *lblHeader;
 @property (strong, nonatomic) IBOutlet UIImageView *NewsImg;

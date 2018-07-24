@@ -18,6 +18,7 @@
 }
 @property (weak, nonatomic) IBOutlet UIView *navbarView;
 @property (weak, nonatomic) IBOutlet UIView *navDownView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerHeight;
 
 @property (weak, nonatomic) IBOutlet UILabel *ProfileDetail_LBL;
 @property (weak, nonatomic) IBOutlet UILabel *profilePoint_LBL;

@@ -22,6 +22,15 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    if(IS_IPHONE_X)
+    {
+        _headerHeight.constant = 90;
+    }
+    else
+    {
+        _headerHeight.constant = 70;
+    }
+    
     if (KmyappDelegate.MainCartArr.count == 0)
     {
         _lblCartCount.hidden = YES;

@@ -17,6 +17,7 @@
 
 @property (strong, nonatomic) NSMutableArray *ImagArr;
 @property (strong, nonatomic) NSString *SelectedImage;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerHeight;
 
 
 @property (weak, nonatomic) IBOutlet UIScrollView *ImageScrollView;
