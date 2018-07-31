@@ -63,7 +63,11 @@
     [_collectionViewItem registerClass:[CategoryItemCell class] forCellWithReuseIdentifier:@"CategoryItemCell"];
     
     _HSSelView.delegate = self;
-    [_HSSelView selectIndex:_index];
+    
+//    [self.collectionView scrollToItemAtIndexPath:indexPath
+//                                atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally
+//                                        animated:YES];
+    
     //_collectionViewItem.hidden = YES;
     [self CallCategoryProduct];
     
@@ -94,6 +98,12 @@
     
   
     // Do any additional setup after loading the view.
+}
+
+-(void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    [_HSSelView selectIndex:_index];
 }
 
 - (void)didReceiveMemoryWarning {
