@@ -9,7 +9,10 @@
 #import "FavouriteVW.h"
 #import "FavoriteCell.h"
 @interface FavouriteVW ()
-
+{
+    NSMutableArray *arrFav;
+    NSMutableArray *arrCart;
+}
 @end
 
 @implementation FavouriteVW
@@ -41,6 +44,8 @@
      // NSLog(@"MainFavArr==%@",FavrtDic);
     KmyappDelegate.MainCartArr = [AppDelegate GetData:@"CartDIC"];
     KmyappDelegate.MainFavArr=[AppDelegate GetData:@"FavDIC"];
+    arrFav = [KmyappDelegate.MainFavArr mutableCopy];
+    arrCart = [KmyappDelegate.MainCartArr mutableCopy];
    // NSData *data = _ro(@"FavDIC");
     //NSArray *savedArray = [NSKeyedUnarchiver unarchiveObjectWithData:data];
   // KmyappDelegate.MainFavArr = [NSKeyedUnarchiver unarchiveObjectWithData:data];
@@ -80,13 +85,13 @@
         cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     }
     
-    if ([[KmyappDelegate.MainCartArr valueForKey:@"id"] containsObject:[[KmyappDelegate.MainFavArr valueForKey:@"id"]objectAtIndex:indexPath.row]])
+    if ([[arrCart valueForKey:@"id"] containsObject:[[arrFav valueForKey:@"id"]objectAtIndex:indexPath.section]])
     {
         cell.AddToCartBTN.hidden = YES;
     }
     else
     {
-        
+        cell.AddToCartBTN.hidden = NO;
     }
     
     cell.AddToCartBTN.tag=indexPath.section;
@@ -158,6 +163,19 @@
         [KmyappDelegate.MainCartArr addObject:[KmyappDelegate.MainFavArr objectAtIndex:[sender tag]]];
     }
     [AppDelegate WriteData:@"CartDIC" RootObject:KmyappDelegate.MainCartArr];
+    NSLog(@"%@",KmyappDelegate.MainCartArr);
+    NSLog(@"%@",KmyappDelegate.MainFavArr);
+    arrFav = [KmyappDelegate.MainFavArr mutableCopy];
+    arrCart = [KmyappDelegate.MainCartArr mutableCopy];
+    if ([[arrCart valueForKey:@"id"] containsObject:[[arrFav valueForKey:@"id"]objectAtIndex:0]])
+    {
+        NSLog(@"match");
+    }
+    if ([[arrCart valueForKey:@"id"] containsObject:[[arrFav valueForKey:@"id"]objectAtIndex:1]])
+    {
+        NSLog(@"match");
+    }
+    
     [TableVW reloadData];
     FCAlertView *alert = [KmyappDelegate ShowAlertWithBtnAction:@"Item added to cart successfully" andStrTile:nil andbtnTitle:@"OK" andButtonArray:@[]];
     //[KmyappDelegate.MainCartArr addObject:[KmyappDelegate.MainFavArr objectAtIndex:[sender tag]];

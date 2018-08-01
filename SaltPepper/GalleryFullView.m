@@ -17,7 +17,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-   
     if(IS_IPHONE_X)
     {
         _headerHeight.constant = 90;

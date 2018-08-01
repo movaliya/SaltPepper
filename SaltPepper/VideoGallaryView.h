@@ -15,6 +15,7 @@
 - (IBAction)Back_click:(id)sender;
 @property (strong, nonatomic) IBOutlet UITableView *VideoTBL;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerHeight;
+@property (weak, nonatomic) IBOutlet UILabel *lblNoVideo;
 
 - (IBAction)WebView_Back:(id)sender;
 @property (strong, nonatomic) IBOutlet UIWebView *Web;

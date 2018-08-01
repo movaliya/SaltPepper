@@ -81,6 +81,8 @@
     [datepicke1 addTarget:self action:@selector(DeliveyTimeTextField:) forControlEvents:UIControlEventValueChanged];
     [self.DeliveryTimeTXT setInputView:datepicke1];
     
+//    CollectionTime_LBL.text = [self formatDate:[NSDate date]];
+//    DeliveryTime_LBL.text = [self formatDate:[NSDate date]];
     
     BOOL internet=[AppDelegate connectedToNetwork];
     if (internet)

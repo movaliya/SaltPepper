@@ -27,7 +27,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    _lblNoVideo.hidden = YES;
     if(IS_IPHONE_X)
     {
         _headerHeight.constant = 90;
@@ -98,13 +98,24 @@
              if ([SUCCESS boolValue] ==YES)
              {
                  VideoArr=[[[[[[result objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"videoGallery"] objectForKey:@"result"] objectForKey:@"videoGallery"] mutableCopy];
-                 VideoIdArr=[[NSMutableArray alloc]init];
-                 for (int i=0; i<VideoArr.count; i++)
+                 if(VideoArr.count == 0)
                  {
-                     NSString *VideoID= [self extractYoutubeIdFromLink:[[VideoArr valueForKey:@"content"] objectAtIndex:i]];
-                     [VideoIdArr addObject:VideoID];
+                     _lblNoVideo.hidden = NO;
+                     VideoTBL.hidden = YES;
                  }
-                 [VideoTBL reloadData];
+                 else
+                 {
+                     _lblNoVideo.hidden = YES;
+                     VideoTBL.hidden = NO;
+                     VideoIdArr=[[NSMutableArray alloc]init];
+                     for (int i=0; i<VideoArr.count; i++)
+                     {
+                         NSString *VideoID= [self extractYoutubeIdFromLink:[[VideoArr valueForKey:@"content"] objectAtIndex:i]];
+                         [VideoIdArr addObject:VideoID];
+                     }
+                     [VideoTBL reloadData];
+                 }
+                     
              }
          }
      }failure:^(NSError *error)

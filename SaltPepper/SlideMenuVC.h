@@ -16,7 +16,9 @@
     NSMutableArray* filteredProducts;
     CGFloat lastContentOffset;
     BOOL isFiltered;
+    
 }
+@property (nonatomic) BOOL isSel;
 @property (weak, nonatomic) IBOutlet UILabel *lblCartCount;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerHeight;
 

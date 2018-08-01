@@ -15,6 +15,7 @@
 @interface SlideMenuVC ()<EHHorizontalSelectionViewProtocol>
 {
     NSMutableArray *cartArr;
+    int cnt;
 }
 @end
 
@@ -49,6 +50,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    cnt = 0;
     cartArr = [[NSMutableArray alloc]init];
     _viewBottom.hidden = YES;
     _viewSearch.layer.cornerRadius = 20;
@@ -100,10 +102,22 @@
     // Do any additional setup after loading the view.
 }
 
--(void)viewDidLayoutSubviews
+- (void)viewWillLayoutSubviews
 {
-    [super viewDidLayoutSubviews];
-    //[_HSSelView selectIndex:_index];
+    [super viewWillLayoutSubviews];
+    if(_isSel)
+    {
+        cnt++;
+        if(cnt == 3)
+        {
+            cnt = 0;
+             //_isSel = NO;
+        }
+        else
+        {
+            [_HSSelView selectIndex:_index];
+        }
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -154,12 +168,14 @@
             _searchBar.hidden = YES;
             _viewSearch.hidden = YES;
             _collectionViewItem.hidden = YES;
+             _isSel = NO;
             [AppDelegate showErrorMessageWithTitle:@"" message:@"No product in this categories" delegate:nil];
         }
         else
         {
             _searchBar.hidden = NO;
             _viewSearch.hidden = NO;
+             _isSel = NO;
             NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"products"] objectForKey:@"SUCCESS"];
             if ([SUCCESS boolValue] ==YES)
             {
@@ -226,7 +242,7 @@
     } failure:^(NSError *error) {
         
         [MBProgressHUD hideHUDForView:self.view animated:YES];
-        
+        _isSel = NO;
         NSLog(@"Fail");
         
     }];
@@ -668,7 +684,14 @@
 //    }
 //    [_collectionviewCategory setContentOffset:CGPointZero animated:YES];
     _index = index;
-    [self CallCategoryProduct];
+    if(_isSel)
+    {
+        
+    }
+    else
+    {
+        [self CallCategoryProduct];
+    }
     NSLog(@"%lu",(unsigned long)index);
 }
 
