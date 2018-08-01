@@ -369,8 +369,11 @@
         {
            NSDictionary *orderDiscount=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"orderDiscount"] objectForKey:@"RESULT"] objectForKey:@"orderDiscount"];
             
-            self.GrandTotal_LBL.text=[NSString stringWithFormat:@"£%@",[orderDiscount objectForKey:@"totalprice"]];
-            self.Discount_LBL.text=[NSString stringWithFormat:@"£%@",[orderDiscount objectForKey:@"discount"]];
+            float TempleGT=[[orderDiscount objectForKey:@"totalprice"]floatValue];
+            float TempleDistcout=[[orderDiscount objectForKey:@"discount"]floatValue];
+           // £%.2f
+            self.GrandTotal_LBL.text=[NSString stringWithFormat:@"£%.2f",TempleGT];
+            self.Discount_LBL.text=[NSString stringWithFormat:@"£%.2f",TempleDistcout];
         }
         
     } failure:^(NSError *error) {

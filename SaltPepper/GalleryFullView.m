@@ -59,7 +59,7 @@
     
     //ImageScrollView.contentSize = CGSizeMake(ImageScrollView.frame.size.width , ImageScrollView.frame.size.height* ImageNameSection.count);
     
-    int selectindex=[SelectedImage integerValue];
+    NSInteger selectindex=[SelectedImage integerValue];
     [ImageScrollView setContentOffset:CGPointMake(SCREEN_WIDTH*selectindex, 0.0f) animated:YES];
 
    

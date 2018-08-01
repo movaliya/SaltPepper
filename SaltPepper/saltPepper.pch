@@ -71,7 +71,8 @@
 #define KmyappDelegate ((AppDelegate *)[[UIApplication sharedApplication] delegate])
 
 //Base URL
-#define kBaseURL    @"https://tiffintom.net/demo/API/"
+//#define kBaseURL    @"https://tiffintom.net/demo/API/"
+#define kBaseURL    @"https://Britanniaspice.co/API/"
 
 
 //Live Key

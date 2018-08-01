@@ -87,10 +87,21 @@
     }
     else
     {
-       
+        CheckReservationState = [[NSUserDefaults standardUserDefaults]
+                                 stringForKey:@"reservationState"];
+        if ([CheckReservationState isEqualToString:@"YES"])
+        {
+            titles = @[@"Home", @"Cart",@"Reservation", @"Gallery", @"News", @"Information", @"Video Gallery",@"Message",@"Contact Us", @"Login or Signup"];
+            
+            images = @[@"ic_home", @"ic_cart",@"ic_reservation", @"ic_gallery", @"ic_news", @"ic_info", @"ic_videogallery", @"ic_message", @"ic_contactus", @"ic_logout"];
+        }
+        else
+        {
             titles = @[@"Home", @"Cart", @"Gallery", @"News", @"Information", @"Video Gallery",@"Message",@"Contact Us", @"Login or Signup"];
             
             images = @[@"ic_home", @"ic_cart", @"ic_gallery", @"ic_news", @"ic_info", @"ic_videogallery", @"ic_message", @"ic_contactus", @"ic_logout"];
+        }
+        
     }
 }
 -(void)checkReservationState
@@ -250,9 +261,22 @@
                         
                         [alert addButton:@"YES" withActionBlock:^{
                             
-                            titles = @[@"Home", @"Cart", @"Gallery", @"News", @"Information", @"Video Gallery",@"Message",@"Contact Us", @"Login or Signup"];
-                            
-                            images = @[@"ic_home", @"ic_cart", @"ic_gallery", @"ic_news", @"ic_info", @"ic_videogallery", @"ic_message", @"ic_contactus", @"ic_logout"];
+                            CheckReservationState = [[NSUserDefaults standardUserDefaults]
+                                                     stringForKey:@"reservationState"];
+                            if ([CheckReservationState isEqualToString:@"YES"])
+                            {
+                                
+                                
+                                titles = @[@"Home", @"Cart",@"Reservation",@"Gallery", @"News", @"Information", @"Video Gallery",@"Message",@"Contact Us", @"Login or Signup"];
+                                
+                                images = @[@"ic_home", @"ic_cart",@"ic_reservation",@"ic_gallery", @"ic_news", @"ic_info", @"ic_videogallery", @"ic_message", @"ic_contactus", @"ic_logout"];
+                            }
+                            else
+                            {
+                                titles = @[@"Home", @"Cart",@"Gallery", @"News", @"Information", @"Video Gallery",@"Message",@"Contact Us", @"Login or Signup"];
+                                
+                                images = @[@"ic_home", @"ic_cart",@"ic_gallery", @"ic_news", @"ic_info", @"ic_videogallery", @"ic_message", @"ic_contactus", @"ic_logout"];
+                            }
                             
                             _Rm(@"LoginUserDic")
                             _Rm(@"CartDIC")
@@ -396,7 +420,124 @@
     else
     {
         //Usernot Login
-        switch (indexPath.row) {
+        CheckReservationState = [[NSUserDefaults standardUserDefaults]
+                                 stringForKey:@"reservationState"];
+        if ([CheckReservationState isEqualToString:@"YES"])
+        {
+        
+            switch (indexPath.row) {
+                case 0:
+                    [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"HomeVC"]]
+                                                                 animated:YES];
+                    [self.sideMenuViewController hideMenuViewController];
+                    break;
+                case 1:
+                    //Cart View CartVW
+                    if (_ro(@"LoginUserDic") != nil)
+                    {
+                    }
+                    else
+                    {
+                        FCAlertView *alert = [KmyappDelegate ShowAlertWithBtnAction:@"Please First Login" andStrTile:nil andbtnTitle:@"Cancel" andButtonArray:@[]];
+                        
+                        [alert addButton:@"Login" withActionBlock:^{
+                            
+                            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"LoginVW"]]
+                                                                         animated:YES];
+                            [self.sideMenuViewController hideMenuViewController];
+                            
+                        }];
+                    }
+                    break;
+                case 2:
+                    [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"ReservationSubVW"]]
+                                                                 animated:YES];
+                    [self.sideMenuViewController hideMenuViewController];
+                    break;
+                case 3:
+                    [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"GalleryVW"]]
+                                                                 animated:YES];
+                    [self.sideMenuViewController hideMenuViewController];
+                    break;
+                case 4:
+                    [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"NewsVW"]]
+                                                                 animated:YES];
+                    [self.sideMenuViewController hideMenuViewController];
+                    break;
+                case 5:
+                    //                    [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"InfoVW"]]
+                    //                                                                 animated:YES];
+                    //                    [self.sideMenuViewController hideMenuViewController];
+                    //Information VW
+                    break;
+                case 6:
+                    [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"VideoGallaryView"]]
+                                                                 animated:YES];
+                    [self.sideMenuViewController hideMenuViewController];
+                    break;
+                case 7:
+                    //Message
+                    break;
+                case 8:
+                    [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"ContactUSVW"]]
+                                                                 animated:YES];
+                    [self.sideMenuViewController hideMenuViewController];
+                    break;
+                case 9:
+                    if (_ro(@"LoginUserDic") != nil)
+                    {
+                        FCAlertView *alert = [KmyappDelegate ShowAlertWithBtnAction:@"Are you sure want to Logout?" andStrTile:nil andbtnTitle:@"NO" andButtonArray:@[]];
+                        
+                        [alert addButton:@"YES" withActionBlock:^{
+                            
+                            CheckReservationState = [[NSUserDefaults standardUserDefaults]
+                                                     stringForKey:@"reservationState"];
+                            if ([CheckReservationState isEqualToString:@"YES"])
+                            {
+                                
+
+                                titles = @[@"Home", @"Cart",@"Reservation",@"Gallery", @"News", @"Information", @"Video Gallery",@"Message",@"Contact Us", @"Login or Signup"];
+                                
+                                images = @[@"ic_home", @"ic_cart",@"ic_reservation",@"ic_gallery", @"ic_news", @"ic_info", @"ic_videogallery", @"ic_message", @"ic_contactus", @"ic_logout"];
+                            }
+                            else
+                            {
+                                titles = @[@"Home", @"Cart",@"Gallery", @"News", @"Information", @"Video Gallery",@"Message",@"Contact Us", @"Login or Signup"];
+                                
+                                images = @[@"ic_home", @"ic_cart",@"ic_gallery", @"ic_news", @"ic_info", @"ic_videogallery", @"ic_message", @"ic_contactus", @"ic_logout"];
+                            }
+                           
+                            
+                            _Rm(@"LoginUserDic")
+                            _Rm(@"CartDIC")
+                            _Rm(@"FavDIC")
+                            KmyappDelegate.MainCartArr.removeAllObjects;
+                            [[GIDSignIn sharedInstance] signOut];
+                            FBSession* session = [FBSession activeSession];
+                            [session closeAndClearTokenInformation];
+                            [session close];
+                            [FBSession setActiveSession:nil];
+                            
+                            [self.MenuTBL reloadData];
+                            [self.sideMenuViewController hideMenuViewController];
+                            
+                        }];
+                    }
+                    else
+                    {
+                        [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"LoginVW"]]
+                                                                     animated:YES];
+                        [self.sideMenuViewController hideMenuViewController];
+                    }
+                    
+                    break;
+                default:
+                    break;
+            }
+        }
+        else
+        {
+            switch (indexPath.row) {
                 case 0:
                     [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"HomeVC"]]
                                                                  animated:YES];
@@ -431,9 +572,9 @@
                     [self.sideMenuViewController hideMenuViewController];
                     break;
                 case 4:
-//                    [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"InfoVW"]]
-//                                                                 animated:YES];
-//                    [self.sideMenuViewController hideMenuViewController];
+                    //                    [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"InfoVW"]]
+                    //                                                                 animated:YES];
+                    //                    [self.sideMenuViewController hideMenuViewController];
                     //Information VW
                     break;
                 case 5:
@@ -486,6 +627,9 @@
                 default:
                     break;
             }
+        }
+        
+        
 
     }
 }
