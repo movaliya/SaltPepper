@@ -103,7 +103,7 @@
 -(void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
-    [_HSSelView selectIndex:_index];
+    //[_HSSelView selectIndex:_index];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -57,27 +57,27 @@
     
 
     //Set Collection DatePicker
-    datepicker = [[UIDatePicker alloc]init];
-    [datepicker setDate:[NSDate date]]; //this returns today's date
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    formatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
-    NSString *string = [formatter stringFromDate:[NSDate date]];
-    NSString *maxDateStringforad = string;
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    NSDate *theMaximumDateforad = [dateFormatter dateFromString: maxDateStringforad];
-    [datepicker setMaximumDate:theMaximumDateforad]; //the min age restriction
-    // set the mode
-    [datepicker setDatePickerMode:UIDatePickerModeDateAndTime];
+   datepicker = [[UIDatePicker alloc]init];
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:GregorianCalendar];
+    NSDate *currentDate = [NSDate date];
+    NSDateComponents *comps = [[NSDateComponents alloc] init];
+    [comps setYear:1];
+    NSDate *maxDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
+    [comps setYear:-100];
+    [datepicker setMaximumDate:maxDate];
+    datepicker.backgroundColor=[UIColor whiteColor];
+    [datepicker setMinimumDate:[NSDate date]];
+    datepicker.datePickerMode = UIDatePickerModeDateAndTime;
     [datepicker addTarget:self action:@selector(CollTimeTextField:) forControlEvents:UIControlEventValueChanged];
     [self.CollectionTimeTXT setInputView:datepicker];
+   
     
     //Set Delivery DatePicker
     datepicke1 = [[UIDatePicker alloc]init];
-    [datepicke1 setDate:[NSDate date]]; //this returns today's date
-    formatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
-    [datepicke1 setMaximumDate:theMaximumDateforad]; //the min age restriction
-    // set the mode
-    [datepicke1 setDatePickerMode:UIDatePickerModeDateAndTime];
+    [datepicke1 setMaximumDate:maxDate];
+    datepicke1.backgroundColor=[UIColor whiteColor];
+    [datepicke1 setMinimumDate:[NSDate date]];
+    datepicke1.datePickerMode = UIDatePickerModeDateAndTime;
     [datepicke1 addTarget:self action:@selector(DeliveyTimeTextField:) forControlEvents:UIControlEventValueChanged];
     [self.DeliveryTimeTXT setInputView:datepicke1];
     
@@ -94,6 +94,7 @@
 {
     UIDatePicker *picker = (UIDatePicker*)self.CollectionTimeTXT.inputView;
     self.CollectionTime_LBL.text = [self formatDate:picker.date];
+   
   
 }
 -(void)DeliveyTimeTextField:(id)sender

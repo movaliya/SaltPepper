@@ -167,88 +167,79 @@
 -(void)SubmitReservationData
 {
     
-    if (_ro(@"LoginUserDic") != nil)
-    {
-        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-       // NSString *CoustmerID=[[[[[[UserSaveData valueForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"customerid"];
-         NSString *CoustmerID=_ro(@"LoginUserDic");
-
-        NSMutableDictionary *dict1 = [[NSMutableDictionary alloc] init];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    // NSString *CoustmerID=[[[[[[UserSaveData valueForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"customerid"];
+    //NSString *CoustmerID=_@"jskdjskjdkjsadkjksjdka";
+    
+    NSMutableDictionary *dict1 = [[NSMutableDictionary alloc] init];
+    
+    [dict1 setValue:KAPIKEY forKey:@"APIKEY"];
+    
+    
+    NSMutableDictionary *dictInner = [[NSMutableDictionary alloc] init];
+    
+    [dictInner setObject:@"jskdjskjdkjsadkjksjdka" forKey:@"REGID"];
+    [dictInner setObject:_EmailTXT.text forKey:@"CUSTOMER_EMAIL"];
+    [dictInner setObject:_NameTXT.text forKey:@"CUSTOMER_NAME"];
+    [dictInner setObject:_PhoneNumberTXT.text forKey:@"CUSTOMER_TELEPHONE"];
+    [dictInner setObject:self.Res_date forKey:@"RESERVATION_DATE"];
+    [dictInner setObject:self.Res_Time forKey:@"RESERVATION_TIME"];
+    [dictInner setObject:self.Stay_Hour forKey:@"RESERVATION_DURATION_HOUR"];
+    [dictInner setObject:self.Stay_Mint forKey:@"RESERVATION_DURATION_MINUTE"];
+    [dictInner setObject:self.aultNo forKey:@"ADULT"];
+    [dictInner setObject:_MessageTXT.text forKey:@"MESSAGE"];
+    
+    NSMutableDictionary *dictSub = [[NSMutableDictionary alloc] init];
+    
+    [dictSub setObject:@"postitem" forKey:@"MODULE"];
+    
+    [dictSub setObject:@"reservation" forKey:@"METHOD"];
+    
+    [dictSub setObject:dictInner forKey:@"PARAMS"];
+    
+    
+    NSMutableArray *arr = [[NSMutableArray alloc] initWithObjects:dictSub, nil];
+    NSMutableDictionary *dictREQUESTPARAM = [[NSMutableDictionary alloc] init];
+    
+    [dictREQUESTPARAM setObject:arr forKey:@"REQUESTPARAM"];
+    [dictREQUESTPARAM setObject:dict1 forKey:@"RESTAURANT"];
+    
+    
+    NSError* error = nil;
+    
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictREQUESTPARAM options:NSJSONWritingPrettyPrinted error:&error];
+    
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                         options:NSJSONReadingMutableContainers
+                                                           error:&error];
+    
+    NSString *makeURL=[NSString stringWithFormat:@"%@%@",kBaseURL,RESERVATION];
+    
+    [Utility postRequest:json url:makeURL success:^(id responseObject) {
         
-        [dict1 setValue:KAPIKEY forKey:@"APIKEY"];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
         
+        NSLog(@"responseObject==%@",responseObject);
+        NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"postitem"] objectForKey:@"reservation"] objectForKey:@"SUCCESS"];
+        if ([SUCCESS boolValue] ==YES)
+        {
+            NSString *MESSAGE=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"postitem"] objectForKey:@"reservation"] objectForKey:@"RESULT"]objectForKey:@"reservation"];
+            DEMORootViewController *vcr = [[UIStoryboard storyboardWithName:[SharedClass sharedSingleton].storyBaordName  bundle:nil] instantiateViewControllerWithIdentifier:@"rootController"];
+            [self.navigationController pushViewController:vcr animated:YES];
+            [AppDelegate showErrorMessageWithTitle:@"" message:MESSAGE delegate:nil];
+        }
+        else
+        {
+            NSString *DESCRIPTION=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"postitem"] objectForKey:@"reservation"] objectForKey:@"ERROR"] objectForKey:@"DESCRIPTION"];
+            [AppDelegate showErrorMessageWithTitle:@"" message:DESCRIPTION delegate:nil];
+        }
         
-        NSMutableDictionary *dictInner = [[NSMutableDictionary alloc] init];
+    } failure:^(NSError *error) {
         
-        [dictInner setObject:CoustmerID forKey:@"REGID"];
-        [dictInner setObject:_EmailTXT.text forKey:@"CUSTOMER_EMAIL"];
-        [dictInner setObject:_NameTXT.text forKey:@"CUSTOMER_NAME"];
-        [dictInner setObject:_PhoneNumberTXT.text forKey:@"CUSTOMER_TELEPHONE"];
-        [dictInner setObject:self.Res_date forKey:@"RESERVATION_DATE"];
-        [dictInner setObject:self.Res_Time forKey:@"RESERVATION_TIME"];
-        [dictInner setObject:self.Stay_Hour forKey:@"RESERVATION_DURATION_HOUR"];
-        [dictInner setObject:self.Stay_Mint forKey:@"RESERVATION_DURATION_MINUTE"];
-        [dictInner setObject:self.aultNo forKey:@"ADULT"];
-        [dictInner setObject:_MessageTXT.text forKey:@"MESSAGE"];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
         
-        NSMutableDictionary *dictSub = [[NSMutableDictionary alloc] init];
-        
-        [dictSub setObject:@"postitem" forKey:@"MODULE"];
-        
-        [dictSub setObject:@"reservation" forKey:@"METHOD"];
-        
-        [dictSub setObject:dictInner forKey:@"PARAMS"];
-        
-        
-        NSMutableArray *arr = [[NSMutableArray alloc] initWithObjects:dictSub, nil];
-        NSMutableDictionary *dictREQUESTPARAM = [[NSMutableDictionary alloc] init];
-        
-        [dictREQUESTPARAM setObject:arr forKey:@"REQUESTPARAM"];
-        [dictREQUESTPARAM setObject:dict1 forKey:@"RESTAURANT"];
-        
-        
-        NSError* error = nil;
-        
-        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictREQUESTPARAM options:NSJSONWritingPrettyPrinted error:&error];
-        
-        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData
-                                                             options:NSJSONReadingMutableContainers
-                                                               error:&error];
-        
-        NSString *makeURL=[NSString stringWithFormat:@"%@%@",kBaseURL,RESERVATION];
-        
-        [Utility postRequest:json url:makeURL success:^(id responseObject) {
-            
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
-            
-            NSLog(@"responseObject==%@",responseObject);
-            NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"postitem"] objectForKey:@"reservation"] objectForKey:@"SUCCESS"];
-            if ([SUCCESS boolValue] ==YES)
-            {
-                 NSString *MESSAGE=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"postitem"] objectForKey:@"reservation"] objectForKey:@"RESULT"]objectForKey:@"reservation"];
-                DEMORootViewController *vcr = [[UIStoryboard storyboardWithName:[SharedClass sharedSingleton].storyBaordName  bundle:nil] instantiateViewControllerWithIdentifier:@"rootController"];
-                [self.navigationController pushViewController:vcr animated:YES];
-                [AppDelegate showErrorMessageWithTitle:@"" message:MESSAGE delegate:nil];
-            }
-            else
-            {
-                NSString *DESCRIPTION=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"postitem"] objectForKey:@"reservation"] objectForKey:@"ERROR"] objectForKey:@"DESCRIPTION"];
-                [AppDelegate showErrorMessageWithTitle:@"" message:DESCRIPTION delegate:nil];
-            }
-            
-        } failure:^(NSError *error) {
-            
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
-            
-            NSLog(@"Fail");
-        }];
-        
-    }
-    else
-    {
-        
-        [AppDelegate showErrorMessageWithTitle:@"" message:@"You are not Login." delegate:nil];
-    }
+        NSLog(@"Fail");
+    }];
     
 }
 
