@@ -187,6 +187,7 @@
                     
                     NSMutableDictionary *intdic=[[NSMutableDictionary alloc]init];
                     intdic=[[arrProductsItems objectAtIndex:i] mutableCopy];
+                    
                     if (KmyappDelegate.MainFavArr!=nil)
                     {
                         if ([[KmyappDelegate.MainFavArr valueForKey:@"id"] containsObject:[[arrProductsItems valueForKey:@"id"]objectAtIndex:i]])
@@ -202,8 +203,21 @@
                     
                     [intdic setObject:[NSNumber numberWithInt:1] forKey:@"Quantity"];
                     
-                    [arrProductsItems replaceObjectAtIndex:i withObject:intdic];
                     
+                    
+                    NSPredicate *predicate = [NSPredicate predicateWithFormat: @"id like %@", [[arrProductsItems valueForKey:@"id"]objectAtIndex:i]];
+                    NSArray *matchingDicts = [KmyappDelegate.MainCartArr filteredArrayUsingPredicate:predicate];
+                    
+                    if (matchingDicts.count>0)
+                    {
+                        [intdic setObject:@"YES" forKey:@"Addtocart"];
+                        [arrProductsItems replaceObjectAtIndex:i withObject:intdic];
+                    }
+                    else
+                    {
+                        [intdic setObject:@"NO" forKey:@"Addtocart"];
+                        [arrProductsItems replaceObjectAtIndex:i withObject:intdic];
+                    }
                 }
 
                 
@@ -341,6 +355,15 @@
         }
         cell.lblCatItemName.text = [[filteredProducts valueForKey:@"productName"] objectAtIndex:indexPath.row];
         cell.lblPrice.text = [NSString stringWithFormat:@"£%@",[[filteredProducts valueForKey:@"price"] objectAtIndex:indexPath.row]];
+        
+        if ([[[filteredProducts objectAtIndex:indexPath.row]valueForKey:@"Addtocart"] isEqualToString:@"YES"])
+        {
+            [cell.btnAdd setTitle:@"ADDED" forState:UIControlStateNormal];
+        }
+        else
+        {
+            [cell.btnAdd setTitle:@"+ ADD" forState:UIControlStateNormal];
+        }
     }
     else
     {
@@ -372,6 +395,14 @@
         }
         cell.lblCatItemName.text = [[arrProductsItems valueForKey:@"productName"] objectAtIndex:indexPath.row];
         cell.lblPrice.text = [NSString stringWithFormat:@"£%@",[[arrProductsItems valueForKey:@"price"] objectAtIndex:indexPath.row]];
+        if ([[[arrProductsItems objectAtIndex:indexPath.row]valueForKey:@"Addtocart"] isEqualToString:@"YES"])
+        {
+            [cell.btnAdd setTitle:@"ADDED" forState:UIControlStateNormal];
+        }
+        else
+        {
+            [cell.btnAdd setTitle:@"+ ADD" forState:UIControlStateNormal];
+        }
         
     }
     return cell;
@@ -493,6 +524,7 @@
     }
     [cell.btnFav addTarget:self action:@selector(addToFavClickedTableView:) forControlEvents:UIControlEventTouchUpInside];
 
+        
     [cell.btnAdd addTarget:self action:@selector(addToCartClickedTableView:) forControlEvents:UIControlEventTouchUpInside];
     [cell.btnPlus addTarget:self action:@selector(plusClickedTableView:) forControlEvents:UIControlEventTouchUpInside];
     [cell.btnMinus addTarget:self action:@selector(minusClickedTableView:) forControlEvents:UIControlEventTouchUpInside];
@@ -534,6 +566,15 @@
         }
         cell.lblItemName.text = [[filteredProducts valueForKey:@"productName"] objectAtIndex:indexPath.row];
         cell.lblPrice.text = [NSString stringWithFormat:@"£%@",[[filteredProducts valueForKey:@"price"] objectAtIndex:indexPath.row]];
+        
+        if ([[[filteredProducts objectAtIndex:indexPath.row]valueForKey:@"Addtocart"] isEqualToString:@"YES"])
+        {
+            [cell.btnAdd setTitle:@"ADDED" forState:UIControlStateNormal];
+        }
+        else
+        {
+            [cell.btnAdd setTitle:@"+ ADD" forState:UIControlStateNormal];
+        }
     }
     else
     {
@@ -566,6 +607,14 @@
         }
         cell.lblItemName.text = [[arrProductsItems valueForKey:@"productName"] objectAtIndex:indexPath.row];
         cell.lblPrice.text = [NSString stringWithFormat:@"£%@",[[arrProductsItems valueForKey:@"price"] objectAtIndex:indexPath.row]];
+        if ([[[arrProductsItems objectAtIndex:indexPath.row]valueForKey:@"Addtocart"] isEqualToString:@"YES"])
+        {
+            [cell.btnAdd setTitle:@"ADDED" forState:UIControlStateNormal];
+        }
+        else
+        {
+            [cell.btnAdd setTitle:@"+ ADD" forState:UIControlStateNormal];
+        }
         
     }
     return cell;
@@ -909,8 +958,12 @@
     if (_ro(@"LoginUserDic") != nil)
     {
         NSIndexPath *changedRow = [NSIndexPath indexPathForRow:sender.tag inSection:0];
+        ItemCell *cell = (ItemCell *)[_tblItem cellForRowAtIndexPath:changedRow];
+        [cell.btnAdd setTitle:@"ADDED" forState:UIControlStateNormal];
+        
         if(isFiltered)
         {
+            
             if (KmyappDelegate.MainCartArr==nil)
             {
                 KmyappDelegate.MainCartArr=[[NSMutableArray alloc]init];
@@ -927,6 +980,10 @@
                 {
                     [KmyappDelegate.MainCartArr addObject:[filteredProducts objectAtIndex:changedRow.row]];
                 }
+                NSMutableDictionary *updatedic=[[NSMutableDictionary alloc]init];
+                updatedic=[[filteredProducts objectAtIndex:changedRow.row] mutableCopy];
+                [updatedic setObject:@"YES" forKey:@"Addtocart"];
+                [filteredProducts replaceObjectAtIndex:changedRow.row withObject:updatedic];
             }
             else
             {
@@ -951,6 +1008,11 @@
                     {
                         [KmyappDelegate.MainCartArr replaceObjectAtIndex:idx withObject:intdic];
                     }
+                    
+                    NSMutableDictionary *updatedic=[[NSMutableDictionary alloc]init];
+                    updatedic=[[filteredProducts objectAtIndex:changedRow.row] mutableCopy];
+                    [updatedic setObject:@"YES" forKey:@"Addtocart"];
+                    [filteredProducts replaceObjectAtIndex:changedRow.row withObject:updatedic];
                 }
                 else
                 {
@@ -966,6 +1028,11 @@
                     {
                         [KmyappDelegate.MainCartArr addObject:[filteredProducts objectAtIndex:changedRow.row]];
                     }
+                    
+                    NSMutableDictionary *updatedic=[[NSMutableDictionary alloc]init];
+                    updatedic=[[filteredProducts objectAtIndex:changedRow.row] mutableCopy];
+                    [updatedic setObject:@"YES" forKey:@"Addtocart"];
+                    [filteredProducts replaceObjectAtIndex:changedRow.row withObject:updatedic];
                     
                     //[KmyappDelegate.MainCartArr addObject:[filteredProducts objectAtIndex:changedRow.row]];
                 }
@@ -989,6 +1056,11 @@
                 {
                     [KmyappDelegate.MainCartArr addObject:[arrProductsItems objectAtIndex:changedRow.row]];
                 }
+                
+                NSMutableDictionary *updatedic=[[NSMutableDictionary alloc]init];
+                updatedic=[[arrProductsItems objectAtIndex:changedRow.row] mutableCopy];
+                [updatedic setObject:@"YES" forKey:@"Addtocart"];
+                [arrProductsItems replaceObjectAtIndex:changedRow.row withObject:updatedic];
                 //[KmyappDelegate.MainCartArr addObject:[arrProductsItems objectAtIndex:changedRow.row]];
             }
             else
@@ -1015,6 +1087,11 @@
                         [KmyappDelegate.MainCartArr replaceObjectAtIndex:idx withObject:intdic];
                     }
                     
+                    NSMutableDictionary *updatedic=[[NSMutableDictionary alloc]init];
+                    updatedic=[[arrProductsItems objectAtIndex:changedRow.row] mutableCopy];
+                    [updatedic setObject:@"YES" forKey:@"Addtocart"];
+                    [arrProductsItems replaceObjectAtIndex:changedRow.row withObject:updatedic];
+                    
                     //[KmyappDelegate.MainCartArr replaceObjectAtIndex:idx withObject:intdic];
                 }
                 else
@@ -1031,6 +1108,11 @@
                     {
                         [KmyappDelegate.MainCartArr addObject:[arrProductsItems objectAtIndex:changedRow.row]];
                     }
+                    
+                    NSMutableDictionary *updatedic=[[NSMutableDictionary alloc]init];
+                    updatedic=[[arrProductsItems objectAtIndex:changedRow.row] mutableCopy];
+                    [updatedic setObject:@"YES" forKey:@"Addtocart"];
+                    [arrProductsItems replaceObjectAtIndex:changedRow.row withObject:updatedic];
                     
                     //[KmyappDelegate.MainCartArr addObject:[arrProductsItems objectAtIndex:changedRow.row]];
                 }
@@ -1071,6 +1153,8 @@
     if (_ro(@"LoginUserDic") != nil)
     {
         NSIndexPath *changedRow = [NSIndexPath indexPathForRow:sender.tag inSection:0];
+        CategoryItemCell *cell = (CategoryItemCell *)[_collectionViewItem cellForItemAtIndexPath:changedRow];
+        [cell.btnAdd setTitle:@"ADDED" forState:UIControlStateNormal];
         
         if(isFiltered)
         {
@@ -1090,7 +1174,7 @@
                 {
                     [KmyappDelegate.MainCartArr addObject:[filteredProducts objectAtIndex:changedRow.row]];
                 }
-                
+               
                 //[KmyappDelegate.MainCartArr addObject:[filteredProducts objectAtIndex:changedRow.row]];
             }
             else
@@ -1136,6 +1220,11 @@
                 }
             }
             NSLog(@"==%@",KmyappDelegate.MainCartArr);
+            
+            NSMutableDictionary *updatedic=[[NSMutableDictionary alloc]init];
+            updatedic=[[filteredProducts objectAtIndex:changedRow.row] mutableCopy];
+            [updatedic setObject:@"YES" forKey:@"Addtocart"];
+            [filteredProducts replaceObjectAtIndex:changedRow.row withObject:updatedic];
         }
         else
         {
@@ -1200,6 +1289,11 @@
                 }
             }
             NSLog(@"==%@",KmyappDelegate.MainCartArr);
+            
+            NSMutableDictionary *updatedic=[[NSMutableDictionary alloc]init];
+            updatedic=[[arrProductsItems objectAtIndex:changedRow.row] mutableCopy];
+            [updatedic setObject:@"YES" forKey:@"Addtocart"];
+            [arrProductsItems replaceObjectAtIndex:changedRow.row withObject:updatedic];
         }
         [AppDelegate WriteData:@"CartDIC" RootObject:KmyappDelegate.MainCartArr];
         [self CalculationTotal];
