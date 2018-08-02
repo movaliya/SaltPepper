@@ -11,4 +11,5 @@
 @interface ContactUSVW : UIViewController
 @property (weak, nonatomic) IBOutlet UILabel *lblAddress;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerHeight;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @end

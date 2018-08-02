@@ -21,7 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    _scrollView.contentSize = CGSizeMake(0, 620);
     if(IS_IPHONE_X)
     {
         _headerHeight.constant = 90;

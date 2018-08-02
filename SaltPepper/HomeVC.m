@@ -549,7 +549,6 @@
     static NSString *cellIdentifier = @"MenuListCollectCELL";
     
     MenuListCollectCELL *cell = (MenuListCollectCELL *)[collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
-    
     cell.MenuTitleLBL.text = [[[SharedClass sharedSingleton].arrCategories valueForKey:@"categoryName"] objectAtIndex:indexPath.row];
     //NSString *Urlstr=[[CatDATA valueForKey:@"img"] objectAtIndex:indexPath.row];
     
@@ -575,11 +574,12 @@
     CGSize mElementSize;
     if (IS_IPHONE_5 || IS_IPHONE_4)
     {
-        mElementSize = CGSizeMake(90, 120);
+        mElementSize = CGSizeMake((collectionView.frame.size.width/2),180);
+        //mElementSize = CGSizeMake(145, 200);
     }
     else if (IS_IPHONE_6)
     {
-        mElementSize = CGSizeMake(150, 150);
+        mElementSize = CGSizeMake((collectionView.frame.size.width/2) - 20,180);
     }
     else if ([[SharedClass sharedSingleton].storyBaordName isEqualToString:@"MainiPad"])
     {
@@ -587,23 +587,30 @@
     }
     else if (IS_IPHONE_6P)
     {
-        mElementSize = CGSizeMake(180, 180);
+        mElementSize = CGSizeMake(180,180);
     }
     else
     {
-        mElementSize = CGSizeMake(150, 150);
+        mElementSize = CGSizeMake(150, 180);
     }
     return mElementSize;
 }
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
-    return 2.0;
+    if (IS_IPHONE_5 || IS_IPHONE_4 || IS_IPHONE_6)
+    {
+        return 0.0;
+    }
+    else
+    {
+        return 2.0;
+    }
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
     if (IS_IPHONE_5 || IS_IPHONE_4)
     {
-        return 12.0;
+        return 0.0;
     }
     else if (IS_IPHONE_6)
     {
@@ -613,7 +620,10 @@
     {
         return 15.0;
     }
-    return 15.0;
+    else
+    {
+        return 15.0;
+    }
 }
 
 // Layout: Set Edges
@@ -622,7 +632,7 @@
 {
     if (IS_IPHONE_5 || IS_IPHONE_4)
     {
-        return UIEdgeInsetsMake(15,15,15,15);  // top, left, bottom, right
+        return UIEdgeInsetsMake(0,0,0,0);  // top, left, bottom, right
     }
     else if (IS_IPHONE_6)
     {
@@ -637,8 +647,10 @@
     {
         return UIEdgeInsetsMake(15,15,15,15);  // top, left, bottom, right
     }
-    
-    return UIEdgeInsetsMake(10,15,10,15);  // top, left, bottom, right
+    else
+    {
+        return UIEdgeInsetsMake(10,15,10,15);  // top, left, bottom, right
+    }
 }
 
 - (IBAction)MenuButtonClick:(id)sender
