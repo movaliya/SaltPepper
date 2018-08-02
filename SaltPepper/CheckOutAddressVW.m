@@ -44,6 +44,7 @@
     
     [POPView.Applay_BTN addTarget:self action:@selector(ApplyAddress_Click:) forControlEvents:UIControlEventTouchUpInside];
     [POPView.Cancel_BTN addTarget:self action:@selector(CancelAddress_Click:) forControlEvents:UIControlEventTouchUpInside];
+    [POPView.SearchBtn addTarget:self action:@selector(PostCode_Click:) forControlEvents:UIControlEventTouchUpInside];
     
     self.CollectionView.hidden=NO;
     self.DeliveryView.hidden=YES;
@@ -81,8 +82,8 @@
     [datepicke1 addTarget:self action:@selector(DeliveyTimeTextField:) forControlEvents:UIControlEventValueChanged];
     [self.DeliveryTimeTXT setInputView:datepicke1];
     
-    _CollectionTime_LBL.text = [self formatDate:[NSDate date]];
-    _DeliveryTime_LBL.text = [self formatDate:[NSDate date]];
+   // _CollectionTime_LBL.text = [self formatDate:[NSDate date]];
+    //_DeliveryTime_LBL.text = [self formatDate:[NSDate date]];
     
     BOOL internet=[AppDelegate connectedToNetwork];
     if (internet)
@@ -305,6 +306,7 @@
     [self HidePopUpAnimation];
 }
 
+
 #pragma mark - POPUP CODE
 
 -(void)ShowPopUpAnimation
@@ -339,6 +341,75 @@
         [POPView removeFromSuperview];
         
     }];
+}
+-(void)PostCode_Click:(id)sender
+{
+    if ([POPView.PostCodeTXT.text isEqualToString:@""])
+    {
+        [AppDelegate showErrorMessageWithTitle:@"Error!" message:@"Please enter post code" delegate:nil];
+    }
+    else
+    {
+        BOOL internet=[AppDelegate connectedToNetwork];
+        if (internet)
+        {
+            [self SearchForPostcode];
+        }
+        else
+            [AppDelegate showErrorMessageWithTitle:@"" message:@"Please check your internet connection or try again later." delegate:nil];
+    }
+}
+-(void)SearchForPostcode
+{
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    NSMutableDictionary *dict1 = [[NSMutableDictionary alloc] init];
+    [dict1 setValue:KAPIKEY forKey:@"APIKEY"];
+    NSMutableDictionary *dictInner = [[NSMutableDictionary alloc] init];
+    [dictInner setObject:POPView.PostCodeTXT.text forKey:@"POSTCODE"];
+    
+    NSMutableDictionary *dictSub = [[NSMutableDictionary alloc] init];
+    [dictSub setObject:@"action" forKey:@"MODULE"];
+    [dictSub setObject:@"LookUp" forKey:@"METHOD"];
+    [dictSub setObject:dictInner forKey:@"PARAMS"];
+    
+    NSMutableArray *arr = [[NSMutableArray alloc] initWithObjects:dictSub, nil];
+    NSMutableDictionary *dictREQUESTPARAM = [[NSMutableDictionary alloc] init];
+    
+    [dictREQUESTPARAM setObject:arr forKey:@"REQUESTPARAM"];
+    [dictREQUESTPARAM setObject:dict1 forKey:@"RESTAURANT"];
+    
+    NSError* error = nil;
+    
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictREQUESTPARAM options:NSJSONWritingPrettyPrinted error:&error];
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&error];
+    
+    NSString *makeURL=[NSString stringWithFormat:@"%@%@",kBaseURL,LOOKUP];
+    
+    [Utility postRequest:json url:makeURL success:^(id responseObject)
+     {
+         [MBProgressHUD hideHUDForView:self.view animated:YES];
+         NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"putitem"] objectForKey:@"LookUp"] objectForKey:@"SUCCESS"];
+         if ([SUCCESS boolValue] ==YES)
+         {
+             NSMutableDictionary *PostcodeData=[[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"putitem"] objectForKey:@"LookUp"] objectForKey:@"result"] objectForKey:@"LookUp"] mutableCopy];
+             POPView.StreetTXT.text=[PostcodeData objectForKey:@"street"];
+             POPView.TownTXT.text=[PostcodeData objectForKey:@"post_town"];
+             
+         }
+         else
+         {
+             NSString *ERROR=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"putitem"] objectForKey:@"LookUp"] objectForKey:@"ERROR"]objectForKey:@"DESCRIPTION"];
+             [AppDelegate showErrorMessageWithTitle:@"" message:ERROR delegate:nil];
+             
+         }
+     } failure:^(NSError *error) {
+         
+         [MBProgressHUD hideHUDForView:self.view animated:YES];
+         
+         NSLog(@"Fail");
+         
+     }];
 }
 - (IBAction)PayBtn_Click:(id)sender
 {
@@ -672,6 +743,18 @@
     [textView resignFirstResponder];
     
 }
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    if (textField == _CollectionTimeTXT)
+    {
+         _CollectionTime_LBL.text = [self formatDate:[NSDate date]];
+    }
+    if (textField == _DeliveryTimeTXT)
+    {
+        _DeliveryTime_LBL.text = [self formatDate:[NSDate date]];
+    }
+}
+
 /*
 #pragma mark - Navigation
 

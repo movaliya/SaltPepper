@@ -4702,6 +4702,7 @@
                                                     </button>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FDQ-D8-YxE">
                                                         <rect key="frame" x="298" y="26" width="95" height="35"/>
+                                                        <color key="tintColor" red="0.94117647059999998" green="0.1176470588" blue="0.23137254900000001" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
@@ -4866,6 +4867,7 @@
                                                     </button>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1wk-Hw-5i1">
                                                         <rect key="frame" x="295" y="119.33333333333331" width="95" height="35"/>
+                                                        <color key="tintColor" red="0.94117647059999998" green="0.1176470588" blue="0.23137254900000001" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
@@ -6403,7 +6405,7 @@
                                         <rect key="frame" x="5" y="10" width="324" height="40"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name on Card" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="I7l-WV-cwT">
-                                                <rect key="frame" x="7" y="3" width="314" height="35"/>
+                                                <rect key="frame" x="15" y="3" width="306" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="DpS-AJ-UvG"/>
                                                 </constraints>
@@ -6418,7 +6420,7 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="1k9-np-XkK"/>
-                                            <constraint firstItem="I7l-WV-cwT" firstAttribute="leading" secondItem="332-Dy-7Go" secondAttribute="leading" constant="7" id="JZ4-7n-ueN"/>
+                                            <constraint firstItem="I7l-WV-cwT" firstAttribute="leading" secondItem="332-Dy-7Go" secondAttribute="leading" constant="15" id="JZ4-7n-ueN"/>
                                             <constraint firstItem="I7l-WV-cwT" firstAttribute="centerY" secondItem="332-Dy-7Go" secondAttribute="centerY" id="Y1Q-oG-Wi6"/>
                                             <constraint firstAttribute="trailing" secondItem="I7l-WV-cwT" secondAttribute="trailing" constant="3" id="d3x-3G-CR8"/>
                                         </constraints>
@@ -6427,7 +6429,7 @@
                                         <rect key="frame" x="5" y="60" width="324" height="40"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Card Number" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dhd-SV-4Kz">
-                                                <rect key="frame" x="7" y="3" width="272" height="35"/>
+                                                <rect key="frame" x="15" y="3" width="264" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="cyx-tu-7Q6"/>
                                                 </constraints>
@@ -6450,7 +6452,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="DkC-Mx-d4r"/>
                                             <constraint firstItem="TOi-TW-Mmf" firstAttribute="centerY" secondItem="FvX-oA-XiP" secondAttribute="centerY" id="Gxq-hR-Fnr"/>
-                                            <constraint firstItem="dhd-SV-4Kz" firstAttribute="leading" secondItem="FvX-oA-XiP" secondAttribute="leading" constant="7" id="UgG-B3-TLc"/>
+                                            <constraint firstItem="dhd-SV-4Kz" firstAttribute="leading" secondItem="FvX-oA-XiP" secondAttribute="leading" constant="15" id="UgG-B3-TLc"/>
                                             <constraint firstItem="TOi-TW-Mmf" firstAttribute="leading" secondItem="dhd-SV-4Kz" secondAttribute="trailing" constant="10" id="UmX-Un-rKK"/>
                                             <constraint firstAttribute="trailing" secondItem="TOi-TW-Mmf" secondAttribute="trailing" constant="3" id="a1d-kk-CZt"/>
                                             <constraint firstItem="dhd-SV-4Kz" firstAttribute="centerY" secondItem="FvX-oA-XiP" secondAttribute="centerY" id="wRi-Vc-MDg"/>
@@ -6460,7 +6462,7 @@
                                         <rect key="frame" x="5" y="110" width="149.33333333333334" height="40"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Expire Date" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6KG-Hr-cxJ">
-                                                <rect key="frame" x="7" y="3" width="139.33333333333334" height="35"/>
+                                                <rect key="frame" x="15" y="3" width="131.33333333333334" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="J14-Kp-KGO"/>
                                                 </constraints>
@@ -6476,7 +6478,7 @@
                                         <constraints>
                                             <constraint firstItem="6KG-Hr-cxJ" firstAttribute="centerY" secondItem="1bD-8D-mOT" secondAttribute="centerY" id="2q4-4g-oma"/>
                                             <constraint firstAttribute="trailing" secondItem="6KG-Hr-cxJ" secondAttribute="trailing" constant="3" id="AFa-pl-kzK"/>
-                                            <constraint firstItem="6KG-Hr-cxJ" firstAttribute="leading" secondItem="1bD-8D-mOT" secondAttribute="leading" constant="7" id="i0b-3T-Hwx"/>
+                                            <constraint firstItem="6KG-Hr-cxJ" firstAttribute="leading" secondItem="1bD-8D-mOT" secondAttribute="leading" constant="15" id="i0b-3T-Hwx"/>
                                             <constraint firstAttribute="height" constant="40" id="ofR-0T-G4n"/>
                                         </constraints>
                                     </view>
@@ -6484,7 +6486,7 @@
                                         <rect key="frame" x="179.66666666666663" y="110" width="149.33333333333337" height="40"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="CVV Number" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="atc-76-woH">
-                                                <rect key="frame" x="7" y="3" width="139.33333333333334" height="35"/>
+                                                <rect key="frame" x="15" y="3" width="131.33333333333334" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="vhd-Sn-jLY"/>
                                                 </constraints>
@@ -6501,7 +6503,7 @@
                                             <constraint firstAttribute="trailing" secondItem="atc-76-woH" secondAttribute="trailing" constant="3" id="HRJ-PX-CQg"/>
                                             <constraint firstAttribute="height" constant="40" id="JNQ-Qk-Xja"/>
                                             <constraint firstItem="atc-76-woH" firstAttribute="centerY" secondItem="Gl0-KA-4bX" secondAttribute="centerY" id="UmH-IY-U1E"/>
-                                            <constraint firstItem="atc-76-woH" firstAttribute="leading" secondItem="Gl0-KA-4bX" secondAttribute="leading" constant="7" id="V8S-YA-sg1"/>
+                                            <constraint firstItem="atc-76-woH" firstAttribute="leading" secondItem="Gl0-KA-4bX" secondAttribute="leading" constant="15" id="V8S-YA-sg1"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -6554,6 +6556,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="CardImage" destination="TOi-TW-Mmf" id="V3p-Pk-RxQ"/>
                         <outlet property="btnConfirmPayment" destination="66e-uS-FSI" id="xoR-d7-SqH"/>
                         <outlet property="btnCredit" destination="aeM-fC-GuZ" id="m3p-dW-F5N"/>
                         <outlet property="btnPayOnCollection" destination="bjE-Lr-vJV" id="cZv-uJ-KcF"/>

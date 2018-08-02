@@ -110,6 +110,7 @@
 		B1B9F1D520BA7E7A008D2FAD /* ASPopUpView.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B9F1D220BA7E7A008D2FAD /* ASPopUpView.m */; };
 		B1B9F1D620BA7E7A008D2FAD /* ASProgressPopUpView.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B9F1D420BA7E7A008D2FAD /* ASProgressPopUpView.m */; };
 		B1B9F1DA20BACB3F008D2FAD /* FCAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B9F1D920BACB3F008D2FAD /* FCAlertView.m */; };
+		C52937252112D16F00844C13 /* ios in Resources */ = {isa = PBXBuildFile; fileRef = C52937242112D16F00844C13 /* ios */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -306,6 +307,7 @@
 		B1B9F1D420BA7E7A008D2FAD /* ASProgressPopUpView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASProgressPopUpView.m; sourceTree = "<group>"; };
 		B1B9F1D820BACB3F008D2FAD /* FCAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCAlertView.h; sourceTree = "<group>"; };
 		B1B9F1D920BACB3F008D2FAD /* FCAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCAlertView.m; sourceTree = "<group>"; };
+		C52937242112D16F00844C13 /* ios */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ios; sourceTree = "<group>"; };
 		EB4D7B11EDDF068EAB13BA59 /* Pods-SaltPepper.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SaltPepper.release.xcconfig"; path = "Pods/Target Support Files/Pods-SaltPepper/Pods-SaltPepper.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -500,6 +502,7 @@
 		B18E77F72055143E00C50320 /* SaltPepper */ = {
 			isa = PBXGroup;
 			children = (
+				C52937242112D16F00844C13 /* ios */,
 				29360C9020B8613100283D87 /* client_628114390774-ps3bah0jagd4pnm3aflmfije8rlr3r56.apps.googleusercontent.com.plist */,
 				B141AB6F20BDC7E7009C06B4 /* CustomAlertPopup */,
 				B13EE7FD20BB31D0006E4471 /* TableCell */,
@@ -739,6 +742,7 @@
 				B141AB7420BDC7FC009C06B4 /* AlertViewPromoCode.xib in Resources */,
 				295E6A8F20C3DA2400DEDCAF /* ic_visa.png in Resources */,
 				295E6A9520C3DB5B00DEDCAF /* ic_amex.png in Resources */,
+				C52937252112D16F00844C13 /* ios in Resources */,
 				295E6A9320C3DA8E00DEDCAF /* ic_unknown.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

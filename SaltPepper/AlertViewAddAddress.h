@@ -23,5 +23,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *StateTXT;
 @property (weak, nonatomic) IBOutlet UITextField *CountryTXT;
 @property (weak, nonatomic) IBOutlet UITextField *ContactNumberTXT;
+@property (weak, nonatomic) IBOutlet UIButton *SearchBtn;
 
 @end
