@@ -1147,7 +1147,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nRM-v1-Bow">
-                                <rect key="frame" x="10" y="50" width="269" height="666"/>
+                                <rect key="frame" x="10" y="50" width="289" height="666"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="lDa-KQ-SsZ" id="0fr-wn-dZF"/>
@@ -1158,7 +1158,7 @@
                         <color key="backgroundColor" red="0.4823529411764706" green="0.043137254901960784" blue="0.047058823529411764" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="nRM-v1-Bow" firstAttribute="leading" secondItem="oYq-pt-XKf" secondAttribute="leading" constant="10" id="HmJ-Ox-g1O"/>
-                            <constraint firstAttribute="trailing" secondItem="nRM-v1-Bow" secondAttribute="trailing" constant="135" id="SiY-E8-zHN"/>
+                            <constraint firstAttribute="trailing" secondItem="nRM-v1-Bow" secondAttribute="trailing" constant="115" id="SiY-E8-zHN"/>
                             <constraint firstItem="nRM-v1-Bow" firstAttribute="top" secondItem="Se0-h9-yYa" secondAttribute="bottom" constant="30" id="fjU-xy-61G"/>
                             <constraint firstItem="CRk-Fl-Eim" firstAttribute="top" secondItem="nRM-v1-Bow" secondAttribute="bottom" constant="20" id="gdt-1o-o4g"/>
                         </constraints>
@@ -2899,13 +2899,13 @@
                                                     <constraint firstAttribute="height" constant="20" id="rlW-fP-UwS"/>
                                                 </constraints>
                                             </imageView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G0G-5T-7nn">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G0G-5T-7nn">
                                                 <rect key="frame" x="10" y="170" width="300" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="Vnz-oM-7Bh"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                                <state key="normal" title="Call Us to Our Customer Care">
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="11"/>
+                                                <state key="normal" title="               Call Us to Our Customer Care">
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
@@ -2923,19 +2923,19 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="message_icon" translatesAutoresizingMaskIntoConstraints="NO" id="dhG-hT-9u8">
-                                                <rect key="frame" x="18" y="236" width="22" height="20"/>
+                                                <rect key="frame" x="18" y="237.66666666666669" width="22" height="17"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="22" id="Xoa-kW-mA1"/>
-                                                    <constraint firstAttribute="height" constant="20" id="rAK-ZO-R6t"/>
+                                                    <constraint firstAttribute="height" constant="17" id="rAK-ZO-R6t"/>
                                                 </constraints>
                                             </imageView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rzn-27-Z8Z">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rzn-27-Z8Z">
                                                 <rect key="frame" x="10" y="221" width="300" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="PaT-9M-aVZ"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                                <state key="normal" title="Send us Feedback">
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="11"/>
+                                                <state key="normal" title="               Send us Feedback">
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
@@ -2955,13 +2955,13 @@
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location_icon" translatesAutoresizingMaskIntoConstraints="NO" id="DQb-4a-VVc">
                                                 <rect key="frame" x="18" y="287" width="20" height="20"/>
                                             </imageView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dWJ-aG-9sM">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dWJ-aG-9sM">
                                                 <rect key="frame" x="10" y="272" width="300" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="qiR-L8-Ia3"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                                <state key="normal" title="Get Your Location Details and Directions">
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="11"/>
+                                                <state key="normal" title="               Get Your Location Details and Directions">
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
@@ -2995,13 +2995,13 @@
                                                     <constraint firstAttribute="width" constant="25" id="dMH-41-ZtI"/>
                                                 </constraints>
                                             </imageView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c9b-HX-DVB">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c9b-HX-DVB">
                                                 <rect key="frame" x="10" y="393" width="300" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="f2z-50-NQg"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                <state key="normal" title="Facebook">
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                                                <state key="normal" title="               Facebook">
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
@@ -3021,13 +3021,13 @@
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="linkinedin_ic" translatesAutoresizingMaskIntoConstraints="NO" id="zTF-iY-A2P">
                                                 <rect key="frame" x="18" y="456.66666666666663" width="25" height="25"/>
                                             </imageView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2tF-Jo-cDQ">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2tF-Jo-cDQ">
                                                 <rect key="frame" x="10" y="449" width="300" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="LZO-rr-xwG"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                <state key="normal" title="Linkedin">
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                                                <state key="normal" title="               Linkedin">
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
@@ -3047,13 +3047,13 @@
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="twitter_ic" translatesAutoresizingMaskIntoConstraints="NO" id="z1l-WO-89K">
                                                 <rect key="frame" x="18" y="512.66666666666663" width="25" height="25"/>
                                             </imageView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gQY-0g-dsM">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gQY-0g-dsM">
                                                 <rect key="frame" x="10" y="505" width="300" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="ug2-UQ-NeX"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                <state key="normal" title="Twitter">
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                                                <state key="normal" title="               Twitter">
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
@@ -3077,13 +3077,13 @@
                                                     <constraint firstAttribute="width" constant="28" id="ogp-2B-QgL"/>
                                                 </constraints>
                                             </imageView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i2f-fq-6Sa">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i2f-fq-6Sa">
                                                 <rect key="frame" x="10" y="561" width="300" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="ESd-M9-tQ5"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                <state key="normal" title="Youtube">
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                                                <state key="normal" title="               Youtube">
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>

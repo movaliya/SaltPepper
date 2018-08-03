@@ -213,7 +213,9 @@
     
     [alert addButton:@"YES" withActionBlock:^{
         NSString *contact = [ContactInfo valueForKey:@"value"];
-        NSString *telephone = [NSString stringWithFormat:@"telprompt://%@",contact];
+        contact=[contact stringByReplacingOccurrencesOfString:@" " withString:@""];
+        
+        NSString *telephone = [NSString stringWithFormat:@"tel:%@",contact];
         NSURL *url = [NSURL URLWithString:telephone];
         UIApplication *application = [UIApplication sharedApplication];
         [application openURL:url options:@{} completionHandler:^(BOOL success) {

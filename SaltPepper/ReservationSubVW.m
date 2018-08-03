@@ -271,7 +271,7 @@
     
     datePicker.datePickerMode = UIDatePickerModeDateAndTime;
     [datePicker addTarget:self action:@selector(dateTextField:) forControlEvents:UIControlEventValueChanged];
-    
+    /*
     UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
     toolbar.barStyle   = UIBarStyleBlackTranslucent;
     
@@ -279,8 +279,9 @@
     UIBarButtonItem *itemSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     
     toolbar.items = @[itemSpace,itemDone];
-    
-    SelectDate_TXT.inputAccessoryView = toolbar;
+    SelectDate_TXT.inputAccessoryView = toolbar;*/
+     
+     
     [SelectDate_TXT setInputView:datePicker];
 }
 -(void) dateTextField:(id)sender
@@ -407,6 +408,39 @@
         [self.navigationController pushViewController:vcr animated:YES];
     }
 
+   
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    if (textField == SelectDate_TXT)
+    {
+        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+        [dateFormat setDateFormat:@"yyyy-MM-dd h:mm a"];
+        NSString *dateString = [dateFormat stringFromDate:[NSDate date]];
+        SelectDate_TXT.text = [NSString stringWithFormat:@"%@",dateString];
+        
+        
+        [dateFormat setDateFormat:@"yyyy-MM-dd"];
+        NSString *dateSep = [dateFormat stringFromDate:[NSDate date]];
+        ReservationDate = [NSString stringWithFormat:@"%@",dateSep];
+        
+        [dateFormat setDateFormat:@"h:mm a"];
+        NSString *TimeSep = [dateFormat stringFromDate:[NSDate date]];
+        ReservationTime = [NSString stringWithFormat:@"%@",TimeSep];
+    }
+    if (textField == ComingTime_TXT)
+    {
+       ComingTime_TXT.text = self.ComingTimepickerNames[0];
+        Hour=[[ComingTime_TXT.text componentsSeparatedByString:@":"] objectAtIndex:0];
+        Mint=[[ComingTime_TXT.text componentsSeparatedByString:@":"] objectAtIndex:1];
+        Mint = [Mint stringByReplacingOccurrencesOfString:@"PM"  withString:@""];
+        Mint = [Mint stringByReplacingOccurrencesOfString:@" "  withString:@""];
+    }
+    if (textField == Ault14_TXT)
+    {
+         Ault14_TXT.text = self.AdultpickerNames[0];
+    }
    
 }
 - (IBAction)backBtn_Action:(id)sender

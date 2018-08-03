@@ -270,10 +270,10 @@
     {
         [AppDelegate showErrorMessageWithTitle:@"Error!" message:@"Please enter Town" delegate:nil];
     }
-    else if ([POPView.StateTXT.text isEqualToString:@""])
-    {
-        [AppDelegate showErrorMessageWithTitle:@"Error!" message:@"Please enter State" delegate:nil];
-    }
+    //else if ([POPView.StateTXT.text isEqualToString:@""])
+    //{
+    //    [AppDelegate showErrorMessageWithTitle:@"Error!" message:@"Please enter State" delegate:nil];
+    //}
     else if ([POPView.PostCodeTXT.text isEqualToString:@""])
     {
         [AppDelegate showErrorMessageWithTitle:@"Error!" message:@"Please enter post code" delegate:nil];

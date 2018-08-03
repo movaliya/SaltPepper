@@ -37,12 +37,16 @@
     CLLocationCoordinate2D ourLocation;
     
     ourLocation.latitude = [[_locationDetail objectForKey:@"Latitude"] doubleValue];
-    ourLocation.latitude = [[_locationDetail objectForKey:@"Longitude"] doubleValue];
+    ourLocation.longitude = [[_locationDetail objectForKey:@"Longitude"] doubleValue];
     
     MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
     point.coordinate = ourLocation;
     point.title = [_locationDetail objectForKey:@"mapAddress"];
     point.subtitle = @"We'are here!!!";
+    
+    MKCoordinateRegion region = [self.mapVIew regionThatFits:MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2DMake(ourLocation.latitude,  ourLocation.longitude), 800, 800)];
+    [self.mapVIew setRegion:region animated:YES];
+
     [self.mapVIew addAnnotation:point];
     
 //    Latitude = "52.5006386";
@@ -59,8 +63,8 @@
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, 800, 800);
-    [self.mapVIew setRegion:[self.mapVIew regionThatFits:region] animated:YES];
+    //MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, 800, 800);
+    //[self.mapVIew setRegion:[self.mapVIew regionThatFits:region] animated:YES];
 }
 
 - (IBAction)btnBackClicked:(id)sender

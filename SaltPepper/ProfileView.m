@@ -153,6 +153,17 @@
     NSString *formattedDate = [dateFormatter stringFromDate:date];
     return formattedDate;
 }
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    if (textField == Anniversary_TXT)
+    {
+        Anniversary_TXT.text = [self formatDate:[NSDate date]];
+    }
+    if (textField == DOB_TXT)
+    {
+        DOB_TXT.text = [self formatDate:[NSDate date]];
+    }
+}
 
 -(void)GetProfileDetail
 {

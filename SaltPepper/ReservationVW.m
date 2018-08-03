@@ -169,7 +169,7 @@
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     // NSString *CoustmerID=[[[[[[UserSaveData valueForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"customerid"];
-    //NSString *CoustmerID=_@"jskdjskjdkjsadkjksjdka";
+    //NSString *CoustmerID=_ro(@"LoginUserDic");
     
     NSMutableDictionary *dict1 = [[NSMutableDictionary alloc] init];
     
@@ -178,7 +178,7 @@
     
     NSMutableDictionary *dictInner = [[NSMutableDictionary alloc] init];
     
-    [dictInner setObject:@"jskdjskjdkjsadkjksjdka" forKey:@"REGID"];
+    [dictInner setObject:@"FirebaseKey" forKey:@"REGID"];
     [dictInner setObject:_EmailTXT.text forKey:@"CUSTOMER_EMAIL"];
     [dictInner setObject:_NameTXT.text forKey:@"CUSTOMER_NAME"];
     [dictInner setObject:_PhoneNumberTXT.text forKey:@"CUSTOMER_TELEPHONE"];

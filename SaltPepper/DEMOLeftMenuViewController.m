@@ -44,6 +44,7 @@
     self.MenuTBL.backgroundColor = [UIColor clearColor];
     self.MenuTBL.backgroundView = nil;
     self.MenuTBL.bounces = NO;
+    self.MenuTBL.rowHeight = UITableViewAutomaticDimension;
     
     profilePictIMVW.layer.cornerRadius = profilePictIMVW.frame.size.width / 2;
     profilePictIMVW.clipsToBounds = YES;
@@ -672,9 +673,20 @@
         cell.backgroundColor = [UIColor clearColor];
         if([[SharedClass sharedSingleton].storyBaordName isEqualToString:@"Main"])
         {
-            cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:18];
-            cell.textLabel.textColor = [UIColor colorWithRed:254.0/255.0f green:238.0/255.0f
-                                                        blue:207.0/255.0f alpha:1.0];
+            
+            if (IS_IPHONE_5 || IS_IPHONE_4)
+            {
+                cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
+                cell.textLabel.textColor = [UIColor colorWithRed:254.0/255.0f green:238.0/255.0f
+                                                            blue:207.0/255.0f alpha:1.0];
+                cell.textLabel.frame=CGRectMake(0, 0, 50, 54);
+            }
+            else
+            {
+                cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:18];
+                cell.textLabel.textColor = [UIColor colorWithRed:254.0/255.0f green:238.0/255.0f
+                                                            blue:207.0/255.0f alpha:1.0];
+            }
         }
         else
         {
@@ -685,7 +697,9 @@
         //cell.textLabel.highlightedTextColor = [UIColor lightGrayColor];
         cell.selectedBackgroundView = [[UIView alloc] init];
     }
-    
+    cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    cell.textLabel.numberOfLines=0;
+    [cell.textLabel sizeToFit];
     cell.textLabel.text = titles[indexPath.row];
     cell.imageView.image = [UIImage imageNamed:images[indexPath.row]];
     cell.imageView.image = [ [UIImage imageNamed:images[indexPath.row]] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
