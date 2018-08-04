@@ -39,7 +39,17 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Protobuf.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>SDWebImage.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>nanopb.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -57,7 +67,27 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>382E2C07D8E452314F90C77F40311E19</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>3AF218FD7A134D8063D84CB10E60FB47</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4F06375EA0FA9B662DFE90F7A97F0E33</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5370BE854EC4E7E09E52024AA97721F8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6F97688A0520E4DCAF061C0BA053A585</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -67,17 +97,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B1370C7819B77FD81BBEED232FCC8D93</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E12C9CF90F70FF8A77546877AAACCAA9</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E42B8EF6093B0DA409D4E256984CAEAC</key>
+		<key>D8BA0939FEE58C33826AB22CFD7E33FC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
