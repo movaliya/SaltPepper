@@ -188,6 +188,7 @@
     [alert addButton:@"YES" withActionBlock:^{
         
         [KmyappDelegate.MainFavArr removeObjectAtIndex:[sender tag]];
+        [arrFav removeObjectAtIndex:[sender tag]];
         [TableVW reloadData];
         [AppDelegate WriteData:@"FavDIC" RootObject:KmyappDelegate.MainFavArr];
     }];
